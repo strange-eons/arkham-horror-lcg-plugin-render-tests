@@ -1,0 +1,52 @@
+version 16
+faceStyle TWO_FACES
+frontTemplateKey AHLCG-Treachery-Default
+backTemplateKey AHLCG-TreacheryBack-Default
+cornerRadius 8
+name 
+portrait 0 AHLCG-Treachery-Portrait
+portrait 1 AHLCG-Treachery-Collection
+portrait 2 AHLCG-Treachery-Encounter
+setting AHLCG-Treachery-Collection-portrait-rotation = 0
+setting AHLCG-Treachery-Encounter-portrait-rotation = 0
+setting AHLCG-Treachery-Portrait-portrait-rotation = 0
+setting Artist = 
+setting BackTypeBack = Encounter
+setting Collection = CustomCollection
+setting CollectionNumber = 1
+setting CollectionType = -1
+setting Copyright = 
+setting Encounter = CustomEncounterSet
+setting EncounterNumber = 1
+setting EncounterTotal = 1
+setting EncounterType = -1
+setting Flavor = 
+setting FlavorSpacing = 0
+setting Keywords = 
+setting KeywordsSpacing = 0
+setting Rules = 
+setting RulesSpacing = 0
+setting TemplateReplacement = 
+setting TemplateReplacementBack = 
+setting Traits = 
+setting TraitsSpacing = 0
+setting Victory = 
+setting flipSuffix = false
+setting game = AHLCG
+tab General
+  panel Title (2 controls)
+  panel Copyright information (3 controls)
+tab Game Text
+  panel Game Text (27 controls)
+tab Portraits
+  panel Portrait (6 controls)
+  panel Options (3 controls)
+  panel Template replacement (7 controls)
+tab Collection
+  panel Collection (6 controls)
+  panel Custom Collection (6 controls)
+tab Encounter Set
+  panel Encounter Set (8 controls)
+  panel Custom Encounter Set (6 controls)
+tab Comments
+  panel Design Rationale Comments (2 controls)

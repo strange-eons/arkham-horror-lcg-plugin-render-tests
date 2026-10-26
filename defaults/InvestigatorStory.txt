@@ -1,0 +1,96 @@
+version 16
+faceStyle TWO_FACES
+frontTemplateKey AHLCG-Investigator-Default
+backTemplateKey AHLCG-InvestigatorBack-Default
+cornerRadius 8
+name 
+portrait 0 AHLCG-Investigator-TransparentPortrait
+portrait 1 AHLCG-InvestigatorBack-Portrait
+portrait 2 AHLCG-Investigator-Collection
+portrait 3 AHLCG-Investigator-Encounter
+setting AHLCG-Investigator-Collection-portrait-rotation = 0
+setting AHLCG-Investigator-Encounter-portrait-rotation = 0
+setting AHLCG-Investigator-Encounter-portrait-template = ArkhamHorrorLCG/images/empty1x1.png
+setting AHLCG-Investigator-TransparentPortrait-portrait-rotation = 0
+setting AHLCG-InvestigatorBack-Encounter-portrait-rotation = 0
+setting AHLCG-InvestigatorBack-Encounter-portrait-template = ArkhamHorrorLCG/images/empty1x1.png
+setting AHLCG-InvestigatorBack-TransparentPortrait-portrait-clip-region = null
+setting AHLCG-InvestigatorBack-TransparentPortrait-portrait-rotation = 0
+setting AHLCG-InvestigatorBack-TransparentPortrait-portrait-template = ArkhamHorrorLCG/images/empty1x1.png
+setting Agility = 3
+setting Artist = 
+setting Class = Story
+setting Collection = CustomCollection
+setting CollectionNumber = 1
+setting CollectionType = -1
+setting Combat = 3
+setting Copyright = 
+setting Encounter = CustomEncounterSet
+setting EncounterNumber = 1
+setting EncounterTotal = 1
+setting EncounterType = -1
+setting Flavor = 
+setting Intellect = 3
+setting InvStoryBack = 
+setting Keywords = 
+setting KeywordsSpacing = 0
+setting PortraitShare = 1
+setting Rules = 
+setting RulesSpacing = 0
+setting Sanity = 7
+setting Stamina = 7
+setting Subtitle = 
+setting TemplateReplacement = 
+setting TemplateReplacementBack = 
+setting Text1Back = 30.
+setting Text1BackSpacing = 0
+setting Text1NameBack = Deck Size
+setting Text2Back = 
+setting Text2BackSpacing = 0
+setting Text2NameBack = Secondary Class Choice
+setting Text3Back = 
+setting Text3BackSpacing = 0
+setting Text3NameBack = Deckbuilding Options
+setting Text4Back = 
+setting Text4BackSpacing = 0
+setting Text4NameBack = Deckbuilding Requirements</hdr> (do not count toward deck size)<hdr>
+setting Text5Back = 
+setting Text5BackSpacing = 0
+setting Text5NameBack = Deckbuilding Restrictions
+setting Text6Back = 
+setting Text6BackSpacing = 0
+setting Text6NameBack = Additional Requirements
+setting Text7Back = 
+setting Text7BackSpacing = 0
+setting Text7NameBack = Additional Restrictions
+setting Text8Back = 
+setting Text8NameBack = 
+setting Traits = 
+setting TraitsSpacing = 0
+setting Unique = 1
+setting Willpower = 3
+setting flipSuffix = false
+setting game = AHLCG
+tab General
+  panel Title (5 controls)
+  panel Basic Data (12 controls)
+  panel Copyright information (3 controls)
+tab Game Text: Front
+  panel Game Text (22 controls)
+tab Game Text: Back
+  panel Sections (2 controls)
+  panel Game Text (48 controls)
+tab Portraits
+  panel Portrait : Front (6 controls)
+  panel Options: Front (3 controls)
+  panel Portrait : Back (6 controls)
+  panel Options: Back (1 controls)
+  panel Template replacement (7 controls)
+tab Collection
+  panel Collection (6 controls)
+  panel Custom Collection (6 controls)
+tab Encounter Set
+  panel Encounter Set (8 controls)
+  panel Custom Encounter Set (6 controls)
+tab Comments
+  panel Design Rationale Comments (2 controls)

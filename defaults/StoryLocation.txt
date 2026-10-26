@@ -1,0 +1,103 @@
+version 18
+faceStyle TWO_FACES
+frontTemplateKey AHLCG-Story-Default
+backTemplateKey AHLCG-Location-Default
+cornerRadius 8
+name 
+portrait 0 AHLCG-Location-BackPortrait
+portrait 1 AHLCG-Location-Collection
+portrait 2 AHLCG-Story-Encounter
+setting AHLCG-Location-BackPortrait-portrait-rotation = 0
+setting AHLCG-Location-Collection-portrait-rotation = 0
+setting AHLCG-Location-Encounter-portrait-rotation = 0
+setting AHLCG-Story-Encounter-portrait-rotation = 0
+setting AccentedStoryA = 
+setting AccentedStoryASpacing = 0
+setting AccentedStoryB = 
+setting AccentedStoryBSpacing = 0
+setting AccentedStoryC = 
+setting AccentedStoryCSpacing = 0
+setting ArtistBack = 
+setting CluesBack = 1
+setting Collection = CustomCollection
+setting CollectionNumber = 1
+setting CollectionType = -1
+setting Connection1IconBack = None
+setting Connection2IconBack = None
+setting Connection3IconBack = None
+setting Connection4IconBack = None
+setting Connection5IconBack = None
+setting Connection6IconBack = None
+setting Copyright = 
+setting Encounter = CustomEncounterSet
+setting EncounterNumber = 1
+setting EncounterTotal = 1
+setting EncounterType = -1
+setting FlavorBack = 
+setting FlavorBackSpacing = 0
+setting HeaderA = 
+setting HeaderASpacing = 0
+setting HeaderB = 
+setting HeaderBSpacing = 0
+setting HeaderC = 
+setting HeaderCSpacing = 0
+setting KeywordsBack = 
+setting KeywordsBackSpacing = 0
+setting LocationIconBack = Circle
+setting PerInvestigatorBack = 1
+setting RulesA = 
+setting RulesB = 
+setting RulesBack = 
+setting RulesBackSpacing = 0
+setting RulesC = 
+setting ScaleModifier = 100
+setting ShowCollectionNumberBack = 1
+setting ShowCollectionNumberFront = 1
+setting ShowCopyrightBack = 1
+setting ShowCopyrightFront = 1
+setting ShowEncounterIconBack = 1
+setting ShowEncounterNumberBack = 1
+setting ShowEncounterNumberFront = 1
+setting ShroudBack = 1
+setting SubtitleBack = 
+setting Template = Story
+setting TemplateReplacement = 
+setting TemplateReplacementBack = 
+setting TitleBack = 
+setting TrackerBox = 
+setting TrackerHeight = 100
+setting TraitsA = 
+setting TraitsASpacing = 0
+setting TraitsBack = 
+setting TraitsBackSpacing = 0
+setting Victory = 
+setting VictoryBack = 
+setting VictorySpacing = 0
+setting flipSuffix = false
+setting game = AHLCG
+tab General
+  panel Title: Front (2 controls)
+  panel Basic Data: Front (7 controls)
+  panel Title: Back (4 controls)
+  panel Basic Data: Back (6 controls)
+  panel Connections: Back (14 controls)
+  panel Copyright information (4 controls)
+tab Game Text: Front
+  panel Game Text (Part A) (21 controls)
+  panel Game Text (Part B) (13 controls)
+  panel Game Text (Part C) (13 controls)
+  panel Victory (5 controls)
+tab Game Text: Back
+  panel Game Text (27 controls)
+tab Portraits
+  panel Portrait (6 controls)
+  panel Options (3 controls)
+  panel Template replacement (7 controls)
+tab Collection
+  panel Collection (8 controls)
+  panel Custom Collection (6 controls)
+tab Encounter Set
+  panel Encounter Set (11 controls)
+  panel Custom Encounter Set (6 controls)
+tab Comments
+  panel Design Rationale Comments (2 controls)

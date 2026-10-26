@@ -1,0 +1,103 @@
+version 18
+faceStyle TWO_FACES
+frontTemplateKey AHLCG-Location-Default
+backTemplateKey AHLCG-LocationBack-Default
+cornerRadius 8
+name 
+portrait 0 AHLCG-Location-Portrait
+portrait 1 AHLCG-LocationBack-BackPortrait
+portrait 2 AHLCG-Location-Collection
+portrait 3 AHLCG-Location-Encounter
+setting AHLCG-Location-Collection-portrait-rotation = 0
+setting AHLCG-Location-Encounter-portrait-rotation = 0
+setting AHLCG-Location-Portrait-portrait-rotation = 0
+setting AHLCG-LocationBack-BackPortrait-portrait-rotation = 0
+setting AHLCG-LocationBack-Collection-portrait-rotation = 0
+setting AHLCG-LocationBack-Collection-portrait-template = ArkhamHorrorLCG/images/empty1x1.png
+setting AHLCG-LocationBack-Encounter-portrait-rotation = 0
+setting AHLCG-LocationBack-Encounter-portrait-template = ArkhamHorrorLCG/images/empty1x1.png
+setting AHLCG-LocationBack-Portrait-portrait-clip-region = null
+setting AHLCG-LocationBack-Portrait-portrait-rotation = 0
+setting AHLCG-LocationBack-Portrait-portrait-template = ArkhamHorrorLCG/images/empty1x1.png
+setting Artist = 
+setting ArtistBack = 
+setting BackTypeBack = Standard
+setting Clues = 1
+setting Collection = CustomCollection
+setting CollectionNumber = 1
+setting CollectionType = -1
+setting Connection1Icon = None
+setting Connection1IconBack = Copy front
+setting Connection2Icon = None
+setting Connection2IconBack = Copy front
+setting Connection3Icon = None
+setting Connection3IconBack = Copy front
+setting Connection4Icon = None
+setting Connection4IconBack = Copy front
+setting Connection5Icon = None
+setting Connection5IconBack = Copy front
+setting Connection6Icon = None
+setting Connection6IconBack = Copy front
+setting Copyright = 
+setting Encounter = CustomEncounterSet
+setting EncounterNumber = 1
+setting EncounterTotal = 1
+setting EncounterType = -1
+setting Flavor = 
+setting FlavorBack = 
+setting FlavorBackSpacing = 0
+setting FlavorSpacing = 0
+setting Keywords = 
+setting KeywordsBack = 
+setting KeywordsBackSpacing = 0
+setting KeywordsSpacing = 0
+setting LocationIcon = Circle
+setting LocationIconBack = Copy front
+setting PerInvestigator = 1
+setting PortraitShare = 1
+setting Rules = 
+setting RulesBack = 
+setting RulesBackSpacing = 0
+setting RulesSpacing = 0
+setting ShowEncounterIcon = 1
+setting ShowEncounterIconBack = 1
+setting Shroud = 1
+setting ShroudPerInvestigator = 0
+setting Subtitle = 
+setting SubtitleBack = 
+setting TemplateReplacement = 
+setting TemplateReplacementBack = 
+setting TitleBack = 
+setting Traits = 
+setting TraitsBack = 
+setting TraitsBackSpacing = 0
+setting TraitsSpacing = 0
+setting Victory = 
+setting flipSuffix = false
+setting game = AHLCG
+tab General
+  panel Title: Front (4 controls)
+  panel Basic Data: Front (6 controls)
+  panel Connections: Front (14 controls)
+  panel Title: Back (4 controls)
+  panel Basic Data: Back (2 controls)
+  panel Connections: Back (14 controls)
+  panel Copyright information (3 controls)
+tab Game Text: Front
+  panel Game Text (27 controls)
+tab Game Text: Back
+  panel Game Text (22 controls)
+tab Portraits
+  panel Portrait : Front (6 controls)
+  panel Options: Front (3 controls)
+  panel Portrait : Back (6 controls)
+  panel Options: Back (4 controls)
+  panel Template replacement (7 controls)
+tab Collection
+  panel Collection (6 controls)
+  panel Custom Collection (6 controls)
+tab Encounter Set
+  panel Encounter Set (12 controls)
+  panel Custom Encounter Set (6 controls)
+tab Comments
+  panel Design Rationale Comments (2 controls)

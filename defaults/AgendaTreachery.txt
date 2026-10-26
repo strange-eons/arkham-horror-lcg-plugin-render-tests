@@ -1,0 +1,71 @@
+version 17
+faceStyle TWO_FACES
+frontTemplateKey AHLCG-Agenda-Default
+backTemplateKey AHLCG-Treachery-Default
+cornerRadius 8
+name 
+portrait 0 AHLCG-Agenda-Portrait
+portrait 1 AHLCG-Treachery-BackPortrait
+portrait 2 AHLCG-Agenda-Collection
+portrait 3 AHLCG-Agenda-Encounter
+setting AHLCG-Agenda-Collection-portrait-rotation = 0
+setting AHLCG-Agenda-Encounter-portrait-rotation = 0
+setting AHLCG-Agenda-Portrait-portrait-rotation = 0
+setting AHLCG-Treachery-BackPortrait-portrait-rotation = 0
+setting AHLCG-Treachery-Collection-portrait-rotation = 0
+setting AHLCG-Treachery-Encounter-portrait-rotation = 0
+setting AgendaStory = 
+setting AgendaStorySpacing = 0
+setting Artist = 
+setting ArtistBack = 
+setting Asterisk = 0
+setting Collection = CustomCollection
+setting CollectionNumber = 1
+setting CollectionType = -1
+setting Copyright = 
+setting Doom = 3
+setting Encounter = CustomEncounterSet
+setting EncounterNumber = 1
+setting EncounterTotal = 1
+setting EncounterType = -1
+setting FlavorBack = 
+setting FlavorBackSpacing = 0
+setting KeywordsBack = 
+setting KeywordsBackSpacing = 0
+setting Orientation = Standard
+setting PerInvestigator = 0
+setting Rules = 
+setting RulesBack = 
+setting RulesBackSpacing = 0
+setting ScenarioDeckID = a
+setting ScenarioIndex = 1
+setting TemplateReplacement = 
+setting TemplateReplacementBack = 
+setting TitleBack = 
+setting TraitsBack = 
+setting TraitsBackSpacing = 0
+setting VictoryBack = 
+setting game = AHLCG
+tab General
+  panel Title: Front (2 controls)
+  panel Basic Data: Front (10 controls)
+  panel Title: Back (2 controls)
+  panel Copyright information (3 controls)
+tab Game Text: Front
+  panel Game Text (9 controls)
+tab Game Text: Back
+  panel Game Text (27 controls)
+tab Portraits
+  panel Portrait : Front (6 controls)
+  panel Options: Front (3 controls)
+  panel Portrait : Back (6 controls)
+  panel Options: Back (3 controls)
+  panel Template replacement (7 controls)
+tab Collection
+  panel Collection (6 controls)
+  panel Custom Collection (6 controls)
+tab Encounter Set
+  panel Encounter Set (8 controls)
+  panel Custom Encounter Set (6 controls)
+tab Comments
+  panel Design Rationale Comments (2 controls)

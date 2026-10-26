@@ -1,0 +1,45 @@
+version 1
+faceStyle TWO_FACES
+frontTemplateKey AHLCG-Ultimatum-Default
+backTemplateKey AHLCG-UltimatumBack-Default
+cornerRadius 8
+name 
+portrait 0 AHLCG-Ultimatum-Portrait
+portrait 1 AHLCG-Ultimatum-Collection
+portrait 2 AHLCG-Ultimatum-Encounter
+setting AHLCG-Ultimatum-Collection-portrait-rotation = 0
+setting AHLCG-Ultimatum-Encounter-portrait-rotation = 0
+setting AHLCG-Ultimatum-Portrait-portrait-rotation = 0
+setting Artist = 
+setting BackTypeBack = Boon
+setting Collection = CustomCollection
+setting CollectionNumber = 1
+setting CollectionType = -1
+setting Copyright = 
+setting Encounter = CustomEncounterSet
+setting EncounterNumber = 1
+setting EncounterTotal = 1
+setting EncounterType = -1
+setting Rules = 
+setting RulesSpacing = 0
+setting Subtitle = 
+setting Traits = 
+setting TraitsSpacing = 0
+setting game = AHLCG
+tab General
+  panel Title (5 controls)
+  panel Copyright information (3 controls)
+tab Game Text
+  panel Game Text (13 controls)
+tab Portraits
+  panel Portrait (6 controls)
+  panel Options (2 controls)
+  panel Template replacement (7 controls)
+tab Collection
+  panel Collection (6 controls)
+  panel Custom Collection (6 controls)
+tab Encounter Set
+  panel Encounter Set (8 controls)
+  panel Custom Encounter Set (6 controls)
+tab Comments
+  panel Design Rationale Comments (2 controls)

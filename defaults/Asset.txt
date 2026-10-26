@@ -1,0 +1,62 @@
+version 18
+faceStyle TWO_FACES
+frontTemplateKey AHLCG-Asset-Default
+backTemplateKey AHLCG-AssetBack-Default
+cornerRadius 8
+name 
+portrait 0 AHLCG-Asset-Portrait
+portrait 1 AHLCG-Asset-Collection
+setting AHLCG-Asset-Collection-portrait-rotation = 0
+setting AHLCG-Asset-Portrait-portrait-rotation = 0
+setting Artist = 
+setting BackTypeBack = Player
+setting CardClass = Guardian
+setting CardClass2 = None
+setting CardClass3 = None
+setting Collection = CustomCollection
+setting CollectionNumber = 1
+setting CollectionType = -1
+setting Copyright = 
+setting Flavor = 
+setting FlavorSpacing = 0
+setting Keywords = 
+setting KeywordsSpacing = 0
+setting Level = 0
+setting PerInvestigatorSanity = 0
+setting PerInvestigatorStamina = 0
+setting ResourceCost = 0
+setting Rules = 
+setting RulesSpacing = 0
+setting Sanity = None
+setting Skill1 = None
+setting Skill2 = None
+setting Skill3 = None
+setting Skill4 = None
+setting Skill5 = None
+setting Slot = None
+setting Slot2 = None
+setting Stamina = None
+setting Subtitle = 
+setting TemplateReplacement = 
+setting TemplateReplacementBack = 
+setting Traits = 
+setting TraitsSpacing = 0
+setting Unique = 0
+setting Victory = 
+setting game = AHLCG
+tab General
+  panel Title (5 controls)
+  panel Basic Data: Front (32 controls)
+  panel Basic Data: Back (2 controls)
+  panel Copyright information (3 controls)
+tab Game Text
+  panel Game Text (27 controls)
+tab Portraits
+  panel Portrait (6 controls)
+  panel Options (3 controls)
+  panel Template replacement (7 controls)
+tab Collection
+  panel Collection (6 controls)
+  panel Custom Collection (6 controls)
+tab Comments
+  panel Design Rationale Comments (2 controls)

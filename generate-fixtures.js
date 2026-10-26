@@ -1,8 +1,15 @@
 /*
- * Runs inside Strange Eons via `--run` (see the generateFixtures task).
- * Creates one .eon file per card handler and variant in fx.out, named
- * <Handler>/<variant>.eon. Existing files are kept unless fx.overwrite is
- * true. Writes one line per fixture to fx.results, then DONE.
+ * Runs inside Strange Eons via `--run` (see the generateFixtures and
+ * dumpDefaults tasks).
+ *
+ * fx.mode "fixtures": creates one .eon file per card handler and variant in
+ * fx.out, named <Handler>/<variant>.eon. Existing files are kept unless
+ * fx.overwrite is true.
+ *
+ * fx.mode "defaults": writes <Handler>.txt to fx.out, listing the state of a
+ * newly created component (settings, portraits, version, templates).
+ *
+ * Writes one line per handler or fixture to fx.results, then DONE.
  *
  * ES5 only: this runs on Strange Rhino.
  */
@@ -17,6 +24,7 @@ function prop(k) {
     return v == null ? "" : String(v);
 }
 
+var mode = prop("fx.mode") || "fixtures";
 var outDir = new File(prop("fx.out"));
 var overwrite = prop("fx.overwrite") === "true";
 var results = new PrintWriter(new OutputStreamWriter(new FileOutputStream(prop("fx.results")), "UTF-8"));
@@ -320,8 +328,71 @@ function write(handler, faces, variant, extra) {
     }
 }
 
+function describe(gc) {
+    var lines = [];
+    var s = gc.getSettings();
+    for (var it = s.getKeySet().iterator(); it.hasNext();) {
+        var k = String(it.next());
+        lines.push("setting " + k + " = " + s.get(k));
+    }
+    lines.sort();
+    var head = [
+        "version " + gc.getVersion(),
+        "faceStyle " + gc.getFaceStyle(),
+        "frontTemplateKey " + gc.getFrontTemplateKey(),
+        "backTemplateKey " + gc.getBackTemplateKey(),
+        "cornerRadius " + gc.getCornerRadius(),
+        "name " + gc.getName()
+    ];
+    for (var i = 0; i < gc.getPortraitCount(); ++i) {
+        head.push("portrait " + i + " " + gc.getPortrait(i).getBaseKey());
+    }
+    return head.concat(lines).join("\n") + "\n";
+}
+
+// editor tabs and titled panels, in layout order
+function describeEditor(gc) {
+    var lines = [];
+    var editor = gc.createDefaultEditor();
+    var tabs = editor.getTabbedPane();
+    function title(b) {
+        if (b instanceof javax.swing.border.TitledBorder) return b.getTitle();
+        if (b instanceof javax.swing.border.CompoundBorder) return title(b.getOutsideBorder()) || title(b.getInsideBorder());
+        return null;
+    }
+    function walk(c, depth) {
+        var t = c instanceof javax.swing.JComponent ? title(c.getBorder()) : null;
+        if (t != null) lines.push("  panel " + t + " (" + c.getComponentCount() + " controls)");
+        if (depth > 0 && c instanceof javax.swing.JTabbedPane) return;
+        var children = c.getComponents();
+        for (var i = 0; i < children.length; ++i) walk(children[i], depth + 1);
+    }
+    for (var t = 0; t < tabs.getTabCount(); ++t) {
+        lines.push("tab " + tabs.getTitleAt(t));
+        walk(tabs.getComponentAt(t), 1);
+    }
+    editor.dispose();
+    return lines.join("\n") + "\n";
+}
+
+function writeDefaults(handler) {
+    try {
+        var gc = new DIY("ArkhamHorrorLCG/diy/" + handler + ".js", "AHLCG", false);
+        var file = new File(outDir, handler + ".txt");
+        file.getParentFile().mkdirs();
+        java.nio.file.Files.writeString(file.toPath(), describe(gc) + describeEditor(gc));
+        record("OK", handler, file);
+    } catch (e) {
+        record("FAIL", handler, e.javaException ? e.javaException.toString() : String(e));
+    }
+}
+
 try {
     for (var h in HANDLERS) {
+        if (mode === "defaults") {
+            writeDefaults(h);
+            continue;
+        }
         var faces = HANDLERS[h];
         write(h, faces, "default", null);
         write(h, faces, "filled", null);

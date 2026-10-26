@@ -1,0 +1,15 @@
+version 8
+faceStyle TWO_FACES
+frontTemplateKey AHLCG-MiniInvestigator-Default
+backTemplateKey AHLCG-MiniInvestigator-Default
+cornerRadius 8
+name 
+portrait 0 AHLCG-MiniInvestigator-Portrait
+setting AHLCG-MiniInvestigator-Portrait-portrait-rotation = 0
+setting game = AHLCG
+tab Portraits
+  panel Portrait (6 controls)
+  panel Options (3 controls)
+  panel Template replacement (7 controls)
+tab Comments
+  panel Design Rationale Comments (2 controls)

@@ -1,0 +1,84 @@
+version 17
+faceStyle TWO_FACES
+frontTemplateKey AHLCG-Act-Default
+backTemplateKey AHLCG-Enemy-Default
+cornerRadius 8
+name 
+portrait 0 AHLCG-Act-Portrait
+portrait 1 AHLCG-Enemy-BackPortrait
+portrait 2 AHLCG-Act-Collection
+portrait 3 AHLCG-Act-Encounter
+setting AHLCG-Act-Collection-portrait-rotation = 0
+setting AHLCG-Act-Encounter-portrait-rotation = 0
+setting AHLCG-Act-Portrait-portrait-rotation = 0
+setting AHLCG-Enemy-BackPortrait-portrait-rotation = 0
+setting AHLCG-Enemy-Collection-portrait-rotation = 0
+setting AHLCG-Enemy-Collection-portrait-template = ArkhamHorrorLCG/images/empty1x1.png
+setting AHLCG-Enemy-Encounter-portrait-rotation = 0
+setting AHLCG-Enemy-Encounter-portrait-template = ArkhamHorrorLCG/images/empty1x1.png
+setting ActStory = 
+setting ActStorySpacing = 0
+setting Artist = 
+setting ArtistBack = 
+setting Asterisk = 0
+setting AttackBack = 2
+setting Clues = 2
+setting Collection = CustomCollection
+setting CollectionNumber = 1
+setting CollectionType = -1
+setting Copyright = 
+setting DamageBack = 0
+setting Encounter = CustomEncounterSet
+setting EncounterNumber = 1
+setting EncounterTotal = 1
+setting EncounterType = -1
+setting EvadeBack = 2
+setting FlavorBack = 
+setting FlavorBackSpacing = 0
+setting HealthBack = 2
+setting HorrorBack = 0
+setting KeywordsBack = 
+setting KeywordsBackSpacing = 0
+setting Orientation = Standard
+setting PerInvestigator = 0
+setting PerInvestigatorAttackBack = 0
+setting PerInvestigatorBack = 0
+setting PerInvestigatorEvadeBack = 0
+setting Rules = 
+setting RulesBack = 
+setting RulesBackSpacing = 0
+setting ScenarioDeckID = a
+setting ScenarioIndex = 1
+setting SubtitleBack = 
+setting TemplateReplacement = 
+setting TemplateReplacementBack = 
+setting TitleBack = 
+setting TraitsBack = 
+setting TraitsBackSpacing = 0
+setting UniqueBack = 0
+setting VictoryBack = 
+setting game = AHLCG
+tab General
+  panel Title: Front (2 controls)
+  panel Basic Data: Front (10 controls)
+  panel Title: Back (5 controls)
+  panel Basic Data: Back (13 controls)
+  panel Copyright information (3 controls)
+tab Game Text: Front
+  panel Game Text (9 controls)
+tab Game Text: Back
+  panel Game Text (27 controls)
+tab Portraits
+  panel Portrait : Front (6 controls)
+  panel Options: Front (3 controls)
+  panel Portrait : Back (6 controls)
+  panel Options: Back (3 controls)
+  panel Template replacement (7 controls)
+tab Collection
+  panel Collection (6 controls)
+  panel Custom Collection (6 controls)
+tab Encounter Set
+  panel Encounter Set (8 controls)
+  panel Custom Encounter Set (6 controls)
+tab Comments
+  panel Design Rationale Comments (2 controls)

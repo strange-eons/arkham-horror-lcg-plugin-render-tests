@@ -1,0 +1,64 @@
+version 16
+faceStyle TWO_FACES
+frontTemplateKey AHLCG-WeaknessEnemy-Default
+backTemplateKey AHLCG-WeaknessEnemyBack-Default
+cornerRadius 8
+name 
+portrait 0 AHLCG-WeaknessEnemy-Portrait
+portrait 1 AHLCG-WeaknessEnemy-Collection
+portrait 2 AHLCG-WeaknessEnemy-Encounter
+setting AHLCG-WeaknessEnemy-Collection-portrait-rotation = 0
+setting AHLCG-WeaknessEnemy-Encounter-portrait-rotation = 0
+setting AHLCG-WeaknessEnemy-Encounter-portrait-template = ArkhamHorrorLCG/images/empty1x1.png
+setting AHLCG-WeaknessEnemy-Portrait-portrait-rotation = 0
+setting Artist = 
+setting Attack = 2
+setting BackTypeBack = Player
+setting Collection = CustomCollection
+setting CollectionNumber = 1
+setting CollectionType = -1
+setting Copyright = 
+setting Damage = 0
+setting Encounter = CustomEncounterSet
+setting EncounterNumber = 1
+setting EncounterTotal = 1
+setting EncounterType = -1
+setting Evade = 2
+setting Flavor = 
+setting FlavorSpacing = 0
+setting Health = 2
+setting Horror = 0
+setting Keywords = 
+setting KeywordsSpacing = 0
+setting PerInvestigator = 0
+setting PerInvestigatorAttack = 0
+setting PerInvestigatorEvade = 0
+setting Rules = 
+setting RulesSpacing = 0
+setting Subtype = BasicWeakness
+setting TemplateReplacement = 
+setting TemplateReplacementBack = 
+setting Traits = 
+setting TraitsSpacing = 0
+setting Unique = 0
+setting Victory = 
+setting flipSuffix = false
+setting game = AHLCG
+tab General
+  panel Title (3 controls)
+  panel Basic Data (15 controls)
+  panel Copyright information (3 controls)
+tab Game Text
+  panel Game Text (27 controls)
+tab Portraits
+  panel Portrait (6 controls)
+  panel Options (3 controls)
+  panel Template replacement (7 controls)
+tab Collection
+  panel Collection (6 controls)
+  panel Custom Collection (6 controls)
+tab Encounter Set
+  panel Encounter Set (8 controls)
+  panel Custom Encounter Set (6 controls)
+tab Comments
+  panel Design Rationale Comments (2 controls)

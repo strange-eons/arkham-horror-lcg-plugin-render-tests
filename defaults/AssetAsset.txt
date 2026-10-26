@@ -1,0 +1,98 @@
+version 18
+faceStyle TWO_FACES
+frontTemplateKey AHLCG-Asset-Default
+backTemplateKey AHLCG-Asset-Default
+cornerRadius 8
+name 
+portrait 0 AHLCG-Asset-Portrait
+portrait 1 AHLCG-Asset-BackPortrait
+portrait 2 AHLCG-Asset-Collection
+setting AHLCG-Asset-BackPortrait-portrait-rotation = 0
+setting AHLCG-Asset-Collection-portrait-rotation = 0
+setting AHLCG-Asset-Portrait-portrait-rotation = 0
+setting Artist = 
+setting ArtistBack = 
+setting CardClass = Neutral
+setting CardClass2 = None
+setting CardClass3 = None
+setting CardClassBack = Neutral
+setting CardClassBack2 = None
+setting CardClassBack3 = None
+setting Collection = CustomCollection
+setting CollectionNumber = 1
+setting CollectionType = -1
+setting Copyright = 
+setting Flavor = 
+setting FlavorBack = 
+setting FlavorBackSpacing = 0
+setting FlavorSpacing = 0
+setting Keywords = 
+setting KeywordsBack = 
+setting KeywordsBackSpacing = 0
+setting KeywordsSpacing = 0
+setting Level = None
+setting LevelBack = None
+setting PerInvestigatorSanity = 0
+setting PerInvestigatorSanityBack = 0
+setting PerInvestigatorStamina = 0
+setting PerInvestigatorStaminaBack = 0
+setting ResourceCost = 0
+setting ResourceCostBack = 0
+setting Rules = 
+setting RulesBack = 
+setting RulesBackSpacing = 0
+setting RulesSpacing = 0
+setting Sanity = None
+setting SanityBack = None
+setting ShowCollectionNumberBack = 1
+setting ShowCollectionNumberFront = 1
+setting Skill1 = None
+setting Skill1Back = None
+setting Skill2 = None
+setting Skill2Back = None
+setting Skill3 = None
+setting Skill3Back = None
+setting Skill4 = None
+setting Skill4Back = None
+setting Skill5 = None
+setting Skill5Back = None
+setting Slot = None
+setting Slot2 = None
+setting Slot2Back = None
+setting SlotBack = None
+setting Stamina = None
+setting StaminaBack = None
+setting Subtitle = 
+setting SubtitleBack = 
+setting TemplateReplacement = 
+setting TemplateReplacementBack = 
+setting Traits = 
+setting TraitsBack = 
+setting TraitsBackSpacing = 0
+setting TraitsSpacing = 0
+setting Unique = 0
+setting UniqueBack = 0
+setting Victory = 
+setting VictoryBack = 
+setting game = AHLCG
+tab General
+  panel Title: Front (5 controls)
+  panel Basic Data: Front (32 controls)
+  panel Title: Back (5 controls)
+  panel Basic Data: Back (32 controls)
+  panel Copyright information (3 controls)
+tab Game Text: Front
+  panel Game Text (27 controls)
+tab Game Text: Back
+  panel Game Text (27 controls)
+tab Portraits
+  panel Portrait : Front (6 controls)
+  panel Options: Front (3 controls)
+  panel Portrait : Back (6 controls)
+  panel Options: Back (3 controls)
+  panel Template replacement (7 controls)
+tab Collection
+  panel Collection (8 controls)
+  panel Custom Collection (6 controls)
+tab Comments
+  panel Design Rationale Comments (2 controls)

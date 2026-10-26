@@ -1,0 +1,69 @@
+version 19
+faceStyle TWO_FACES
+frontTemplateKey AHLCG-Event-Default
+backTemplateKey AHLCG-EventBack-Default
+cornerRadius 8
+name 
+portrait 0 AHLCG-Event-Portrait
+portrait 1 AHLCG-Event-Collection
+portrait 2 AHLCG-Event-Encounter
+setting AHLCG-Event-Collection-portrait-rotation = 0
+setting AHLCG-Event-Encounter-portrait-rotation = 0
+setting AHLCG-Event-Encounter-portrait-template = ArkhamHorrorLCG/images/empty1x1.png
+setting AHLCG-Event-Portrait-portrait-rotation = 0
+setting AHLCG-EventBack-Encounter-portrait-clip-region = null
+setting AHLCG-EventBack-Encounter-portrait-rotation = 0
+setting AHLCG-EventBack-Encounter-portrait-template = ArkhamHorrorLCG/images/empty1x1.png
+setting Artist = 
+setting BackTypeBack = Player
+setting CardClass = Guardian
+setting CardClass2 = None
+setting CardClass3 = None
+setting Collection = CustomCollection
+setting CollectionNumber = 1
+setting CollectionType = -1
+setting Copyright = 
+setting Encounter = CustomEncounterSet
+setting EncounterNumber = 1
+setting EncounterTotal = 1
+setting EncounterType = -1
+setting Flavor = 
+setting FlavorSpacing = 0
+setting Keywords = 
+setting KeywordsSpacing = 0
+setting Level = 0
+setting ResourceCost = 0
+setting Rules = 
+setting RulesSpacing = 0
+setting Skill1 = None
+setting Skill2 = None
+setting Skill3 = None
+setting Skill4 = None
+setting Skill5 = None
+setting TemplateReplacement = 
+setting TemplateReplacementBack = 
+setting Traits = 
+setting TraitsSpacing = 0
+setting Unique = 0
+setting Victory = 
+setting flipSuffix = false
+setting game = AHLCG
+tab General
+  panel Title (2 controls)
+  panel Basic Data: Front (20 controls)
+  panel Basic Data: Back (2 controls)
+  panel Copyright information (3 controls)
+tab Game Text
+  panel Game Text (27 controls)
+tab Portraits
+  panel Portrait (6 controls)
+  panel Options (3 controls)
+  panel Template replacement (7 controls)
+tab Collection
+  panel Collection (6 controls)
+  panel Custom Collection (6 controls)
+tab Encounter Set
+  panel Encounter Set (8 controls)
+  panel Custom Encounter Set (6 controls)
+tab Comments
+  panel Design Rationale Comments (2 controls)
