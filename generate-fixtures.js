@@ -3,11 +3,13 @@
  * dumpDefaults tasks).
  *
  * fx.mode "fixtures": creates one .eon file per card handler and variant in
- * fx.out, named <Handler>/<variant>.eon. Existing files are kept unless
- * fx.overwrite is true.
+ * fx.out, named <Handler>/<variant>.eon, and one per flexible card face and
+ * variant in fx.flexibleOut, named <face>/<variant>.eon. Existing files are
+ * kept unless fx.overwrite is true.
  *
  * fx.mode "defaults": writes <Handler>.txt to fx.out, listing the state of a
- * newly created component (settings, portraits, version, templates).
+ * newly created component (settings, portraits, version, templates);
+ * flexible card faces are written as Flexible-<face>.txt.
  * Also writes amd-loader.txt from the fx.amdScript handler: the AMD loader
  * checks it records.
  *
@@ -28,6 +30,7 @@ function prop(k) {
 
 var mode = prop("fx.mode") || "fixtures";
 var outDir = new File(prop("fx.out"));
+var flexibleOutDir = new File(prop("fx.flexibleOut") || prop("fx.out"));
 var overwrite = prop("fx.overwrite") === "true";
 var results = new PrintWriter(new OutputStreamWriter(new FileOutputStream(prop("fx.results")), "UTF-8"));
 
@@ -270,6 +273,10 @@ var HANDLERS = {
     TreacheryStory: ["treachery", "story"]
 };
 
+// Flexible card faces. Each fixture uses the face on both sides and renders
+// the front only, so its masters show that face alone.
+var FLEXIBLE = ["playerBack", "encounterBack"];
+
 // Keys a handler reads without defining them in setDefaults; set on every
 // variant ("default" uses empty values).
 var UNDEFINED_KEYS = {
@@ -288,8 +295,17 @@ function apply(gc, values, suffix) {
     }
 }
 
-function build(handler, faces, variant, extra) {
+// Selects the faces of a flexible card; the handler applies them, with their
+// defaults, the next time it is asked for portraits.
+function selectFaces(gc, faces) {
+    gc.getSettings().set("FrontFace", faces[0]);
+    gc.getSettings().set("BackFace", faces[1]);
+    gc.getPortraitCount();
+}
+
+function build(handler, faces, variant, extra, flexible) {
     var gc = new DIY("ArkhamHorrorLCG/diy/" + handler + ".js", "AHLCG", false);
+    if (flexible) selectFaces(gc, faces);
     gc.setName("Spawn of the Stars");
     for (var i = 0; i < gc.getPortraitCount(); ++i) {
         var p = gc.getPortrait(i);
@@ -314,16 +330,16 @@ function build(handler, faces, variant, extra) {
     return gc;
 }
 
-function write(handler, faces, variant, extra) {
-    var name = handler + "/" + variant;
-    var file = new File(outDir, name + ".eon");
+function write(handler, faces, variant, extra, flexible) {
+    var name = (flexible ? faces[0] : handler) + "/" + variant;
+    var file = new File(flexible ? flexibleOutDir : outDir, name + ".eon");
     if (file.exists() && !overwrite) {
         record("SKIP", name, "exists");
         return;
     }
     try {
         file.getParentFile().mkdirs();
-        ResourceKit.writeGameComponentToFile(file, build(handler, faces, variant, extra));
+        ResourceKit.writeGameComponentToFile(file, build(handler, faces, variant, extra, flexible));
         record("OK", name, file);
     } catch (e) {
         record("FAIL", name, e.javaException ? e.javaException.toString() : String(e));
@@ -377,15 +393,36 @@ function describeEditor(gc) {
     return lines.join("\n") + "\n";
 }
 
-function writeDefaults(handler) {
+function writeDefaults(handler, faces) {
+    var name = faces ? handler + "-" + faces[0] : handler;
     try {
         var gc = new DIY("ArkhamHorrorLCG/diy/" + handler + ".js", "AHLCG", false);
-        var file = new File(outDir, handler + ".txt");
+        if (faces) selectFaces(gc, faces);
+        var file = new File(outDir, name + ".txt");
         file.getParentFile().mkdirs();
         java.nio.file.Files.writeString(file.toPath(), describe(gc) + describeEditor(gc));
-        record("OK", handler, file);
+        record("OK", name, file);
     } catch (e) {
-        record("FAIL", handler, e.javaException ? e.javaException.toString() : String(e));
+        record("FAIL", name, e.javaException ? e.javaException.toString() : String(e));
+    }
+}
+
+function writeAll(handler, faces, flexible) {
+    write(handler, faces, "default", null, flexible);
+    write(handler, faces, "filled", null, flexible);
+    var seen = {};
+    for (var f = 0; f < 2; ++f) {
+        var type = faces[f];
+        if (seen[type] || VARIANTS[type] == null) continue;
+        seen[type] = true;
+        for (var v in VARIANTS[type]) {
+            write(handler, faces, v, { face: type, values: VARIANTS[type][v] }, flexible);
+        }
+    }
+    if (HANDLER_VARIANTS[handler] != null) {
+        for (var hv in HANDLER_VARIANTS[handler]) {
+            write(handler, faces, hv, { keys: HANDLER_VARIANTS[handler][hv] }, flexible);
+        }
     }
 }
 
@@ -410,27 +447,13 @@ function writeAmdLoader() {
 
 try {
     for (var h in HANDLERS) {
-        if (mode === "defaults") {
-            writeDefaults(h);
-            continue;
-        }
-        var faces = HANDLERS[h];
-        write(h, faces, "default", null);
-        write(h, faces, "filled", null);
-        var seen = {};
-        for (var f = 0; f < 2; ++f) {
-            var type = faces[f];
-            if (seen[type] || VARIANTS[type] == null) continue;
-            seen[type] = true;
-            for (var v in VARIANTS[type]) {
-                write(h, faces, v, { face: type, values: VARIANTS[type][v] });
-            }
-        }
-        if (HANDLER_VARIANTS[h] != null) {
-            for (var hv in HANDLER_VARIANTS[h]) {
-                write(h, faces, hv, { keys: HANDLER_VARIANTS[h][hv] });
-            }
-        }
+        if (mode === "defaults") writeDefaults(h, null);
+        else writeAll(h, HANDLERS[h], false);
+    }
+    for (var i = 0; i < FLEXIBLE.length; ++i) {
+        var faces = [FLEXIBLE[i], FLEXIBLE[i]];
+        if (mode === "defaults") writeDefaults("Flexible", faces);
+        else writeAll("Flexible", faces, true);
     }
     if (mode === "defaults") writeAmdLoader();
     results.println("DONE");

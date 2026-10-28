@@ -1,0 +1,13 @@
+# WARNING: If this file is deleted, Strange Eons will no longer
+# see this as a project/task folder!
+selected-members = :WeaknessTreachery/filled.eon
+first-row = 0
+open-folders = \
+    :Concealed:Customizable:Enemy:EnemyEnemy:EnemyLocation:EnemyPortrait:Event:Invest\
+    igatorStory:Key:Location:LocationLocation:MiniInvestigator:Scenario:Skill:StoryAs\
+    set:StoryChaos:StoryEnemy:StoryLocation:StoryStory:StoryTreachery:Treachery:Treac\
+    heryLocation:TreacheryPortrait:TreacheryStory:Ultimatum:WeaknessEnemy:WeaknessTre\
+    achery
+notes = 
+res-id = ccurrie
+type = PROJECT

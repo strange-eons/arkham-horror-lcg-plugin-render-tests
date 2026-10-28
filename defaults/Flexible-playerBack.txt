@@ -1,0 +1,19 @@
+version 1
+faceStyle TWO_FACES
+frontTemplateKey AHLCG-Flexible-Front
+backTemplateKey AHLCG-Flexible-Back
+cornerRadius 8
+name 
+setting AHLCG-Flexible-Back-bleed-margin = 8.64
+setting AHLCG-Flexible-Back-template = ArkhamHorrorLCG/templates/AHLCG-PlayerBack.jp2
+setting AHLCG-Flexible-Front-bleed-margin = 8.64
+setting AHLCG-Flexible-Front-template = ArkhamHorrorLCG/templates/AHLCG-PlayerBack.jp2
+setting BackFace = playerBack
+setting BackType = Player
+setting BackTypeBack = Player
+setting FrontFace = playerBack
+setting game = AHLCG
+tab General
+  panel Faces (4 controls)
+tab Comments
+  panel Design Rationale Comments (2 controls)
