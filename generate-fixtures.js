@@ -8,6 +8,8 @@
  *
  * fx.mode "defaults": writes <Handler>.txt to fx.out, listing the state of a
  * newly created component (settings, portraits, version, templates).
+ * Also writes amd-loader.txt from the fx.amdScript handler: the AMD loader
+ * checks it records.
  *
  * Writes one line per handler or fixture to fx.results, then DONE.
  *
@@ -387,6 +389,25 @@ function writeDefaults(handler) {
     }
 }
 
+function writeAmdLoader() {
+    try {
+        var gc = new DIY(new File(prop("fx.amdScript")).toURI().toString(), "AHLCG", false);
+        var s = gc.getSettings();
+        var lines = [];
+        for (var it = s.getKeySet().iterator(); it.hasNext();) {
+            var k = String(it.next());
+            if (k.indexOf("amd-") === 0) lines.push(k.substring(4) + " " + s.get(k));
+        }
+        if (lines.length === 0) throw new Error("the AMD loader handler recorded nothing");
+        lines.sort();
+        var file = new File(outDir, "amd-loader.txt");
+        java.nio.file.Files.writeString(file.toPath(), lines.join("\n") + "\n");
+        record("OK", "amd-loader", file);
+    } catch (e) {
+        record("FAIL", "amd-loader", e.javaException ? e.javaException.toString() : String(e));
+    }
+}
+
 try {
     for (var h in HANDLERS) {
         if (mode === "defaults") {
@@ -411,6 +432,7 @@ try {
             }
         }
     }
+    if (mode === "defaults") writeAmdLoader();
     results.println("DONE");
 } finally {
     results.close();

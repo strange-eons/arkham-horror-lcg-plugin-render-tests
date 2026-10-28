@@ -1,0 +1,25 @@
+cache-dependency true
+cache-require true
+config-defaultBase true
+config-trailingSlash true
+define-named named value
+define-object true
+define-value value
+environment-global from environment
+environment-host undefined
+environment-library function
+environment-plain plain
+environment-separate other, from environment
+environment-shared plain
+error-cycle throws circular module dependency: cycle-a
+error-missing true
+error-plain throws not a module (define was not called): plain
+error-twice throws module defined more than once: twice
+isolated-inside string
+isolated-outside undefined
+scope-ScriptMonkey undefined
+scope-define function
+scope-loadModule undefined
+scope-modules undefined
+scope-require function
+settings-read card setting
