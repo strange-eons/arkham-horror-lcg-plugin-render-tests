@@ -1,0 +1,32 @@
+version 1
+faceStyle TWO_FACES
+frontTemplateKey AHLCG-Flexible-Front
+backTemplateKey AHLCG-Flexible-Back
+cornerRadius 8
+name 
+setting AHLCG-Flexible-Back-bleed-margin = 8.64
+setting AHLCG-Flexible-Back-template = ArkhamHorrorLCG/templates/AHLCG-Scenario.jp2
+setting AHLCG-Flexible-Front-bleed-margin = 8.64
+setting AHLCG-Flexible-Front-template = ArkhamHorrorLCG/templates/AHLCG-Scenario.jp2
+setting BackFace = scenarioRules
+setting FrontFace = scenarioRules
+setting Page = 1
+setting PageBack = 2
+setting Resolution = 0
+setting ResolutionBack = 0
+setting Rules = 
+setting RulesBack = 
+setting TitleBack = 
+setting game = AHLCG
+tab General
+  panel Faces (4 controls)
+  panel Title: Front (3 controls)
+  panel Basic Data: Front (2 controls)
+  panel Title: Back (3 controls)
+  panel Basic Data: Back (2 controls)
+tab Game Text: Front
+  panel Game Text (5 controls)
+tab Game Text: Back
+  panel Game Text (5 controls)
+tab Comments
+  panel Design Rationale Comments (2 controls)

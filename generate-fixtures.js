@@ -135,7 +135,8 @@ var VARIANTS = {
     storyAsset: { weakness: { CardClass: "Weakness" } },
     act: { reversed: { Orientation: "Reversed" } },
     agenda: { reversed: { Orientation: "Reversed" } },
-    story: { tracker: { TrackerBox: "Clues", TrackerHeight: "120" } }
+    story: { tracker: { TrackerBox: "Clues", TrackerHeight: "120" } },
+    scenarioRules: { resolution: { Resolution: "1" } }
 };
 
 var CARD = {
@@ -275,7 +276,7 @@ var HANDLERS = {
 
 // Flexible card faces. Each fixture uses the face on both sides and renders
 // the front only, so its masters show that face alone.
-var FLEXIBLE = ["playerBack", "encounterBack"];
+var FLEXIBLE = ["playerBack", "encounterBack", "scenarioRules"];
 
 // Keys a handler reads without defining them in setDefaults; set on every
 // variant ("default" uses empty values).
