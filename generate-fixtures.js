@@ -11,7 +11,8 @@
  * newly created component (settings, portraits, version, templates);
  * flexible card faces are written as Flexible-<face>.txt.
  * Also writes amd-loader.txt from the fx.amdScript handler: the AMD loader
- * checks it records.
+ * checks it records; and text-blocks.txt, from editing a flexible story
+ * card's text blocks.
  *
  * Writes one line per handler or fixture to fx.results, then DONE.
  *
@@ -276,7 +277,25 @@ var HANDLERS = {
 
 // Flexible card faces. Each fixture uses the face on both sides and renders
 // the front only, so its masters show that face alone.
-var FLEXIBLE = ["playerBack", "encounterBack", "scenarioRules"];
+var FLEXIBLE = ["playerBack", "encounterBack", "scenarioRules", "story"];
+
+// Keys a flexible face adds beyond its defaults, such as more text blocks;
+// set on every variant but "default".
+var FACE_KEYS = {
+    // the filled story fields, as blocks
+    story: {
+        BlockCount: "9",
+        BlockStyle1: "traits", BlockText1: "Interlude.", BlockSpacing1: "0",
+        BlockStyle2: "header", BlockText2: "Part I", BlockSpacing2: "0",
+        BlockStyle3: "story", BlockText3: "The water churns.", BlockSpacing3: "0",
+        BlockStyle4: "rules", BlockText4: RULES, BlockSpacing4: "0",
+        BlockStyle5: "rule", BlockText5: "", BlockSpacing5: "0",
+        BlockStyle6: "header", BlockText6: "Part II", BlockSpacing6: "0",
+        BlockStyle7: "story", BlockText7: "Something rises.", BlockSpacing7: "0",
+        BlockStyle8: "rules", BlockText8: "Each investigator draws 1 card.", BlockSpacing8: "0",
+        BlockStyle9: "victory", BlockText9: "Victory 1.", BlockSpacing9: "0"
+    }
+};
 
 // Keys a handler reads without defining them in setDefaults; set on every
 // variant ("default" uses empty values).
@@ -318,6 +337,9 @@ function build(handler, faces, variant, extra, flexible) {
             apply(gc, FIELDS, SUFFIX[f]);
             if (OVERRIDES[faces[f]] != null) apply(gc, OVERRIDES[faces[f]], SUFFIX[f]);
             if (extra != null && extra.face === faces[f]) apply(gc, extra.values, SUFFIX[f]);
+            if (flexible && FACE_KEYS[faces[f]] != null) {
+                for (var k in FACE_KEYS[faces[f]]) gc.getSettings().set(k + SUFFIX[f], FACE_KEYS[faces[f]][k]);
+            }
         }
     }
     var undefinedKeys = UNDEFINED_KEYS[handler] || {};
@@ -446,6 +468,68 @@ function writeAmdLoader() {
     }
 }
 
+// Edits a flexible story card's text blocks through its editor: adding,
+// typing, deleting, restyling and clearing. Writes the blocks after each step.
+function writeTextBlocks() {
+    try {
+        var gc = new DIY("ArkhamHorrorLCG/diy/Flexible.js", "AHLCG", false);
+        selectFaces(gc, ["story", "story"]);
+        var editor = gc.createDefaultEditor();
+        var tabs = editor.getTabbedPane();
+        var tab = tabs.getComponentAt(tabs.indexOfTab("Game Text: Front"));
+        var s = gc.getSettings();
+        var lines = [];
+
+        // components of a type in the tab, in layout order
+        function find(type) {
+            var found = [];
+            (function walk(c) {
+                if (c instanceof type) found.push(c);
+                var children = c.getComponents();
+                for (var i = 0; i < children.length; ++i) walk(children[i]);
+            })(tab);
+            return found;
+        }
+        function button(label, index) {
+            return find(javax.swing.JButton).filter(function (b) { return String(b.getText()) === label; })[index || 0];
+        }
+        function step(name) {
+            var count = Number(s.get("BlockCount"));
+            var areas = find(javax.swing.JTextArea);
+            var blocks = [];
+            for (var n = 1; n <= count; ++n) {
+                blocks.push(s.get("BlockStyle" + n) + " \"" + s.get("BlockText" + n) + "\""
+                    + (areas[n - 1] && !areas[n - 1].isEnabled() ? " (text disabled)" : ""));
+            }
+            lines.push(name + ": " + count + " block(s), " + areas.length + " row(s): " + blocks.join(", "));
+        }
+
+        step("new");
+        button("Add Block").doClick();
+        button("Add Block").doClick();
+        step("add twice");
+        var areas = find(javax.swing.JTextArea);
+        areas[0].setText("one");
+        areas[1].setText("two");
+        areas[2].setText("three");
+        // deleting copies the typing first
+        button("Delete", 1).doClick();
+        step("type, delete second");
+        find(javax.swing.JComboBox)[1].setSelectedIndex(5);
+        step("second to rule");
+        gc.clearAll();
+        editor.populateFieldsFromComponent();
+        step("clear");
+
+        editor.dispose();
+        var file = new File(outDir, "text-blocks.txt");
+        java.nio.file.Files.writeString(file.toPath(), lines.join("\n") + "\n");
+        record("OK", "text-blocks", file);
+    } catch (e) {
+        record("FAIL", "text-blocks", e.javaException ? e.javaException.toString() : String(e));
+    }
+}
+
 try {
     for (var h in HANDLERS) {
         if (mode === "defaults") writeDefaults(h, null);
@@ -457,6 +541,7 @@ try {
         else writeAll("Flexible", faces, true);
     }
     if (mode === "defaults") writeAmdLoader();
+    if (mode === "defaults") writeTextBlocks();
     results.println("DONE");
 } finally {
     results.close();

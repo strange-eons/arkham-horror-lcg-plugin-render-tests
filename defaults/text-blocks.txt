@@ -1,0 +1,5 @@
+new: 1 block(s), 1 row(s): rules ""
+add twice: 3 block(s), 3 row(s): rules "", rules "", rules ""
+type, delete second: 2 block(s), 2 row(s): rules "one", rules "three"
+second to rule: 2 block(s), 2 row(s): rules "one", rule "three" (text disabled)
+clear: 1 block(s), 1 row(s): rules ""
