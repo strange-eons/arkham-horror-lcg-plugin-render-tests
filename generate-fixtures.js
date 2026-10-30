@@ -530,6 +530,99 @@ function writeTextBlocks() {
     }
 }
 
+// Switches a flexible card's faces through its editor, writing the tabs, the
+// sheets' templates and the settings after each step.
+function writeFaceSwitch() {
+    try {
+        var gc = new DIY("ArkhamHorrorLCG/diy/Flexible.js", "AHLCG", false);
+        var editor = gc.createDefaultEditor();
+        var tabs = editor.getTabbedPane();
+        var s = gc.getSettings();
+        var general = tabs.getComponentAt(0);
+        var lastSheet = null;
+        var lines = [];
+
+        function find(root, type) {
+            var found = [];
+            (function walk(c) {
+                if (c instanceof type) found.push(c);
+                var children = c.getComponents();
+                for (var i = 0; i < children.length; ++i) walk(children[i]);
+            })(root);
+            return found;
+        }
+        function borderTitle(b) {
+            if (b instanceof javax.swing.border.TitledBorder) return b.getTitle();
+            if (b instanceof javax.swing.border.CompoundBorder) return borderTitle(b.getOutsideBorder()) || borderTitle(b.getInsideBorder());
+            return null;
+        }
+        function titles(root) {
+            var found = [];
+            find(root, javax.swing.JComponent).forEach(function (c) {
+                var t = borderTitle(c.getBorder());
+                if (t != null) found.push(t);
+            });
+            return found;
+        }
+        function select(side, id) {
+            find(general, javax.swing.JComboBox)[side].setSelectedIndex(FLEXIBLE.indexOf(id));
+        }
+        function textAreas(title) {
+            return find(tabs.getComponentAt(tabs.indexOfTab(title)), javax.swing.JTextArea);
+        }
+        function step(name) {
+            var sheet = editor.getSheetViewer(0).getSheet();
+            var names = [];
+            for (var t = 0; t < tabs.getTabCount(); ++t) names.push(tabs.getTitleAt(t));
+            lines.push(name + ": tabs [" + names.join(", ") + "], general [" + titles(general).join(", ")
+                + "], front " + s.get("FrontFace") + ", back " + s.get("BackFace")
+                + ", template " + s.get("AHLCG-Flexible-Front-template")
+                + ", name \"" + gc.getName() + "\", selected " + tabs.getTitleAt(tabs.getSelectedIndex())
+                + ", front sheet replaced " + (sheet !== lastSheet)
+                + ", unsaved " + gc.hasUnsavedChanges());
+            lastSheet = sheet;
+        }
+
+        step("new");
+        select(0, "story");
+        step("front story");
+        select(1, "scenarioRules");
+        step("back rules");
+
+        // typing survives the switch; replaced controls no longer write
+        find(general, javax.swing.JTextArea)[0].setText("Named");
+        var oldArea = textAreas("Game Text: Front")[0];
+        oldArea.setText("old");
+        select(0, "scenarioRules");
+        step("front rules");
+        oldArea.setText("stale");
+        var heartbeat = Packages.ca.cgjennings.apps.arkham.AbstractGameComponentEditor.__javaObject__.getDeclaredMethod("onHeartbeat");
+        heartbeat.setAccessible(true);
+        heartbeat.invoke(editor);
+        lines.push("name field " + gc.getNameField().getText() + ", BlockText1 " + s.get("BlockText1"));
+
+        select(0, "playerBack");
+        step("front back");
+        lines.push("name field " + gc.getNameField());
+        select(0, "story");
+        step("front story again");
+        lines.push("name field " + gc.getNameField().getText() + ", text " + textAreas("Game Text: Front")[0].getText());
+
+        // blocks left from the earlier story face still repopulate
+        s.set("BlockCount", "2");
+        s.set("BlockSpacing2", "0");
+        editor.populateFieldsFromComponent();
+        lines.push("populated rows " + textAreas("Game Text: Front").length);
+
+        editor.dispose();
+        var file = new File(outDir, "face-switch.txt");
+        java.nio.file.Files.writeString(file.toPath(), lines.join("\n") + "\n");
+        record("OK", "face-switch", file);
+    } catch (e) {
+        record("FAIL", "face-switch", e.javaException ? e.javaException.toString() : String(e));
+    }
+}
+
 try {
     for (var h in HANDLERS) {
         if (mode === "defaults") writeDefaults(h, null);
@@ -542,6 +635,7 @@ try {
     }
     if (mode === "defaults") writeAmdLoader();
     if (mode === "defaults") writeTextBlocks();
+    if (mode === "defaults") writeFaceSwitch();
     results.println("DONE");
 } finally {
     results.close();
