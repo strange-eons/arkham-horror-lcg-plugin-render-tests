@@ -1,13 +1,13 @@
 version 1
 faceStyle TWO_FACES
-frontTemplateKey AHLCG-Flexible-Front
-backTemplateKey AHLCG-Flexible-Back
+frontTemplateKey AHLCG-FlexibleHandler-Front
+backTemplateKey AHLCG-FlexibleHandler-Back
 cornerRadius 8
 name 
-setting AHLCG-Flexible-Back-bleed-margin = 8.64
-setting AHLCG-Flexible-Back-template = ArkhamHorrorLCG/templates/AHLCG-EncounterBack.jp2
-setting AHLCG-Flexible-Front-bleed-margin = 8.64
-setting AHLCG-Flexible-Front-template = ArkhamHorrorLCG/templates/AHLCG-EncounterBack.jp2
+setting AHLCG-FlexibleHandler-Back-bleed-margin = 8.64
+setting AHLCG-FlexibleHandler-Back-template = ArkhamHorrorLCG/templates/AHLCG-EncounterBack.jp2
+setting AHLCG-FlexibleHandler-Front-bleed-margin = 8.64
+setting AHLCG-FlexibleHandler-Front-template = ArkhamHorrorLCG/templates/AHLCG-EncounterBack.jp2
 setting BackFace = encounterBack
 setting BackType = Encounter
 setting BackTypeBack = Encounter

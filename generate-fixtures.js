@@ -576,7 +576,7 @@ function writeFaceSwitch() {
             for (var t = 0; t < tabs.getTabCount(); ++t) names.push(tabs.getTitleAt(t));
             lines.push(name + ": tabs [" + names.join(", ") + "], general [" + titles(general).join(", ")
                 + "], front " + s.get("FrontFace") + ", back " + s.get("BackFace")
-                + ", template " + s.get("AHLCG-Flexible-Front-template")
+                + ", template " + s.get("AHLCG-FlexibleHandler-Front-template")
                 + ", name \"" + gc.getName() + "\", selected " + tabs.getTitleAt(tabs.getSelectedIndex())
                 + ", front sheet replaced " + (sheet !== lastSheet)
                 + ", unsaved " + gc.hasUnsavedChanges());
