@@ -128,8 +128,62 @@ var VARIANTS = {
 var CARD = {
     Artist: "Sofyan Syarief", ArtistBack: "Sofyan Syarief", Copyright: "Test",
     Collection: "CoreSet", CollectionNumber: "42",
-    Encounter: "AgentsOfCthulhu", EncounterNumber: "3", EncounterTotal: "4",
+    Encounter: "AgentsOfCthulhu", EncounterType: "0", EncounterNumber: "3", EncounterTotal: "4",
     TitleBack: "Spawn of the Stars"
+};
+
+var TWO_LINES = "Spawn of\nthe Stars";
+var LONG_TOKEN = RULES + " " + RULES + " " + RULES;
+
+// The same values on both sides. Back keys take the suffix before a trailing
+// "Spacing", as the chaos token keys do.
+function bothSides(values) {
+    var both = {};
+    for (var k in values) {
+        both[k] = values[k];
+        both[/Spacing$/.test(k) ? k.replace(/Spacing$/, "BackSpacing") : k + "Back"] = values[k];
+    }
+    return both;
+}
+
+var ONE_TOKEN = { Cultist: "", Tablet: "", ElderThing: "" };
+var MERGED = { MergeSkull: "Cultist", MergeTablet: "ElderThing" };
+var ALL_MERGED = { MergeSkull: "Cultist", MergeCultist: "Tablet", MergeTablet: "ElderThing" };
+
+// Extra variants of one handler, with keys set on both sides; Title also sets
+// the name. These cover chaos template layouts, by token rules.
+var HANDLER_VARIANTS = {
+    StoryStory: {
+        chaos: bothSides({ Template: "Chaos" }),
+        chaosTwoLines: bothSides({ Template: "Chaos", Title: TWO_LINES }),
+        chaosUntitled: bothSides({ Template: "Chaos", Title: "" }),
+        chaosTracker: bothSides({ Template: "Chaos", TrackerBox: "Clues", TrackerHeight: "120" }),
+        chaosTrackerTwoLines: bothSides({ Template: "Chaos", TrackerBox: "Clues", TrackerHeight: "120", Title: TWO_LINES }),
+        chaosFull: bothSides({ Template: "ChaosFull" }),
+        chaosFullTracker: bothSides({ Template: "ChaosFull", TrackerBox: "Clues", TrackerHeight: "120" })
+    },
+    Scenario: {
+        chaos: bothSides({ Template: "Chaos" }),
+        chaosTwoLines: bothSides({ Template: "Chaos", Title: TWO_LINES }),
+        chaosFull: bothSides({ Template: "ChaosFull" })
+    },
+    Chaos: {
+        tracker: bothSides({ TrackerBox: "Clues", TrackerHeight: "120" }),
+        twoLines: bothSides({ Title: TWO_LINES }),
+        untitled: bothSides({ Title: "" }),
+        oneToken: bothSides(ONE_TOKEN),
+        merged: bothSides(MERGED),
+        allMerged: bothSides(ALL_MERGED),
+        mergedTracker: bothSides({ MergeSkull: "Cultist", MergeTablet: "ElderThing", TrackerBox: "Clues", TrackerHeight: "120" }),
+        long: bothSides({ Skull: LONG_TOKEN, Cultist: LONG_TOKEN, Tablet: LONG_TOKEN, ElderThing: LONG_TOKEN }),
+        longTracker: bothSides({ Skull: LONG_TOKEN, Cultist: LONG_TOKEN, Tablet: LONG_TOKEN, ElderThing: LONG_TOKEN, TrackerBox: "Clues", TrackerHeight: "120" })
+    },
+    StoryChaos: {
+        backTracker: { TrackerBoxBack: "Clues", TrackerHeightBack: "120" },
+        backOneToken: { CultistBack: "", TabletBack: "", ElderThingBack: "" },
+        backMerged: { MergeSkullBack: "Cultist", MergeTabletBack: "ElderThing" },
+        backLong: { SkullBack: LONG_TOKEN, CultistBack: LONG_TOKEN, TabletBack: LONG_TOKEN, ElderThingBack: LONG_TOKEN }
+    }
 };
 
 // Card handler scripts and their [front, back] face types. Campaign guides,
@@ -227,6 +281,10 @@ function build(handler, faces, variant, extra) {
     for (var u in undefinedKeys) {
         gc.getSettings().set(u, variant === "default" ? "" : undefinedKeys[u]);
     }
+    if (extra != null && extra.keys != null) {
+        apply(gc, extra.keys, "");
+        if (extra.keys.Title != null) gc.setName(extra.keys.Title);
+    }
     return gc;
 }
 
@@ -258,6 +316,11 @@ try {
             seen[type] = true;
             for (var v in VARIANTS[type]) {
                 write(h, faces, v, { face: type, values: VARIANTS[type][v] });
+            }
+        }
+        if (HANDLER_VARIANTS[h] != null) {
+            for (var hv in HANDLER_VARIANTS[h]) {
+                write(h, faces, hv, { keys: HANDLER_VARIANTS[h][hv] });
             }
         }
     }
