@@ -13,7 +13,7 @@
  * Also writes amd-loader.txt from the fx.amdScript handler: the AMD loader
  * checks it records; token-blocks.txt, from editing a flexible token rules
  * card; collector-tabs.txt, from choosing sets on a flexible card; and text-blocks.txt, from editing a flexible story
- * card's text blocks.
+ * card's text blocks; and editor-fit.txt, from resizing flexible card editors.
  *
  * Writes one line per handler or fixture to fx.results, then DONE.
  *
@@ -911,6 +911,78 @@ function writeTextBlocks() {
     }
 }
 
+// Widens and narrows each tab of each flexible card face's editor, writing the
+// controls left outside their parent or the tab.
+function writeEditorFit() {
+    try {
+        var lines = [];
+        function layOut(c) {
+            c.doLayout();
+            c.getComponents().forEach(layOut);
+        }
+        function resize(tab, width) {
+            tab.setSize(width, 2000);
+            layOut(tab);
+            layOut(tab);
+        }
+        function clipped(tab, width) {
+            var found = [];
+            (function walk(c) {
+                var isControl =
+                    c instanceof javax.swing.JComboBox ||
+                    c instanceof javax.swing.JSpinner ||
+                    c instanceof javax.swing.JButton ||
+                    c instanceof javax.swing.text.JTextComponent;
+                if (isControl) {
+                    var inTab = javax.swing.SwingUtilities.convertRectangle(
+                        c.getParent(),
+                        c.getBounds(),
+                        tab
+                    );
+                    if (
+                        c.getX() < 0 ||
+                        c.getX() + c.getWidth() > c.getParent().getWidth() ||
+                        inTab.x < 0 ||
+                        inTab.x + inTab.width > width
+                    )
+                        found.push(c.getClass().getSimpleName());
+                }
+                c.getComponents().forEach(walk);
+            })(tab);
+            return found;
+        }
+        FLEXIBLE.forEach(function (face) {
+            var gc = new DIY('ArkhamHorrorLCG/diy/Flexible.js', 'AHLCG', false);
+            selectFaces(gc, [face, face]);
+            var editor = gc.createDefaultEditor();
+            var tabs = editor.getTabbedPane();
+            for (var i = 0; i < tabs.getTabCount(); ++i) {
+                var tab = tabs.getComponentAt(i);
+                var width = tab.getPreferredSize().width;
+                resize(tab, width + 100);
+                resize(tab, width);
+                lines.push(
+                    face +
+                        ' / ' +
+                        tabs.getTitleAt(i) +
+                        ': ' +
+                        (clipped(tab, width).join(' ') || 'fits')
+                );
+            }
+            editor.dispose();
+        });
+        var file = new File(outDir, 'editor-fit.txt');
+        java.nio.file.Files.writeString(file.toPath(), lines.join('\n') + '\n');
+        record('OK', 'editor-fit', file);
+    } catch (e) {
+        record(
+            'FAIL',
+            'editor-fit',
+            e.javaException ? e.javaException.toString() : String(e)
+        );
+    }
+}
+
 // Edits token blocks on a flexible token rules card through its editor, writing
 // the blocks and the visible token check boxes after each step.
 function writeTokenBlocks() {
@@ -1306,6 +1378,7 @@ try {
     }
     if (mode === 'defaults') writeAmdLoader();
     if (mode === 'defaults') writeTextBlocks();
+    if (mode === 'defaults') writeEditorFit();
     if (mode === 'defaults') writeTokenBlocks();
     if (mode === 'defaults') writeCollectorTabs();
     if (mode === 'defaults') writeFaceSwitch();

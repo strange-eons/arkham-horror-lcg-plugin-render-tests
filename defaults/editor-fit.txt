@@ -1,0 +1,20 @@
+playerBack / General: fits
+playerBack / Comments: fits
+encounterBack / General: fits
+encounterBack / Comments: fits
+scenarioRules / General: fits
+scenarioRules / Game Text: Front: fits
+scenarioRules / Game Text: Back: fits
+scenarioRules / Comments: fits
+story / General: fits
+story / Game Text: Front: fits
+story / Game Text: Back: fits
+story / Collection: fits
+story / Encounter Set: fits
+story / Comments: fits
+tokenRules / General: fits
+tokenRules / Game Text: Front: fits
+tokenRules / Game Text: Back: fits
+tokenRules / Collection: fits
+tokenRules / Encounter Set: fits
+tokenRules / Comments: fits
