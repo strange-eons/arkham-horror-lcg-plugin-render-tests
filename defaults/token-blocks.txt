@@ -1,0 +1,7 @@
+new: rules []; 1 check box(es) visible; ChaosFull 0
+to token: token []; 5 check box(es) visible; ChaosFull 0
+select cultist, skull: token [Skull,Cultist]; 5 check box(es) visible; ChaosFull 0
+clear cultist: token [Skull]; 5 check box(es) visible; ChaosFull 0
+add block: token [Tablet], rules []; 5 check box(es) visible; ChaosFull 0
+full page, delete second: token [Tablet]; 5 check box(es) visible; ChaosFull 1
+clear: rules []; 1 check box(es) visible; ChaosFull 0

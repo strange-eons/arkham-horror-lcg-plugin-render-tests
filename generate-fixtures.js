@@ -11,7 +11,8 @@
  * newly created component (settings, portraits, version, templates);
  * flexible card faces are written as Flexible-<face>.txt.
  * Also writes amd-loader.txt from the fx.amdScript handler: the AMD loader
- * checks it records; and text-blocks.txt, from editing a flexible story
+ * checks it records; token-blocks.txt, from editing a flexible token rules
+ * card; and text-blocks.txt, from editing a flexible story
  * card's text blocks.
  *
  * Writes one line per handler or fixture to fx.results, then DONE.
@@ -277,13 +278,9 @@ var HANDLERS = {
 
 // Flexible card faces. Each fixture uses the face on both sides and renders
 // the front only, so its masters show that face alone.
-var FLEXIBLE = ["playerBack", "encounterBack", "scenarioRules", "story"];
+var FLEXIBLE = ["playerBack", "encounterBack", "scenarioRules", "story", "tokenRules"];
 
-// Keys a flexible face adds beyond its defaults, such as more text blocks;
-// set on every variant but "default".
-var FACE_KEYS = {
-    // the filled story fields, as blocks
-    story: {
+var STORY_BLOCKS = {
         BlockCount: "9",
         BlockStyle1: "traits", BlockText1: "Interlude.", BlockSpacing1: "0",
         BlockStyle2: "header", BlockText2: "Part I", BlockSpacing2: "0",
@@ -294,6 +291,82 @@ var FACE_KEYS = {
         BlockStyle7: "story", BlockText7: "Something rises.", BlockSpacing7: "0",
         BlockStyle8: "rules", BlockText8: "Each investigator draws 1 card.", BlockSpacing8: "0",
         BlockStyle9: "victory", BlockText9: "Victory 1.", BlockSpacing9: "0"
+    };
+
+// Keys a flexible face adds beyond its defaults, such as more text blocks;
+// set on every variant but "default".
+var FACE_KEYS = {
+    // the filled story fields, as blocks
+    story: STORY_BLOCKS,
+    tokenRules: STORY_BLOCKS
+};;
+
+// Token blocks from [ icons, text ] pairs, after any other blocks.
+function tokenBlocks(groups, intro) {
+    var keys = {};
+    var n = 0;
+    function block(style, text, tokens) {
+        ++n;
+        keys["BlockStyle" + n] = style;
+        keys["BlockText" + n] = text;
+        keys["BlockSpacing" + n] = "0";
+        if (tokens != null) keys["BlockTokens" + n] = tokens;
+    }
+    if (intro != null) block("intro", intro);
+    for (var i = 0; i < groups.length; ++i) block("token", groups[i][1], groups[i][0]);
+    keys.BlockCount = String(n);
+    return keys;
+}
+
+function merge() {
+    var all = {};
+    for (var i = 0; i < arguments.length; ++i) {
+        for (var k in arguments[i]) all[k] = arguments[i][k];
+    }
+    return all;
+}
+
+var ALL_TOKENS = [["Skull", FIELDS.Skull], ["Cultist", FIELDS.Cultist], ["Tablet", FIELDS.Tablet], ["ElderThing", FIELDS.ElderThing]];
+var ONE_GROUP = [["Skull", FIELDS.Skull]];
+var MERGED_GROUPS = [["Skull,Cultist", FIELDS.Skull], ["Tablet,ElderThing", FIELDS.Tablet]];
+var ALL_MERGED_GROUP = [["Skull,Cultist,Tablet,ElderThing", FIELDS.Skull]];
+var LONG_GROUPS = [["Skull", LONG_TOKEN], ["Cultist", LONG_TOKEN], ["Tablet", LONG_TOKEN], ["ElderThing", LONG_TOKEN]];
+var TRACKER = { TrackerBox: "Clues", TrackerHeight: "120" };
+var EASY = { Difficulty: "Front" };
+
+// Flexible variants that set any key, unlike VARIANTS, after FACE_KEYS. Title
+// sets the component name.
+var FACE_VARIANTS = {
+    tokenRules: {
+        twoLines: { Title: TWO_LINES },
+        untitled: { Title: "" },
+        tracker: TRACKER,
+        trackerTwoLines: merge(TRACKER, { Title: TWO_LINES }),
+        full: { ChaosFull: "1" },
+        fullTracker: merge(TRACKER, { ChaosFull: "1" }),
+        difficulty: EASY,
+        tokens: merge(tokenBlocks(ALL_TOKENS), EASY),
+        tokensTwoLines: merge(tokenBlocks(ALL_TOKENS), EASY, { Title: TWO_LINES }),
+        tokensUntitled: merge(tokenBlocks(ALL_TOKENS), EASY, { Title: "" }),
+        tokensTracker: merge(tokenBlocks(ALL_TOKENS), EASY, TRACKER),
+        tokensOne: merge(tokenBlocks(ONE_GROUP), EASY),
+        tokensMerged: merge(tokenBlocks(MERGED_GROUPS), EASY),
+        tokensAllMerged: merge(tokenBlocks(ALL_MERGED_GROUP), EASY),
+        tokensMergedTracker: merge(tokenBlocks(MERGED_GROUPS), EASY, TRACKER),
+        tokensLong: merge(tokenBlocks(LONG_GROUPS), EASY),
+        tokensLongTracker: merge(tokenBlocks(LONG_GROUPS), EASY, TRACKER),
+        tokensFull: merge(tokenBlocks(ALL_TOKENS), { ChaosFull: "1" }),
+        intro: tokenBlocks(ALL_TOKENS, "Setup"),
+        introTracker: merge(tokenBlocks(ALL_TOKENS, "Setup"), TRACKER),
+        introOne: tokenBlocks(ONE_GROUP, "Setup"),
+        introMerged: tokenBlocks(MERGED_GROUPS, "Setup"),
+        introLong: tokenBlocks(LONG_GROUPS, "Setup"),
+        rulesAndTokens: {
+            BlockCount: "3",
+            BlockStyle1: "rules", BlockText1: RULES, BlockSpacing1: "0",
+            BlockStyle2: "token", BlockText2: FIELDS.Skull, BlockSpacing2: "0", BlockTokens2: "Skull",
+            BlockStyle3: "rules", BlockText3: "Each investigator draws 1 card.", BlockSpacing3: "0"
+        }
     }
 };
 
@@ -339,6 +412,12 @@ function build(handler, faces, variant, extra, flexible) {
             if (extra != null && extra.face === faces[f]) apply(gc, extra.values, SUFFIX[f]);
             if (flexible && FACE_KEYS[faces[f]] != null) {
                 for (var k in FACE_KEYS[faces[f]]) gc.getSettings().set(k + SUFFIX[f], FACE_KEYS[faces[f]][k]);
+            }
+            if (extra != null && extra.face === faces[f] && extra.faceKeys != null) {
+                for (var fk in extra.faceKeys) {
+                    if (fk === "Title") gc.setName(extra.faceKeys[fk]);
+                    else gc.getSettings().set(fk + SUFFIX[f], extra.faceKeys[fk]);
+                }
             }
         }
     }
@@ -442,6 +521,11 @@ function writeAll(handler, faces, flexible) {
             write(handler, faces, v, { face: type, values: VARIANTS[type][v] }, flexible);
         }
     }
+    if (flexible && FACE_VARIANTS[faces[0]] != null) {
+        for (var fv in FACE_VARIANTS[faces[0]]) {
+            write(handler, faces, fv, { face: faces[0], faceKeys: FACE_VARIANTS[faces[0]][fv] }, true);
+        }
+    }
     if (!flexible && HANDLER_VARIANTS[handler] != null) {
         for (var hv in HANDLER_VARIANTS[handler]) {
             write(handler, faces, hv, { keys: HANDLER_VARIANTS[handler][hv] }, false);
@@ -527,6 +611,71 @@ function writeTextBlocks() {
         record("OK", "text-blocks", file);
     } catch (e) {
         record("FAIL", "text-blocks", e.javaException ? e.javaException.toString() : String(e));
+    }
+}
+
+// Edits token blocks on a flexible token rules card through its editor, writing
+// the blocks and the visible token check boxes after each step.
+function writeTokenBlocks() {
+    try {
+        var gc = new DIY("ArkhamHorrorLCG/diy/Flexible.js", "AHLCG", false);
+        selectFaces(gc, ["tokenRules", "tokenRules"]);
+        var editor = gc.createDefaultEditor();
+        var tabs = editor.getTabbedPane();
+        var tab = tabs.getComponentAt(tabs.indexOfTab("Game Text: Front"));
+        var s = gc.getSettings();
+        var lines = [];
+
+        function find(type) {
+            var found = [];
+            (function walk(c) {
+                if (c instanceof type) found.push(c);
+                var children = c.getComponents();
+                for (var i = 0; i < children.length; ++i) walk(children[i]);
+            })(tab);
+            return found;
+        }
+        function button(label, index) {
+            return find(javax.swing.JButton).filter(function (b) { return String(b.getText()) === label; })[index || 0];
+        }
+        function check(label, index) {
+            return find(javax.swing.JCheckBox).filter(function (b) { return String(b.getText()) === label; })[index || 0];
+        }
+        function step(name) {
+            var blocks = [];
+            for (var n = 1; n <= Number(s.get("BlockCount")); ++n) {
+                blocks.push(s.get("BlockStyle" + n) + " [" + s.get("BlockTokens" + n, "") + "]");
+            }
+            var visible = find(javax.swing.JCheckBox).filter(function (b) { return b.getParent().isVisible(); }).length;
+            lines.push(name + ": " + blocks.join(", ") + "; " + visible + " check box(es) visible; ChaosFull " + s.get("ChaosFull"));
+        }
+
+        step("new");
+        // the first combo box is the difficulty
+        find(javax.swing.JComboBox)[1].setSelectedIndex(7);
+        step("to token");
+        check("Cultist").doClick();
+        check("Skull").doClick();
+        step("select cultist, skull");
+        check("Cultist").doClick();
+        step("clear cultist");
+        check("Skull").doClick();
+        check("Tablet").doClick();
+        button("Add Block").doClick();
+        step("add block");
+        check("Full page").doClick();
+        button("Delete", 1).doClick();
+        step("full page, delete second");
+        gc.clearAll();
+        editor.populateFieldsFromComponent();
+        step("clear");
+
+        editor.dispose();
+        var file = new File(outDir, "token-blocks.txt");
+        java.nio.file.Files.writeString(file.toPath(), lines.join("\n") + "\n");
+        record("OK", "token-blocks", file);
+    } catch (e) {
+        record("FAIL", "token-blocks", e.javaException ? e.javaException.toString() : String(e));
     }
 }
 
@@ -682,6 +831,7 @@ try {
     }
     if (mode === "defaults") writeAmdLoader();
     if (mode === "defaults") writeTextBlocks();
+    if (mode === "defaults") writeTokenBlocks();
     if (mode === "defaults") writeFaceSwitch();
     if (mode === "defaults") writeRepaint();
     results.println("DONE");

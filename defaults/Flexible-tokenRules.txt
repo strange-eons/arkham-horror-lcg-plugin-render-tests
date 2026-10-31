@@ -1,0 +1,46 @@
+version 1
+faceStyle TWO_FACES
+frontTemplateKey AHLCG-FlexibleHandler-Front
+backTemplateKey AHLCG-FlexibleHandler-Back
+cornerRadius 8
+name 
+setting AHLCG-FlexibleHandler-Back-bleed-margin = 8.64
+setting AHLCG-FlexibleHandler-Back-template = ArkhamHorrorLCG/templates/AHLCG-StoryChaosFull.jp2
+setting AHLCG-FlexibleHandler-Front-bleed-margin = 8.64
+setting AHLCG-FlexibleHandler-Front-template = ArkhamHorrorLCG/templates/AHLCG-StoryChaosFull.jp2
+setting BackFace = tokenRules
+setting BlockCount = 1
+setting BlockCountBack = 1
+setting BlockSpacing1 = 0
+setting BlockSpacing1Back = 0
+setting BlockStyle1 = rules
+setting BlockStyle1Back = rules
+setting BlockText1 = 
+setting BlockText1Back = 
+setting BlockTokens1 = 
+setting BlockTokens1Back = 
+setting ChaosFull = 0
+setting ChaosFullBack = 0
+setting Difficulty = None
+setting DifficultyBack = None
+setting FrontFace = tokenRules
+setting ScaleModifier = 100
+setting ScaleModifierBack = 100
+setting TitleBack = 
+setting TrackerBox = 
+setting TrackerBoxBack = 
+setting TrackerHeight = 100
+setting TrackerHeightBack = 100
+setting game = AHLCG
+tab General
+  panel Faces (4 controls)
+  panel Title: Front (2 controls)
+  panel Title: Back (2 controls)
+tab Game Text: Front
+  panel Game Text (2 controls)
+  panel Tracking box (5 controls)
+tab Game Text: Back
+  panel Game Text (2 controls)
+  panel Tracking box (5 controls)
+tab Comments
+  panel Design Rationale Comments (2 controls)
