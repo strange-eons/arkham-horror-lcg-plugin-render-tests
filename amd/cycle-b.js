@@ -1,3 +1,3 @@
-define( [ 'cycle-a' ], function () {
-	return 'b';
-} );
+define(['cycle-a'], function () {
+    return 'b';
+});

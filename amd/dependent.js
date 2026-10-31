@@ -1,3 +1,3 @@
-define( [ 'shared' ], function ( shared ) {
-	return { shared: shared };
-} );
+define(['shared'], function (shared) {
+    return { shared: shared };
+});

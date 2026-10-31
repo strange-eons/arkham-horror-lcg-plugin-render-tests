@@ -1,5 +1,5 @@
 var ModuleGlobal = 'module';
 
-define( function () {
-	return typeof ModuleGlobal;
-} );
+define(function () {
+    return typeof ModuleGlobal;
+});
