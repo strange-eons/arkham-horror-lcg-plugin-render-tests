@@ -3,6 +3,8 @@
  * create() records each result as an amd-<name> setting. Modules come from
  * the amd folder next to this script.
  */
+/* global useLibrary, __dirname */
+/* exported create */
 useLibrary( 'amd' );
 
 const defaultBase = define.config().baseUrl;

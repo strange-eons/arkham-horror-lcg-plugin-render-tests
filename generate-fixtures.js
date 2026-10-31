@@ -19,6 +19,10 @@
  *
  * ES5 only: this runs on Strange Rhino.
  */
+/* global
+  importClass, Packages, File, PrintWriter, OutputStreamWriter,
+  FileOutputStream, DIY, ResourceKit
+ */
 importClass(java.io.File);
 importClass(java.io.PrintWriter);
 importClass(java.io.OutputStreamWriter);
