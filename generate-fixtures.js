@@ -623,6 +623,50 @@ function writeFaceSwitch() {
     }
 }
 
+// Paints each variant twice per sheet, as a preview does, and lists those whose
+// second paint differs from the first.
+function writeRepaint() {
+    var RenderTarget = Packages.ca.cgjennings.apps.arkham.sheet.RenderTarget;
+    var lines = [];
+    // a copy, since a sheet can reuse its image
+    function pixels(image) {
+        var w = image.getWidth(), h = image.getHeight();
+        return image.getRGB(0, 0, w, h, null, 0, w);
+    }
+    function check(handler, faces, variant, extra, flexible) {
+        var name = (flexible ? "flexible/" + faces[0] : handler) + "/" + variant;
+        try {
+            var gc = build(handler, faces, variant, extra, flexible);
+            var sheets = gc.createDefaultSheets();
+            for (var i = 0; i < sheets.length; ++i) {
+                var first = pixels(sheets[i].paint(RenderTarget.PREVIEW, 150, false));
+                gc.markChanged(i);
+                var second = pixels(sheets[i].paint(RenderTarget.PREVIEW, 150, false));
+                if (!java.util.Arrays.equals(first, second)) lines.push(name + " sheet " + i);
+            }
+        } catch (e) {
+            lines.push(name + " FAIL " + (e.javaException ? e.javaException : e));
+        }
+    }
+    function all(handler, faces, flexible) {
+        check(handler, faces, "default", null, flexible);
+        check(handler, faces, "filled", null, flexible);
+        var seen = {};
+        for (var f = 0; f < 2; ++f) {
+            var type = faces[f];
+            if (seen[type] || VARIANTS[type] == null) continue;
+            seen[type] = true;
+            for (var v in VARIANTS[type]) check(handler, faces, v, { face: type, values: VARIANTS[type][v] }, flexible);
+        }
+    }
+    for (var h in HANDLERS) all(h, HANDLERS[h], false);
+    for (var i = 0; i < FLEXIBLE.length; ++i) all("Flexible", [FLEXIBLE[i], FLEXIBLE[i]], true);
+
+    var file = new File(outDir, "repaint.txt");
+    java.nio.file.Files.writeString(file.toPath(), lines.length > 0 ? lines.join("\n") + "\n" : "");
+    record("OK", "repaint", file);
+}
+
 try {
     for (var h in HANDLERS) {
         if (mode === "defaults") writeDefaults(h, null);
@@ -636,6 +680,7 @@ try {
     if (mode === "defaults") writeAmdLoader();
     if (mode === "defaults") writeTextBlocks();
     if (mode === "defaults") writeFaceSwitch();
+    if (mode === "defaults") writeRepaint();
     results.println("DONE");
 } finally {
     results.close();
