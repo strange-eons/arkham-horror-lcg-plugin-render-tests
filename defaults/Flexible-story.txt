@@ -4,6 +4,8 @@ frontTemplateKey AHLCG-FlexibleHandler-Front
 backTemplateKey AHLCG-FlexibleHandler-Back
 cornerRadius 8
 name 
+portrait 0 AHLCG-Face-Collection
+portrait 1 AHLCG-Face-Encounter
 setting AHLCG-FlexibleHandler-Back-bleed-margin = 8.64
 setting AHLCG-FlexibleHandler-Back-template = ArkhamHorrorLCG/templates/AHLCG-Story.jp2
 setting AHLCG-FlexibleHandler-Front-bleed-margin = 8.64
@@ -17,14 +19,26 @@ setting BlockStyle1 = rules
 setting BlockStyle1Back = rules
 setting BlockText1 = 
 setting BlockText1Back = 
+setting Collection = CustomCollection
+setting CollectionNumber = 1
+setting CollectionType = -1
+setting Encounter = CustomEncounterSet
+setting EncounterNumber = 1
+setting EncounterTotal = 1
+setting EncounterType = -1
 setting FrontFace = story
 setting ScaleModifier = 100
 setting ScaleModifierBack = 100
+setting ShowCollectionNumberBack = 1
+setting ShowCollectionNumberFront = 1
+setting ShowEncounterNumberBack = 1
+setting ShowEncounterNumberFront = 1
 setting TitleBack = 
 setting TrackerBox = 
 setting TrackerBoxBack = 
 setting TrackerHeight = 100
 setting TrackerHeightBack = 100
+setting flipSuffix = 0
 setting game = AHLCG
 tab General
   panel Faces (4 controls)
@@ -36,5 +50,11 @@ tab Game Text: Front
 tab Game Text: Back
   panel Game Text (2 controls)
   panel Tracking box (5 controls)
+tab Collection
+  panel Collection (9 controls)
+  panel Custom Collection (6 controls)
+tab Encounter Set
+  panel Encounter Set (11 controls)
+  panel Custom Encounter Set (6 controls)
 tab Comments
   panel Design Rationale Comments (2 controls)

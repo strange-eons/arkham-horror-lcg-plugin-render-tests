@@ -12,7 +12,7 @@
  * flexible card faces are written as Flexible-<face>.txt.
  * Also writes amd-loader.txt from the fx.amdScript handler: the AMD loader
  * checks it records; token-blocks.txt, from editing a flexible token rules
- * card; and text-blocks.txt, from editing a flexible story
+ * card; collector-tabs.txt, from choosing sets on a flexible card; and text-blocks.txt, from editing a flexible story
  * card's text blocks.
  *
  * Writes one line per handler or fixture to fx.results, then DONE.
@@ -334,10 +334,26 @@ var LONG_GROUPS = [["Skull", LONG_TOKEN], ["Cultist", LONG_TOKEN], ["Tablet", LO
 var TRACKER = { TrackerBox: "Clues", TrackerHeight: "120" };
 var EASY = { Difficulty: "Front" };
 
+// Custom collection and encounter set icons, in the card's portraits.
+var CUSTOM_ICONS = {
+    keys: { Collection: "CustomCollection", CollectionType: "-1", Encounter: "CustomEncounterSet", EncounterType: "-1" },
+    sources: { Collection: "res://ArkhamHorrorLCG/icons/AHLCG-CoreSet.png", Encounter: "res://ArkhamHorrorLCG/icons/AHLCG-AgentsOfCthulhu.png" }
+};
+var HIDE_COLLECTOR = { ShowCollectionNumberFront: "0", ShowEncounterNumberFront: "0" };
+
 // Flexible variants that set any key, unlike VARIANTS, after FACE_KEYS. Title
-// sets the component name.
+// sets the component name, Card sets keys without a suffix and Portraits sets
+// the source of each portrait, by kind.
 var FACE_VARIANTS = {
+    story: {
+        customIcons: { Card: CUSTOM_ICONS.keys, Portraits: CUSTOM_ICONS.sources },
+        returnTo: { Card: { Encounter: "ReturnToCultOfUmordhoth", EncounterType: "0" } },
+        noCollectorLine: { Card: HIDE_COLLECTOR }
+    },
     tokenRules: {
+        customIcons: { Card: CUSTOM_ICONS.keys, Portraits: CUSTOM_ICONS.sources },
+        returnTo: { Card: { Encounter: "ReturnToCultOfUmordhoth", EncounterType: "0" } },
+        noCollectorLine: { Card: HIDE_COLLECTOR },
         twoLines: { Title: TWO_LINES },
         untitled: { Title: "" },
         tracker: TRACKER,
@@ -416,6 +432,15 @@ function build(handler, faces, variant, extra, flexible) {
             if (extra != null && extra.face === faces[f] && extra.faceKeys != null) {
                 for (var fk in extra.faceKeys) {
                     if (fk === "Title") gc.setName(extra.faceKeys[fk]);
+                    else if (fk === "Card") {
+                        for (var ck in extra.faceKeys.Card) gc.getSettings().set(ck, extra.faceKeys.Card[ck]);
+                    }
+                    else if (fk === "Portraits") {
+                        for (var pi = 0; pi < gc.getPortraitCount(); ++pi) {
+                            var pk = String(gc.getPortrait(pi).getBaseKey()).replace("AHLCG-Face-", "");
+                            gc.getPortrait(pi).setSource(extra.faceKeys.Portraits[pk]);
+                        }
+                    }
                     else gc.getSettings().set(fk + SUFFIX[f], extra.faceKeys[fk]);
                 }
             }
@@ -679,6 +704,57 @@ function writeTokenBlocks() {
     }
 }
 
+// Chooses sets on a flexible card's Collection and Encounter Set tabs, writing
+// the settings and the side toggles offered after each step.
+function writeCollectorTabs() {
+    try {
+        var gc = new DIY("ArkhamHorrorLCG/diy/Flexible.js", "AHLCG", false);
+        selectFaces(gc, ["story", "playerBack"]);
+        var editor = gc.createDefaultEditor();
+        var tabs = editor.getTabbedPane();
+        var s = gc.getSettings();
+        var lines = [];
+
+        function find(tab, type) {
+            var found = [];
+            (function walk(c) {
+                if (c instanceof type) found.push(c);
+                var children = c.getComponents();
+                for (var i = 0; i < children.length; ++i) walk(children[i]);
+            })(tab);
+            return found;
+        }
+        function tab(title) {
+            return tabs.getComponentAt(tabs.indexOfTab(title));
+        }
+        function select(title, value) {
+            var list = find(tab(title), javax.swing.JComboBox)[0];
+            for (var i = 0; i < list.getItemCount(); ++i) {
+                if (String(list.getItemAt(i)) === value) list.setSelectedIndex(i);
+            }
+        }
+        function step(name) {
+            var boxes = find(tab("Encounter Set"), javax.swing.JCheckBox).map(function (b) { return b.getText(); });
+            lines.push(name + ": " + s.get("Collection") + " " + s.get("CollectionType") + ", "
+                + s.get("Encounter") + " " + s.get("EncounterType") + ", toggles [" + boxes.join(", ") + "]");
+        }
+
+        step("story and player back");
+        select("Collection", "StrangeEons");
+        select("Encounter Set", "CustomEncounterSet");
+        step("plug-in collection, custom encounter");
+        select("Collection", "CustomCollection");
+        step("custom collection");
+
+        editor.dispose();
+        var file = new File(outDir, "collector-tabs.txt");
+        java.nio.file.Files.writeString(file.toPath(), lines.join("\n") + "\n");
+        record("OK", "collector-tabs", file);
+    } catch (e) {
+        record("FAIL", "collector-tabs", e.javaException ? e.javaException.toString() : String(e));
+    }
+}
+
 // Switches a flexible card's faces through its editor, writing the tabs, the
 // sheets' templates and the settings after each step.
 function writeFaceSwitch() {
@@ -832,6 +908,7 @@ try {
     if (mode === "defaults") writeAmdLoader();
     if (mode === "defaults") writeTextBlocks();
     if (mode === "defaults") writeTokenBlocks();
+    if (mode === "defaults") writeCollectorTabs();
     if (mode === "defaults") writeFaceSwitch();
     if (mode === "defaults") writeRepaint();
     results.println("DONE");

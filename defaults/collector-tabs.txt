@@ -1,0 +1,3 @@
+story and player back: CustomCollection -1, CustomEncounterSet -1, toggles [Front]
+plug-in collection, custom encounter: StrangeEons 0, CustomEncounterSet -1, toggles [Front]
+custom collection: CustomCollection -1, CustomEncounterSet -1, toggles [Front]
