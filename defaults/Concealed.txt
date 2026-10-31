@@ -1,4 +1,4 @@
-version 1
+version 18
 faceStyle TWO_FACES
 frontTemplateKey AHLCG-Concealed-Default
 backTemplateKey AHLCG-ConcealedBack-Default
@@ -7,6 +7,7 @@ name
 portrait 0 AHLCG-Concealed-Portrait
 setting AHLCG-Concealed-Portrait-portrait-rotation = 0
 setting BackTypeBack = Concealed
+setting Copyright = 
 setting Template = Standard
 setting TemplateReplacement = 
 setting TemplateReplacementBack = 

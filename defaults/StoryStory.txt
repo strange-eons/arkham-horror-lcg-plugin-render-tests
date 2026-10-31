@@ -1,4 +1,4 @@
-version 18
+version 19
 faceStyle TWO_FACES
 frontTemplateKey AHLCG-Story-Default
 backTemplateKey AHLCG-Story-Default
@@ -23,6 +23,7 @@ setting AccentedStoryCSpacing = 0
 setting Collection = CustomCollection
 setting CollectionNumber = 1
 setting CollectionType = -1
+setting Copyright = 
 setting Encounter = CustomEncounterSet
 setting EncounterNumber = 1
 setting EncounterTotal = 1

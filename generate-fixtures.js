@@ -442,9 +442,9 @@ function writeAll(handler, faces, flexible) {
             write(handler, faces, v, { face: type, values: VARIANTS[type][v] }, flexible);
         }
     }
-    if (HANDLER_VARIANTS[handler] != null) {
+    if (!flexible && HANDLER_VARIANTS[handler] != null) {
         for (var hv in HANDLER_VARIANTS[handler]) {
-            write(handler, faces, hv, { keys: HANDLER_VARIANTS[handler][hv] }, flexible);
+            write(handler, faces, hv, { keys: HANDLER_VARIANTS[handler][hv] }, false);
         }
     }
 }
@@ -657,6 +657,9 @@ function writeRepaint() {
             if (seen[type] || VARIANTS[type] == null) continue;
             seen[type] = true;
             for (var v in VARIANTS[type]) check(handler, faces, v, { face: type, values: VARIANTS[type][v] }, flexible);
+        }
+        if (!flexible && HANDLER_VARIANTS[handler] != null) {
+            for (var hv in HANDLER_VARIANTS[handler]) check(handler, faces, hv, { keys: HANDLER_VARIANTS[handler][hv] }, false);
         }
     }
     for (var h in HANDLERS) all(h, HANDLERS[h], false);
