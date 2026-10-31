@@ -519,6 +519,7 @@ var FACE_VARIANTS = {
             Card: { Encounter: 'ReturnToCultOfUmordhoth', EncounterType: '0' },
         },
         noCollectorLine: { Card: HIDE_COLLECTOR },
+        noCopyright: { Card: { ShowCopyrightFront: '0' } },
     },
     tokenRules: {
         customIcons: {
@@ -529,6 +530,7 @@ var FACE_VARIANTS = {
             Card: { Encounter: 'ReturnToCultOfUmordhoth', EncounterType: '0' },
         },
         noCollectorLine: { Card: HIDE_COLLECTOR },
+        noCopyright: { Card: { ShowCopyrightFront: '0' } },
         twoLines: { Title: TWO_LINES },
         untitled: { Title: '' },
         tracker: TRACKER,
@@ -1043,7 +1045,15 @@ function writeCollectorTabs() {
                     s.get('Encounter') +
                     ' ' +
                     s.get('EncounterType') +
-                    ', toggles [' +
+                    ', copyright "' +
+                    s.get('Copyright') +
+                    '" [' +
+                    find(tabs.getComponentAt(0), javax.swing.JCheckBox)
+                        .map(function (b) {
+                            return b.getText();
+                        })
+                        .join(', ') +
+                    '], toggles [' +
                     boxes.join(', ') +
                     ']'
             );
@@ -1055,6 +1065,11 @@ function writeCollectorTabs() {
         step('plug-in collection, custom encounter');
         select('Collection', 'CustomCollection');
         step('custom collection');
+        s.set('Copyright', 'Test');
+        step('copyright');
+        gc.clearAll();
+        editor.populateFieldsFromComponent();
+        step('clear');
 
         editor.dispose();
         var file = new File(outDir, 'collector-tabs.txt');

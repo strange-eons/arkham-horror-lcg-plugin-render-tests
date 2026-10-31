@@ -26,6 +26,7 @@ setting ChaosFullBack = 0
 setting Collection = CustomCollection
 setting CollectionNumber = 1
 setting CollectionType = -1
+setting Copyright = 
 setting Difficulty = None
 setting DifficultyBack = None
 setting Encounter = CustomEncounterSet
@@ -37,6 +38,8 @@ setting ScaleModifier = 100
 setting ScaleModifierBack = 100
 setting ShowCollectionNumberBack = 1
 setting ShowCollectionNumberFront = 1
+setting ShowCopyrightBack = 1
+setting ShowCopyrightFront = 1
 setting ShowEncounterNumberBack = 1
 setting ShowEncounterNumberFront = 1
 setting TitleBack = 
@@ -50,6 +53,7 @@ tab General
   panel Faces (4 controls)
   panel Title: Front (2 controls)
   panel Title: Back (2 controls)
+  panel Copyright information (6 controls)
 tab Game Text: Front
   panel Game Text (2 controls)
   panel Tracking box (5 controls)
