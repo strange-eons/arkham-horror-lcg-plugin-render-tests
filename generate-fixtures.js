@@ -488,6 +488,9 @@ var LONG_GROUPS = [
 var TRACKER = { TrackerBox: 'Clues', TrackerHeight: '120' };
 var EASY = { Difficulty: 'Front' };
 
+var REPLACEMENT_IMAGE =
+    'res://ArkhamHorrorLCG/default-portraits/Spawn_of_the_Stars_by_Sofyan_Syarief.jpg';
+
 // Custom collection and encounter set icons, in the card's portraits.
 var CUSTOM_ICONS = {
     keys: {
@@ -522,6 +525,18 @@ var FACE_VARIANTS = {
         noCopyright: { Card: { ShowCopyrightFront: '0' } },
     },
     tokenRules: {
+        replaced: {
+            Card: { TemplateReplacement: REPLACEMENT_IMAGE },
+        },
+        replacedBleed: {
+            Card: {
+                TemplateReplacement: REPLACEMENT_IMAGE,
+                TemplateReplacementBleed: '1',
+            },
+        },
+        replacedUnreadable: {
+            Card: { TemplateReplacement: 'missing-replacement.png' },
+        },
         customIcons: {
             Card: CUSTOM_ICONS.keys,
             Portraits: CUSTOM_ICONS.sources,
