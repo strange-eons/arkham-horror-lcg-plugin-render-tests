@@ -165,7 +165,10 @@ var HANDLER_VARIANTS = {
     Scenario: {
         chaos: bothSides({ Template: "Chaos" }),
         chaosTwoLines: bothSides({ Template: "Chaos", Title: TWO_LINES }),
-        chaosFull: bothSides({ Template: "ChaosFull" })
+        chaosFull: bothSides({ Template: "ChaosFull" }),
+        chaosBackNumberOnly: { Template: "Chaos", TemplateBack: "Chaos", CollectionType: "0", ShowCollectionNumberFront: "0" },
+        chaosFrontNumberOnly: { Template: "Chaos", TemplateBack: "Chaos", CollectionType: "0", ShowCollectionNumberBack: "0" },
+        titleFrontChaosBack: { Template: "Title", TemplateBack: "Chaos", CollectionType: "0" }
     },
     Chaos: {
         tracker: bothSides({ TrackerBox: "Clues", TrackerHeight: "120" }),
