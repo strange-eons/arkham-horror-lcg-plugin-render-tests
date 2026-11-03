@@ -1,4 +1,4 @@
-version 18
+version 19
 faceStyle TWO_FACES
 frontTemplateKey AHLCG-Story-Default
 backTemplateKey AHLCG-Location-Default
@@ -59,6 +59,7 @@ setting ShowEncounterIconBack = 1
 setting ShowEncounterNumberBack = 1
 setting ShowEncounterNumberFront = 1
 setting ShroudBack = 1
+setting StoryClass = Default
 setting SubtitleBack = 
 setting Template = Story
 setting TemplateReplacement = 
@@ -77,7 +78,7 @@ setting flipSuffix = false
 setting game = AHLCG
 tab General
   panel Title: Front (2 controls)
-  panel Basic Data: Front (7 controls)
+  panel Basic Data: Front (9 controls)
   panel Title: Back (4 controls)
   panel Basic Data: Back (6 controls)
   panel Connections: Back (14 controls)

@@ -1,4 +1,4 @@
-version 18
+version 19
 faceStyle TWO_FACES
 frontTemplateKey AHLCG-Story-Default
 backTemplateKey AHLCG-AssetStory-Default
@@ -61,6 +61,7 @@ setting Skill5Back = None
 setting Slot2Back = None
 setting SlotBack = None
 setting StaminaBack = None
+setting StoryClass = Default
 setting SubtitleBack = 
 setting Template = Story
 setting TemplateReplacement = 
@@ -79,7 +80,7 @@ setting flipSuffix = false
 setting game = AHLCG
 tab General
   panel Title: Front (2 controls)
-  panel Basic Data: Front (7 controls)
+  panel Basic Data: Front (9 controls)
   panel Title: Back (5 controls)
   panel Basic Data: Back (24 controls)
   panel Copyright information (4 controls)
