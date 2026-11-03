@@ -151,9 +151,17 @@ var MERGED = { MergeSkull: "Cultist", MergeTablet: "ElderThing" };
 var ALL_MERGED = { MergeSkull: "Cultist", MergeCultist: "Tablet", MergeTablet: "ElderThing" };
 
 // Extra variants of one handler, with keys set on both sides; Title also sets
-// the name. These cover chaos template layouts, by token rules.
+// the name. These cover chaos template layouts, by token rules, and story
+// class templates.
 var HANDLER_VARIANTS = {
     StoryStory: {
+        classNeutral: bothSides({ StoryClass: "Neutral" }),
+        classGuardian: bothSides({ StoryClass: "Guardian" }),
+        classSeeker: bothSides({ StoryClass: "Seeker" }),
+        classRogue: bothSides({ StoryClass: "Rogue" }),
+        classMystic: bothSides({ StoryClass: "Mystic" }),
+        classSurvivor: bothSides({ StoryClass: "Survivor" }),
+        classChaos: bothSides({ Template: "Chaos", StoryClass: "Guardian" }),
         chaos: bothSides({ Template: "Chaos" }),
         chaosTwoLines: bothSides({ Template: "Chaos", Title: TWO_LINES }),
         chaosUntitled: bothSides({ Template: "Chaos", Title: "" }),
@@ -162,6 +170,10 @@ var HANDLER_VARIANTS = {
         chaosFull: bothSides({ Template: "ChaosFull" }),
         chaosFullTracker: bothSides({ Template: "ChaosFull", TrackerBox: "Clues", TrackerHeight: "120" })
     },
+    StoryEnemy: { classGuardian: { StoryClass: "Guardian" } },
+    StoryTreachery: { classGuardian: { StoryClass: "Guardian" } },
+    StoryLocation: { classGuardian: { StoryClass: "Guardian" } },
+    StoryAsset: { classGuardian: { StoryClass: "Guardian" } },
     Scenario: {
         chaos: bothSides({ Template: "Chaos" }),
         chaosTwoLines: bothSides({ Template: "Chaos", Title: TWO_LINES }),
@@ -182,6 +194,7 @@ var HANDLER_VARIANTS = {
         longTracker: bothSides({ Skull: LONG_TOKEN, Cultist: LONG_TOKEN, Tablet: LONG_TOKEN, ElderThing: LONG_TOKEN, TrackerBox: "Clues", TrackerHeight: "120" })
     },
     StoryChaos: {
+        classGuardian: { StoryClass: "Guardian" },
         backTracker: { TrackerBoxBack: "Clues", TrackerHeightBack: "120" },
         backOneToken: { CultistBack: "", TabletBack: "", ElderThingBack: "" },
         backMerged: { MergeSkullBack: "Cultist", MergeTabletBack: "ElderThing" },
