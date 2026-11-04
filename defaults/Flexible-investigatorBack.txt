@@ -1,0 +1,101 @@
+version 31
+faceStyle TWO_FACES
+frontTemplateKey AHLCG-FlexibleHandler-Front
+backTemplateKey AHLCG-FlexibleHandler-Back
+cornerRadius 8
+name 
+portrait 0 AHLCG-InvestigatorBackFace-Portrait
+portrait 1 AHLCG-InvestigatorBackFace-BackPortrait
+portrait 2 AHLCG-Face-Encounter
+setting AHLCG-FlexibleHandler-Back-bleed-margin = 8.64
+setting AHLCG-FlexibleHandler-Back-template = ArkhamHorrorLCG/templates/AHLCG-InvestigatorBack-G.jp2
+setting AHLCG-FlexibleHandler-Front-bleed-margin = 8.64
+setting AHLCG-FlexibleHandler-Front-template = ArkhamHorrorLCG/templates/AHLCG-InvestigatorBack-G.jp2
+setting Artist = 
+setting ArtistBack = 
+setting BackFace = investigatorBack
+setting CardClass = Guardian
+setting Encounter = CustomEncounterSet
+setting EncounterNumber = 1
+setting EncounterTotal = 1
+setting EncounterType = -1
+setting FrontFace = investigatorBack
+setting InvStory = 
+setting InvStoryBack = 
+setting ShowEncounterNumberBack = 1
+setting ShowEncounterNumberFront = 1
+setting Subtitle = 
+setting SubtitleBack = 
+setting TemplateReplacementBleed = 0
+setting Text1 = 30.
+setting Text1Back = 30.
+setting Text1BackSpacing = 0
+setting Text1Name = Deck Size
+setting Text1NameBack = Deck Size
+setting Text1Spacing = 0
+setting Text2 = 
+setting Text2Back = 
+setting Text2BackSpacing = 0
+setting Text2Name = Secondary Class Choice
+setting Text2NameBack = Secondary Class Choice
+setting Text2Spacing = 0
+setting Text3 = 
+setting Text3Back = 
+setting Text3BackSpacing = 0
+setting Text3Name = Deckbuilding Options
+setting Text3NameBack = Deckbuilding Options
+setting Text3Spacing = 0
+setting Text4 = 
+setting Text4Back = 
+setting Text4BackSpacing = 0
+setting Text4Name = Deckbuilding Requirements</hdr> (do not count toward deck size)<hdr>
+setting Text4NameBack = Deckbuilding Requirements</hdr> (do not count toward deck size)<hdr>
+setting Text4Spacing = 0
+setting Text5 = 
+setting Text5Back = 
+setting Text5BackSpacing = 0
+setting Text5Name = Deckbuilding Restrictions
+setting Text5NameBack = Deckbuilding Restrictions
+setting Text5Spacing = 0
+setting Text6 = 
+setting Text6Back = 
+setting Text6BackSpacing = 0
+setting Text6Name = Additional Requirements
+setting Text6NameBack = Additional Requirements
+setting Text6Spacing = 0
+setting Text7 = 
+setting Text7Back = 
+setting Text7BackSpacing = 0
+setting Text7Name = Additional Restrictions
+setting Text7NameBack = Additional Restrictions
+setting Text7Spacing = 0
+setting Text8 = 
+setting Text8Back = 
+setting Text8Name = 
+setting Text8NameBack = 
+setting TitleBack = 
+setting Unique = 1
+setting UniqueBack = 1
+setting game = AHLCG
+tab General
+  panel Faces (4 controls)
+  panel Title: Front (5 controls)
+  panel Title: Back (5 controls)
+  panel Template replacement (7 controls)
+tab Game Text: Front
+  panel Sections (2 controls)
+  panel Game Text (48 controls)
+tab Portraits: Front
+  panel Portrait (6 controls)
+  panel Options (3 controls)
+tab Game Text: Back
+  panel Sections (2 controls)
+  panel Game Text (48 controls)
+tab Portraits: Back
+  panel Portrait (6 controls)
+  panel Options (4 controls)
+tab Encounter Set
+  panel Encounter Set (11 controls)
+  panel Custom Encounter Set (6 controls)
+tab Comments
+  panel Design Rationale Comments (2 controls)

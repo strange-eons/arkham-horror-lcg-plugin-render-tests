@@ -415,6 +415,7 @@ var FLEXIBLE = [
     'locationBack',
     'key',
     'investigator',
+    'investigatorBack',
 ];
 
 var STORY_BLOCKS = {
@@ -776,6 +777,11 @@ var HIDE_COLLECTOR = {
 // sets the component name, Card sets keys without a suffix and Portraits sets
 // the source of each portrait, by kind.
 var FACE_VARIANTS = {
+    investigatorBack: {
+        parallel: { Card: { CardClass: 'ParallelSeeker' } },
+        neutral: { Card: { CardClass: 'Neutral' } },
+        story: { Card: { CardClass: 'Story' } },
+    },
     investigator: {
         parallel: { CardClass: 'ParallelRogue' },
         neutral: { CardClass: 'Neutral', Subtitle: '' },
