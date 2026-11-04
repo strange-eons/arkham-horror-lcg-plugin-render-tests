@@ -682,6 +682,7 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
                 UniqueBack: '0',
             },
             blankBackTitle: { Undefined: { TitleBack: '' }, UniqueBack: '0' },
+            blankBackSubtitle: { SubtitleBack: '' },
             returnTo: LEGACY_ENCOUNTER.returnTo,
             customIcons: LEGACY_ENCOUNTER.customIcons,
             replaced: LEGACY_ENCOUNTER.replaced,
