@@ -571,10 +571,23 @@ var LEGACY_STORY_ENEMY = {
     chaosFull: { Template: 'ChaosFull' },
     replaced: LEGACY_STORY.replaced,
 };
+// Encounter cards saved by the legacy handlers before their faces.
+var LEGACY_ENCOUNTER = {
+    customIcons: merge(CUSTOM_ICONS.keys, {
+        Portraits: CUSTOM_ICONS.sources,
+    }),
+    returnTo: { Encounter: 'ReturnToCultOfUmordhoth', EncounterType: '0' },
+    replaced: { TemplateReplacement: REPLACEMENT_IMAGE },
+};
+var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
+    dashes: { Health: '-', Attack: '-', PerInvestigatorAttack: '0' },
+});
 [
     ['StoryStory', LEGACY_STORY],
     ['StoryEnemy', LEGACY_STORY_ENEMY],
+    ['Enemy', LEGACY_ENEMY],
 ].forEach(function (entry) {
+    HANDLER_VARIANTS[entry[0]] = HANDLER_VARIANTS[entry[0]] || {};
     for (var v in entry[1])
         HANDLER_VARIANTS[entry[0]][v] = merge(entry[1][v], { Version: 30 });
 });
