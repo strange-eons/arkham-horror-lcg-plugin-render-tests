@@ -674,6 +674,20 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
         },
     ],
     [
+        'Key',
+        {
+            separateArt: { PortraitShare: '0', ArtistBack: 'Other Artist' },
+            backTitle: {
+                Undefined: { TitleBack: 'The Key of Ys' },
+                UniqueBack: '0',
+            },
+            blankBackTitle: { Undefined: { TitleBack: '' }, UniqueBack: '0' },
+            returnTo: LEGACY_ENCOUNTER.returnTo,
+            customIcons: LEGACY_ENCOUNTER.customIcons,
+            replaced: LEGACY_ENCOUNTER.replaced,
+        },
+    ],
+    [
         'Location',
         {
             playerBack: { BackTypeBack: 'Player' },
@@ -988,7 +1002,8 @@ var FACE_VARIANTS = {
 };
 
 // Keys a handler reads without defining them in setDefaults; set on every
-// variant ("default" uses empty values).
+// variant ("default" uses empty values). A legacy variant's Undefined sets
+// such keys for that variant alone.
 var UNDEFINED_KEYS = {
     Scenario: { TitleBack: 'Spawn of the Stars (cont.)' },
 };
@@ -1091,6 +1106,8 @@ function build(handler, faces, variant, extra, flexible) {
         if (extra.keys.Title != null) gc.setName(extra.keys.Title);
         if (extra.keys.Portraits != null)
             setPortraitSources(gc, extra.keys.Portraits);
+        for (var uk in extra.keys.Undefined || {})
+            gc.getSettings().set(uk, extra.keys.Undefined[uk]);
         if (extra.keys.Version != null) setSavedVersion(gc, extra.keys.Version);
     }
     if (flexible) matchBack(gc);
