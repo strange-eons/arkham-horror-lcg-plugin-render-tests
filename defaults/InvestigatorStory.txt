@@ -4,22 +4,18 @@ frontTemplateKey AHLCG-Investigator-Default
 backTemplateKey AHLCG-InvestigatorBack-Default
 cornerRadius 8
 name 
-portrait 0 AHLCG-Investigator-TransparentPortrait
-portrait 1 AHLCG-InvestigatorBack-Portrait
-portrait 2 AHLCG-Investigator-Collection
-portrait 3 AHLCG-Investigator-Encounter
-setting AHLCG-Investigator-Collection-portrait-rotation = 0
-setting AHLCG-Investigator-Encounter-portrait-rotation = 0
-setting AHLCG-Investigator-Encounter-portrait-template = ArkhamHorrorLCG/images/empty1x1.png
-setting AHLCG-Investigator-TransparentPortrait-portrait-rotation = 0
-setting AHLCG-InvestigatorBack-Encounter-portrait-rotation = 0
-setting AHLCG-InvestigatorBack-Encounter-portrait-template = ArkhamHorrorLCG/images/empty1x1.png
-setting AHLCG-InvestigatorBack-TransparentPortrait-portrait-clip-region = null
-setting AHLCG-InvestigatorBack-TransparentPortrait-portrait-rotation = 0
-setting AHLCG-InvestigatorBack-TransparentPortrait-portrait-template = ArkhamHorrorLCG/images/empty1x1.png
+portrait 0 AHLCG-InvestigatorFace-TransparentPortrait
+portrait 1 AHLCG-InvestigatorBackFace-BackPortrait
+portrait 2 AHLCG-Face-Collection
+portrait 3 AHLCG-Face-Encounter
+setting AHLCG-Investigator-Default-bleed-margin = 8.64
+setting AHLCG-Investigator-Default-template = ArkhamHorrorLCG/templates/AHLCG-Investigator-G.jp2
+setting AHLCG-InvestigatorBack-Default-bleed-margin = 8.64
+setting AHLCG-InvestigatorBack-Default-template = ArkhamHorrorLCG/templates/AHLCG-InvestigatorBack-G.jp2
 setting Agility = 3
 setting Artist = 
-setting Class = Story
+setting ArtistBack = 
+setting CardClass = Story
 setting Collection = CustomCollection
 setting CollectionNumber = 1
 setting CollectionType = -1
@@ -34,14 +30,19 @@ setting Intellect = 3
 setting InvStoryBack = 
 setting Keywords = 
 setting KeywordsSpacing = 0
-setting PortraitShare = 1
 setting Rules = 
 setting RulesSpacing = 0
 setting Sanity = 7
+setting ShowCollectionNumberBack = 1
+setting ShowCollectionNumberFront = 1
+setting ShowCopyrightBack = 1
+setting ShowCopyrightFront = 1
+setting ShowEncounterNumberBack = 1
+setting ShowEncounterNumberFront = 1
 setting Stamina = 7
 setting Subtitle = 
-setting TemplateReplacement = 
-setting TemplateReplacementBack = 
+setting SubtitleBack = 
+setting TemplateReplacementBleed = 0
 setting Text1Back = 30.
 setting Text1BackSpacing = 0
 setting Text1NameBack = Deck Size
@@ -65,32 +66,36 @@ setting Text7BackSpacing = 0
 setting Text7NameBack = Additional Restrictions
 setting Text8Back = 
 setting Text8NameBack = 
+setting TitleBack = 
 setting Traits = 
 setting TraitsSpacing = 0
 setting Unique = 1
+setting UniqueBack = 1
 setting Willpower = 3
-setting flipSuffix = false
+setting flipSuffix = 0
 setting game = AHLCG
 tab General
-  panel Title (5 controls)
-  panel Basic Data (12 controls)
-  panel Copyright information (3 controls)
+  panel Title: Front (5 controls)
+  panel Basic Data: Front (14 controls)
+  panel Title: Back (5 controls)
+  panel Copyright information (5 controls)
+  panel Template replacement (7 controls)
 tab Game Text: Front
   panel Game Text (22 controls)
+tab Portraits: Front
+  panel Portrait (6 controls)
+  panel Options (3 controls)
 tab Game Text: Back
   panel Sections (2 controls)
   panel Game Text (48 controls)
-tab Portraits
-  panel Portrait : Front (6 controls)
-  panel Options: Front (3 controls)
-  panel Portrait : Back (6 controls)
-  panel Options: Back (1 controls)
-  panel Template replacement (7 controls)
+tab Portraits: Back
+  panel Portrait (6 controls)
+  panel Options (3 controls)
 tab Collection
-  panel Collection (6 controls)
+  panel Collection (8 controls)
   panel Custom Collection (6 controls)
 tab Encounter Set
-  panel Encounter Set (8 controls)
+  panel Encounter Set (11 controls)
   panel Custom Encounter Set (6 controls)
 tab Comments
   panel Design Rationale Comments (2 controls)
