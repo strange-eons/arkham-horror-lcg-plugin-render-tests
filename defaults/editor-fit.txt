@@ -57,3 +57,7 @@ skill / Portraits: Back: fits
 skill / Collection: fits
 skill / Encounter Set: fits
 skill / Comments: fits
+customizable / General: fits
+customizable / Game Text: Front: fits
+customizable / Game Text: Back: fits
+customizable / Comments: fits

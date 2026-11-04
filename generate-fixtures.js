@@ -409,6 +409,7 @@ var FLEXIBLE = [
     'asset',
     'event',
     'skill',
+    'customizable',
 ];
 
 var STORY_BLOCKS = {
