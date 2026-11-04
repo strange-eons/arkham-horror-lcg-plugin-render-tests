@@ -413,6 +413,7 @@ var FLEXIBLE = [
     'customizableBack',
     'location',
     'locationBack',
+    'key',
 ];
 
 var STORY_BLOCKS = {
@@ -759,6 +760,16 @@ var HIDE_COLLECTOR = {
 // sets the component name, Card sets keys without a suffix and Portraits sets
 // the source of each portrait, by kind.
 var FACE_VARIANTS = {
+    key: {
+        plainTitle: { Unique: '0', Subtitle: '' },
+        returnTo: {
+            Card: { Encounter: 'ReturnToCultOfUmordhoth', EncounterType: '0' },
+        },
+        customIcons: {
+            Card: CUSTOM_ICONS.keys,
+            Portraits: CUSTOM_ICONS.sources,
+        },
+    },
     location: {
         dashes: { Shroud: '-', Clues: '-' },
         perInvestigatorShroud: {
