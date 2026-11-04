@@ -71,3 +71,11 @@ location / Portraits: Back: fits
 location / Collection: fits
 location / Encounter Set: fits
 location / Comments: fits
+locationBack / General: fits
+locationBack / Game Text: Front: fits
+locationBack / Portraits: Front: fits
+locationBack / Game Text: Back: fits
+locationBack / Portraits: Back: fits
+locationBack / Collection: fits
+locationBack / Encounter Set: fits
+locationBack / Comments: fits

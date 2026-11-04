@@ -11,3 +11,4 @@ skill: same, with 8 spacings set same
 customizable: same, with 20 spacings set same
 customizableBack: same
 location: same, with 8 spacings set same
+locationBack: same, with 6 spacings set same

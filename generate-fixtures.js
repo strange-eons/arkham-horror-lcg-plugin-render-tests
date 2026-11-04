@@ -412,6 +412,7 @@ var FLEXIBLE = [
     'customizable',
     'customizableBack',
     'location',
+    'locationBack',
 ];
 
 var STORY_BLOCKS = {
@@ -727,6 +728,12 @@ var FACE_VARIANTS = {
                 TemplateReplacement: REPLACEMENT_IMAGE,
                 TemplateReplacementBack: REPLACEMENT_IMAGE,
             },
+        },
+    },
+    locationBack: {
+        noEncounterIcon: { ShowEncounterIcon: '0' },
+        returnTo: {
+            Card: { Encounter: 'ReturnToCultOfUmordhoth', EncounterType: '0' },
         },
     },
     skill: {
