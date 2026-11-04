@@ -587,6 +587,22 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
     ['StoryStory', LEGACY_STORY],
     ['StoryEnemy', LEGACY_STORY_ENEMY],
     ['Enemy', LEGACY_ENEMY],
+    ['Treachery', LEGACY_ENCOUNTER],
+    [
+        'WeaknessTreachery',
+        {
+            weakness: { Subtype: 'Weakness' },
+            storyWeakness: { Subtype: 'StoryWeakness' },
+            replaced: LEGACY_ENCOUNTER.replaced,
+        },
+    ],
+    [
+        'TreacheryStory',
+        {
+            customIcons: LEGACY_ENCOUNTER.customIcons,
+            replaced: LEGACY_ENCOUNTER.replaced,
+        },
+    ],
 ].forEach(function (entry) {
     HANDLER_VARIANTS[entry[0]] = HANDLER_VARIANTS[entry[0]] || {};
     for (var v in entry[1])
