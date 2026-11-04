@@ -19,3 +19,4 @@ act: same, with 2 spacings set same
 actBack: same, with 20 spacings set same
 agenda: same, with 2 spacings set same
 agendaBack: same, with 20 spacings set same
+agendaFrontPortrait: same, with 2 spacings set same

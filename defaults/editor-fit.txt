@@ -128,3 +128,11 @@ agendaBack / Game Text: Front: fits
 agendaBack / Game Text: Back: fits
 agendaBack / Encounter Set: fits
 agendaBack / Comments: fits
+agendaFrontPortrait / General: fits
+agendaFrontPortrait / Game Text: Front: fits
+agendaFrontPortrait / Portraits: Front: fits
+agendaFrontPortrait / Game Text: Back: fits
+agendaFrontPortrait / Portraits: Back: fits
+agendaFrontPortrait / Collection: fits
+agendaFrontPortrait / Encounter Set: fits
+agendaFrontPortrait / Comments: fits

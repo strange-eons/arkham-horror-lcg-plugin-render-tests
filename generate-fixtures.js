@@ -420,6 +420,7 @@ var FLEXIBLE = [
     'actBack',
     'agenda',
     'agendaBack',
+    'agendaFrontPortrait',
 ];
 
 var STORY_BLOCKS = {
@@ -867,6 +868,13 @@ var HIDE_COLLECTOR = {
 // sets the component name, Card sets keys without a suffix and Portraits sets
 // the source of each portrait, by kind.
 var FACE_VARIANTS = {
+    agendaFrontPortrait: {
+        perInvestigator: { Doom: '12', PerInvestigator: '1' },
+        asterisk: { Doom: '3', PerInvestigator: '0', Asterisk: '1' },
+        returnTo: {
+            Card: { Encounter: 'ReturnToCultOfUmordhoth', EncounterType: '0' },
+        },
+    },
     agendaBack: {
         returnTo: {
             Card: { Encounter: 'ReturnToCultOfUmordhoth', EncounterType: '0' },
