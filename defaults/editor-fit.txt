@@ -87,3 +87,11 @@ key / Portraits: Back: fits
 key / Collection: fits
 key / Encounter Set: fits
 key / Comments: fits
+investigator / General: fits
+investigator / Game Text: Front: fits
+investigator / Portraits: Front: fits
+investigator / Game Text: Back: fits
+investigator / Portraits: Back: fits
+investigator / Collection: fits
+investigator / Encounter Set: fits
+investigator / Comments: fits

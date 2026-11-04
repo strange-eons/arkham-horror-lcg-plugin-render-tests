@@ -79,7 +79,7 @@ function placeArt(portrait) {
 
 function isArtPortrait(portrait) {
     var key = portrait.getBaseKey ? String(portrait.getBaseKey()) : '';
-    return /-(Back|Transparent)?Portrait$/.test(key);
+    return /-(Back)?(Transparent)?Portrait$/.test(key);
 }
 
 var RULES =
@@ -414,6 +414,7 @@ var FLEXIBLE = [
     'location',
     'locationBack',
     'key',
+    'investigator',
 ];
 
 var STORY_BLOCKS = {
@@ -775,6 +776,18 @@ var HIDE_COLLECTOR = {
 // sets the component name, Card sets keys without a suffix and Portraits sets
 // the source of each portrait, by kind.
 var FACE_VARIANTS = {
+    investigator: {
+        parallel: { CardClass: 'ParallelRogue' },
+        neutral: { CardClass: 'Neutral', Subtitle: '' },
+        story: { CardClass: 'Story' },
+        dashes: { Stamina: '-', Sanity: 'Star', Willpower: '0' },
+        replaced: {
+            Card: {
+                TemplateReplacement: REPLACEMENT_IMAGE,
+                TemplateReplacementBack: REPLACEMENT_IMAGE,
+            },
+        },
+    },
     key: {
         plainTitle: { Unique: '0', Subtitle: '' },
         returnTo: {
