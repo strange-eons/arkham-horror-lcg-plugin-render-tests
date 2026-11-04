@@ -676,6 +676,32 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
         },
     ],
     [
+        'Investigator',
+        {
+            parallel: { CardClass: 'ParallelRogue' },
+            parallelNeutral: { CardClass: 'ParallelNeutral', Subtitle: '' },
+            neutral: { CardClass: 'Neutral' },
+            stats: { Stamina: '-', Sanity: 'X', Willpower: '0', Agility: '6' },
+            sections: {
+                Text1BackSpacing: '6',
+                Text4Back: 'At least 5 <i>Tome</i> cards.',
+                Text7Back: 'No more than 2 <b>Spell</b> cards.',
+                Text8NameBack: 'Special',
+                Text8Back: 'You may include 1 <i>Relic</i>.',
+            },
+            replaced: LEGACY_ENCOUNTER.replaced,
+        },
+    ],
+    [
+        'InvestigatorStory',
+        {
+            noSubtitle: { Subtitle: '' },
+            returnTo: LEGACY_ENCOUNTER.returnTo,
+            customIcons: LEGACY_ENCOUNTER.customIcons,
+            replaced: LEGACY_ENCOUNTER.replaced,
+        },
+    ],
+    [
         'Key',
         {
             separateArt: { PortraitShare: '0', ArtistBack: 'Other Artist' },
