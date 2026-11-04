@@ -4,27 +4,21 @@ frontTemplateKey AHLCG-AgendaFrontPortrait-Default
 backTemplateKey AHLCG-AgendaBack-Default
 cornerRadius 8
 name 
-portrait 0 AHLCG-AgendaFrontPortrait-Portrait
-portrait 1 AHLCG-AgendaFrontPortrait-Collection
-portrait 2 AHLCG-AgendaFrontPortrait-Encounter
-setting AHLCG-AgendaBack-Collection-portrait-clip-region = null
-setting AHLCG-AgendaBack-Collection-portrait-rotation = 0
-setting AHLCG-AgendaBack-Collection-portrait-template = ArkhamHorrorLCG/images/empty1x1.png
-setting AHLCG-AgendaBack-Encounter-portrait-rotation = 0
-setting AHLCG-AgendaBack-Encounter-portrait-template = ArkhamHorrorLCG/images/empty1x1.png
-setting AHLCG-AgendaFrontPortrait-Collection-portrait-rotation = 0
-setting AHLCG-AgendaFrontPortrait-Encounter-portrait-rotation = 0
-setting AHLCG-AgendaFrontPortrait-Portrait-portrait-rotation = 0
-setting AccentedStoryABack = 
-setting AccentedStoryABackSpacing = 0
-setting AccentedStoryBBack = 
-setting AccentedStoryBBackSpacing = 0
-setting AccentedStoryCBack = 
-setting AccentedStoryCBackSpacing = 0
+portrait 0 AHLCG-AgendaFrontPortraitFace-Portrait
+portrait 1 AHLCG-Face-Collection
+portrait 2 AHLCG-Face-Encounter
+setting AHLCG-AgendaBack-Default-bleed-margin = 8.64
+setting AHLCG-AgendaBack-Default-template = ArkhamHorrorLCG/templates/AHLCG-AgendaBack.jp2
+setting AHLCG-AgendaFrontPortrait-Default-bleed-margin = 8.64
+setting AHLCG-AgendaFrontPortrait-Default-template = ArkhamHorrorLCG/templates/AHLCG-AgendaFrontPortrait.jp2
 setting AgendaStory = 
 setting AgendaStorySpacing = 0
 setting Artist = 
 setting Asterisk = 0
+setting BlockCountBack = 1
+setting BlockSpacing1Back = 0
+setting BlockStyle1Back = rules
+setting BlockText1Back = 
 setting Collection = CustomCollection
 setting CollectionNumber = 1
 setting CollectionType = -1
@@ -34,47 +28,39 @@ setting Encounter = CustomEncounterSet
 setting EncounterNumber = 1
 setting EncounterTotal = 1
 setting EncounterType = -1
-setting HeaderABack = 
-setting HeaderABackSpacing = 0
-setting HeaderBBack = 
-setting HeaderBBackSpacing = 0
-setting HeaderCBack = 
-setting HeaderCBackSpacing = 0
 setting PerInvestigator = 0
 setting Rules = 
-setting RulesABack = 
-setting RulesBBack = 
-setting RulesCBack = 
-setting ScaleModifier = 100
+setting ScaleModifierBack = 100
 setting ScenarioDeckID = a
 setting ScenarioIndex = 1
-setting TemplateReplacement = 
-setting TemplateReplacementBack = 
+setting ShowCollectionNumberBack = 1
+setting ShowCollectionNumberFront = 1
+setting ShowCopyrightBack = 1
+setting ShowCopyrightFront = 1
+setting ShowEncounterNumberBack = 1
+setting ShowEncounterNumberFront = 1
+setting TemplateReplacementBleed = 0
 setting TitleBack = 
-setting VictoryBack = 
-setting VictoryBackSpacing = 0
+setting flipSuffix = 0
 setting game = AHLCG
 tab General
   panel Title: Front (2 controls)
   panel Basic Data: Front (8 controls)
   panel Title: Back (2 controls)
-  panel Copyright information (3 controls)
+  panel Copyright information (5 controls)
+  panel Template replacement (7 controls)
 tab Game Text: Front
   panel Game Text (9 controls)
-tab Game Text: Back
-  panel Game Text (Part A) (13 controls)
-  panel Game Text (Part B) (13 controls)
-  panel Game Text (Part C) (13 controls)
-  panel Victory (5 controls)
-tab Portraits
+tab Portraits: Front
   panel Portrait (6 controls)
   panel Options (3 controls)
-  panel Template replacement (7 controls)
+tab Game Text: Back
+  panel Game Text (2 controls)
 tab Collection
-  panel Collection (6 controls)
+  panel Collection (8 controls)
   panel Custom Collection (6 controls)
 tab Encounter Set
-  panel Encounter Set (8 controls)
+  panel Encounter Set (11 controls)
   panel Custom Encounter Set (6 controls)
 tab Comments
   panel Design Rationale Comments (2 controls)
