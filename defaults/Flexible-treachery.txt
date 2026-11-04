@@ -73,7 +73,7 @@ tab Game Text: Back
   panel Game Text (27 controls)
 tab Portraits: Back
   panel Portrait (6 controls)
-  panel Options (3 controls)
+  panel Options (4 controls)
 tab Collection
   panel Collection (9 controls)
   panel Custom Collection (6 controls)

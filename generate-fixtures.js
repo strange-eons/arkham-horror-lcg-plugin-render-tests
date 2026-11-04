@@ -768,6 +768,8 @@ var FACE_VARIANTS = {
         },
     },
     enemy: {
+        // the back shows the front's art, and credits its artist
+        sharedArt: { Card: { PortraitShare: '1', ArtistBack: '' } },
         basicWeakness: { Subtype: 'BasicWeakness' },
         investigatorWeakness: { Subtype: 'InvestigatorWeakness' },
         storyWeakness: { Subtype: 'StoryWeakness' },
