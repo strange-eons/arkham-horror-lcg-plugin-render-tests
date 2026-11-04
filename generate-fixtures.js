@@ -597,6 +597,15 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
         },
     ],
     [
+        'WeaknessEnemy',
+        {
+            weakness: { Subtype: 'Weakness' },
+            investigatorWeakness: { Subtype: 'InvestigatorWeakness' },
+            storyWeakness: { Subtype: 'StoryWeakness' },
+            replaced: LEGACY_ENCOUNTER.replaced,
+        },
+    ],
+    [
         'TreacheryStory',
         {
             customIcons: LEGACY_ENCOUNTER.customIcons,
