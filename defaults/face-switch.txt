@@ -8,3 +8,10 @@ name field null
 front story again: tabs [General, Game Text: Front, Game Text: Back, Collection, Encounter Set, Comments], general [Faces, Title: Front, Title: Back, Basic Data: Back, Copyright information], front story, back scenarioRules, template ArkhamHorrorLCG/templates/AHLCG-Story.jp2, name "Named", selected General, front sheet replaced true, unsaved true
 name field Named, text old
 populated rows 2
+back enemy: tabs [General, Game Text: Front, Game Text: Back, Portraits: Back, Collection, Encounter Set, Comments], general [Faces, Title: Front, Title: Back, Basic Data: Back, Copyright information, Template replacement], front story, back enemy, template ArkhamHorrorLCG/templates/AHLCG-Story.jp2, name "Named", selected General, front sheet replaced true, unsaved true
+portraits [AHLCG-EnemyFace-BackPortrait (art), AHLCG-Face-Collection, AHLCG-Face-Encounter]
+front enemy: tabs [General, Game Text: Front, Portraits: Front, Game Text: Back, Portraits: Back, Collection, Encounter Set, Comments], general [Faces, Title: Front, Basic Data: Front, Title: Back, Basic Data: Back, Copyright information, Template replacement], front enemy, back enemy, template ArkhamHorrorLCG/templates/AHLCG-Enemy.jp2, name "Named", selected General, front sheet replaced true, unsaved true
+portraits [AHLCG-EnemyFace-Portrait, AHLCG-EnemyFace-BackPortrait (art), AHLCG-Face-Collection, AHLCG-Face-Encounter]
+front story with enemy back: tabs [General, Game Text: Front, Game Text: Back, Portraits: Back, Collection, Encounter Set, Comments], general [Faces, Title: Front, Title: Back, Basic Data: Back, Copyright information, Template replacement], front story, back enemy, template ArkhamHorrorLCG/templates/AHLCG-Story.jp2, name "Named", selected General, front sheet replaced true, unsaved true
+portraits [AHLCG-EnemyFace-BackPortrait (art), AHLCG-Face-Collection, AHLCG-Face-Encounter]
+read: portraits [AHLCG-EnemyFace-BackPortrait (art), AHLCG-Face-Collection, AHLCG-Face-Encounter]

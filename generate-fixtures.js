@@ -12,7 +12,8 @@
  * flexible card faces are written as Flexible-<face>.txt.
  * Also writes amd-loader.txt from the fx.amdScript handler: the AMD loader
  * checks it records; token-blocks.txt, from editing a flexible token rules
- * card; collector-tabs.txt, from choosing sets on a flexible card; and text-blocks.txt, from editing a flexible story
+ * card; collector-tabs.txt, from choosing sets on a flexible card; sides.txt,
+ * from painting flexible card faces with the same data on both sides; and text-blocks.txt, from editing a flexible story
  * card's text blocks; and editor-fit.txt, from resizing flexible card editors.
  *
  * Writes one line per handler or fixture to fx.results, then DONE.
@@ -399,6 +400,7 @@ var HANDLERS = {
 var FLEXIBLE = [
     'playerBack',
     'encounterBack',
+    'enemy',
     'scenarioRules',
     'story',
     'tokenRules',
@@ -535,6 +537,32 @@ var HIDE_COLLECTOR = {
 // sets the component name, Card sets keys without a suffix and Portraits sets
 // the source of each portrait, by kind.
 var FACE_VARIANTS = {
+    enemy: {
+        customIcons: {
+            Card: CUSTOM_ICONS.keys,
+            Portraits: CUSTOM_ICONS.sources,
+        },
+        returnTo: {
+            Card: { Encounter: 'ReturnToCultOfUmordhoth', EncounterType: '0' },
+        },
+        noCollectorLine: { Card: HIDE_COLLECTOR },
+        plainStats: {
+            Subtitle: '',
+            Unique: '0',
+            Health: '12',
+            Attack: '1',
+            Evade: '10',
+            PerInvestigatorEvade: '1',
+            PerInvestigator: '0',
+            PerInvestigatorAttack: '0',
+            Damage: '5',
+            Horror: '5',
+        },
+        dashes: { Health: '-', Attack: '-', PerInvestigatorAttack: '0' },
+        replaced: {
+            Card: { TemplateReplacement: REPLACEMENT_IMAGE },
+        },
+    },
     story: {
         customIcons: {
             Card: CUSTOM_ICONS.keys,
@@ -690,9 +718,10 @@ function build(handler, faces, variant, extra, flexible) {
                             var pk = String(
                                 gc.getPortrait(pi).getBaseKey()
                             ).replace('AHLCG-Face-', '');
-                            gc.getPortrait(pi).setSource(
-                                extra.faceKeys.Portraits[pk]
-                            );
+                            if (extra.faceKeys.Portraits[pk] != null)
+                                gc.getPortrait(pi).setSource(
+                                    extra.faceKeys.Portraits[pk]
+                                );
                         }
                     } else
                         gc.getSettings().set(
@@ -1339,6 +1368,37 @@ function writeFaceSwitch() {
         editor.populateFieldsFromComponent();
         lines.push('populated rows ' + textAreas('Game Text: Front').length);
 
+        // art portraits follow the faces; a side's art survives the other
+        // side's switch, and a save
+        function art(card) {
+            var found = [];
+            for (var i = 0; i < card.getPortraitCount(); ++i) {
+                var p = card.getPortrait(i);
+                var source = String(p.getSource());
+                found.push(
+                    p.getBaseKey() +
+                        (source.indexOf('Spawn_of_the_Stars') >= 0
+                            ? ' (art)'
+                            : '')
+                );
+            }
+            return 'portraits [' + found.join(', ') + ']';
+        }
+        select(1, 'enemy');
+        step('back enemy');
+        placeArt(gc.getPortrait(0));
+        lines.push(art(gc));
+        select(0, 'enemy');
+        step('front enemy');
+        lines.push(art(gc));
+        select(0, 'story');
+        step('front story with enemy back');
+        lines.push(art(gc));
+        var saved = File.createTempFile('face-switch', '.eon');
+        ResourceKit.writeGameComponentToFile(saved, gc);
+        lines.push('read: ' + art(ResourceKit.getGameComponentFromFile(saved)));
+        saved['delete']();
+
         editor.dispose();
         var file = new File(outDir, 'face-switch.txt');
         java.nio.file.Files.writeString(file.toPath(), lines.join('\n') + '\n');
@@ -1426,6 +1486,79 @@ function writeRepaint() {
     record('OK', 'repaint', file);
 }
 
+// Paints each flexible face with the same data on both sides, before and
+// after setting each text tab's spacing spinners through the editor, and
+// lists the rows where the sides differ.
+function writeSides() {
+    var RenderTarget = Packages.ca.cgjennings.apps.arkham.sheet.RenderTarget;
+    var lines = [];
+    function rows(gc) {
+        var sheets = gc.createDefaultSheets();
+        var images = [0, 1].map(function (i) {
+            return sheets[i].paint(RenderTarget.PREVIEW, 150, false);
+        });
+        var w = images[0].getWidth();
+        var h = images[0].getHeight();
+        var front = images[0].getRGB(0, 0, w, h, null, 0, w);
+        var back = images[1].getRGB(0, 0, w, h, null, 0, w);
+        var first = -1,
+            last = -1;
+        for (var i = 0; i < front.length; ++i) {
+            if (front[i] !== back[i]) {
+                var y = Math.floor(i / w);
+                if (first < 0) first = y;
+                last = y;
+            }
+        }
+        return first < 0 ? 'same' : 'rows ' + first + '-' + last + ' differ';
+    }
+    function spinners(editor, title) {
+        var tabs = editor.getTabbedPane();
+        var index = tabs.indexOfTab(title);
+        var found = [];
+        if (index < 0) return found;
+        (function walk(c) {
+            if (c instanceof javax.swing.JSpinner) found.push(c);
+            var children = c.getComponents();
+            for (var i = 0; i < children.length; ++i) walk(children[i]);
+        })(tabs.getComponentAt(index));
+        return found;
+    }
+    FLEXIBLE.forEach(function (face) {
+        try {
+            var gc = build('Flexible', [face, face], 'filled', null, true);
+            var settings = gc.getSettings();
+            settings.set('TitleBack', gc.getName());
+            // the collection number's side suffix and the page number
+            // differ by design
+            settings.set('ShowCollectionNumberFront', '0');
+            settings.set('ShowCollectionNumberBack', '0');
+            if (settings.get('Page') != null)
+                settings.set('PageBack', settings.get('Page'));
+            var line = face + ': ' + rows(gc);
+
+            var editor = gc.createDefaultEditor();
+            var set = 0;
+            ['Game Text: Front', 'Game Text: Back'].forEach(function (title) {
+                spinners(editor, title).forEach(function (spinner) {
+                    spinner.setValue(new java.lang.Integer(5));
+                    ++set;
+                });
+            });
+            editor.dispose();
+            if (set > 0) line += ', with ' + set + ' spacings set ' + rows(gc);
+            lines.push(line);
+        } catch (e) {
+            lines.push(
+                face + ' FAIL ' + (e.javaException ? e.javaException : e)
+            );
+        }
+    });
+    var file = new File(outDir, 'sides.txt');
+    java.nio.file.Files.writeString(file.toPath(), lines.join('\n') + '\n');
+    record('OK', 'sides', file);
+}
+
 try {
     for (var h in HANDLERS) {
         if (mode === 'defaults') writeDefaults(h, null);
@@ -1443,6 +1576,7 @@ try {
     if (mode === 'defaults') writeCollectorTabs();
     if (mode === 'defaults') writeFaceSwitch();
     if (mode === 'defaults') writeRepaint();
+    if (mode === 'defaults') writeSides();
     results.println('DONE');
 } finally {
     results.close();

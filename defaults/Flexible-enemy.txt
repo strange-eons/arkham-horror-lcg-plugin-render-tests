@@ -1,0 +1,100 @@
+version 31
+faceStyle TWO_FACES
+frontTemplateKey AHLCG-FlexibleHandler-Front
+backTemplateKey AHLCG-FlexibleHandler-Back
+cornerRadius 8
+name 
+portrait 0 AHLCG-EnemyFace-Portrait
+portrait 1 AHLCG-EnemyFace-BackPortrait
+portrait 2 AHLCG-Face-Collection
+portrait 3 AHLCG-Face-Encounter
+setting AHLCG-FlexibleHandler-Back-bleed-margin = 8.64
+setting AHLCG-FlexibleHandler-Back-template = ArkhamHorrorLCG/templates/AHLCG-Enemy.jp2
+setting AHLCG-FlexibleHandler-Front-bleed-margin = 8.64
+setting AHLCG-FlexibleHandler-Front-template = ArkhamHorrorLCG/templates/AHLCG-Enemy.jp2
+setting Artist = 
+setting ArtistBack = 
+setting Attack = 2
+setting AttackBack = 2
+setting BackFace = enemy
+setting Collection = CustomCollection
+setting CollectionNumber = 1
+setting CollectionType = -1
+setting Copyright = 
+setting Damage = 0
+setting DamageBack = 0
+setting Encounter = CustomEncounterSet
+setting EncounterNumber = 1
+setting EncounterTotal = 1
+setting EncounterType = -1
+setting Evade = 2
+setting EvadeBack = 2
+setting Flavor = 
+setting FlavorBack = 
+setting FlavorBackSpacing = 0
+setting FlavorSpacing = 0
+setting FrontFace = enemy
+setting Health = 2
+setting HealthBack = 2
+setting Horror = 0
+setting HorrorBack = 0
+setting Keywords = 
+setting KeywordsBack = 
+setting KeywordsBackSpacing = 0
+setting KeywordsSpacing = 0
+setting PerInvestigator = 0
+setting PerInvestigatorAttack = 0
+setting PerInvestigatorAttackBack = 0
+setting PerInvestigatorBack = 0
+setting PerInvestigatorEvade = 0
+setting PerInvestigatorEvadeBack = 0
+setting Rules = 
+setting RulesBack = 
+setting RulesBackSpacing = 0
+setting RulesSpacing = 0
+setting ShowCollectionNumberBack = 1
+setting ShowCollectionNumberFront = 1
+setting ShowCopyrightBack = 1
+setting ShowCopyrightFront = 1
+setting ShowEncounterNumberBack = 1
+setting ShowEncounterNumberFront = 1
+setting Subtitle = 
+setting SubtitleBack = 
+setting TemplateReplacementBleed = 0
+setting TitleBack = 
+setting Traits = 
+setting TraitsBack = 
+setting TraitsBackSpacing = 0
+setting TraitsSpacing = 0
+setting Unique = 0
+setting UniqueBack = 0
+setting Victory = 
+setting VictoryBack = 
+setting flipSuffix = 0
+setting game = AHLCG
+tab General
+  panel Faces (4 controls)
+  panel Title: Front (5 controls)
+  panel Basic Data: Front (13 controls)
+  panel Title: Back (5 controls)
+  panel Basic Data: Back (13 controls)
+  panel Copyright information (6 controls)
+  panel Template replacement (7 controls)
+tab Game Text: Front
+  panel Game Text (27 controls)
+tab Portraits: Front
+  panel Portrait (6 controls)
+  panel Options (3 controls)
+tab Game Text: Back
+  panel Game Text (27 controls)
+tab Portraits: Back
+  panel Portrait (6 controls)
+  panel Options (3 controls)
+tab Collection
+  panel Collection (9 controls)
+  panel Custom Collection (6 controls)
+tab Encounter Set
+  panel Encounter Set (11 controls)
+  panel Custom Encounter Set (6 controls)
+tab Comments
+  panel Design Rationale Comments (2 controls)

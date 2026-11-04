@@ -2,6 +2,14 @@ playerBack / General: fits
 playerBack / Comments: fits
 encounterBack / General: fits
 encounterBack / Comments: fits
+enemy / General: fits
+enemy / Game Text: Front: fits
+enemy / Portraits: Front: fits
+enemy / Game Text: Back: fits
+enemy / Portraits: Back: fits
+enemy / Collection: fits
+enemy / Encounter Set: fits
+enemy / Comments: fits
 scenarioRules / General: fits
 scenarioRules / Game Text: Front: fits
 scenarioRules / Game Text: Back: fits
