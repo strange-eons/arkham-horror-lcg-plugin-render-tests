@@ -683,6 +683,20 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
         },
     ],
     [
+        'AgendaFrontPortrait',
+        {
+            perInvestigator: { Doom: '12', PerInvestigator: '1' },
+            asterisk: { Doom: '3', PerInvestigator: '0', Asterisk: '1' },
+            partsBC: {
+                HeaderBBack: 'Part III',
+                RulesBBack: 'Advance.',
+            },
+            returnTo: LEGACY_ENCOUNTER.returnTo,
+            customIcons: LEGACY_ENCOUNTER.customIcons,
+            replaced: LEGACY_ENCOUNTER.replaced,
+        },
+    ],
+    [
         'Agenda',
         {
             perInvestigator: { Doom: '12', PerInvestigator: '1' },
