@@ -689,6 +689,16 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
                 Text8NameBack: 'Special',
                 Text8Back: 'You may include 1 <i>Relic</i>.',
             },
+            oldSections: {
+                Version: 11,
+                Undefined: {
+                    DeckSizeBack: '33.',
+                    DeckSizeBackSpacing: '4',
+                    SecondaryClassBack: 'Rogue cards level 0-2.',
+                    DeckOptionsBack: 'Seeker cards level 0-5.',
+                    AdditionalRequirementsBack: 'Lose 1 resource.',
+                },
+            },
             replaced: LEGACY_ENCOUNTER.replaced,
         },
     ],
@@ -787,7 +797,7 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
 ].forEach(function (entry) {
     HANDLER_VARIANTS[entry[0]] = HANDLER_VARIANTS[entry[0]] || {};
     for (var v in entry[1])
-        HANDLER_VARIANTS[entry[0]][v] = merge(entry[1][v], { Version: 30 });
+        HANDLER_VARIANTS[entry[0]][v] = merge({ Version: 30 }, entry[1][v]);
 });
 
 // flexible variants set both sides alike, so each back can be checked
