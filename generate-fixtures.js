@@ -694,6 +694,8 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
                 RulesCBack: 'The investigators win.',
             },
             scaled: { ScaleModifier: '80' },
+            oldPan: { Version: 16 },
+            oldPanReversed: { Version: 16, Orientation: 'Reversed' },
             customIcons: LEGACY_ENCOUNTER.customIcons,
             replaced: LEGACY_ENCOUNTER.replaced,
         },
