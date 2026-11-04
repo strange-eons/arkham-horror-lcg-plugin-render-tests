@@ -673,6 +673,32 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
         },
     ],
     [
+        'Location',
+        {
+            playerBack: { BackTypeBack: 'Player' },
+            separateArt: { PortraitShare: '0', ArtistBack: 'Other Artist' },
+            dashes: { Shroud: '-', Clues: '-' },
+            perInvestigatorShroud: {
+                Shroud: '4',
+                ShroudPerInvestigator: '1',
+                Clues: 'X',
+            },
+            star: { Shroud: 'Star', Clues: 'Star', PerInvestigator: '0' },
+            noEncounterIcon: {
+                ShowEncounterIcon: '0',
+                ShowEncounterIconBack: '0',
+            },
+            backIcons: {
+                LocationIconBack: 'Square',
+                Connection1IconBack: 'None',
+                Connection3IconBack: 'Moon',
+            },
+            returnTo: LEGACY_ENCOUNTER.returnTo,
+            customIcons: LEGACY_ENCOUNTER.customIcons,
+            replaced: LEGACY_ENCOUNTER.replaced,
+        },
+    ],
+    [
         'WeaknessEnemy',
         {
             weakness: { Subtype: 'Weakness' },
