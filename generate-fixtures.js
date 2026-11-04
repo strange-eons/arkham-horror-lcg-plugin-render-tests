@@ -418,6 +418,7 @@ var FLEXIBLE = [
     'investigatorBack',
     'act',
     'actBack',
+    'agenda',
 ];
 
 var STORY_BLOCKS = {
@@ -838,6 +839,28 @@ var HIDE_COLLECTOR = {
 // sets the component name, Card sets keys without a suffix and Portraits sets
 // the source of each portrait, by kind.
 var FACE_VARIANTS = {
+    agenda: {
+        reversed: { Orientation: 'Reversed' },
+        reversedReturnTo: {
+            Orientation: 'Reversed',
+            Card: { Encounter: 'ReturnToCultOfUmordhoth', EncounterType: '0' },
+        },
+        perInvestigator: { Doom: '12', PerInvestigator: '1' },
+        reversedPerInvestigator: {
+            Orientation: 'Reversed',
+            Doom: '4',
+            PerInvestigator: '1',
+        },
+        asterisk: { Doom: 'Star', PerInvestigator: '0', Asterisk: '1' },
+        dash: { Doom: '-' },
+        twoLines: { Title: TWO_LINES },
+        replaced: {
+            Card: {
+                TemplateReplacement: REPLACEMENT_IMAGE,
+                TemplateReplacementBack: REPLACEMENT_IMAGE,
+            },
+        },
+    },
     actBack: {
         returnTo: {
             Card: { Encounter: 'ReturnToCultOfUmordhoth', EncounterType: '0' },

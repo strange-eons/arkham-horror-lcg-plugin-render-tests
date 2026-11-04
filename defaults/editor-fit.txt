@@ -115,3 +115,11 @@ actBack / Game Text: Front: fits
 actBack / Game Text: Back: fits
 actBack / Encounter Set: fits
 actBack / Comments: fits
+agenda / General: fits
+agenda / Game Text: Front: fits
+agenda / Portraits: Front: fits
+agenda / Game Text: Back: fits
+agenda / Portraits: Back: fits
+agenda / Collection: fits
+agenda / Encounter Set: fits
+agenda / Comments: fits
