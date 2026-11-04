@@ -1,0 +1,48 @@
+version 31
+faceStyle TWO_FACES
+frontTemplateKey AHLCG-FlexibleHandler-Front
+backTemplateKey AHLCG-FlexibleHandler-Back
+cornerRadius 8
+name 
+portrait 0 AHLCG-Face-Encounter
+setting AHLCG-FlexibleHandler-Back-bleed-margin = 8.64
+setting AHLCG-FlexibleHandler-Back-template = ArkhamHorrorLCG/templates/AHLCG-ActBack.jp2
+setting AHLCG-FlexibleHandler-Front-bleed-margin = 8.64
+setting AHLCG-FlexibleHandler-Front-template = ArkhamHorrorLCG/templates/AHLCG-ActBack.jp2
+setting BackFace = actBack
+setting BlockCount = 1
+setting BlockCountBack = 1
+setting BlockSpacing1 = 0
+setting BlockSpacing1Back = 0
+setting BlockStyle1 = rules
+setting BlockStyle1Back = rules
+setting BlockText1 = 
+setting BlockText1Back = 
+setting Encounter = CustomEncounterSet
+setting EncounterNumber = 1
+setting EncounterTotal = 1
+setting EncounterType = -1
+setting FrontFace = actBack
+setting ScaleModifier = 100
+setting ScaleModifierBack = 100
+setting ScenarioDeckID = a
+setting ScenarioIndex = 1
+setting ShowEncounterNumberBack = 1
+setting ShowEncounterNumberFront = 1
+setting TemplateReplacementBleed = 0
+setting TitleBack = 
+setting game = AHLCG
+tab General
+  panel Faces (4 controls)
+  panel Title: Front (2 controls)
+  panel Title: Back (2 controls)
+  panel Template replacement (7 controls)
+tab Game Text: Front
+  panel Game Text (2 controls)
+tab Game Text: Back
+  panel Game Text (2 controls)
+tab Encounter Set
+  panel Encounter Set (11 controls)
+  panel Custom Encounter Set (6 controls)
+tab Comments
+  panel Design Rationale Comments (2 controls)

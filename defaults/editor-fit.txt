@@ -110,3 +110,8 @@ act / Portraits: Back: fits
 act / Collection: fits
 act / Encounter Set: fits
 act / Comments: fits
+actBack / General: fits
+actBack / Game Text: Front: fits
+actBack / Game Text: Back: fits
+actBack / Encounter Set: fits
+actBack / Comments: fits

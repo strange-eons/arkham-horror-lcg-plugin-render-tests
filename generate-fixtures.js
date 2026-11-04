@@ -417,6 +417,7 @@ var FLEXIBLE = [
     'investigator',
     'investigatorBack',
     'act',
+    'actBack',
 ];
 
 var STORY_BLOCKS = {
@@ -456,6 +457,7 @@ var FACE_KEYS = {
     // the filled story fields, as blocks
     story: STORY_BLOCKS,
     tokenRules: STORY_BLOCKS,
+    actBack: STORY_BLOCKS,
 };
 
 // Token blocks from [ icons, text ] pairs, after any other blocks.
@@ -814,6 +816,12 @@ var HIDE_COLLECTOR = {
 // sets the component name, Card sets keys without a suffix and Portraits sets
 // the source of each portrait, by kind.
 var FACE_VARIANTS = {
+    actBack: {
+        returnTo: {
+            Card: { Encounter: 'ReturnToCultOfUmordhoth', EncounterType: '0' },
+        },
+        twoDigitIndex: { Card: { ScenarioIndex: '12', ScenarioDeckID: 'e' } },
+    },
     act: {
         reversed: { Orientation: 'Reversed' },
         reversedReturnTo: {
