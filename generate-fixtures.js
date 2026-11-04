@@ -528,9 +528,13 @@ HANDLER_VARIANTS.Chaos.replaced = {
     TemplateReplacementBack: REPLACEMENT_IMAGE,
 };
 
+// flexible variants set both sides alike, so each back can be checked
+// against its front's master
 var HIDE_COLLECTOR = {
     ShowCollectionNumberFront: '0',
     ShowEncounterNumberFront: '0',
+    ShowCollectionNumberBack: '0',
+    ShowEncounterNumberBack: '0',
 };
 
 // Flexible variants that set any key, unlike VARIANTS, after FACE_KEYS. Title
@@ -560,7 +564,10 @@ var FACE_VARIANTS = {
         },
         dashes: { Health: '-', Attack: '-', PerInvestigatorAttack: '0' },
         replaced: {
-            Card: { TemplateReplacement: REPLACEMENT_IMAGE },
+            Card: {
+                TemplateReplacement: REPLACEMENT_IMAGE,
+                TemplateReplacementBack: REPLACEMENT_IMAGE,
+            },
         },
     },
     story: {
@@ -572,20 +579,29 @@ var FACE_VARIANTS = {
             Card: { Encounter: 'ReturnToCultOfUmordhoth', EncounterType: '0' },
         },
         noCollectorLine: { Card: HIDE_COLLECTOR },
-        noCopyright: { Card: { ShowCopyrightFront: '0' } },
+        noCopyright: {
+            Card: { ShowCopyrightFront: '0', ShowCopyrightBack: '0' },
+        },
     },
     tokenRules: {
         replaced: {
-            Card: { TemplateReplacement: REPLACEMENT_IMAGE },
+            Card: {
+                TemplateReplacement: REPLACEMENT_IMAGE,
+                TemplateReplacementBack: REPLACEMENT_IMAGE,
+            },
         },
         replacedBleed: {
             Card: {
                 TemplateReplacement: REPLACEMENT_IMAGE,
+                TemplateReplacementBack: REPLACEMENT_IMAGE,
                 TemplateReplacementBleed: '1',
             },
         },
         replacedUnreadable: {
-            Card: { TemplateReplacement: 'missing-replacement.png' },
+            Card: {
+                TemplateReplacement: 'missing-replacement.png',
+                TemplateReplacementBack: 'missing-replacement.png',
+            },
         },
         customIcons: {
             Card: CUSTOM_ICONS.keys,
@@ -595,7 +611,9 @@ var FACE_VARIANTS = {
             Card: { Encounter: 'ReturnToCultOfUmordhoth', EncounterType: '0' },
         },
         noCollectorLine: { Card: HIDE_COLLECTOR },
-        noCopyright: { Card: { ShowCopyrightFront: '0' } },
+        noCopyright: {
+            Card: { ShowCopyrightFront: '0', ShowCopyrightBack: '0' },
+        },
         twoLines: { Title: TWO_LINES },
         untitled: { Title: '' },
         tracker: TRACKER,
@@ -743,7 +761,16 @@ function build(handler, faces, variant, extra, flexible) {
             setPortraitSources(gc, extra.keys.Portraits);
         if (extra.keys.Version != null) setSavedVersion(gc, extra.keys.Version);
     }
+    if (flexible) matchBack(gc);
     return gc;
+}
+
+// A flexible card's back shows the front's title and page number, so the
+// back can be checked against the front's master.
+function matchBack(gc) {
+    var s = gc.getSettings();
+    if (s.get('TitleBack') != null) s.set('TitleBack', gc.getName());
+    if (s.get('PageBack') != null) s.set('PageBack', s.get('Page'));
 }
 
 function write(handler, faces, variant, extra, flexible) {
@@ -1528,13 +1555,9 @@ function writeSides() {
         try {
             var gc = build('Flexible', [face, face], 'filled', null, true);
             var settings = gc.getSettings();
-            settings.set('TitleBack', gc.getName());
-            // the collection number's side suffix and the page number
-            // differ by design
+            // the collection number's side suffix differs by design
             settings.set('ShowCollectionNumberFront', '0');
             settings.set('ShowCollectionNumberBack', '0');
-            if (settings.get('Page') != null)
-                settings.set('PageBack', settings.get('Page'));
             var line = face + ': ' + rows(gc);
 
             var editor = gc.createDefaultEditor();
