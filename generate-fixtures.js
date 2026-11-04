@@ -408,6 +408,7 @@ var FLEXIBLE = [
     'treachery',
     'asset',
     'event',
+    'skill',
 ];
 
 var STORY_BLOCKS = {
@@ -664,6 +665,18 @@ var HIDE_COLLECTOR = {
 // sets the component name, Card sets keys without a suffix and Portraits sets
 // the source of each portrait, by kind.
 var FACE_VARIANTS = {
+    skill: {
+        basicWeakness: { CardClass: 'BasicWeakness', Level: 'None' },
+        story: { CardClass: 'Story' },
+        storyWeakness: { CardClass: 'StoryWeakness' },
+        specialist: { CardClass: 'Specialist', Level: 'None' },
+        replaced: {
+            Card: {
+                TemplateReplacement: REPLACEMENT_IMAGE,
+                TemplateReplacementBack: REPLACEMENT_IMAGE,
+            },
+        },
+    },
     event: {
         triple: {
             CardClass: 'Seeker',

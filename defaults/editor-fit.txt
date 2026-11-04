@@ -49,3 +49,11 @@ event / Portraits: Back: fits
 event / Collection: fits
 event / Encounter Set: fits
 event / Comments: fits
+skill / General: fits
+skill / Game Text: Front: fits
+skill / Portraits: Front: fits
+skill / Game Text: Back: fits
+skill / Portraits: Back: fits
+skill / Collection: fits
+skill / Encounter Set: fits
+skill / Comments: fits
