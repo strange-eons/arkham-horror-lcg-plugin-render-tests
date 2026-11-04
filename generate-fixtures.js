@@ -419,6 +419,7 @@ var FLEXIBLE = [
     'act',
     'actBack',
     'agenda',
+    'agendaBack',
 ];
 
 var STORY_BLOCKS = {
@@ -459,6 +460,7 @@ var FACE_KEYS = {
     story: STORY_BLOCKS,
     tokenRules: STORY_BLOCKS,
     actBack: STORY_BLOCKS,
+    agendaBack: STORY_BLOCKS,
 };
 
 // Token blocks from [ icons, text ] pairs, after any other blocks.
@@ -839,6 +841,11 @@ var HIDE_COLLECTOR = {
 // sets the component name, Card sets keys without a suffix and Portraits sets
 // the source of each portrait, by kind.
 var FACE_VARIANTS = {
+    agendaBack: {
+        returnTo: {
+            Card: { Encounter: 'ReturnToCultOfUmordhoth', EncounterType: '0' },
+        },
+    },
     agenda: {
         reversed: { Orientation: 'Reversed' },
         reversedReturnTo: {

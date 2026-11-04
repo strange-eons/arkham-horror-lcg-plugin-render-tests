@@ -123,3 +123,8 @@ agenda / Portraits: Back: fits
 agenda / Collection: fits
 agenda / Encounter Set: fits
 agenda / Comments: fits
+agendaBack / General: fits
+agendaBack / Game Text: Front: fits
+agendaBack / Game Text: Back: fits
+agendaBack / Encounter Set: fits
+agendaBack / Comments: fits
