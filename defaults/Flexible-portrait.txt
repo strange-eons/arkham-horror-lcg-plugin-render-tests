@@ -1,0 +1,27 @@
+version 31
+faceStyle TWO_FACES
+frontTemplateKey AHLCG-FlexibleHandler-Front
+backTemplateKey AHLCG-FlexibleHandler-Back
+cornerRadius 8
+name 
+portrait 0 AHLCG-PortraitFace-Portrait
+portrait 1 AHLCG-PortraitFace-BackPortrait
+setting AHLCG-FlexibleHandler-Back-bleed-margin = 8.64
+setting AHLCG-FlexibleHandler-Back-template = ArkhamHorrorLCG/templates/AHLCG-Scenario.jp2
+setting AHLCG-FlexibleHandler-Front-bleed-margin = 8.64
+setting AHLCG-FlexibleHandler-Front-template = ArkhamHorrorLCG/templates/AHLCG-Scenario.jp2
+setting Artist = 
+setting ArtistBack = 
+setting BackFace = portrait
+setting FrontFace = portrait
+setting game = AHLCG
+tab General
+  panel Faces (4 controls)
+tab Portraits: Front
+  panel Portrait (6 controls)
+  panel Options (3 controls)
+tab Portraits: Back
+  panel Portrait (6 controls)
+  panel Options (4 controls)
+tab Comments
+  panel Design Rationale Comments (2 controls)

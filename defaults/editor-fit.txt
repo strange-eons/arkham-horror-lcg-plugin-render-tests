@@ -144,3 +144,7 @@ agendaPortrait / Portraits: Back: fits
 agendaPortrait / Collection: fits
 agendaPortrait / Encounter Set: fits
 agendaPortrait / Comments: fits
+portrait / General: fits
+portrait / Portraits: Front: fits
+portrait / Portraits: Back: fits
+portrait / Comments: fits
