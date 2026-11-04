@@ -645,6 +645,32 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
         },
     ],
     [
+        'Customizable',
+        {
+            allOptions: {
+                CustHeader: 'Customizable.',
+                CustHeaderSpacing: '4',
+                CustText3: 'It gains Retaliate.',
+                CustName3: 'Sharp',
+                CustCost3: '3',
+                CustText3Spacing: '6',
+                CustText4: 'Heal 1 damage.',
+                CustName4: 'Mended',
+                CustCost4: '1',
+                CustText5: 'Draw 1 card.',
+                CustName5: 'Lucky',
+                CustCost5: '4',
+                CustText6: 'Gain 1 resource.',
+                CustName6: 'Rich',
+                CustText7: 'Move 1 location.',
+                CustName7: 'Swift',
+                CustText8: 'Discover 1 clue.',
+                CustName8: 'Keen',
+            },
+            replaced: LEGACY_ENCOUNTER.replaced,
+        },
+    ],
+    [
         'WeaknessEnemy',
         {
             weakness: { Subtype: 'Weakness' },
