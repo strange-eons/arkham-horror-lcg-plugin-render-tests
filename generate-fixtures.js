@@ -504,6 +504,21 @@ var CUSTOM_ICONS = {
         Encounter: 'res://ArkhamHorrorLCG/icons/AHLCG-AgentsOfCthulhu.png',
     },
 };
+// Chaos cards with custom and return-to icons, unlike the standard icons on
+// the other variants, saved at the version before the token rules face.
+HANDLER_VARIANTS.Chaos.customIcons = merge(CUSTOM_ICONS.keys, {
+    Portraits: {
+        Collection: 'res://ArkhamHorrorLCG/icons/AHLCG-TheDunwichLegacy.png',
+        Encounter: 'res://ArkhamHorrorLCG/icons/AHLCG-TheGathering.png',
+    },
+    Version: 30,
+});
+HANDLER_VARIANTS.Chaos.returnTo = {
+    Encounter: 'ReturnToCultOfUmordhoth',
+    EncounterType: '0',
+    Version: 30,
+};
+
 var HIDE_COLLECTOR = {
     ShowCollectionNumberFront: '0',
     ShowEncounterNumberFront: '0',
@@ -613,6 +628,26 @@ function selectFaces(gc, faces) {
     gc.getPortraitCount();
 }
 
+// Sets the source of each portrait named in sources by its kind, the end of
+// its base key.
+function setPortraitSources(gc, sources) {
+    for (var i = 0; i < gc.getPortraitCount(); ++i) {
+        var key = String(gc.getPortrait(i).getBaseKey());
+        var kind = key.substring(key.lastIndexOf('-') + 1);
+        if (sources[kind] != null) gc.getPortrait(i).setSource(sources[kind]);
+    }
+}
+
+// The version a card was saved with, as an older plug-in would have saved
+// it; handlers only set it in create and onRead.
+function setSavedVersion(gc, version) {
+    var field = gc.getClass().getDeclaredField('cardVersion');
+    field.setAccessible(true);
+    field.setInt(gc, version);
+    if (gc.getVersion() !== version)
+        throw new Error('saved version ' + gc.getVersion());
+}
+
 function build(handler, faces, variant, extra, flexible) {
     var gc = new DIY('ArkhamHorrorLCG/diy/' + handler + '.js', 'AHLCG', false);
     if (flexible) selectFaces(gc, faces);
@@ -668,6 +703,9 @@ function build(handler, faces, variant, extra, flexible) {
     if (extra != null && extra.keys != null) {
         apply(gc, extra.keys, '');
         if (extra.keys.Title != null) gc.setName(extra.keys.Title);
+        if (extra.keys.Portraits != null)
+            setPortraitSources(gc, extra.keys.Portraits);
+        if (extra.keys.Version != null) setSavedVersion(gc, extra.keys.Version);
     }
     return gc;
 }
