@@ -685,6 +685,27 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
         },
     ],
     [
+        'AssetAsset',
+        {
+            backClass: {
+                CardClassBack: 'Mystic',
+                CardClass2Back: 'Survivor',
+                LevelBack: '2',
+            },
+            triple: {
+                CardClass: 'Seeker',
+                CardClass2: 'Mystic',
+                CardClass3: 'Rogue',
+            },
+            costDash: { ResourceCost: '-', Stamina: '-', Sanity: 'X' },
+            customIcons: LEGACY_ENCOUNTER.customIcons,
+            replaced: {
+                TemplateReplacement: REPLACEMENT_IMAGE,
+                TemplateReplacementBack: REPLACEMENT_IMAGE,
+            },
+        },
+    ],
+    [
         'ActEnemy',
         {
             reversed: { Orientation: 'Reversed' },
