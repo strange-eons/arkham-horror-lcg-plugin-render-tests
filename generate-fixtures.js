@@ -685,6 +685,91 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
         },
     ],
     [
+        'ActEnemy',
+        {
+            reversed: { Orientation: 'Reversed' },
+            oldPan: { Version: 16 },
+            returnTo: LEGACY_ENCOUNTER.returnTo,
+            customIcons: LEGACY_ENCOUNTER.customIcons,
+            replaced: {
+                TemplateReplacement: REPLACEMENT_IMAGE,
+                TemplateReplacementBack: REPLACEMENT_IMAGE,
+            },
+        },
+    ],
+    [
+        'AgendaEnemy',
+        {
+            reversed: { Orientation: 'Reversed' },
+            oldPan: { Version: 16 },
+            returnTo: LEGACY_ENCOUNTER.returnTo,
+            customIcons: LEGACY_ENCOUNTER.customIcons,
+            replaced: {
+                TemplateReplacement: REPLACEMENT_IMAGE,
+                TemplateReplacementBack: REPLACEMENT_IMAGE,
+            },
+        },
+    ],
+    [
+        'ActLocation',
+        {
+            reversed: { Orientation: 'Reversed' },
+            oldPan: { Version: 17 },
+            backIcons: {
+                LocationIconBack: 'Square',
+                Connection2IconBack: 'Moon',
+            },
+            returnTo: LEGACY_ENCOUNTER.returnTo,
+            customIcons: LEGACY_ENCOUNTER.customIcons,
+            replaced: {
+                TemplateReplacement: REPLACEMENT_IMAGE,
+                TemplateReplacementBack: REPLACEMENT_IMAGE,
+            },
+        },
+    ],
+    [
+        'AgendaLocation',
+        {
+            reversed: { Orientation: 'Reversed' },
+            oldPan: { Version: 17 },
+            backIcons: {
+                LocationIconBack: 'Square',
+                Connection2IconBack: 'Moon',
+            },
+            returnTo: LEGACY_ENCOUNTER.returnTo,
+            customIcons: LEGACY_ENCOUNTER.customIcons,
+            replaced: {
+                TemplateReplacement: REPLACEMENT_IMAGE,
+                TemplateReplacementBack: REPLACEMENT_IMAGE,
+            },
+        },
+    ],
+    [
+        'AgendaTreachery',
+        {
+            reversed: { Orientation: 'Reversed' },
+            oldPan: { Version: 16 },
+            returnTo: LEGACY_ENCOUNTER.returnTo,
+            customIcons: LEGACY_ENCOUNTER.customIcons,
+            replaced: {
+                TemplateReplacement: REPLACEMENT_IMAGE,
+                TemplateReplacementBack: REPLACEMENT_IMAGE,
+            },
+        },
+    ],
+    [
+        'EnemyEnemy',
+        {
+            separateArt: { PortraitShare: '0', ArtistBack: 'Other Artist' },
+            returnTo: LEGACY_ENCOUNTER.returnTo,
+            customIcons: LEGACY_ENCOUNTER.customIcons,
+            replaced: {
+                TemplateReplacement: REPLACEMENT_IMAGE,
+                TemplateReplacementBack: REPLACEMENT_IMAGE,
+            },
+        },
+    ],
+    [
         'EnemyPortrait',
         {
             returnTo: LEGACY_ENCOUNTER.returnTo,
