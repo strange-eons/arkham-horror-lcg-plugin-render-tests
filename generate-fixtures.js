@@ -411,6 +411,7 @@ var FLEXIBLE = [
     'skill',
     'customizable',
     'customizableBack',
+    'location',
 ];
 
 var STORY_BLOCKS = {
@@ -705,6 +706,29 @@ var HIDE_COLLECTOR = {
 // sets the component name, Card sets keys without a suffix and Portraits sets
 // the source of each portrait, by kind.
 var FACE_VARIANTS = {
+    location: {
+        dashes: { Shroud: '-', Clues: '-' },
+        perInvestigatorShroud: {
+            Shroud: '4',
+            ShroudPerInvestigator: '1',
+            Clues: 'X',
+        },
+        star: { Shroud: 'Star', Clues: 'Star', PerInvestigator: '0' },
+        noEncounterIcon: { ShowEncounterIcon: '0' },
+        returnTo: {
+            Card: { Encounter: 'ReturnToCultOfUmordhoth', EncounterType: '0' },
+        },
+        customIcons: {
+            Card: CUSTOM_ICONS.keys,
+            Portraits: CUSTOM_ICONS.sources,
+        },
+        replaced: {
+            Card: {
+                TemplateReplacement: REPLACEMENT_IMAGE,
+                TemplateReplacementBack: REPLACEMENT_IMAGE,
+            },
+        },
+    },
     skill: {
         basicWeakness: { CardClass: 'BasicWeakness', Level: 'None' },
         story: { CardClass: 'Story' },

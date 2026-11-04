@@ -63,3 +63,11 @@ customizable / Game Text: Back: fits
 customizable / Comments: fits
 customizableBack / General: fits
 customizableBack / Comments: fits
+location / General: fits
+location / Game Text: Front: fits
+location / Portraits: Front: fits
+location / Game Text: Back: fits
+location / Portraits: Back: fits
+location / Collection: fits
+location / Encounter Set: fits
+location / Comments: fits
