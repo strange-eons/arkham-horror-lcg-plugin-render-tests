@@ -136,3 +136,11 @@ agendaFrontPortrait / Portraits: Back: fits
 agendaFrontPortrait / Collection: fits
 agendaFrontPortrait / Encounter Set: fits
 agendaFrontPortrait / Comments: fits
+agendaPortrait / General: fits
+agendaPortrait / Game Text: Front: fits
+agendaPortrait / Portraits: Front: fits
+agendaPortrait / Game Text: Back: fits
+agendaPortrait / Portraits: Back: fits
+agendaPortrait / Collection: fits
+agendaPortrait / Encounter Set: fits
+agendaPortrait / Comments: fits

@@ -1,0 +1,66 @@
+version 31
+faceStyle TWO_FACES
+frontTemplateKey AHLCG-FlexibleHandler-Front
+backTemplateKey AHLCG-FlexibleHandler-Back
+cornerRadius 8
+name 
+portrait 0 AHLCG-AgendaPortraitFace-Portrait
+portrait 1 AHLCG-AgendaPortraitFace-BackPortrait
+portrait 2 AHLCG-Face-Collection
+portrait 3 AHLCG-Face-Encounter
+setting AHLCG-FlexibleHandler-Back-bleed-margin = 8.64
+setting AHLCG-FlexibleHandler-Back-template = ArkhamHorrorLCG/templates/AHLCG-AgendaPortrait.jp2
+setting AHLCG-FlexibleHandler-Front-bleed-margin = 8.64
+setting AHLCG-FlexibleHandler-Front-template = ArkhamHorrorLCG/templates/AHLCG-AgendaPortrait.jp2
+setting Artist = 
+setting ArtistBack = 
+setting BackFace = agendaPortrait
+setting Collection = CustomCollection
+setting CollectionNumber = 1
+setting CollectionType = -1
+setting Copyright = 
+setting Encounter = CustomEncounterSet
+setting EncounterNumber = 1
+setting EncounterTotal = 1
+setting EncounterType = -1
+setting FrontFace = agendaPortrait
+setting Rules = 
+setting RulesBack = 
+setting ShowCollectionNumberBack = 1
+setting ShowCollectionNumberFront = 1
+setting ShowCopyrightBack = 1
+setting ShowCopyrightFront = 1
+setting ShowEncounterNumberBack = 1
+setting ShowEncounterNumberFront = 1
+setting Story = 
+setting StoryBack = 
+setting StoryBackSpacing = 0
+setting StorySpacing = 0
+setting TemplateReplacementBleed = 0
+setting TitleBack = 
+setting flipSuffix = 0
+setting game = AHLCG
+tab General
+  panel Faces (4 controls)
+  panel Title: Front (2 controls)
+  panel Title: Back (2 controls)
+  panel Copyright information (6 controls)
+  panel Template replacement (7 controls)
+tab Game Text: Front
+  panel Game Text (9 controls)
+tab Portraits: Front
+  panel Portrait (6 controls)
+  panel Options (3 controls)
+tab Game Text: Back
+  panel Game Text (9 controls)
+tab Portraits: Back
+  panel Portrait (6 controls)
+  panel Options (4 controls)
+tab Collection
+  panel Collection (9 controls)
+  panel Custom Collection (6 controls)
+tab Encounter Set
+  panel Encounter Set (11 controls)
+  panel Custom Encounter Set (6 controls)
+tab Comments
+  panel Design Rationale Comments (2 controls)
