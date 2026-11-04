@@ -34,3 +34,10 @@ treachery / Portraits: Back: fits
 treachery / Collection: fits
 treachery / Encounter Set: fits
 treachery / Comments: fits
+asset / General: fits
+asset / Game Text: Front: fits
+asset / Portraits: Front: fits
+asset / Game Text: Back: fits
+asset / Portraits: Back: fits
+asset / Collection: fits
+asset / Comments: fits
