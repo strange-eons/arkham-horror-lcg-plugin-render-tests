@@ -1,4 +1,4 @@
-version 18
+version 31
 faceStyle TWO_FACES
 frontTemplateKey AHLCG-EnemyLocation-Default
 backTemplateKey AHLCG-Location-Default

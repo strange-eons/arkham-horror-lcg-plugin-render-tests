@@ -1,4 +1,4 @@
-version 3
+version 31
 faceStyle TWO_FACES
 frontTemplateKey AHLCG-Customizable-Default
 backTemplateKey AHLCG-CustomizableBack-Default

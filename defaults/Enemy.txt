@@ -1,4 +1,4 @@
-version 16
+version 31
 faceStyle TWO_FACES
 frontTemplateKey AHLCG-Enemy-Default
 backTemplateKey AHLCG-EnemyBack-Default

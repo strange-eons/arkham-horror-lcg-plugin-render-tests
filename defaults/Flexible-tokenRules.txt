@@ -1,4 +1,4 @@
-version 1
+version 31
 faceStyle TWO_FACES
 frontTemplateKey AHLCG-FlexibleHandler-Front
 backTemplateKey AHLCG-FlexibleHandler-Back

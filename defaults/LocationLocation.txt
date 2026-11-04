@@ -1,4 +1,4 @@
-version 17
+version 31
 faceStyle TWO_FACES
 frontTemplateKey AHLCG-Location-Default
 backTemplateKey AHLCG-Location-Default

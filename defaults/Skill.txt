@@ -1,4 +1,4 @@
-version 18
+version 31
 faceStyle TWO_FACES
 frontTemplateKey AHLCG-Skill-Default
 backTemplateKey AHLCG-SkillBack-Default
