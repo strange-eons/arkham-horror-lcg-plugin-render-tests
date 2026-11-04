@@ -605,6 +605,31 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
 [
     ['StoryStory', LEGACY_STORY],
     ['StoryEnemy', LEGACY_STORY_ENEMY],
+    [
+        'StoryLocation',
+        {
+            spacing: STORY_SPACING,
+            chaos: { Template: 'Chaos' },
+            chaosFull: { Template: 'ChaosFull' },
+            backIcons: {
+                LocationIconBack: 'Square',
+                Connection2IconBack: 'Moon',
+            },
+            noEncounterIcon: { ShowEncounterIconBack: '0' },
+            returnTo: LEGACY_ENCOUNTER.returnTo,
+            replaced: LEGACY_STORY.replaced,
+        },
+    ],
+    [
+        'StoryTreachery',
+        {
+            spacing: STORY_SPACING,
+            chaos: { Template: 'Chaos' },
+            chaosFull: { Template: 'ChaosFull' },
+            returnTo: LEGACY_ENCOUNTER.returnTo,
+            replaced: LEGACY_STORY.replaced,
+        },
+    ],
     ['Enemy', LEGACY_ENEMY],
     ['Treachery', LEGACY_ENCOUNTER],
     [
