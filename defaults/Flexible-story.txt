@@ -36,6 +36,9 @@ setting ShowCopyrightBack = 1
 setting ShowCopyrightFront = 1
 setting ShowEncounterNumberBack = 1
 setting ShowEncounterNumberFront = 1
+setting StoryClass = Default
+setting StoryClassBack = Default
+setting TemplateReplacementBleed = 0
 setting TitleBack = 
 setting TrackerBox = 
 setting TrackerBoxBack = 
@@ -45,9 +48,10 @@ setting flipSuffix = 0
 setting game = AHLCG
 tab General
   panel Faces (4 controls)
-  panel Title: Front (2 controls)
-  panel Title: Back (2 controls)
+  panel Title: Front (4 controls)
+  panel Title: Back (4 controls)
   panel Copyright information (6 controls)
+  panel Template replacement (7 controls)
 tab Game Text: Front
   panel Game Text (2 controls)
   panel Tracking box (5 controls)

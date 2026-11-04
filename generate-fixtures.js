@@ -571,6 +571,13 @@ var FACE_VARIANTS = {
         },
     },
     story: {
+        classGuardian: { StoryClass: 'Guardian' },
+        replaced: {
+            Card: {
+                TemplateReplacement: REPLACEMENT_IMAGE,
+                TemplateReplacementBack: REPLACEMENT_IMAGE,
+            },
+        },
         customIcons: {
             Card: CUSTOM_ICONS.keys,
             Portraits: CUSTOM_ICONS.sources,
