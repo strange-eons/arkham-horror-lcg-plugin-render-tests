@@ -4,16 +4,12 @@ frontTemplateKey AHLCG-Enemy-Default
 backTemplateKey AHLCG-Enemy-Default
 cornerRadius 8
 name 
-portrait 0 AHLCG-Enemy-Portrait
-portrait 1 AHLCG-Enemy-BackPortrait
-portrait 2 AHLCG-Enemy-Collection
-portrait 3 AHLCG-Enemy-Encounter
-setting AHLCG-Enemy-BackPortrait-portrait-rotation = 0
-setting AHLCG-Enemy-Collection-portrait-rotation = 0
-setting AHLCG-Enemy-Collection-portrait-template = ArkhamHorrorLCG/images/empty1x1.png
-setting AHLCG-Enemy-Encounter-portrait-rotation = 0
-setting AHLCG-Enemy-Encounter-portrait-template = ArkhamHorrorLCG/images/empty1x1.png
-setting AHLCG-Enemy-Portrait-portrait-rotation = 0
+portrait 0 AHLCG-EnemyFace-Portrait
+portrait 1 AHLCG-EnemyFace-BackPortrait
+portrait 2 AHLCG-Face-Collection
+portrait 3 AHLCG-Face-Encounter
+setting AHLCG-Enemy-Default-bleed-margin = 8.64
+setting AHLCG-Enemy-Default-template = ArkhamHorrorLCG/templates/AHLCG-Enemy.jp2
 setting Artist = 
 setting ArtistBack = 
 setting Attack = 2
@@ -55,12 +51,16 @@ setting RulesBackSpacing = 0
 setting RulesSpacing = 0
 setting ShowCollectionNumberBack = 1
 setting ShowCollectionNumberFront = 1
+setting ShowCopyrightBack = 1
+setting ShowCopyrightFront = 1
 setting ShowEncounterNumberBack = 1
 setting ShowEncounterNumberFront = 1
 setting Subtitle = 
 setting SubtitleBack = 
-setting TemplateReplacement = 
-setting TemplateReplacementBack = 
+setting Subtype = None
+setting SubtypeBack = None
+setting TemplateReplacementBleed = 0
+setting TitleBack = 
 setting Traits = 
 setting TraitsBack = 
 setting TraitsBackSpacing = 0
@@ -69,29 +69,30 @@ setting Unique = 0
 setting UniqueBack = 0
 setting Victory = 
 setting VictoryBack = 
-setting flipSuffix = false
+setting flipSuffix = 0
 setting game = AHLCG
 tab General
   panel Title: Front (5 controls)
-  panel Basic Data: Front (13 controls)
+  panel Basic Data: Front (15 controls)
   panel Title: Back (5 controls)
-  panel Basic Data: Back (13 controls)
-  panel Copyright information (3 controls)
+  panel Basic Data: Back (15 controls)
+  panel Copyright information (6 controls)
+  panel Template replacement (7 controls)
 tab Game Text: Front
   panel Game Text (27 controls)
+tab Portraits: Front
+  panel Portrait (6 controls)
+  panel Options (3 controls)
 tab Game Text: Back
   panel Game Text (27 controls)
-tab Portraits
-  panel Portrait : Front (6 controls)
-  panel Options: Front (3 controls)
-  panel Portrait : Back (6 controls)
-  panel Options: Back (4 controls)
-  panel Template replacement (7 controls)
+tab Portraits: Back
+  panel Portrait (6 controls)
+  panel Options (4 controls)
 tab Collection
-  panel Collection (8 controls)
+  panel Collection (9 controls)
   panel Custom Collection (6 controls)
 tab Encounter Set
-  panel Encounter Set (10 controls)
+  panel Encounter Set (11 controls)
   panel Custom Encounter Set (6 controls)
 tab Comments
   panel Design Rationale Comments (2 controls)
