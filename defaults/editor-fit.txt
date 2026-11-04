@@ -41,3 +41,11 @@ asset / Game Text: Back: fits
 asset / Portraits: Back: fits
 asset / Collection: fits
 asset / Comments: fits
+event / General: fits
+event / Game Text: Front: fits
+event / Portraits: Front: fits
+event / Game Text: Back: fits
+event / Portraits: Back: fits
+event / Collection: fits
+event / Encounter Set: fits
+event / Comments: fits
