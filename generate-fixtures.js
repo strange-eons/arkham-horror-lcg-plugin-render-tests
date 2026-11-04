@@ -631,6 +631,18 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
         },
     ],
     [
+        'Skill',
+        {
+            encounterBack: { BackTypeBack: 'Encounter' },
+            basicWeakness: { CardClass: 'BasicWeakness', Level: 'None' },
+            story: { CardClass: 'Story' },
+            storyWeakness: { CardClass: 'StoryWeakness' },
+            specialist: { CardClass: 'Specialist', Level: 'None' },
+            customIcons: LEGACY_ENCOUNTER.customIcons,
+            replaced: LEGACY_ENCOUNTER.replaced,
+        },
+    ],
+    [
         'WeaknessEnemy',
         {
             weakness: { Subtype: 'Weakness' },
