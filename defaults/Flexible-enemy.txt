@@ -60,6 +60,8 @@ setting ShowEncounterNumberBack = 1
 setting ShowEncounterNumberFront = 1
 setting Subtitle = 
 setting SubtitleBack = 
+setting Subtype = None
+setting SubtypeBack = None
 setting TemplateReplacementBleed = 0
 setting TitleBack = 
 setting Traits = 
@@ -75,9 +77,9 @@ setting game = AHLCG
 tab General
   panel Faces (4 controls)
   panel Title: Front (5 controls)
-  panel Basic Data: Front (13 controls)
+  panel Basic Data: Front (15 controls)
   panel Title: Back (5 controls)
-  panel Basic Data: Back (13 controls)
+  panel Basic Data: Back (15 controls)
   panel Copyright information (6 controls)
   panel Template replacement (7 controls)
 tab Game Text: Front

@@ -47,6 +47,7 @@ setting ShowEncounterNumberBack = 1
 setting ShowEncounterNumberFront = 1
 setting StoryClass = Default
 setting SubtitleBack = 
+setting SubtypeBack = None
 setting Template = Story
 setting TemplateReplacementBleed = 0
 setting TitleBack = 
@@ -62,7 +63,7 @@ tab General
   panel Template (2 controls)
   panel Title: Front (4 controls)
   panel Title: Back (5 controls)
-  panel Basic Data: Back (13 controls)
+  panel Basic Data: Back (15 controls)
   panel Copyright information (6 controls)
   panel Template replacement (7 controls)
 tab Game Text: Front

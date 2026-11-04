@@ -641,6 +641,9 @@ var FACE_VARIANTS = {
         },
     },
     enemy: {
+        basicWeakness: { Subtype: 'BasicWeakness' },
+        investigatorWeakness: { Subtype: 'InvestigatorWeakness' },
+        storyWeakness: { Subtype: 'StoryWeakness' },
         customIcons: {
             Card: CUSTOM_ICONS.keys,
             Portraits: CUSTOM_ICONS.sources,
