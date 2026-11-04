@@ -235,6 +235,9 @@ var ALL_MERGED = {
 // the name. These cover chaos template layouts, by token rules, and story
 // class templates.
 var HANDLER_VARIANTS = {
+    // StoryStory, StoryEnemy and Chaos variants were saved by the legacy
+    // handlers, as files to upgrade; the face handlers would save them without
+    // their legacy text
     StoryStory: {
         classNeutral: bothSides({ StoryClass: 'Neutral' }),
         classGuardian: bothSides({ StoryClass: 'Guardian' }),
@@ -290,8 +293,6 @@ var HANDLER_VARIANTS = {
             CollectionType: '0',
         },
     },
-    // saved by the legacy Chaos handler, as files to upgrade; the token rules
-    // face would save them without their token text
     Chaos: {
         tracker: bothSides({ TrackerBox: 'Clues', TrackerHeight: '120' }),
         twoLines: bothSides({ Title: TWO_LINES }),
