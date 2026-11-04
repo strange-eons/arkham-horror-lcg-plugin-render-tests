@@ -4,21 +4,14 @@ frontTemplateKey AHLCG-Location-Default
 backTemplateKey AHLCG-LocationBack-Default
 cornerRadius 8
 name 
-portrait 0 AHLCG-Location-Portrait
-portrait 1 AHLCG-LocationBack-BackPortrait
-portrait 2 AHLCG-Location-Collection
-portrait 3 AHLCG-Location-Encounter
-setting AHLCG-Location-Collection-portrait-rotation = 0
-setting AHLCG-Location-Encounter-portrait-rotation = 0
-setting AHLCG-Location-Portrait-portrait-rotation = 0
-setting AHLCG-LocationBack-BackPortrait-portrait-rotation = 0
-setting AHLCG-LocationBack-Collection-portrait-rotation = 0
-setting AHLCG-LocationBack-Collection-portrait-template = ArkhamHorrorLCG/images/empty1x1.png
-setting AHLCG-LocationBack-Encounter-portrait-rotation = 0
-setting AHLCG-LocationBack-Encounter-portrait-template = ArkhamHorrorLCG/images/empty1x1.png
-setting AHLCG-LocationBack-Portrait-portrait-clip-region = null
-setting AHLCG-LocationBack-Portrait-portrait-rotation = 0
-setting AHLCG-LocationBack-Portrait-portrait-template = ArkhamHorrorLCG/images/empty1x1.png
+portrait 0 AHLCG-LocationFace-Portrait
+portrait 1 AHLCG-LocationBackFace-BackPortrait
+portrait 2 AHLCG-Face-Collection
+portrait 3 AHLCG-Face-Encounter
+setting AHLCG-Location-Default-bleed-margin = 8.64
+setting AHLCG-Location-Default-template = ArkhamHorrorLCG/templates/AHLCG-Location.jp2
+setting AHLCG-LocationBack-Default-bleed-margin = 8.64
+setting AHLCG-LocationBack-Default-template = ArkhamHorrorLCG/templates/AHLCG-LocationBack.jp2
 setting Artist = 
 setting ArtistBack = 
 setting BackTypeBack = Standard
@@ -45,7 +38,6 @@ setting EncounterTotal = 1
 setting EncounterType = -1
 setting Flavor = 
 setting FlavorBack = 
-setting FlavorBackSpacing = 0
 setting FlavorSpacing = 0
 setting Keywords = 
 setting KeywordsBack = 
@@ -59,45 +51,51 @@ setting Rules =
 setting RulesBack = 
 setting RulesBackSpacing = 0
 setting RulesSpacing = 0
+setting ShowCollectionNumberBack = 1
+setting ShowCollectionNumberFront = 1
+setting ShowCopyrightBack = 1
+setting ShowCopyrightFront = 1
 setting ShowEncounterIcon = 1
 setting ShowEncounterIconBack = 1
+setting ShowEncounterNumberBack = 1
+setting ShowEncounterNumberFront = 1
 setting Shroud = 1
 setting ShroudPerInvestigator = 0
 setting Subtitle = 
 setting SubtitleBack = 
-setting TemplateReplacement = 
-setting TemplateReplacementBack = 
+setting TemplateReplacementBleed = 0
 setting TitleBack = 
 setting Traits = 
 setting TraitsBack = 
 setting TraitsBackSpacing = 0
 setting TraitsSpacing = 0
 setting Victory = 
-setting flipSuffix = false
+setting flipSuffix = 0
 setting game = AHLCG
 tab General
+  panel Template (2 controls)
   panel Title: Front (4 controls)
   panel Basic Data: Front (6 controls)
-  panel Connections: Front (14 controls)
+  panel Connections: Front (15 controls)
   panel Title: Back (4 controls)
-  panel Basic Data: Back (2 controls)
-  panel Connections: Back (14 controls)
-  panel Copyright information (3 controls)
+  panel Connections: Back (15 controls)
+  panel Copyright information (6 controls)
+  panel Template replacement (7 controls)
 tab Game Text: Front
   panel Game Text (27 controls)
+tab Portraits: Front
+  panel Portrait (6 controls)
+  panel Options (3 controls)
 tab Game Text: Back
   panel Game Text (22 controls)
-tab Portraits
-  panel Portrait : Front (6 controls)
-  panel Options: Front (3 controls)
-  panel Portrait : Back (6 controls)
-  panel Options: Back (4 controls)
-  panel Template replacement (7 controls)
+tab Portraits: Back
+  panel Portrait (6 controls)
+  panel Options (4 controls)
 tab Collection
-  panel Collection (6 controls)
+  panel Collection (9 controls)
   panel Custom Collection (6 controls)
 tab Encounter Set
-  panel Encounter Set (12 controls)
+  panel Encounter Set (11 controls)
   panel Custom Encounter Set (6 controls)
 tab Comments
   panel Design Rationale Comments (2 controls)
