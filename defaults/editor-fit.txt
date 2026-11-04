@@ -102,3 +102,11 @@ investigatorBack / Game Text: Back:
 investigatorBack / Portraits: Back: fits
 investigatorBack / Encounter Set: fits
 investigatorBack / Comments: fits
+act / General: fits
+act / Game Text: Front: fits
+act / Portraits: Front: fits
+act / Game Text: Back: fits
+act / Portraits: Back: fits
+act / Collection: fits
+act / Encounter Set: fits
+act / Comments: fits

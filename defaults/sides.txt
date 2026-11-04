@@ -15,3 +15,4 @@ locationBack: same, with 6 spacings set same
 key: rows 0-560 differ, with 8 spacings set same
 investigator: same, with 6 spacings set same
 investigatorBack: same, with 14 spacings set same
+act: same, with 2 spacings set same
