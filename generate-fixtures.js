@@ -679,6 +679,26 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
         },
     ],
     [
+        'Act',
+        {
+            perInvestigator: { Clues: '3', PerInvestigator: '1' },
+            asterisk: { Clues: '2', PerInvestigator: '0', Asterisk: '1' },
+            reversedReturnTo: merge(LEGACY_ENCOUNTER.returnTo, {
+                Orientation: 'Reversed',
+            }),
+            twoLines: { Title: TWO_LINES },
+            partsBC: {
+                HeaderBBack: 'Part III',
+                RulesBBack: 'Advance.',
+                AccentedStoryCBack: 'The end draws near.',
+                RulesCBack: 'The investigators win.',
+            },
+            scaled: { ScaleModifier: '80' },
+            customIcons: LEGACY_ENCOUNTER.customIcons,
+            replaced: LEGACY_ENCOUNTER.replaced,
+        },
+    ],
+    [
         'Investigator',
         {
             parallel: { CardClass: 'ParallelRogue' },
