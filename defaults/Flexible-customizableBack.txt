@@ -1,0 +1,21 @@
+version 31
+faceStyle TWO_FACES
+frontTemplateKey AHLCG-FlexibleHandler-Front
+backTemplateKey AHLCG-FlexibleHandler-Back
+cornerRadius 8
+name 
+setting AHLCG-FlexibleHandler-Back-bleed-margin = 8.64
+setting AHLCG-FlexibleHandler-Back-template = ArkhamHorrorLCG/templates/AHLCG-CustomizableBack.jp2
+setting AHLCG-FlexibleHandler-Front-bleed-margin = 8.64
+setting AHLCG-FlexibleHandler-Front-template = ArkhamHorrorLCG/templates/AHLCG-CustomizableBack.jp2
+setting BackFace = customizableBack
+setting BackType = PlayerPurple
+setting BackTypeBack = PlayerPurple
+setting FrontFace = customizableBack
+setting TemplateReplacementBleed = 0
+setting game = AHLCG
+tab General
+  panel Faces (4 controls)
+  panel Template replacement (7 controls)
+tab Comments
+  panel Design Rationale Comments (2 controls)

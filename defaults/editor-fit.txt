@@ -61,3 +61,5 @@ customizable / General: fits
 customizable / Game Text: Front: fits
 customizable / Game Text: Back: fits
 customizable / Comments: fits
+customizableBack / General: fits
+customizableBack / Comments: fits
