@@ -528,6 +528,56 @@ HANDLER_VARIANTS.Chaos.replaced = {
     TemplateReplacementBack: REPLACEMENT_IMAGE,
 };
 
+// Story cards saved by the legacy handlers at the version before the story
+// and enemy faces: other backs, spacing, the third part, an empty first part
+// and replacement templates.
+var STORY_SPACING = bothSides({
+    TraitsASpacing: '4',
+    HeaderASpacing: '6',
+    AccentedStoryASpacing: '8',
+    HeaderBSpacing: '6',
+    AccentedStoryBSpacing: '8',
+    VictorySpacing: '10',
+});
+var LEGACY_STORY = {
+    playerBack: { TemplateBack: 'Player' },
+    encounterBack: { TemplateBack: 'Encounter' },
+    spacing: STORY_SPACING,
+    partC: bothSides({
+        HeaderC: 'Part III',
+        AccentedStoryC: 'The tide turns.',
+        RulesC: 'Each investigator draws 1 card.',
+    }),
+    emptyFirstPart: bothSides({
+        TraitsA: '',
+        HeaderA: '',
+        AccentedStoryA: '',
+        RulesA: '',
+    }),
+    replaced: {
+        TemplateReplacement: REPLACEMENT_IMAGE,
+        TemplateReplacementBack: REPLACEMENT_IMAGE,
+    },
+};
+var LEGACY_STORY_ENEMY = {
+    spacing: merge(STORY_SPACING, {
+        TraitsBackSpacing: '4',
+        KeywordsBackSpacing: '6',
+        RulesBackSpacing: '8',
+        FlavorBackSpacing: '10',
+    }),
+    chaos: { Template: 'Chaos' },
+    chaosFull: { Template: 'ChaosFull' },
+    replaced: LEGACY_STORY.replaced,
+};
+[
+    ['StoryStory', LEGACY_STORY],
+    ['StoryEnemy', LEGACY_STORY_ENEMY],
+].forEach(function (entry) {
+    for (var v in entry[1])
+        HANDLER_VARIANTS[entry[0]][v] = merge(entry[1][v], { Version: 30 });
+});
+
 // flexible variants set both sides alike, so each back can be checked
 // against its front's master
 var HIDE_COLLECTOR = {
