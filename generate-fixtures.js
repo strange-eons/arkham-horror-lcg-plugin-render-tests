@@ -289,6 +289,8 @@ var HANDLER_VARIANTS = {
             CollectionType: '0',
         },
     },
+    // saved by the legacy Chaos handler, as files to upgrade; the token rules
+    // face would save them without their token text
     Chaos: {
         tracker: bothSides({ TrackerBox: 'Clues', TrackerHeight: '120' }),
         twoLines: bothSides({ Title: TWO_LINES }),
@@ -517,6 +519,11 @@ HANDLER_VARIANTS.Chaos.returnTo = {
     Encounter: 'ReturnToCultOfUmordhoth',
     EncounterType: '0',
     Version: 30,
+};
+// saved by the token rules face, with an image replacing each side's template
+HANDLER_VARIANTS.Chaos.replaced = {
+    TemplateReplacement: REPLACEMENT_IMAGE,
+    TemplateReplacementBack: REPLACEMENT_IMAGE,
 };
 
 var HIDE_COLLECTOR = {
