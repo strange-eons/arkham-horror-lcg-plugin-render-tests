@@ -26,3 +26,11 @@ tokenRules / Game Text: Back: fits
 tokenRules / Collection: fits
 tokenRules / Encounter Set: fits
 tokenRules / Comments: fits
+treachery / General: fits
+treachery / Game Text: Front: fits
+treachery / Portraits: Front: fits
+treachery / Game Text: Back: fits
+treachery / Portraits: Back: fits
+treachery / Collection: fits
+treachery / Encounter Set: fits
+treachery / Comments: fits

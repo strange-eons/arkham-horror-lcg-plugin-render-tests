@@ -4,3 +4,4 @@ enemy: same, with 8 spacings set same
 scenarioRules: same
 story: same, with 22 spacings set same
 tokenRules: same, with 22 spacings set same
+treachery: same, with 8 spacings set same

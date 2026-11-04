@@ -405,6 +405,7 @@ var FLEXIBLE = [
     'scenarioRules',
     'story',
     'tokenRules',
+    'treachery',
 ];
 
 var STORY_BLOCKS = {
@@ -605,6 +606,24 @@ var HIDE_COLLECTOR = {
 // sets the component name, Card sets keys without a suffix and Portraits sets
 // the source of each portrait, by kind.
 var FACE_VARIANTS = {
+    treachery: {
+        weakness: { Subtype: 'Weakness' },
+        basicWeakness: { Subtype: 'BasicWeakness' },
+        storyWeakness: { Subtype: 'StoryWeakness' },
+        customIcons: {
+            Card: CUSTOM_ICONS.keys,
+            Portraits: CUSTOM_ICONS.sources,
+        },
+        returnTo: {
+            Card: { Encounter: 'ReturnToCultOfUmordhoth', EncounterType: '0' },
+        },
+        replaced: {
+            Card: {
+                TemplateReplacement: REPLACEMENT_IMAGE,
+                TemplateReplacementBack: REPLACEMENT_IMAGE,
+            },
+        },
+    },
     enemy: {
         customIcons: {
             Card: CUSTOM_ICONS.keys,
