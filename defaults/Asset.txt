@@ -4,10 +4,12 @@ frontTemplateKey AHLCG-Asset-Default
 backTemplateKey AHLCG-AssetBack-Default
 cornerRadius 8
 name 
-portrait 0 AHLCG-Asset-Portrait
-portrait 1 AHLCG-Asset-Collection
-setting AHLCG-Asset-Collection-portrait-rotation = 0
-setting AHLCG-Asset-Portrait-portrait-rotation = 0
+portrait 0 AHLCG-AssetFace-Portrait
+portrait 1 AHLCG-Face-Collection
+setting AHLCG-Asset-Default-bleed-margin = 8.64
+setting AHLCG-Asset-Default-template = ArkhamHorrorLCG/templates/AHLCG-Asset-G.jp2
+setting AHLCG-AssetBack-Default-bleed-margin = 8.64
+setting AHLCG-AssetBack-Default-template = ArkhamHorrorLCG/templates/AHLCG-PlayerBack.jp2
 setting Artist = 
 setting BackTypeBack = Player
 setting CardClass = Guardian
@@ -28,6 +30,10 @@ setting ResourceCost = 0
 setting Rules = 
 setting RulesSpacing = 0
 setting Sanity = None
+setting ShowCollectionNumberBack = 1
+setting ShowCollectionNumberFront = 1
+setting ShowCopyrightBack = 1
+setting ShowCopyrightFront = 1
 setting Skill1 = None
 setting Skill2 = None
 setting Skill3 = None
@@ -37,26 +43,26 @@ setting Slot = None
 setting Slot2 = None
 setting Stamina = None
 setting Subtitle = 
-setting TemplateReplacement = 
-setting TemplateReplacementBack = 
+setting TemplateReplacementBleed = 0
 setting Traits = 
 setting TraitsSpacing = 0
 setting Unique = 0
 setting Victory = 
+setting flipSuffix = 0
 setting game = AHLCG
 tab General
-  panel Title (5 controls)
-  panel Basic Data: Front (32 controls)
-  panel Basic Data: Back (2 controls)
-  panel Copyright information (3 controls)
-tab Game Text
+  panel Template (2 controls)
+  panel Title: Front (5 controls)
+  panel Basic Data: Front (30 controls)
+  panel Copyright information (5 controls)
+  panel Template replacement (4 controls)
+tab Game Text: Front
   panel Game Text (27 controls)
-tab Portraits
+tab Portraits: Front
   panel Portrait (6 controls)
   panel Options (3 controls)
-  panel Template replacement (7 controls)
 tab Collection
-  panel Collection (6 controls)
+  panel Collection (8 controls)
   panel Custom Collection (6 controls)
 tab Comments
   panel Design Rationale Comments (2 controls)
