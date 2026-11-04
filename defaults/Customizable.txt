@@ -4,8 +4,10 @@ frontTemplateKey AHLCG-Customizable-Default
 backTemplateKey AHLCG-CustomizableBack-Default
 cornerRadius 8
 name 
-portrait 0 AHLCG-Customizable-Collection
-setting AHLCG-Customizable-Collection-portrait-rotation = 0
+setting AHLCG-Customizable-Default-bleed-margin = 8.64
+setting AHLCG-Customizable-Default-template = ArkhamHorrorLCG/templates/AHLCG-Customizable.jp2
+setting AHLCG-CustomizableBack-Default-bleed-margin = 8.64
+setting AHLCG-CustomizableBack-Default-template = ArkhamHorrorLCG/templates/AHLCG-CustomizableBack.jp2
 setting BackTypeBack = PlayerPurple
 setting Copyright = 
 setting CustCost1 = 1
@@ -15,10 +17,10 @@ setting CustCost4 = 2
 setting CustCost5 = 2
 setting CustCost6 = 2
 setting CustCost7 = 2
+setting CustCost8 = 2
 setting CustHeader = 
 setting CustHeaderSpacing = 0
 setting CustName1 = 
-setting CustName10 = 
 setting CustName2 = 
 setting CustName3 = 
 setting CustName4 = 
@@ -26,10 +28,7 @@ setting CustName5 =
 setting CustName6 = 
 setting CustName7 = 
 setting CustName8 = 
-setting CustName9 = 
 setting CustText1 = 
-setting CustText10 = 
-setting CustText10Spacing = 0
 setting CustText1Spacing = 0
 setting CustText2 = 
 setting CustText2Spacing = 0
@@ -45,29 +44,24 @@ setting CustText7 =
 setting CustText7Spacing = 0
 setting CustText8 = 
 setting CustText8Spacing = 0
-setting CustText9 = 
-setting CustText9Spacing = 0
-setting CutCost10 = 2
-setting CutCost8 = 2
-setting CutCost9 = 2
 setting ScaleModifier = 100
-setting TemplateReplacement = 
-setting TemplateReplacementBack = 
+setting ShowCopyrightBack = 1
+setting ShowCopyrightFront = 1
+setting TemplateReplacementBleed = 0
 setting game = AHLCG
 tab General
-  panel Title (2 controls)
-  panel Copyright information (3 controls)
-tab Game Text: Front
-  panel Game Text (Header) (7 controls)
-  panel Game Text (Option 1) (11 controls)
-  panel Game Text (Option 2) (11 controls)
-  panel Game Text (Option 3) (11 controls)
-  panel Game Text (Option 4) (11 controls)
-  panel Game Text (Option 5) (11 controls)
-  panel Game Text (Option 6) (11 controls)
-  panel Game Text (Option 7) (11 controls)
-  panel Game Text (Option 8) (11 controls)
-tab Portraits
+  panel Title: Front (2 controls)
+  panel Copyright information (5 controls)
   panel Template replacement (7 controls)
+tab Game Text: Front
+  panel Game Text (Header) (4 controls)
+  panel Game Text (Option 1) (7 controls)
+  panel Game Text (Option 2) (7 controls)
+  panel Game Text (Option 3) (7 controls)
+  panel Game Text (Option 4) (7 controls)
+  panel Game Text (Option 5) (7 controls)
+  panel Game Text (Option 6) (7 controls)
+  panel Game Text (Option 7) (7 controls)
+  panel Game Text (Option 8) (7 controls)
 tab Comments
   panel Design Rationale Comments (2 controls)
