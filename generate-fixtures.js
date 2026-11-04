@@ -684,6 +684,36 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
         },
     ],
     [
+        'ActPortrait',
+        {
+            reversed: { Orientation: 'Reversed' },
+            backTitle: { TitleBack: 'The Drowned Temple' },
+            separateArtist: { ArtistBack: 'Other Artist' },
+            oldPan: { Version: 16 },
+            returnTo: LEGACY_ENCOUNTER.returnTo,
+            customIcons: LEGACY_ENCOUNTER.customIcons,
+            replaced: {
+                TemplateReplacement: REPLACEMENT_IMAGE,
+                TemplateReplacementBack: REPLACEMENT_IMAGE,
+            },
+        },
+    ],
+    [
+        'AgendaPortrait',
+        {
+            reversed: { Orientation: 'Reversed' },
+            backTitle: { TitleBack: 'The Drowned Temple' },
+            separateArtist: { ArtistBack: 'Other Artist' },
+            oldPan: { Version: 16 },
+            returnTo: LEGACY_ENCOUNTER.returnTo,
+            customIcons: LEGACY_ENCOUNTER.customIcons,
+            replaced: {
+                TemplateReplacement: REPLACEMENT_IMAGE,
+                TemplateReplacementBack: REPLACEMENT_IMAGE,
+            },
+        },
+    ],
+    [
         'AgendaFrontPortrait',
         {
             perInvestigator: { Doom: '12', PerInvestigator: '1' },
