@@ -711,6 +711,20 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
         },
     ],
     [
+        'TreacheryLocation',
+        {
+            perInvestigatorShroud: {
+                Shroud: '4',
+                ShroudPerInvestigator: '1',
+                Clues: 'X',
+            },
+            star: { Shroud: 'Star', Clues: 'Star', PerInvestigator: '0' },
+            returnTo: LEGACY_ENCOUNTER.returnTo,
+            customIcons: LEGACY_ENCOUNTER.customIcons,
+            replaced: LEGACY_ENCOUNTER.replaced,
+        },
+    ],
+    [
         'AssetStoryAsset',
         {
             weakness: { CardClass: 'Weakness', CardClassBack: 'Weakness' },
