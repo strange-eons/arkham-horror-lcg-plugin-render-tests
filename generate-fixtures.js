@@ -15,8 +15,8 @@
  * card; collector-tabs.txt, from choosing sets on a flexible card; sides.txt,
  * from painting flexible card faces with the same data on both sides; and text-blocks.txt, from editing a flexible story
  * card's text blocks; editor-fit.txt, from resizing flexible card editors;
- * and encounter-tab.txt, from changing the class or subtype of flexible
- * cards.
+ * encounter-tab.txt, from changing the class or subtype of flexible cards;
+ * and plugin-object.txt, every value of the plug-in's shared object.
  *
  * Writes one line per handler or fixture to fx.results, then DONE.
  *
@@ -24,7 +24,7 @@
  */
 /* global
   importClass, Packages, File, PrintWriter, OutputStreamWriter,
-  FileOutputStream, DIY, ResourceKit
+  FileOutputStream, DIY, ResourceKit, Eons
  */
 importClass(java.io.File);
 importClass(java.io.PrintWriter);
@@ -2187,6 +2187,76 @@ function writeTokenBlocks() {
 
 // Chooses sets on a flexible card's Collection and Encounter Set tabs, writing
 // the settings and the side toggles offered after each step.
+// Lists every value of the plug-in's shared object: editor lists with their
+// labels, set catalogs and tag lists; functions by name. Font settings and
+// the OS depend on the machine, so they are listed only in the work
+// directory's plugin-object-all.txt.
+function writePluginObject() {
+    try {
+        var o = Eons.namedObjects.AHLCGObject;
+        var lines = [];
+        function show(v) {
+            if (v == null) return String(v);
+            if (
+                v.getClass &&
+                String(v.getClass().getSimpleName()) === 'ListItem'
+            )
+                return (
+                    String(v.toString()) +
+                    '|' +
+                    String(v.getLabel()) +
+                    (v.getIcon() != null ? '|icon' : '')
+                );
+            if (Array.isArray(v) || (v.getClass && v.getClass().isArray()))
+                return '[' + Array.prototype.map.call(v, show).join(', ') + ']';
+            if (typeof v === 'function') return 'function';
+            if (typeof v === 'object' && v.getClass == null)
+                return (
+                    '{' +
+                    Object.keys(v)
+                        .sort()
+                        .map(function (k) {
+                            return k + ': ' + show(v[k]);
+                        })
+                        .join(', ') +
+                    '}'
+                );
+            return String(v);
+        }
+        var all = [];
+        var keys = [];
+        for (var k in o) keys.push(k);
+        keys.sort();
+        keys.forEach(function (k) {
+            var line = k + ' = ' + show(o[k]);
+            all.push(line);
+            if (
+                k !== 'OS' &&
+                !/(Family|Font|Size|Weight|Width|Tracking|Offset|Tightness)$/.test(
+                    k
+                )
+            )
+                lines.push(line);
+        });
+        var file = new File(outDir, 'plugin-object.txt');
+        java.nio.file.Files.writeString(file.toPath(), lines.join('\n') + '\n');
+        java.nio.file.Files.writeString(
+            new File(prop('fx.results'))
+                .getParentFile()
+                .toPath()
+                .resolve('plugin-object-all.txt'),
+            all.join('\n') + '\n'
+        );
+        record('OK', 'plugin-object', file);
+    } catch (e) {
+        record(
+            'FAIL',
+            'plugin-object',
+            e.javaException ? e.javaException.toString() : String(e)
+        );
+    }
+}
+
 // Lists the tabs of flexible card editors as a class or subtype changes: the
 // encounter set tab is there only while a side draws the set.
 function writeEncounterTab() {
@@ -2668,6 +2738,7 @@ try {
     if (mode === 'defaults') writeCollectorTabs();
     if (mode === 'defaults') writeFaceSwitch();
     if (mode === 'defaults') writeEncounterTab();
+    if (mode === 'defaults') writePluginObject();
     if (mode === 'defaults') writeRepaint();
     if (mode === 'defaults') writeSides();
     results.println('DONE');
