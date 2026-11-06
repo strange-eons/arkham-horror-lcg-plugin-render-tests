@@ -2185,8 +2185,141 @@ function writeTokenBlocks() {
     }
 }
 
-// Chooses sets on a flexible card's Collection and Encounter Set tabs, writing
-// the settings and the side toggles offered after each step.
+// The preferences category's user settings after loading seeded settings and
+// storing them unchanged, then after editing the sets, defaults and fonts.
+function writePreferences() {
+    var Language = Packages.resources.Language;
+    var user = Packages.resources.Settings.getUser();
+    var field = java.lang.Class.forName(
+        'ca.cgjennings.apps.arkham.dialog.prefs.Preferences'
+    ).getDeclaredField('custom');
+    field.setAccessible(true);
+    var title = String(Language.string('AHLCG'));
+    var category = null;
+    var list = field.get(null);
+    for (var c = 0; c < list.size(); ++c)
+        if (String(list.get(c).getTitle()) === title) category = list.get(c);
+    if (category == null) throw new Error('no preferences category ' + title);
+
+    var icon = new File(
+        new File(prop('fx.results')).getParentFile(),
+        'user-set.png'
+    );
+    var BufferedImage = java.awt.image.BufferedImage;
+    javax.imageio.ImageIO.write(
+        new BufferedImage(8, 8, BufferedImage.TYPE_INT_ARGB),
+        'png',
+        icon
+    );
+    var iconPath = String(icon.getAbsolutePath());
+
+    function keys() {
+        var found = [];
+        var it = user.getKeySet().iterator();
+        while (it.hasNext()) {
+            var k = String(it.next());
+            if (k.indexOf('AHLCG-') === 0) found.push(k);
+        }
+        return found.sort();
+    }
+    function clear() {
+        keys().forEach(function (k) {
+            user.reset(k);
+        });
+    }
+    function seed() {
+        clear();
+        var flags = '';
+        for (var i = 0; i < 40; ++i) flags += i % 3 === 0 ? '0' : '1';
+        user.set('AHLCG-UseEncounter1', flags);
+        user.set('AHLCG-UseCollection1', flags);
+        user.set('AHLCG-DefaultEncounterSet', 'AgentsOfHastur');
+        user.set('AHLCG-DefaultCollection', 'NotUsed');
+        user.set('AHLCG-PortraitBleed', 'MirrorEdges');
+        user.setInt('AHLCG-UserEncounterCount', 2);
+        user.set('AHLCG-UserEncounterName1', 'Night Market');
+        user.set('AHLCG-UserEncounterIcon1', '/icons/market.png');
+        user.set('AHLCG-UserEncounterTag1', 'nmkt');
+        user.setBoolean('AHLCG-UseUserEncounter1', false);
+        user.set('AHLCG-UserEncounterName2', 'Low Tide');
+        user.set('AHLCG-UserEncounterIcon2', '/icons/tide.png');
+        user.set('AHLCG-UserEncounterTag2', 'tide');
+        // a stale entry past the count
+        user.set('AHLCG-UserEncounterName3', 'Stale');
+        user.setInt('AHLCG-UserCollectionCount', 1);
+        user.set('AHLCG-UserCollectionName1', 'Side Stories');
+        user.set('AHLCG-UserCollectionIcon1', '/icons/side.png');
+        user.set('AHLCG-UserCollectionTag1', 'side');
+        user.set('AHLCG-DefaultTitleFontSize', '90');
+        user.set('AHLCG-DefaultBodyFontOffset', '-2');
+        user.setBoolean('AHLCG-DefaultRotateTitle', false);
+    }
+    function find(c, type, found) {
+        if (c instanceof type) found.push(c);
+        var children = c.getComponents ? c.getComponents() : [];
+        for (var i = 0; i < children.length; ++i)
+            find(children[i], type, found);
+        return found;
+    }
+    function button(key, n) {
+        var text = String(Language.string(key));
+        return find(category.getPanel(), javax.swing.JButton, []).filter(
+            function (b) {
+                return String(b.getText()) === text;
+            }
+        )[n];
+    }
+    function dump(pass, lines) {
+        keys().forEach(function (k) {
+            var value = String(user.get(k)).split(iconPath).join('<icon>');
+            lines.push(pass + ' ' + k + ' = ' + value);
+        });
+    }
+
+    var lines = [];
+    seed();
+    category.loadSettings();
+    category.storeSettings();
+    dump('unchanged', lines);
+
+    seed();
+    category.loadSettings();
+    var panel = category.getPanel();
+    var tables = find(panel, javax.swing.JTable, []);
+    tables[0].setRowSelectionInterval(0, 4);
+    button('AHLCG-Pref-UncheckSets', 0).doClick();
+    tables[1].setRowSelectionInterval(0, 0);
+    button('AHLCG-Pref-CheckSets', 1).doClick();
+    tables[2].setRowSelectionInterval(1, 2);
+    button('AHLCG-Pref-UncheckCollections', 0).doClick();
+    var fields = find(panel, javax.swing.JTextField, []).filter(function (f) {
+        return !(f instanceof javax.swing.JFormattedTextField);
+    });
+    fields[0].setText('Deep Roots');
+    fields[1].setText('roots');
+    fields[2].setText(iconPath);
+    button('AHLCG-Pref-AddSet', 0).doClick();
+    fields[3].setText('Long Nights');
+    fields[4].setText('night');
+    fields[5].setText(iconPath);
+    button('AHLCG-Pref-AddCollection', 0).doClick();
+    var combos = find(panel, javax.swing.JComboBox, []);
+    combos[0].setSelectedIndex(combos[0].getItemCount() - 1);
+    combos[1].setSelectedIndex(combos[1].getItemCount() - 1);
+    combos[2].setSelectedIndex(0);
+    find(panel, javax.swing.JSpinner, [])[0].setValue(
+        new java.lang.Integer(77)
+    );
+    find(panel, javax.swing.JCheckBox, [])[0].doClick();
+    category.storeSettings();
+    dump('edited', lines);
+    clear();
+
+    var file = new File(outDir, 'preferences.txt');
+    java.nio.file.Files.writeString(file.toPath(), lines.join('\n') + '\n');
+    record('OK', 'preferences', file);
+}
+
 // Lists every value of the plug-in's shared object: editor lists with their
 // labels, set catalogs and tag lists; functions by name. Font settings and
 // the OS depend on the machine, so they are listed only in the work
@@ -2334,6 +2467,8 @@ function writeEncounterTab() {
     }
 }
 
+// Chooses sets on a flexible card's Collection and Encounter Set tabs, writing
+// the settings and the side toggles offered after each step.
 function writeCollectorTabs() {
     try {
         var gc = new DIY('ArkhamHorrorLCG/diy/Flexible.js', 'AHLCG', false);
@@ -2745,6 +2880,8 @@ try {
     if (mode === 'defaults') writeFaceSwitch();
     if (mode === 'defaults') writeEncounterTab();
     if (mode === 'defaults') writePluginObject();
+    if (mode === 'defaults') writePreferences();
+    if (mode === 'defaults') writePreferences();
     if (mode === 'defaults') writeRepaint();
     if (mode === 'defaults') writeSides();
     results.println('DONE');
