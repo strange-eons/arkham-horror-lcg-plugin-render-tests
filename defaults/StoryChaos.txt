@@ -4,87 +4,67 @@ frontTemplateKey AHLCG-Story-Default
 backTemplateKey AHLCG-Chaos-Default
 cornerRadius 8
 name 
-portrait 0 AHLCG-ChaosStory-Collection
-portrait 1 AHLCG-Story-Encounter
-setting AHLCG-ChaosStory-Collection-portrait-rotation = 0
-setting AHLCG-ChaosStory-Encounter-portrait-rotation = 0
-setting AHLCG-Story-Encounter-portrait-rotation = 0
-setting AccentedStoryA = 
-setting AccentedStoryASpacing = 0
-setting AccentedStoryB = 
-setting AccentedStoryBSpacing = 0
-setting AccentedStoryC = 
-setting AccentedStoryCSpacing = 0
+portrait 0 AHLCG-Face-Collection
+portrait 1 AHLCG-Face-Encounter
+setting AHLCG-Chaos-Default-bleed-margin = 8.64
+setting AHLCG-Chaos-Default-template = ArkhamHorrorLCG/templates/AHLCG-StoryChaosFull.jp2
+setting AHLCG-Story-Default-bleed-margin = 8.64
+setting AHLCG-Story-Default-template = ArkhamHorrorLCG/templates/AHLCG-Story.jp2
+setting BlockCount = 1
+setting BlockCountBack = 1
+setting BlockSpacing1 = 0
+setting BlockSpacing1Back = 0
+setting BlockStyle1 = rules
+setting BlockStyle1Back = rules
+setting BlockText1 = 
+setting BlockText1Back = 
+setting BlockTokens1Back = 
+setting ChaosFullBack = 0
 setting Collection = CustomCollection
 setting CollectionNumber = 1
 setting CollectionType = -1
 setting Copyright = 
-setting CultistBack = 
-setting CultistBackSpacing = 0
-setting ElderThingBack = 
+setting DifficultyBack = None
 setting Encounter = CustomEncounterSet
 setting EncounterNumber = 1
 setting EncounterTotal = 1
 setting EncounterType = -1
-setting HeaderA = 
-setting HeaderASpacing = 0
-setting HeaderB = 
-setting HeaderBSpacing = 0
-setting HeaderBack = 
-setting HeaderC = 
-setting HeaderCSpacing = 0
-setting MergeCultistBack = None
-setting MergeSkullBack = None
-setting MergeTabletBack = None
-setting RulesA = 
-setting RulesB = 
-setting RulesC = 
 setting ScaleModifier = 100
+setting ScaleModifierBack = 100
 setting ShowCollectionNumberBack = 1
 setting ShowCollectionNumberFront = 1
 setting ShowCopyrightBack = 1
 setting ShowCopyrightFront = 1
 setting ShowEncounterNumberBack = 1
 setting ShowEncounterNumberFront = 1
-setting SkullBack = 
-setting SkullBackSpacing = 0
 setting StoryClass = Default
-setting TabletBack = 
-setting TabletBackSpacing = 0
 setting Template = Story
-setting TemplateReplacement = 
 setting TemplateReplacementBack = 
+setting TemplateReplacementBleed = 0
 setting TitleBack = 
 setting TrackerBox = 
 setting TrackerBoxBack = 
 setting TrackerHeight = 100
 setting TrackerHeightBack = 100
-setting TraitsA = 
-setting TraitsASpacing = 0
-setting Victory = 
-setting VictorySpacing = 0
-setting flipSuffix = false
+setting flipSuffix = 0
 setting game = AHLCG
 tab General
-  panel Title: Front (2 controls)
-  panel Basic Data: Front (9 controls)
+  panel Template (2 controls)
+  panel Title: Front (4 controls)
   panel Title: Back (2 controls)
-  panel Basic Data: Back (5 controls)
-  panel Copyright information (4 controls)
+  panel Copyright information (6 controls)
+  panel Template replacement (7 controls)
 tab Game Text: Front
-  panel Game Text (Part A) (21 controls)
-  panel Game Text (Part B) (13 controls)
-  panel Game Text (Part C) (13 controls)
-  panel Victory (5 controls)
+  panel Game Text (2 controls)
+  panel Tracking box (5 controls)
 tab Game Text: Back
-  panel Game Text (22 controls)
+  panel Game Text (2 controls)
+  panel Tracking box (5 controls)
 tab Collection
-  panel Collection (8 controls)
+  panel Collection (9 controls)
   panel Custom Collection (6 controls)
 tab Encounter Set
-  panel Encounter Set (10 controls)
+  panel Encounter Set (11 controls)
   panel Custom Encounter Set (6 controls)
-tab Portraits
-  panel Template replacement (7 controls)
 tab Comments
   panel Design Rationale Comments (2 controls)
