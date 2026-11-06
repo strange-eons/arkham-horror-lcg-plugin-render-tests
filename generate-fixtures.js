@@ -737,9 +737,17 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
                 Title: 'Hidden Agent\n(Decoy)',
             },
             twoLines: { Title: 'Spawn of\nthe Stars' },
+            replaced: LEGACY_ENCOUNTER.replaced,
         },
     ],
-    ['Ultimatum', { noSubtitle: { Subtitle: '' } }],
+    [
+        'Ultimatum',
+        {
+            noSubtitle: { Subtitle: '' },
+            customIcons: LEGACY_ENCOUNTER.customIcons,
+            returnTo: LEGACY_ENCOUNTER.returnTo,
+        },
+    ],
     [
         'Guide75',
         {
