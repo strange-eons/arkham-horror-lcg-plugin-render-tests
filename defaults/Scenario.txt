@@ -4,61 +4,27 @@ frontTemplateKey AHLCG-Scenario-Default
 backTemplateKey AHLCG-Scenario-Default
 cornerRadius 8
 name 
-portrait 0 AHLCG-Scenario-Portrait
-portrait 1 AHLCG-Scenario-BackPortrait
-portrait 2 AHLCG-Scenario-Collection
-portrait 3 AHLCG-Scenario-Encounter
-setting AHLCG-Scenario-BackPortrait-portrait-rotation = 0
-setting AHLCG-Scenario-Collection-portrait-rotation = 0
-setting AHLCG-Scenario-Encounter-portrait-rotation = 0
-setting AHLCG-Scenario-Portrait-portrait-rotation = 0
-setting Artist = 
-setting ArtistBack = 
-setting Collection = CustomCollection
-setting CollectionNumber = 1
-setting CollectionType = -1
-setting Copyright = 
-setting Encounter = CustomEncounterSet
-setting EncounterNumber = 1
-setting EncounterTotal = 1
-setting EncounterType = -1
+setting AHLCG-Scenario-Default-bleed-margin = 8.64
+setting AHLCG-Scenario-Default-template = ArkhamHorrorLCG/templates/AHLCG-Scenario.jp2
 setting Page = 1
 setting PageBack = 2
+setting Resolution = 0
+setting ResolutionBack = 0
 setting Rules = 
 setting RulesBack = 
-setting ShowCollectionNumberBack = 1
-setting ShowCollectionNumberFront = 1
-setting ShowCopyrightBack = 1
-setting ShowCopyrightFront = 1
-setting ShowEncounterNumberBack = 1
-setting ShowEncounterNumberFront = 1
 setting Template = Title
 setting TemplateBack = Title
-setting TemplateReplacement = 
-setting TemplateReplacementBack = 
-setting flipSuffix = false
+setting TitleBack = 
 setting game = AHLCG
 tab General
-  panel Title (2 controls)
-  panel Basic Data: Front (4 controls)
-  panel Title: Back (2 controls)
-  panel Basic Data: Back (4 controls)
-  panel Copyright information (4 controls)
-tab Portraits
-  panel Portrait : Front (6 controls)
-  panel Options: Front (3 controls)
-  panel Portrait : Back (6 controls)
-  panel Options: Back (3 controls)
-  panel Template replacement (7 controls)
+  panel Template (4 controls)
+  panel Title: Front (3 controls)
+  panel Basic Data: Front (2 controls)
+  panel Title: Back (3 controls)
+  panel Basic Data: Back (2 controls)
 tab Game Text: Front
   panel Game Text (5 controls)
 tab Game Text: Back
   panel Game Text (5 controls)
-tab Collection
-  panel Collection (8 controls)
-  panel Custom Collection (6 controls)
-tab Encounter Set
-  panel Encounter Set (10 controls)
-  panel Custom Encounter Set (6 controls)
 tab Comments
   panel Design Rationale Comments (2 controls)
