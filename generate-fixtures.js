@@ -712,6 +712,12 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
         },
     ],
     [
+        'StoryChaos',
+        {
+            backHeader: { HeaderBack: 'If no investigator was defeated:' },
+        },
+    ],
+    [
         'Scenario',
         {
             resolution: { Template: 'Resolution', TemplateBack: 'Title' },
