@@ -729,6 +729,18 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
     ['PackCover', { tinted: { tint: '200,0.6,0.8' } }],
     ['BoxCover', { tinted: { tint: '200,0.6,0.8' } }],
     [
+        'Concealed',
+        {
+            decoy: { Template: 'Decoy' },
+            namedDecoy: {
+                Template: 'NamedDecoy',
+                Title: 'Hidden Agent\n(Decoy)',
+            },
+            twoLines: { Title: 'Spawn of\nthe Stars' },
+        },
+    ],
+    ['Ultimatum', { noSubtitle: { Subtitle: '' } }],
+    [
         'Guide75',
         {
             title: { PageType: 'Title' },
