@@ -1232,6 +1232,18 @@ var FACE_VARIANTS = {
         },
         neutral: { CardClass: 'Neutral', Subtitle: '' },
         costDash: { ResourceCost: '-', Stamina: '-', Sanity: 'X' },
+        story: { CardClass: 'Story', CardClass2: 'None', CardClass3: 'None' },
+        storyWeakness: {
+            CardClass: 'StoryWeakness',
+            CardClass2: 'None',
+            CardClass3: 'None',
+        },
+        storyReturnTo: {
+            CardClass: 'Story',
+            CardClass2: 'None',
+            CardClass3: 'None',
+            Card: { Encounter: 'ReturnToCultOfUmordhoth', EncounterType: '0' },
+        },
         replaced: {
             Card: {
                 TemplateReplacement: REPLACEMENT_IMAGE,

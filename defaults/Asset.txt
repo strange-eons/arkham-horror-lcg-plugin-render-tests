@@ -6,6 +6,7 @@ cornerRadius 8
 name 
 portrait 0 AHLCG-AssetFace-Portrait
 portrait 1 AHLCG-Face-Collection
+portrait 2 AHLCG-Face-Encounter
 setting AHLCG-Asset-Default-bleed-margin = 8.64
 setting AHLCG-Asset-Default-template = ArkhamHorrorLCG/templates/AHLCG-Asset-G.jp2
 setting AHLCG-AssetBack-Default-bleed-margin = 8.64
@@ -19,6 +20,10 @@ setting Collection = CustomCollection
 setting CollectionNumber = 1
 setting CollectionType = -1
 setting Copyright = 
+setting Encounter = CustomEncounterSet
+setting EncounterNumber = 1
+setting EncounterTotal = 1
+setting EncounterType = -1
 setting Flavor = 
 setting FlavorSpacing = 0
 setting Keywords = 
@@ -34,6 +39,8 @@ setting ShowCollectionNumberBack = 1
 setting ShowCollectionNumberFront = 1
 setting ShowCopyrightBack = 1
 setting ShowCopyrightFront = 1
+setting ShowEncounterNumberBack = 1
+setting ShowEncounterNumberFront = 1
 setting Skill1 = None
 setting Skill2 = None
 setting Skill3 = None
@@ -64,5 +71,8 @@ tab Portraits: Front
 tab Collection
   panel Collection (8 controls)
   panel Custom Collection (6 controls)
+tab Encounter Set
+  panel Encounter Set (10 controls)
+  panel Custom Encounter Set (6 controls)
 tab Comments
   panel Design Rationale Comments (2 controls)
