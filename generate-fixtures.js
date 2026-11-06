@@ -2210,6 +2210,12 @@ function writePluginObject() {
             if (Array.isArray(v) || (v.getClass && v.getClass().isArray()))
                 return '[' + Array.prototype.map.call(v, show).join(', ') + ']';
             if (typeof v === 'function') return 'function';
+            // a cached shape, which has no stable text
+            if (
+                v.getClass &&
+                /GeometricShape$/.test(String(v.getClass().getName()))
+            )
+                return 'GeometricShape';
             if (typeof v === 'object' && v.getClass == null)
                 return (
                     '{' +
