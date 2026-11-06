@@ -710,6 +710,84 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
         },
     ],
     [
+        'AssetStoryAsset',
+        {
+            weakness: { CardClass: 'Weakness', CardClassBack: 'Weakness' },
+            separateArt: { PortraitShare: '0', ArtistBack: 'Other Artist' },
+            returnTo: LEGACY_ENCOUNTER.returnTo,
+            customIcons: LEGACY_ENCOUNTER.customIcons,
+            replaced: {
+                TemplateReplacement: REPLACEMENT_IMAGE,
+                TemplateReplacementBack: REPLACEMENT_IMAGE,
+            },
+        },
+    ],
+    [
+        'AssetStoryEnemy',
+        {
+            weakness: { CardClass: 'Weakness' },
+            returnTo: LEGACY_ENCOUNTER.returnTo,
+            customIcons: LEGACY_ENCOUNTER.customIcons,
+            replaced: {
+                TemplateReplacement: REPLACEMENT_IMAGE,
+                TemplateReplacementBack: REPLACEMENT_IMAGE,
+            },
+        },
+    ],
+    [
+        'AssetStoryPortrait',
+        {
+            weakness: { CardClass: 'Weakness' },
+            returnTo: LEGACY_ENCOUNTER.returnTo,
+            customIcons: LEGACY_ENCOUNTER.customIcons,
+            replaced: {
+                TemplateReplacement: REPLACEMENT_IMAGE,
+                TemplateReplacementBack: REPLACEMENT_IMAGE,
+            },
+        },
+    ],
+    [
+        'ActAssetStory',
+        {
+            weakness: { CardClassBack: 'Weakness' },
+            reversed: { Orientation: 'Reversed' },
+            oldPan: { Version: 16 },
+            returnTo: LEGACY_ENCOUNTER.returnTo,
+            customIcons: LEGACY_ENCOUNTER.customIcons,
+            replaced: {
+                TemplateReplacement: REPLACEMENT_IMAGE,
+                TemplateReplacementBack: REPLACEMENT_IMAGE,
+            },
+        },
+    ],
+    [
+        'AgendaAssetStory',
+        {
+            weakness: { CardClassBack: 'Weakness' },
+            reversed: { Orientation: 'Reversed' },
+            returnTo: LEGACY_ENCOUNTER.returnTo,
+            customIcons: LEGACY_ENCOUNTER.customIcons,
+            replaced: {
+                TemplateReplacement: REPLACEMENT_IMAGE,
+                TemplateReplacementBack: REPLACEMENT_IMAGE,
+            },
+        },
+    ],
+    [
+        'StoryAsset',
+        {
+            weakness: { CardClassBack: 'Weakness' },
+            chaos: { Template: 'Chaos' },
+            spacing: STORY_SPACING,
+            returnTo: LEGACY_ENCOUNTER.returnTo,
+            customIcons: LEGACY_ENCOUNTER.customIcons,
+            replaced: {
+                TemplateReplacement: REPLACEMENT_IMAGE,
+                TemplateReplacementBack: REPLACEMENT_IMAGE,
+            },
+        },
+    ],
+    [
         'AssetStory',
         {
             encounterBack: { BackTypeBack: 'Encounter' },
