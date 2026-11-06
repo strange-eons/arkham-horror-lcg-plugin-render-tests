@@ -23,3 +23,4 @@ agendaFrontPortrait: same, with 2 spacings set same
 agendaPortrait: same, with 2 spacings set same
 portrait: same
 treacheryLocation: same, with 8 spacings set same
+enemyLocation: same, with 8 spacings set same

@@ -157,3 +157,11 @@ treacheryLocation / Portraits: Back: fits
 treacheryLocation / Collection: fits
 treacheryLocation / Encounter Set: fits
 treacheryLocation / Comments: fits
+enemyLocation / General: fits
+enemyLocation / Game Text: Front: fits
+enemyLocation / Portraits: Front: fits
+enemyLocation / Game Text: Back: fits
+enemyLocation / Portraits: Back: fits
+enemyLocation / Collection: fits
+enemyLocation / Encounter Set: fits
+enemyLocation / Comments: fits
