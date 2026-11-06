@@ -4,22 +4,20 @@ frontTemplateKey AHLCG-AssetStory-Default
 backTemplateKey AHLCG-Enemy-Default
 cornerRadius 8
 name 
-portrait 0 AHLCG-AssetStory-Portrait
-portrait 1 AHLCG-Enemy-BackPortrait
-portrait 2 AHLCG-AssetStory-Collection
-portrait 3 AHLCG-AssetStory-Encounter
-setting AHLCG-AssetStory-Collection-portrait-rotation = 0
-setting AHLCG-AssetStory-Encounter-portrait-rotation = 0
-setting AHLCG-AssetStory-Portrait-portrait-rotation = 0
-setting AHLCG-Enemy-BackPortrait-portrait-rotation = 0
-setting AHLCG-Enemy-Collection-portrait-rotation = 0
-setting AHLCG-Enemy-Collection-portrait-template = ArkhamHorrorLCG/images/empty1x1.png
-setting AHLCG-Enemy-Encounter-portrait-rotation = 0
-setting AHLCG-Enemy-Encounter-portrait-template = ArkhamHorrorLCG/images/empty1x1.png
+portrait 0 AHLCG-AssetFace-Portrait
+portrait 1 AHLCG-EnemyFace-BackPortrait
+portrait 2 AHLCG-Face-Collection
+portrait 3 AHLCG-Face-Encounter
+setting AHLCG-AssetStory-Default-bleed-margin = 8.64
+setting AHLCG-AssetStory-Default-template = ArkhamHorrorLCG/templates/AHLCG-Asset-G.jp2
+setting AHLCG-Enemy-Default-bleed-margin = 8.64
+setting AHLCG-Enemy-Default-template = ArkhamHorrorLCG/templates/AHLCG-Enemy.jp2
 setting Artist = 
 setting ArtistBack = 
 setting AttackBack = 2
-setting CardClass = Neutral
+setting CardClass = Story
+setting CardClass2 = None
+setting CardClass3 = None
 setting Collection = CustomCollection
 setting CollectionNumber = 1
 setting CollectionType = -1
@@ -40,6 +38,7 @@ setting Keywords =
 setting KeywordsBack = 
 setting KeywordsBackSpacing = 0
 setting KeywordsSpacing = 0
+setting Level = 0
 setting PerInvestigatorAttackBack = 0
 setting PerInvestigatorBack = 0
 setting PerInvestigatorEvadeBack = 0
@@ -53,6 +52,8 @@ setting RulesSpacing = 0
 setting Sanity = None
 setting ShowCollectionNumberBack = 1
 setting ShowCollectionNumberFront = 1
+setting ShowCopyrightBack = 1
+setting ShowCopyrightFront = 1
 setting ShowEncounterNumberBack = 1
 setting ShowEncounterNumberFront = 1
 setting Skill1 = None
@@ -65,8 +66,8 @@ setting Slot2 = None
 setting Stamina = None
 setting Subtitle = 
 setting SubtitleBack = 
-setting TemplateReplacement = 
-setting TemplateReplacementBack = 
+setting SubtypeBack = None
+setting TemplateReplacementBleed = 0
 setting TitleBack = 
 setting Traits = 
 setting TraitsBack = 
@@ -76,28 +77,30 @@ setting Unique = 0
 setting UniqueBack = 0
 setting Victory = 
 setting VictoryBack = 
+setting flipSuffix = 0
 setting game = AHLCG
 tab General
   panel Title: Front (5 controls)
-  panel Basic Data: Front (24 controls)
+  panel Basic Data: Front (30 controls)
   panel Title: Back (5 controls)
-  panel Basic Data: Back (13 controls)
-  panel Copyright information (3 controls)
+  panel Basic Data: Back (15 controls)
+  panel Copyright information (6 controls)
+  panel Template replacement (7 controls)
 tab Game Text: Front
   panel Game Text (27 controls)
+tab Portraits: Front
+  panel Portrait (6 controls)
+  panel Options (3 controls)
 tab Game Text: Back
   panel Game Text (27 controls)
-tab Portraits
-  panel Portrait : Front (6 controls)
-  panel Options: Front (3 controls)
-  panel Portrait : Back (6 controls)
-  panel Options: Back (3 controls)
-  panel Template replacement (7 controls)
+tab Portraits: Back
+  panel Portrait (6 controls)
+  panel Options (4 controls)
 tab Collection
-  panel Collection (8 controls)
+  panel Collection (9 controls)
   panel Custom Collection (6 controls)
 tab Encounter Set
-  panel Encounter Set (10 controls)
+  panel Encounter Set (11 controls)
   panel Custom Encounter Set (6 controls)
 tab Comments
   panel Design Rationale Comments (2 controls)

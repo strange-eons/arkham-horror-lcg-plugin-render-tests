@@ -4,16 +4,19 @@ frontTemplateKey AHLCG-AssetStory-Default
 backTemplateKey AHLCG-BackPortrait-Default
 cornerRadius 8
 name 
-portrait 0 AHLCG-AssetStory-Portrait
-portrait 1 AHLCG-BackPortrait-BackPortrait
-portrait 2 AHLCG-AssetStory-Collection
-portrait 3 AHLCG-AssetStory-Encounter
-setting AHLCG-AssetStory-Collection-portrait-rotation = 0
-setting AHLCG-AssetStory-Encounter-portrait-rotation = 0
-setting AHLCG-AssetStory-Portrait-portrait-rotation = 0
-setting AHLCG-BackPortrait-BackPortrait-portrait-rotation = 0
+portrait 0 AHLCG-AssetFace-Portrait
+portrait 1 AHLCG-PortraitFace-BackPortrait
+portrait 2 AHLCG-Face-Collection
+portrait 3 AHLCG-Face-Encounter
+setting AHLCG-AssetStory-Default-bleed-margin = 8.64
+setting AHLCG-AssetStory-Default-template = ArkhamHorrorLCG/templates/AHLCG-Asset-G.jp2
+setting AHLCG-BackPortrait-Default-bleed-margin = 8.64
+setting AHLCG-BackPortrait-Default-template = ArkhamHorrorLCG/templates/AHLCG-Scenario.jp2
 setting Artist = 
-setting CardClass = Neutral
+setting ArtistBack = 
+setting CardClass = Story
+setting CardClass2 = None
+setting CardClass3 = None
 setting Collection = CustomCollection
 setting CollectionNumber = 1
 setting CollectionType = -1
@@ -26,12 +29,19 @@ setting Flavor =
 setting FlavorSpacing = 0
 setting Keywords = 
 setting KeywordsSpacing = 0
+setting Level = 0
 setting PerInvestigatorSanity = 0
 setting PerInvestigatorStamina = 0
 setting ResourceCost = 0
 setting Rules = 
 setting RulesSpacing = 0
 setting Sanity = None
+setting ShowCollectionNumberBack = 1
+setting ShowCollectionNumberFront = 1
+setting ShowCopyrightBack = 1
+setting ShowCopyrightFront = 1
+setting ShowEncounterNumberBack = 1
+setting ShowEncounterNumberFront = 1
 setting Skill1 = None
 setting Skill2 = None
 setting Skill3 = None
@@ -41,30 +51,31 @@ setting Slot = None
 setting Slot2 = None
 setting Stamina = None
 setting Subtitle = 
-setting TemplateReplacement = 
-setting TemplateReplacementBack = 
+setting TemplateReplacementBleed = 0
 setting Traits = 
 setting TraitsSpacing = 0
 setting Unique = 0
 setting Victory = 
+setting flipSuffix = 0
 setting game = AHLCG
 tab General
-  panel Title (5 controls)
-  panel Basic Data (24 controls)
-  panel Copyright information (3 controls)
-tab Game Text
+  panel Title: Front (5 controls)
+  panel Basic Data: Front (30 controls)
+  panel Copyright information (5 controls)
+  panel Template replacement (4 controls)
+tab Game Text: Front
   panel Game Text (27 controls)
-tab Portraits
-  panel Portrait : Front (6 controls)
-  panel Options: Front (3 controls)
-  panel Portrait : Back (6 controls)
-  panel Options: Back (1 controls)
-  panel Template replacement (7 controls)
+tab Portraits: Front
+  panel Portrait (6 controls)
+  panel Options (3 controls)
+tab Portraits: Back
+  panel Portrait (6 controls)
+  panel Options (4 controls)
 tab Collection
-  panel Collection (6 controls)
+  panel Collection (8 controls)
   panel Custom Collection (6 controls)
 tab Encounter Set
-  panel Encounter Set (8 controls)
+  panel Encounter Set (10 controls)
   panel Custom Encounter Set (6 controls)
 tab Comments
   panel Design Rationale Comments (2 controls)
