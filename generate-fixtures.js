@@ -84,6 +84,26 @@ function isArtPortrait(portrait) {
     return /-(Back)?(Transparent)?Portrait(\d|Bottom)?$/.test(key);
 }
 
+// Guide text with each kind of section, header and box.
+var GUIDE_MARKUP = {
+    RulesLeft:
+        'Read the following aloud.\n' +
+        '<section>Part One</section>\nThe night is cold.\n' +
+        '<header color=8a2be2>Interlude</header>\nThe fog rolls in.\n' +
+        '<boxres header bracket>If no resolution was reached:\n' +
+        '<boxbullet>The investigators lose.</boxres>\n' +
+        '<boxsa header>Standalone: choose a difficulty.</boxsa>',
+    RulesRight:
+        '<boxkey header>Remember that you found the key.</boxkey>\n' +
+        '<boxint>The lights flicker as the train moves on through the ' +
+        'night, and the stranger watches you from across the carriage.' +
+        '</boxint>\n' +
+        '<boxfla>Years ago, the house stood empty.</boxfla>\n' +
+        '<section color=4060a0>Part Two</section>\n' +
+        '<boxres color=0.5,0.6,0.4 bracket>A tinted box.</boxres>\n' +
+        '<boxsa>An unclosed box',
+};
+
 var RULES =
     '<rea> After this card enters play: Each investigator takes 1 <hor>.\n' +
     '<act>: Test <wil> (3). If you succeed, place 1 <dmg> on it.';
@@ -769,6 +789,16 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
                 LineSpacingLeft: '80',
                 LineSpacingRight: '120',
             },
+            markup: GUIDE_MARKUP,
+            corners: {
+                PositionPortrait1: 'TopLeftCorner',
+                PositionPortrait2: 'BottomRightCorner',
+            },
+            titleCorners: {
+                PageType: 'Title',
+                PositionPortrait1: 'TopRightCorner',
+                PositionPortrait2: 'BottomLeftCorner',
+            },
         },
     ],
     [
@@ -792,6 +822,16 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
                 LineSpacingLeft: '80',
                 LineSpacingRight: '120',
             },
+            markup: GUIDE_MARKUP,
+            corners: {
+                PositionPortrait1: 'TopLeftCorner',
+                PositionPortrait2: 'BottomRightCorner',
+            },
+            titleCorners: {
+                PageType: 'Title',
+                PositionPortrait1: 'TopRightCorner',
+                PositionPortrait2: 'BottomLeftCorner',
+            },
         },
     ],
     [
@@ -814,6 +854,16 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
                 RulesLeft: RULES,
                 LineSpacingLeft: '80',
                 LineSpacingRight: '120',
+            },
+            markup: GUIDE_MARKUP,
+            corners: {
+                PositionPortrait1: 'TopLeftCorner',
+                PositionPortrait2: 'BottomRightCorner',
+            },
+            titleCorners: {
+                PageType: 'Title',
+                PositionPortrait1: 'TopRightCorner',
+                PositionPortrait2: 'BottomLeftCorner',
             },
         },
     ],
