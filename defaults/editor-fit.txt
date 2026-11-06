@@ -149,3 +149,11 @@ portrait / General: fits
 portrait / Portraits: Front: fits
 portrait / Portraits: Back: fits
 portrait / Comments: fits
+treacheryLocation / General: fits
+treacheryLocation / Game Text: Front: fits
+treacheryLocation / Portraits: Front: fits
+treacheryLocation / Game Text: Back: fits
+treacheryLocation / Portraits: Back: fits
+treacheryLocation / Collection: fits
+treacheryLocation / Encounter Set: fits
+treacheryLocation / Comments: fits

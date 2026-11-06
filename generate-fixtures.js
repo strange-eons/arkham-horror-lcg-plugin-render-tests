@@ -423,6 +423,7 @@ var FLEXIBLE = [
     'agendaFrontPortrait',
     'agendaPortrait',
     'portrait',
+    'treacheryLocation',
 ];
 
 var STORY_BLOCKS = {
@@ -1155,6 +1156,17 @@ var HIDE_COLLECTOR = {
 // sets the component name, Card sets keys without a suffix and Portraits sets
 // the source of each portrait, by kind.
 var FACE_VARIANTS = {
+    treacheryLocation: {
+        perInvestigatorShroud: {
+            Shroud: '4',
+            ShroudPerInvestigator: '1',
+            Clues: 'X',
+        },
+        dashes: { Shroud: '-', Clues: '-' },
+        returnTo: {
+            Card: { Encounter: 'ReturnToCultOfUmordhoth', EncounterType: '0' },
+        },
+    },
     portrait: {
         noArtist: { Artist: '' },
     },
