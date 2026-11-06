@@ -63,8 +63,5 @@ tab Portraits: Front
 tab Collection
   panel Collection (8 controls)
   panel Custom Collection (6 controls)
-tab Encounter Set
-  panel Encounter Set (10 controls)
-  panel Custom Encounter Set (6 controls)
 tab Comments
   panel Design Rationale Comments (2 controls)

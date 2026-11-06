@@ -40,7 +40,6 @@ asset / Portraits: Front: fits
 asset / Game Text: Back: fits
 asset / Portraits: Back: fits
 asset / Collection: fits
-asset / Encounter Set: fits
 asset / Comments: fits
 event / General: fits
 event / Game Text: Front: fits
@@ -48,7 +47,6 @@ event / Portraits: Front: fits
 event / Game Text: Back: fits
 event / Portraits: Back: fits
 event / Collection: fits
-event / Encounter Set: fits
 event / Comments: fits
 skill / General: fits
 skill / Game Text: Front: fits
@@ -56,7 +54,6 @@ skill / Portraits: Front: fits
 skill / Game Text: Back: fits
 skill / Portraits: Back: fits
 skill / Collection: fits
-skill / Encounter Set: fits
 skill / Comments: fits
 customizable / General: fits
 customizable / Game Text: Front: fits
@@ -94,14 +91,12 @@ investigator / Portraits: Front: fits
 investigator / Game Text: Back: fits
 investigator / Portraits: Back: fits
 investigator / Collection: fits
-investigator / Encounter Set: fits
 investigator / Comments: fits
 investigatorBack / General: fits
 investigatorBack / Game Text: Front:          
 investigatorBack / Portraits: Front: fits
 investigatorBack / Game Text: Back:          
 investigatorBack / Portraits: Back: fits
-investigatorBack / Encounter Set: fits
 investigatorBack / Comments: fits
 act / General: fits
 act / Game Text: Front: fits

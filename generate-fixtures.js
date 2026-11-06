@@ -14,7 +14,9 @@
  * checks it records; token-blocks.txt, from editing a flexible token rules
  * card; collector-tabs.txt, from choosing sets on a flexible card; sides.txt,
  * from painting flexible card faces with the same data on both sides; and text-blocks.txt, from editing a flexible story
- * card's text blocks; and editor-fit.txt, from resizing flexible card editors.
+ * card's text blocks; editor-fit.txt, from resizing flexible card editors;
+ * and encounter-tab.txt, from changing the class or subtype of flexible
+ * cards.
  *
  * Writes one line per handler or fixture to fx.results, then DONE.
  *
@@ -2101,6 +2103,77 @@ function writeTokenBlocks() {
 
 // Chooses sets on a flexible card's Collection and Encounter Set tabs, writing
 // the settings and the side toggles offered after each step.
+// Lists the tabs of flexible card editors as a class or subtype changes: the
+// encounter set tab is there only while a side draws the set.
+function writeEncounterTab() {
+    var lines = [];
+    function run(faces, key, values) {
+        var gc = new DIY('ArkhamHorrorLCG/diy/Flexible.js', 'AHLCG', false);
+        selectFaces(gc, faces);
+        var editor = gc.createDefaultEditor();
+        var tabs = editor.getTabbedPane();
+        function combos(c, found) {
+            if (c instanceof javax.swing.JComboBox) found.push(c);
+            var children = c.getComponents();
+            for (var i = 0; i < children.length; ++i)
+                combos(children[i], found);
+            return found;
+        }
+        // the first list on the General tab that offers the value
+        function choose(value) {
+            var lists = combos(tabs.getComponentAt(0), []);
+            for (var l = 0; l < lists.length; ++l) {
+                for (var i = 0; i < lists[l].getItemCount(); ++i) {
+                    var item = lists[l].getItemAt(i);
+                    var id = item.getValue ? item.getValue() : item;
+                    if (String(id) === value) {
+                        lists[l].setSelectedIndex(i);
+                        return;
+                    }
+                }
+            }
+            throw new Error('no list offers ' + value);
+        }
+        function step(name) {
+            var names = [];
+            for (var t = 0; t < tabs.getTabCount(); ++t)
+                names.push(tabs.getTitleAt(t));
+            lines.push(faces[0] + ' ' + name + ': ' + names.join(', '));
+        }
+        step(String(gc.getSettings().get(key)));
+        values.forEach(function (value) {
+            choose(value);
+            step(value);
+        });
+        editor.dispose();
+    }
+    try {
+        run(['asset', 'playerBack'], 'CardClass', [
+            'Story',
+            'StoryWeakness',
+            'Seeker',
+        ]);
+        run(['investigator', 'investigatorBack'], 'CardClass', [
+            'Story',
+            'Rogue',
+        ]);
+        run(['treachery', 'encounterBack'], 'Subtype', [
+            'Weakness',
+            'StoryWeakness',
+            'None',
+        ]);
+        var file = new File(outDir, 'encounter-tab.txt');
+        java.nio.file.Files.writeString(file.toPath(), lines.join('\n') + '\n');
+        record('OK', 'encounter-tab', file);
+    } catch (e) {
+        record(
+            'FAIL',
+            'encounter-tab',
+            e.javaException ? e.javaException.toString() : String(e)
+        );
+    }
+}
+
 function writeCollectorTabs() {
     try {
         var gc = new DIY('ArkhamHorrorLCG/diy/Flexible.js', 'AHLCG', false);
@@ -2510,6 +2583,7 @@ try {
     if (mode === 'defaults') writeTokenBlocks();
     if (mode === 'defaults') writeCollectorTabs();
     if (mode === 'defaults') writeFaceSwitch();
+    if (mode === 'defaults') writeEncounterTab();
     if (mode === 'defaults') writeRepaint();
     if (mode === 'defaults') writeSides();
     results.println('DONE');

@@ -1,0 +1,11 @@
+asset Guardian: General, Game Text: Front, Portraits: Front, Collection, Comments
+asset Story: General, Game Text: Front, Portraits: Front, Collection, Encounter Set, Comments
+asset StoryWeakness: General, Game Text: Front, Portraits: Front, Collection, Encounter Set, Comments
+asset Seeker: General, Game Text: Front, Portraits: Front, Collection, Comments
+investigator Guardian: General, Game Text: Front, Portraits: Front, Game Text: Back, Portraits: Back, Collection, Comments
+investigator Story: General, Game Text: Front, Portraits: Front, Game Text: Back, Portraits: Back, Collection, Encounter Set, Comments
+investigator Rogue: General, Game Text: Front, Portraits: Front, Game Text: Back, Portraits: Back, Collection, Comments
+treachery None: General, Game Text: Front, Portraits: Front, Collection, Encounter Set, Comments
+treachery Weakness: General, Game Text: Front, Portraits: Front, Collection, Comments
+treachery StoryWeakness: General, Game Text: Front, Portraits: Front, Collection, Encounter Set, Comments
+treachery None: General, Game Text: Front, Portraits: Front, Collection, Encounter Set, Comments

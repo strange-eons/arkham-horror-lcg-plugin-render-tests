@@ -94,8 +94,5 @@ tab Game Text: Back
 tab Portraits: Back
   panel Portrait (6 controls)
   panel Options (4 controls)
-tab Encounter Set
-  panel Encounter Set (11 controls)
-  panel Custom Encounter Set (6 controls)
 tab Comments
   panel Design Rationale Comments (2 controls)
