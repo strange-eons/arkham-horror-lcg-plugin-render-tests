@@ -1,0 +1,9 @@
+class = script:res://ArkhamHorrorLCG/ArkhamHorrorLCG.js
+started = true
+name = Arkham Horror: The Card Game
+description = 
+version = 9.960000038146973
+extension = true
+usable = true
+showing = false
+accelerator = null

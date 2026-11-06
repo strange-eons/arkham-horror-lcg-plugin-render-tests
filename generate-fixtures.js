@@ -2466,6 +2466,45 @@ function writePluginObject() {
     }
 }
 
+// Lists what the started plug-in script reports through the plug-in
+// interface.
+function writePluginScript() {
+    try {
+        var Plugin = arkham.plugins.Plugin;
+        var lines = [];
+        arkham.plugins.BundleInstaller.getInstalledExtensions().forEach(
+            function (ext) {
+                var name = String(ext.getPluginClass());
+                if (!/ArkhamHorrorLCG\.js$/.test(name)) return;
+                var plugin = ext.getPlugin();
+                lines.push('class = ' + name);
+                lines.push('started = ' + ext.isStarted());
+                lines.push('name = ' + plugin.getPluginName());
+                lines.push('description = ' + plugin.getPluginDescription());
+                lines.push('version = ' + plugin.getPluginVersion());
+                lines.push(
+                    'extension = ' +
+                        (plugin.getPluginType() === Plugin.EXTENSION)
+                );
+                lines.push('usable = ' + plugin.isPluginUsable());
+                lines.push('showing = ' + plugin.isPluginShowing());
+                lines.push(
+                    'accelerator = ' + plugin.getDefaultAcceleratorKey()
+                );
+            }
+        );
+        var file = new File(outDir, 'plugin-script.txt');
+        java.nio.file.Files.writeString(file.toPath(), lines.join('\n') + '\n');
+        record('OK', 'plugin-script', file);
+    } catch (e) {
+        record(
+            'FAIL',
+            'plugin-script',
+            e.javaException ? e.javaException.toString() : String(e)
+        );
+    }
+}
+
 // Lists the tabs of flexible card editors as a class or subtype changes: the
 // encounter set tab is there only while a side draws the set.
 function writeEncounterTab() {
@@ -2951,7 +2990,7 @@ try {
     if (mode === 'defaults') writeEncounterTab();
     if (mode === 'defaults') writePluginObject();
     if (mode === 'defaults') writePreferences();
-    if (mode === 'defaults') writePreferences();
+    if (mode === 'defaults') writePluginScript();
     if (mode === 'defaults') writeRepaint();
     if (mode === 'defaults') writeSides();
     results.println('DONE');
