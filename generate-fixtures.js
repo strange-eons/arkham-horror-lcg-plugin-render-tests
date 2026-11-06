@@ -710,6 +710,16 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
         },
     ],
     [
+        'AssetStory',
+        {
+            encounterBack: { BackTypeBack: 'Encounter' },
+            costDash: { ResourceCost: '-', Stamina: '-', Sanity: 'X' },
+            returnTo: LEGACY_ENCOUNTER.returnTo,
+            customIcons: LEGACY_ENCOUNTER.customIcons,
+            replaced: LEGACY_ENCOUNTER.replaced,
+        },
+    ],
+    [
         'AssetAsset',
         {
             backClass: {
