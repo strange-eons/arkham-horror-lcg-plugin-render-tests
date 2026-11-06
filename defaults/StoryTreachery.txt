@@ -4,20 +4,18 @@ frontTemplateKey AHLCG-Story-Default
 backTemplateKey AHLCG-Treachery-Default
 cornerRadius 8
 name 
-portrait 0 AHLCG-Treachery-BackPortrait
-portrait 1 AHLCG-Treachery-Collection
-portrait 2 AHLCG-Story-Encounter
-setting AHLCG-Story-Encounter-portrait-rotation = 0
-setting AHLCG-Treachery-BackPortrait-portrait-rotation = 0
-setting AHLCG-Treachery-Collection-portrait-rotation = 0
-setting AHLCG-Treachery-Encounter-portrait-rotation = 0
-setting AccentedStoryA = 
-setting AccentedStoryASpacing = 0
-setting AccentedStoryB = 
-setting AccentedStoryBSpacing = 0
-setting AccentedStoryC = 
-setting AccentedStoryCSpacing = 0
+portrait 0 AHLCG-TreacheryFace-BackPortrait
+portrait 1 AHLCG-Face-Collection
+portrait 2 AHLCG-Face-Encounter
+setting AHLCG-Story-Default-bleed-margin = 8.64
+setting AHLCG-Story-Default-template = ArkhamHorrorLCG/templates/AHLCG-Story.jp2
+setting AHLCG-Treachery-Default-bleed-margin = 8.64
+setting AHLCG-Treachery-Default-template = ArkhamHorrorLCG/templates/AHLCG-Treachery.jp2
 setting ArtistBack = 
+setting BlockCount = 1
+setting BlockSpacing1 = 0
+setting BlockStyle1 = rules
+setting BlockText1 = 
 setting Collection = CustomCollection
 setting CollectionNumber = 1
 setting CollectionType = -1
@@ -28,19 +26,10 @@ setting EncounterTotal = 1
 setting EncounterType = -1
 setting FlavorBack = 
 setting FlavorBackSpacing = 0
-setting HeaderA = 
-setting HeaderASpacing = 0
-setting HeaderB = 
-setting HeaderBSpacing = 0
-setting HeaderC = 
-setting HeaderCSpacing = 0
 setting KeywordsBack = 
 setting KeywordsBackSpacing = 0
-setting RulesA = 
-setting RulesB = 
 setting RulesBack = 
 setting RulesBackSpacing = 0
-setting RulesC = 
 setting ScaleModifier = 100
 setting ShowCollectionNumberBack = 1
 setting ShowCollectionNumberFront = 1
@@ -49,42 +38,38 @@ setting ShowCopyrightFront = 1
 setting ShowEncounterNumberBack = 1
 setting ShowEncounterNumberFront = 1
 setting StoryClass = Default
+setting SubtypeBack = None
 setting Template = Story
-setting TemplateReplacement = 
-setting TemplateReplacementBack = 
+setting TemplateReplacementBleed = 0
 setting TitleBack = 
 setting TrackerBox = 
 setting TrackerHeight = 100
-setting TraitsA = 
-setting TraitsASpacing = 0
 setting TraitsBack = 
 setting TraitsBackSpacing = 0
-setting Victory = 
+setting UniqueBack = 0
 setting VictoryBack = 
-setting VictorySpacing = 0
-setting flipSuffix = false
+setting flipSuffix = 0
 setting game = AHLCG
 tab General
-  panel Title: Front (2 controls)
-  panel Basic Data: Front (9 controls)
-  panel Title: Back (2 controls)
-  panel Copyright information (4 controls)
+  panel Template (2 controls)
+  panel Title: Front (4 controls)
+  panel Title: Back (3 controls)
+  panel Basic Data: Back (2 controls)
+  panel Copyright information (6 controls)
+  panel Template replacement (7 controls)
 tab Game Text: Front
-  panel Game Text (Part A) (21 controls)
-  panel Game Text (Part B) (13 controls)
-  panel Game Text (Part C) (13 controls)
-  panel Victory (5 controls)
+  panel Game Text (2 controls)
+  panel Tracking box (5 controls)
 tab Game Text: Back
   panel Game Text (27 controls)
-tab Portraits
+tab Portraits: Back
   panel Portrait (6 controls)
   panel Options (3 controls)
-  panel Template replacement (7 controls)
 tab Collection
-  panel Collection (8 controls)
+  panel Collection (9 controls)
   panel Custom Collection (6 controls)
 tab Encounter Set
-  panel Encounter Set (10 controls)
+  panel Encounter Set (11 controls)
   panel Custom Encounter Set (6 controls)
 tab Comments
   panel Design Rationale Comments (2 controls)
