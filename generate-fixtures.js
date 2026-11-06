@@ -712,6 +712,29 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
         },
     ],
     [
+        'EnemyLocation',
+        {
+            separateArt: { PortraitShare: '0', ArtistBack: 'Other Artist' },
+            perInvestigator: {
+                Health: '4',
+                PerInvestigatorHealth: '1',
+                Attack: '3',
+                PerInvestigatorAttack: '1',
+            },
+            dashes: { Health: '-', Attack: '-', Shroud: '-', Clues: '-' },
+            backIcons: {
+                LocationIconBack: 'Square',
+                Connection2IconBack: 'Moon',
+            },
+            returnTo: LEGACY_ENCOUNTER.returnTo,
+            customIcons: LEGACY_ENCOUNTER.customIcons,
+            replaced: {
+                TemplateReplacement: REPLACEMENT_IMAGE,
+                TemplateReplacementBack: REPLACEMENT_IMAGE,
+            },
+        },
+    ],
+    [
         'TreacheryLocation',
         {
             perInvestigatorShroud: {
