@@ -81,7 +81,7 @@ function placeArt(portrait) {
 
 function isArtPortrait(portrait) {
     var key = portrait.getBaseKey ? String(portrait.getBaseKey()) : '';
-    return /-(Back)?(Transparent)?Portrait$/.test(key);
+    return /-(Back)?(Transparent)?Portrait(\d|Bottom)?$/.test(key);
 }
 
 var RULES =
@@ -340,8 +340,8 @@ var HANDLER_VARIANTS = {
     },
 };
 
-// Card handler scripts and their [front, back] face types. Campaign guides,
-// dividers and box/pack covers are not cards and are left out.
+// Card handler scripts and their [front, back] face types; a one sided
+// handler names its face twice.
 var HANDLERS = {
     // player cards
     Investigator: ['investigator', 'investigatorBack'],
@@ -390,6 +390,12 @@ var HANDLERS = {
     MiniInvestigator: ['miniInvestigator', 'miniInvestigator'],
     Concealed: ['concealed', 'concealedBack'],
     Ultimatum: ['ultimatum', 'ultimatumBack'],
+    Divider: ['divider', 'divider'],
+    PackCover: ['cover', 'cover'],
+    BoxCover: ['cover', 'cover'],
+    Guide75: ['guide', 'guide'],
+    GuideA4: ['guide', 'guide'],
+    GuideLetter: ['guide', 'guide'],
     Scenario: ['scenario', 'scenario'],
     // not in the class map, but still opened from older saves
     AssetStoryPortrait: ['storyAsset', 'portraitBack'],
@@ -711,6 +717,84 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
                 CustName8: 'Keen',
             },
             replaced: LEGACY_ENCOUNTER.replaced,
+        },
+    ],
+    [
+        'Divider',
+        {
+            returnTo: LEGACY_ENCOUNTER.returnTo,
+            customIcons: LEGACY_ENCOUNTER.customIcons,
+        },
+    ],
+    ['PackCover', { tinted: { tint: '200,0.6,0.8' } }],
+    ['BoxCover', { tinted: { tint: '200,0.6,0.8' } }],
+    [
+        'Guide75',
+        {
+            title: { PageType: 'Title' },
+            rules: {
+                RulesLeft: RULES,
+                RulesRight: 'The investigators win.',
+            },
+            positions: {
+                PositionPortrait1: 'TopHalf',
+                PositionPortrait2: 'BottomRightSmall',
+            },
+            fullPage: {
+                PositionPortrait1: 'FullPage',
+                PositionPortrait2: 'None',
+            },
+            spacing: {
+                RulesLeft: RULES,
+                LineSpacingLeft: '80',
+                LineSpacingRight: '120',
+            },
+        },
+    ],
+    [
+        'GuideA4',
+        {
+            title: { PageType: 'Title' },
+            rules: {
+                RulesLeft: RULES,
+                RulesRight: 'The investigators win.',
+            },
+            positions: {
+                PositionPortrait1: 'TopHalf',
+                PositionPortrait2: 'BottomRightSmall',
+            },
+            fullPage: {
+                PositionPortrait1: 'FullPage',
+                PositionPortrait2: 'None',
+            },
+            spacing: {
+                RulesLeft: RULES,
+                LineSpacingLeft: '80',
+                LineSpacingRight: '120',
+            },
+        },
+    ],
+    [
+        'GuideLetter',
+        {
+            title: { PageType: 'Title' },
+            rules: {
+                RulesLeft: RULES,
+                RulesRight: 'The investigators win.',
+            },
+            positions: {
+                PositionPortrait1: 'TopHalf',
+                PositionPortrait2: 'BottomRightSmall',
+            },
+            fullPage: {
+                PositionPortrait1: 'FullPage',
+                PositionPortrait2: 'None',
+            },
+            spacing: {
+                RulesLeft: RULES,
+                LineSpacingLeft: '80',
+                LineSpacingRight: '120',
+            },
         },
     ],
     [

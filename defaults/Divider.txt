@@ -1,0 +1,20 @@
+version 31
+faceStyle TWO_FACES
+frontTemplateKey AHLCG-Divider-Default
+backTemplateKey AHLCG-Divider-Default
+cornerRadius 0
+name 
+portrait 0 AHLCG-Divider-Encounter
+setting AHLCG-Divider-Encounter-portrait-rotation = 0
+setting Encounter = CustomEncounterSet
+setting EncounterNumber = 1
+setting EncounterTotal = 1
+setting EncounterType = -1
+setting game = AHLCG
+tab General
+  panel Title (2 controls)
+tab Encounter Set
+  panel Encounter Set (2 controls)
+  panel Custom Encounter Set (6 controls)
+tab Comments
+  panel Design Rationale Comments (2 controls)

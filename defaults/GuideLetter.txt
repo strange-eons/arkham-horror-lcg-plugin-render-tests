@@ -1,0 +1,33 @@
+version 31
+faceStyle ONE_FACE
+frontTemplateKey AHLCG-GuideLetter-Default
+backTemplateKey diy-front-sheet
+cornerRadius 0
+name 
+portrait 0 AHLCG-GuideLetter-Portrait1
+portrait 1 AHLCG-GuideLetter-Portrait2
+setting AHLCG-GuideLetter-Portrait1-portrait-rotation = 0
+setting AHLCG-GuideLetter-Portrait2-portrait-rotation = 0
+setting LineSpacingLeft = 100
+setting LineSpacingRight = 100
+setting Page = 1
+setting PageType = Empty
+setting PositionPortrait1 = TopLeftSmall
+setting PositionPortrait2 = BottomLarge
+setting RulesLeft = 
+setting RulesRight = 
+setting game = AHLCG
+tab General
+  panel Title (4 controls)
+  panel Basic Data (2 controls)
+tab Portraits
+  panel Portrait : Left / Top (6 controls)
+  panel Options: Left / Top (3 controls)
+  panel Portrait (6 controls)
+  panel Options: Right / Bottom (3 controls)
+tab Game Text: Left
+  panel Game Text (6 controls)
+tab Game Text: Right
+  panel Game Text (6 controls)
+tab Comments
+  panel Design Rationale Comments (2 controls)

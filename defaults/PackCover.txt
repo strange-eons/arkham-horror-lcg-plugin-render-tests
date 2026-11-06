@@ -1,0 +1,20 @@
+version 31
+faceStyle ONE_FACE
+frontTemplateKey AHLCG-PackCover-Default
+backTemplateKey diy-front-sheet
+cornerRadius 0
+name 
+portrait 0 AHLCG-PackCover-Portrait
+setting AHLCG-PackCover-Portrait-portrait-rotation = 0
+setting game = AHLCG
+setting tint = 0,1,1
+tab Tint
+  panel Card Tint (2 controls)
+tab General
+  panel Title: Front (2 controls)
+tab Portraits
+  panel Portrait (6 controls)
+  panel Options (3 controls)
+  panel Template replacement (7 controls)
+tab Comments
+  panel Design Rationale Comments (2 controls)
