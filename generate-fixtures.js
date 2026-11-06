@@ -1194,6 +1194,7 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
             },
             asterisk: { Doom: 'Star', PerInvestigator: '0', Asterisk: '1' },
             dash: { Doom: '-' },
+            returnTo: LEGACY_ENCOUNTER.returnTo,
             reversedReturnTo: merge(LEGACY_ENCOUNTER.returnTo, {
                 Orientation: 'Reversed',
             }),
@@ -1214,6 +1215,7 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
         {
             perInvestigator: { Clues: '3', PerInvestigator: '1' },
             asterisk: { Clues: '2', PerInvestigator: '0', Asterisk: '1' },
+            returnTo: LEGACY_ENCOUNTER.returnTo,
             reversedReturnTo: merge(LEGACY_ENCOUNTER.returnTo, {
                 Orientation: 'Reversed',
             }),
@@ -1418,6 +1420,9 @@ var FACE_VARIANTS = {
     },
     agenda: {
         reversed: { Orientation: 'Reversed' },
+        returnTo: {
+            Card: { Encounter: 'ReturnToCultOfUmordhoth', EncounterType: '0' },
+        },
         reversedReturnTo: {
             Orientation: 'Reversed',
             Card: { Encounter: 'ReturnToCultOfUmordhoth', EncounterType: '0' },
@@ -1446,6 +1451,9 @@ var FACE_VARIANTS = {
     },
     act: {
         reversed: { Orientation: 'Reversed' },
+        returnTo: {
+            Card: { Encounter: 'ReturnToCultOfUmordhoth', EncounterType: '0' },
+        },
         reversedReturnTo: {
             Orientation: 'Reversed',
             Card: { Encounter: 'ReturnToCultOfUmordhoth', EncounterType: '0' },
