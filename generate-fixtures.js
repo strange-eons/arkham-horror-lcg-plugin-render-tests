@@ -712,6 +712,19 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
         },
     ],
     [
+        'Scenario',
+        {
+            resolution: { Template: 'Resolution', TemplateBack: 'Title' },
+            portraits: {
+                Template: 'Portrait',
+                TemplateBack: 'Portrait',
+                Artist: 'Sofyan Syarief',
+                ArtistBack: '',
+            },
+            portraitChaos: { Template: 'Portrait', TemplateBack: 'Chaos' },
+        },
+    ],
+    [
         'EnemyLocation',
         {
             separateArt: { PortraitShare: '0', ArtistBack: 'Other Artist' },
