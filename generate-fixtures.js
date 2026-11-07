@@ -1577,6 +1577,7 @@ var FACE_VARIANTS = {
             CardClass3: 'None',
             Card: { Encounter: 'ReturnToCultOfUmordhoth', EncounterType: '0' },
         },
+        reward: { CardClass: 'Reward', CardClass2: 'None', CardClass3: 'None' },
         replaced: {
             Card: {
                 TemplateReplacement: REPLACEMENT_IMAGE,
