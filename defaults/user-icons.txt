@@ -1,0 +1,6 @@
+encounter sets: FileSet 1 icon, ResourceSet 2 icon
+collections: FileSet 1 icon, ResourceSet 2 icon
+after adding: FileSet 1 icon, ResourceSet 2 icon, AddedSet 5 icon
+unused: FileSet 1 icon, AddedSet 5 icon
+card read: FileSet 1 icon, ResourceSet 2 icon, AddedSet 5 icon
+card: ResourceSet 2

@@ -2399,6 +2399,146 @@ function writePreferences() {
     record('OK', 'preferences', file);
 }
 
+// User sets whose icons are named by file path, res: URL, or project: URL
+// (no project is open, so it can't be read): the sets the editor lists offer,
+// a set added through the preferences, and a card naming an unused set.
+function writeUserIcons() {
+    var Language = Packages.resources.Language;
+    var user = Packages.resources.Settings.getUser();
+    var o = Eons.namedObjects.AHLCGObject;
+    var lines = [];
+    function clear() {
+        var it = user.getKeySet().iterator();
+        var found = [];
+        while (it.hasNext()) {
+            var k = String(it.next());
+            if (k.indexOf('AHLCG-') === 0) found.push(k);
+        }
+        found.forEach(function (k) {
+            user.reset(k);
+        });
+    }
+    function offered(name, combo, types) {
+        var sets = [];
+        for (var i = 0; i < combo.length; ++i) {
+            if (types[i] > 0)
+                sets.push(
+                    String(combo[i]) +
+                        ' ' +
+                        types[i] +
+                        (combo[i].getIcon() != null ? ' icon' : '')
+                );
+        }
+        lines.push(name + ': ' + sets.join(', '));
+    }
+    try {
+        var field = java.lang.Class.forName(
+            'ca.cgjennings.apps.arkham.dialog.prefs.Preferences'
+        ).getDeclaredField('custom');
+        field.setAccessible(true);
+        var title = String(Language.string('AHLCG'));
+        var category = null;
+        var list = field.get(null);
+        for (var c = 0; c < list.size(); ++c)
+            if (String(list.get(c).getTitle()) === title)
+                category = list.get(c);
+        if (category == null) throw new Error('no preferences category');
+
+        var icon = new File(
+            new File(prop('fx.results')).getParentFile(),
+            'user-icon.png'
+        );
+        var BufferedImage = java.awt.image.BufferedImage;
+        javax.imageio.ImageIO.write(
+            new BufferedImage(8, 8, BufferedImage.TYPE_INT_ARGB),
+            'png',
+            icon
+        );
+        var sets = [
+            ['File Set', icon.getAbsolutePath()],
+            ['Resource Set', 'res://ArkhamHorrorLCG/icons/AHLCG-CoreSet.png'],
+            ['Project Set', 'project://icons/set.png'],
+            ['Missing Set', '/no/such/icon.png'],
+        ];
+        clear();
+        ['Encounter', 'Collection'].forEach(function (kind) {
+            user.setInt('AHLCG-User' + kind + 'Count', sets.length);
+            sets.forEach(function (set, i) {
+                var n = i + 1;
+                user.set('AHLCG-User' + kind + 'Name' + n, set[0]);
+                user.set('AHLCG-User' + kind + 'Icon' + n, set[1]);
+                user.set('AHLCG-User' + kind + 'Tag' + n, 'set' + n);
+                user.setBoolean('AHLCG-UseUser' + kind + n, true);
+            });
+        });
+        category.loadSettings();
+        category.storeSettings();
+        offered('encounter sets', o.comboEncounter, o.encounterTypes);
+        offered('collections', o.comboCollection, o.collectionTypes);
+
+        category.loadSettings();
+        var fields = find(category.getPanel(), javax.swing.JTextField).filter(
+            function (f) {
+                return !(f instanceof javax.swing.JFormattedTextField);
+            }
+        );
+        fields[0].setText('Added Set');
+        fields[1].setText('added');
+        fields[2].setText('res://ArkhamHorrorLCG/icons/AHLCG-TheGathering.png');
+        var add = String(Language.string('AHLCG-Pref-AddSet'));
+        find(category.getPanel(), javax.swing.JButton)
+            .filter(function (b) {
+                return String(b.getText()) === add;
+            })[0]
+            .doClick();
+        category.storeSettings();
+        offered('after adding', o.comboEncounter, o.encounterTypes);
+
+        // a card naming a set the user no longer uses enables it on read
+        user.setBoolean('AHLCG-UseUserEncounter2', false);
+        category.loadSettings();
+        category.storeSettings();
+        offered('unused', o.comboEncounter, o.encounterTypes);
+        var gc = new DIY('ArkhamHorrorLCG/diy/Flexible.js', 'AHLCG', false);
+        selectFaces(gc, ['treachery', 'encounterBack']);
+        gc.getSettings().set('Encounter', 'ResourceSet');
+        gc.getSettings().set('EncounterType', '2');
+        var saved = File.createTempFile('user-icons', '.eon');
+        ResourceKit.writeGameComponentToFile(saved, gc);
+        var read = ResourceKit.getGameComponentFromFile(saved);
+        saved['delete']();
+        offered('card read', o.comboEncounter, o.encounterTypes);
+        lines.push(
+            'card: ' +
+                read.getSettings().get('Encounter') +
+                ' ' +
+                read.getSettings().get('EncounterType')
+        );
+        clear();
+
+        var file = new File(outDir, 'user-icons.txt');
+        java.nio.file.Files.writeString(file.toPath(), lines.join('\n') + '\n');
+        record('OK', 'user-icons', file);
+    } catch (e) {
+        clear();
+        record(
+            'FAIL',
+            'user-icons',
+            e.javaException ? e.javaException.toString() : String(e)
+        );
+    }
+
+    function find(root, type) {
+        var found = [];
+        (function walk(c) {
+            if (c instanceof type) found.push(c);
+            var children = c.getComponents ? c.getComponents() : [];
+            for (var i = 0; i < children.length; ++i) walk(children[i]);
+        })(root);
+        return found;
+    }
+}
+
 // Lists every value of the plug-in's shared object: editor lists with their
 // labels, set catalogs and tag lists; functions by name. Font settings and
 // the OS depend on the machine, so they are listed only in the work
@@ -2999,6 +3139,7 @@ try {
     if (mode === 'defaults') writeEncounterTab();
     if (mode === 'defaults') writePluginObject();
     if (mode === 'defaults') writePreferences();
+    if (mode === 'defaults') writeUserIcons();
     if (mode === 'defaults') writePluginScript();
     if (mode === 'defaults') writeRepaint();
     if (mode === 'defaults') writeSides();
