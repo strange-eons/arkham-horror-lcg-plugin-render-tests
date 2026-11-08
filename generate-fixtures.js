@@ -17,6 +17,8 @@
  * card's text blocks; editor-fit.txt, from resizing flexible card editors;
  * encounter-tab.txt, from changing the class or subtype of flexible cards;
  * and plugin-object.txt, every value of the plug-in's shared object.
+ * plugin-script.txt writes the plug-in version as "build" when it equals
+ * fx.version, the version the build wrote, so baselines survive releases.
  *
  * Writes one line per handler or fixture to fx.results, then DONE.
  *
@@ -2630,7 +2632,14 @@ function writePluginScript() {
                 lines.push('started = ' + ext.isStarted());
                 lines.push('name = ' + plugin.getPluginName());
                 lines.push('description = ' + plugin.getPluginDescription());
-                lines.push('version = ' + plugin.getPluginVersion());
+                var version = plugin.getPluginVersion();
+                lines.push(
+                    'version = ' +
+                        (version ===
+                        java.lang.Float.parseFloat(prop('fx.version'))
+                            ? 'build'
+                            : version)
+                );
                 lines.push(
                     'extension = ' +
                         (plugin.getPluginType() === Plugin.EXTENSION)
