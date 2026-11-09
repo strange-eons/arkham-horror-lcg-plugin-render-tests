@@ -1,13 +1,13 @@
 /*
  * Runs inside Strange Eons via `--run` (see the generateFixtures and
- * dumpDefaults tasks).
+ * runDefaults tasks).
  *
  * fx.mode "fixtures": creates one .eon file per card handler and variant in
  * fx.out, named <Handler>/<variant>.eon, and one per flexible card face and
  * variant in fx.flexibleOut, named <face>/<variant>.eon. Existing files are
  * kept unless fx.overwrite is true.
  *
- * fx.mode "defaults": writes <Handler>.txt to fx.out, listing the state of a
+ * fx.mode "defaults": writes <Handler>.txt to rt.out, listing the state of a
  * newly created component (settings, portraits, version, templates);
  * flexible card faces are written as Flexible-<face>.txt.
  * Also writes amd-loader.txt from the fx.amdScript handler: the AMD loader
@@ -17,10 +17,10 @@
  * card's text blocks; editor-fit.txt, from resizing flexible card editors;
  * encounter-tab.txt, from changing the class or subtype of flexible cards;
  * and plugin-object.txt, every value of the plug-in's shared object.
- * plugin-script.txt writes the plug-in version as "build" when it equals
- * fx.version, the version the build wrote, so baselines survive releases.
+ * plugin-script.txt writes the plug-in version as "build" when it equals the
+ * version in the bundle's version.properties, so baselines survive releases.
  *
- * Writes one line per handler or fixture to fx.results, then DONE.
+ * Writes one line per handler or fixture to rt.results, then DONE.
  *
  * ES5 only: this runs on Strange Rhino.
  */
@@ -40,11 +40,11 @@ function prop(k) {
 }
 
 var mode = prop('fx.mode') || 'fixtures';
-var outDir = new File(prop('fx.out'));
+var outDir = new File(prop('fx.out') || prop('rt.out'));
 var flexibleOutDir = new File(prop('fx.flexibleOut') || prop('fx.out'));
 var overwrite = prop('fx.overwrite') === 'true';
 var results = new PrintWriter(
-    new OutputStreamWriter(new FileOutputStream(prop('fx.results')), 'UTF-8')
+    new OutputStreamWriter(new FileOutputStream(prop('rt.results')), 'UTF-8')
 );
 
 function record(status, name, detail) {
@@ -2288,7 +2288,7 @@ function writePreferences() {
     if (category == null) throw new Error('no preferences category ' + title);
 
     var icon = new File(
-        new File(prop('fx.results')).getParentFile(),
+        new File(prop('rt.results')).getParentFile(),
         'user-set.png'
     );
     var BufferedImage = java.awt.image.BufferedImage;
@@ -2452,7 +2452,7 @@ function writeUserIcons() {
         if (category == null) throw new Error('no preferences category');
 
         var icon = new File(
-            new File(prop('fx.results')).getParentFile(),
+            new File(prop('rt.results')).getParentFile(),
             'user-icon.png'
         );
         var BufferedImage = java.awt.image.BufferedImage;
@@ -2606,7 +2606,7 @@ function writePluginObject() {
         var file = new File(outDir, 'plugin-object.txt');
         java.nio.file.Files.writeString(file.toPath(), lines.join('\n') + '\n');
         java.nio.file.Files.writeString(
-            new File(prop('fx.results'))
+            new File(prop('rt.results'))
                 .getParentFile()
                 .toPath()
                 .resolve('plugin-object-all.txt'),
@@ -2620,6 +2620,20 @@ function writePluginObject() {
             e.javaException ? e.javaException.toString() : String(e)
         );
     }
+}
+
+// The se-version the build wrote into the bundle.
+function buildVersion() {
+    var props = new java.util.Properties();
+    var stream = ResourceKit.getInputStream(
+        'ArkhamHorrorLCG/version.properties'
+    );
+    try {
+        props.load(stream);
+    } finally {
+        stream.close();
+    }
+    return java.lang.Float.parseFloat(props.getProperty('se-version'));
 }
 
 // Lists what the started plug-in script reports through the plug-in
@@ -2640,10 +2654,7 @@ function writePluginScript() {
                 var version = plugin.getPluginVersion();
                 lines.push(
                     'version = ' +
-                        (version ===
-                        java.lang.Float.parseFloat(prop('fx.version'))
-                            ? 'build'
-                            : version)
+                        (version === buildVersion() ? 'build' : version)
                 );
                 lines.push(
                     'extension = ' +
