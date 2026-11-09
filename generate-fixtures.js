@@ -561,6 +561,11 @@ var CUSTOM_ICONS = {
         Encounter: 'res://ArkhamHorrorLCG/icons/AHLCG-AgentsOfCthulhu.png',
     },
 };
+// Story/location cards with custom icons: the sides' icon regions differ in
+// size, and the location side scales the icon to its own.
+HANDLER_VARIANTS.StoryLocation.customIcons = merge(CUSTOM_ICONS.keys, {
+    Portraits: CUSTOM_ICONS.sources,
+});
 // Chaos cards with custom and return-to icons, unlike the standard icons on
 // the other variants, saved at the version before the token rules face.
 HANDLER_VARIANTS.Chaos.customIcons = merge(CUSTOM_ICONS.keys, {
