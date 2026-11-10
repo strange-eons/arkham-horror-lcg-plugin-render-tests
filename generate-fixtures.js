@@ -636,6 +636,8 @@ var LEGACY_ENCOUNTER = {
     returnTo: { Encounter: 'ReturnToCultOfUmordhoth', EncounterType: '0' },
     replaced: { TemplateReplacement: REPLACEMENT_IMAGE },
 };
+// saved before bleed templates, with an explicit bleed margin of 0
+var PRE_BLEED = { BleedMargin: 0 };
 var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
     dashes: { Health: '-', Attack: '-', PerInvestigatorAttack: '0' },
 });
@@ -667,11 +669,12 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
             replaced: LEGACY_STORY.replaced,
         },
     ],
-    ['Enemy', LEGACY_ENEMY],
+    ['Enemy', merge(LEGACY_ENEMY, { preBleed: PRE_BLEED })],
     ['Treachery', LEGACY_ENCOUNTER],
     [
         'WeaknessTreachery',
         {
+            preBleed: PRE_BLEED,
             weakness: { Subtype: 'Weakness' },
             storyWeakness: { Subtype: 'StoryWeakness' },
             replaced: LEGACY_ENCOUNTER.replaced,
@@ -680,6 +683,7 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
     [
         'Asset',
         {
+            preBleed: PRE_BLEED,
             encounterBack: { BackTypeBack: 'Encounter' },
             triple: {
                 CardClass: 'Seeker',
@@ -694,6 +698,7 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
     [
         'Event',
         {
+            preBleed: PRE_BLEED,
             encounterBack: { BackTypeBack: 'Encounter' },
             triple: {
                 CardClass: 'Seeker',
@@ -1243,6 +1248,7 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
     [
         'Investigator',
         {
+            preBleed: PRE_BLEED,
             parallel: { CardClass: 'ParallelRogue' },
             parallelNeutral: { CardClass: 'ParallelNeutral', Subtitle: '' },
             neutral: { CardClass: 'Neutral' },
@@ -1783,6 +1789,18 @@ function setSavedVersion(gc, version) {
         throw new Error('saved version ' + gc.getVersion());
 }
 
+// An explicit bleed margin, as plug-ins before bleed templates saved it;
+// handlers can only set it in create and onRead.
+function setSavedBleedMargin(gc, margin) {
+    var type = gc.getClass();
+    var value = type.getDeclaredField('bleedMargin');
+    value.setAccessible(true);
+    value.setDouble(gc, margin);
+    var explicit = type.getDeclaredField('hasExplicitBleedMargin');
+    explicit.setAccessible(true);
+    explicit.setBoolean(gc, true);
+}
+
 function build(handler, faces, variant, extra, flexible) {
     var gc = new DIY('ArkhamHorrorLCG/diy/' + handler + '.js', 'AHLCG', false);
     if (flexible) selectFaces(gc, faces);
@@ -1843,6 +1861,8 @@ function build(handler, faces, variant, extra, flexible) {
             setPortraitSources(gc, extra.keys.Portraits);
         for (var uk in extra.keys.Undefined || {})
             gc.getSettings().set(uk, extra.keys.Undefined[uk]);
+        if (extra.keys.BleedMargin != null)
+            setSavedBleedMargin(gc, extra.keys.BleedMargin);
         if (extra.keys.Version != null) setSavedVersion(gc, extra.keys.Version);
     }
     if (flexible) matchBack(gc);
