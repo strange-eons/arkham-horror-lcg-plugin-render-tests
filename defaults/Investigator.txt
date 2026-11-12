@@ -82,15 +82,14 @@ tab General
   panel Template replacement (7 controls)
 tab Game Text: Front
   panel Game Text (22 controls)
-tab Portraits: Front
-  panel Portrait (6 controls)
-  panel Options (3 controls)
 tab Game Text: Back
   panel Sections (2 controls)
   panel Game Text (48 controls)
-tab Portraits: Back
-  panel Portrait (6 controls)
-  panel Options (3 controls)
+tab Portraits
+  panel Portrait: Front (6 controls)
+  panel Options: Front (3 controls)
+  panel Portrait: Back (6 controls)
+  panel Options: Back (3 controls)
 tab Collection
   panel Collection (8 controls)
   panel Custom Collection (6 controls)

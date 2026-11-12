@@ -34,7 +34,6 @@ setting ShowCopyrightBack = 1
 setting ShowCopyrightFront = 1
 setting ShowEncounterNumberBack = 1
 setting ShowEncounterNumberFront = 1
-setting Subtype = None
 setting TemplateReplacementBleed = 0
 setting Traits = 
 setting TraitsSpacing = 0
@@ -49,12 +48,11 @@ tab General
   panel Template replacement (4 controls)
 tab Game Text: Front
   panel Game Text (27 controls)
-tab Portraits: Front
-  panel Portrait (6 controls)
-  panel Options (3 controls)
-tab Portraits: Back
-  panel Portrait (6 controls)
-  panel Options (4 controls)
+tab Portraits
+  panel Portrait: Front (6 controls)
+  panel Options: Front (3 controls)
+  panel Portrait: Back (6 controls)
+  panel Options: Back (4 controls)
 tab Collection
   panel Collection (8 controls)
   panel Custom Collection (6 controls)

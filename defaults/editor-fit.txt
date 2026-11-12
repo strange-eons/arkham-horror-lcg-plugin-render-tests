@@ -4,9 +4,8 @@ encounterBack / General: fits
 encounterBack / Comments: fits
 enemy / General: fits
 enemy / Game Text: Front: fits
-enemy / Portraits: Front: fits
 enemy / Game Text: Back: fits
-enemy / Portraits: Back: fits
+enemy / Portraits: fits
 enemy / Collection: fits
 enemy / Encounter Set: fits
 enemy / Comments: fits
@@ -28,31 +27,27 @@ tokenRules / Encounter Set: fits
 tokenRules / Comments: fits
 treachery / General: fits
 treachery / Game Text: Front: fits
-treachery / Portraits: Front: fits
 treachery / Game Text: Back: fits
-treachery / Portraits: Back: fits
+treachery / Portraits: fits
 treachery / Collection: fits
 treachery / Encounter Set: fits
 treachery / Comments: fits
 asset / General: fits
 asset / Game Text: Front: fits
-asset / Portraits: Front: fits
 asset / Game Text: Back: fits
-asset / Portraits: Back: fits
+asset / Portraits: fits
 asset / Collection: fits
 asset / Comments: fits
 event / General: fits
 event / Game Text: Front: fits
-event / Portraits: Front: fits
 event / Game Text: Back: fits
-event / Portraits: Back: fits
+event / Portraits: fits
 event / Collection: fits
 event / Comments: fits
 skill / General: fits
 skill / Game Text: Front: fits
-skill / Portraits: Front: fits
 skill / Game Text: Back: fits
-skill / Portraits: Back: fits
+skill / Portraits: fits
 skill / Collection: fits
 skill / Comments: fits
 customizable / General: fits
@@ -63,46 +58,40 @@ customizableBack / General: fits
 customizableBack / Comments: fits
 location / General: fits
 location / Game Text: Front: fits
-location / Portraits: Front: fits
 location / Game Text: Back: fits
-location / Portraits: Back: fits
+location / Portraits: fits
 location / Collection: fits
 location / Encounter Set: fits
 location / Comments: fits
 locationBack / General: fits
 locationBack / Game Text: Front: fits
-locationBack / Portraits: Front: fits
 locationBack / Game Text: Back: fits
-locationBack / Portraits: Back: fits
+locationBack / Portraits: fits
 locationBack / Collection: fits
 locationBack / Encounter Set: fits
 locationBack / Comments: fits
 key / General: fits
 key / Game Text: Front: fits
-key / Portraits: Front: fits
 key / Game Text: Back: fits
-key / Portraits: Back: fits
+key / Portraits: fits
 key / Collection: fits
 key / Encounter Set: fits
 key / Comments: fits
 investigator / General: fits
 investigator / Game Text: Front: fits
-investigator / Portraits: Front: fits
 investigator / Game Text: Back: fits
-investigator / Portraits: Back: fits
+investigator / Portraits: fits
 investigator / Collection: fits
 investigator / Comments: fits
 investigatorBack / General: fits
 investigatorBack / Game Text: Front:          
-investigatorBack / Portraits: Front: fits
 investigatorBack / Game Text: Back:          
-investigatorBack / Portraits: Back: fits
+investigatorBack / Portraits: fits
 investigatorBack / Comments: fits
 act / General: fits
 act / Game Text: Front: fits
-act / Portraits: Front: fits
 act / Game Text: Back: fits
-act / Portraits: Back: fits
+act / Portraits: fits
 act / Collection: fits
 act / Encounter Set: fits
 act / Comments: fits
@@ -113,9 +102,8 @@ actBack / Encounter Set: fits
 actBack / Comments: fits
 agenda / General: fits
 agenda / Game Text: Front: fits
-agenda / Portraits: Front: fits
 agenda / Game Text: Back: fits
-agenda / Portraits: Back: fits
+agenda / Portraits: fits
 agenda / Collection: fits
 agenda / Encounter Set: fits
 agenda / Comments: fits
@@ -126,37 +114,32 @@ agendaBack / Encounter Set: fits
 agendaBack / Comments: fits
 agendaFrontPortrait / General: fits
 agendaFrontPortrait / Game Text: Front: fits
-agendaFrontPortrait / Portraits: Front: fits
 agendaFrontPortrait / Game Text: Back: fits
-agendaFrontPortrait / Portraits: Back: fits
+agendaFrontPortrait / Portraits: fits
 agendaFrontPortrait / Collection: fits
 agendaFrontPortrait / Encounter Set: fits
 agendaFrontPortrait / Comments: fits
 agendaPortrait / General: fits
 agendaPortrait / Game Text: Front: fits
-agendaPortrait / Portraits: Front: fits
 agendaPortrait / Game Text: Back: fits
-agendaPortrait / Portraits: Back: fits
+agendaPortrait / Portraits: fits
 agendaPortrait / Collection: fits
 agendaPortrait / Encounter Set: fits
 agendaPortrait / Comments: fits
 portrait / General: fits
-portrait / Portraits: Front: fits
-portrait / Portraits: Back: fits
+portrait / Portraits: fits
 portrait / Comments: fits
 treacheryLocation / General: fits
 treacheryLocation / Game Text: Front: fits
-treacheryLocation / Portraits: Front: fits
 treacheryLocation / Game Text: Back: fits
-treacheryLocation / Portraits: Back: fits
+treacheryLocation / Portraits: fits
 treacheryLocation / Collection: fits
 treacheryLocation / Encounter Set: fits
 treacheryLocation / Comments: fits
 enemyLocation / General: fits
 enemyLocation / Game Text: Front: fits
-enemyLocation / Portraits: Front: fits
 enemyLocation / Game Text: Back: fits
-enemyLocation / Portraits: Back: fits
+enemyLocation / Portraits: fits
 enemyLocation / Collection: fits
 enemyLocation / Encounter Set: fits
 enemyLocation / Comments: fits

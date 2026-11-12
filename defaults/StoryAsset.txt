@@ -78,7 +78,7 @@ tab Game Text: Front
   panel Tracking box (5 controls)
 tab Game Text: Back
   panel Game Text (27 controls)
-tab Portraits: Back
+tab Portraits
   panel Portrait (6 controls)
   panel Options (3 controls)
 tab Collection
