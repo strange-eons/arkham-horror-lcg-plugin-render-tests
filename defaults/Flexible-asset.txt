@@ -8,6 +8,8 @@ portrait 0 AHLCG-AssetFace-Portrait
 portrait 1 AHLCG-AssetFace-BackPortrait
 portrait 2 AHLCG-Face-Collection
 portrait 3 AHLCG-Face-Encounter
+setting AHLCG-AssetFace-BackPortrait-MirrorEdges = Default
+setting AHLCG-AssetFace-Portrait-MirrorEdges = Default
 setting AHLCG-FlexibleHandler-Back-bleed-margin = 8.64
 setting AHLCG-FlexibleHandler-Back-template = ArkhamHorrorLCG/templates/AHLCG-Asset-G.jp2
 setting AHLCG-FlexibleHandler-Front-bleed-margin = 8.64
@@ -102,9 +104,9 @@ tab Game Text: Back
   panel Game Text (27 controls)
 tab Portraits
   panel Portrait: Front (6 controls)
-  panel Options: Front (3 controls)
+  panel Options: Front (5 controls)
   panel Portrait: Back (6 controls)
-  panel Options: Back (4 controls)
+  panel Options: Back (6 controls)
 tab Collection
   panel Collection (9 controls)
   panel Custom Collection (6 controls)

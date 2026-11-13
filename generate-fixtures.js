@@ -13,7 +13,9 @@
  * Also writes amd-loader.txt from the fx.amdScript handler: the AMD loader
  * checks it records; token-blocks.txt, from editing a flexible token rules
  * card; collector-tabs.txt, from choosing sets on a flexible card; sides.txt,
- * from painting flexible card faces with the same data on both sides; and text-blocks.txt, from editing a flexible story
+ * from painting flexible card faces with the same data on both sides;
+ * mirror-edges.txt, from each portrait mirror edges setting; and
+ * text-blocks.txt, from editing a flexible story
  * card's text blocks; editor-fit.txt, from resizing flexible card editors;
  * encounter-tab.txt, from changing the class or subtype of flexible cards;
  * and plugin-object.txt, every value of the plug-in's shared object.
@@ -79,6 +81,17 @@ function placeArt(portrait) {
     portrait.setScale(scale);
     portrait.setPanX((ART_W / 2 - cx) * scale);
     portrait.setPanY((ART_H / 2 - cy) * scale);
+}
+
+// The whole image, centered and scaled to stop inset pixels inside the
+// clip region at the sides and farther in at the top and bottom, within
+// reach of mirrored edges.
+function insetArt(portrait, inset) {
+    var clip = portrait.getClipDimensions();
+    portrait.setSource(ART);
+    portrait.setScale((clip.width - 2 * inset) / ART_W);
+    portrait.setPanX(0);
+    portrait.setPanY(0);
 }
 
 function isArtPortrait(portrait) {
@@ -3165,6 +3178,139 @@ function writeSides() {
     record('OK', 'sides', file);
 }
 
+// Paints a flexible location whose art stops short of its clip region with
+// each portrait mirror edges setting under each portrait bleed preference;
+// clicks the editor's buttons; reloads a save without the setting; and
+// counts the buttons of an investigator, whose front art is faded.
+function writeMirrorEdges() {
+    var RenderTarget = Packages.ca.cgjennings.apps.arkham.sheet.RenderTarget;
+    var Language = Packages.resources.Language;
+    var user = Packages.resources.Settings.getUser();
+    var front = 'AHLCG-LocationFace-Portrait-MirrorEdges';
+    var back = 'AHLCG-LocationFace-BackPortrait-MirrorEdges';
+    var preference = user.get('AHLCG-PortraitBleed');
+    var lines = [];
+
+    function pixels(gc) {
+        var image = gc
+            .createDefaultSheets()[0]
+            .paint(RenderTarget.PREVIEW, 150, false);
+        var w = image.getWidth();
+        var h = image.getHeight();
+        return java.util.Arrays.hashCode(image.getRGB(0, 0, w, h, null, 0, w));
+    }
+    function radios(gc, value) {
+        var label = String(Language.string('AHLCG-MirrorEdges-' + value));
+        var editor = gc.createDefaultEditor();
+        var found = [];
+        (function walk(c) {
+            if (
+                c instanceof javax.swing.JRadioButton &&
+                String(c.getText()) === label
+            )
+                found.push(c);
+            var children = c.getComponents();
+            for (var i = 0; i < children.length; ++i) walk(children[i]);
+        })(editor.getTabbedPane());
+        return { editor: editor, buttons: found };
+    }
+    function setting(gc, key) {
+        var value = gc.getSettings().get(key);
+        return value == null ? 'missing' : String(value);
+    }
+
+    try {
+        var gc = build(
+            'Flexible',
+            ['location', 'location'],
+            'filled',
+            null,
+            true
+        );
+        for (var i = 0; i < gc.getPortraitCount(); ++i) {
+            if (isArtPortrait(gc.getPortrait(i)))
+                insetArt(gc.getPortrait(i), 4);
+        }
+        var s = gc.getSettings();
+        lines.push('new: ' + setting(gc, front) + ', ' + setting(gc, back));
+
+        user.set('AHLCG-PortraitBleed', 'None');
+        s.set(front, 'Enable');
+        var mirrored = pixels(gc);
+        s.set(front, 'Disable');
+        var plain = pixels(gc);
+        lines.push('mirrored differs from plain: ' + (mirrored !== plain));
+        ['None', 'MirrorEdges'].forEach(function (pref) {
+            user.set('AHLCG-PortraitBleed', pref);
+            ['Default', 'Enable', 'Disable'].forEach(function (value) {
+                s.set(front, value);
+                var p = pixels(gc);
+                lines.push(
+                    pref +
+                        ', ' +
+                        value +
+                        ': ' +
+                        (p === mirrored
+                            ? 'mirrored'
+                            : p === plain
+                              ? 'plain'
+                              : 'other')
+                );
+            });
+        });
+        user.set('AHLCG-PortraitBleed', 'None');
+
+        s.set(front, 'Default');
+        var enable = radios(gc, 'Enable');
+        lines.push('Enable buttons: ' + enable.buttons.length);
+        enable.buttons[0].doClick();
+        lines.push(
+            'after the first: ' + setting(gc, front) + ', ' + setting(gc, back)
+        );
+        enable.editor.dispose();
+
+        s.reset(front);
+        s.reset(back);
+        var file = File.createTempFile('mirror-edges', '.eon');
+        file.deleteOnExit();
+        ResourceKit.writeGameComponentToFile(file, gc);
+        var reloaded = ResourceKit.getGameComponentFromFile(file);
+        lines.push(
+            'reloaded: ' +
+                setting(reloaded, front) +
+                ', ' +
+                setting(reloaded, back)
+        );
+        var opened = radios(reloaded, 'Default');
+        lines.push(
+            'reloaded Default buttons selected: ' +
+                opened.buttons.filter(function (b) {
+                    return b.isSelected();
+                }).length
+        );
+        opened.editor.dispose();
+
+        var investigator = build(
+            'Flexible',
+            ['investigator', 'investigatorBack'],
+            'default',
+            null,
+            true
+        );
+        var none = radios(investigator, 'Default');
+        lines.push('investigator buttons: ' + none.buttons.length);
+        none.editor.dispose();
+    } catch (e) {
+        lines.push('FAIL ' + (e.javaException ? e.javaException : e));
+    } finally {
+        if (preference == null) user.reset('AHLCG-PortraitBleed');
+        else user.set('AHLCG-PortraitBleed', preference);
+    }
+    var out = new File(outDir, 'mirror-edges.txt');
+    java.nio.file.Files.writeString(out.toPath(), lines.join('\n') + '\n');
+    record('OK', 'mirror-edges', out);
+}
+
 try {
     for (var h in HANDLERS) {
         if (mode === 'defaults') writeDefaults(h, null);
@@ -3188,6 +3334,7 @@ try {
     if (mode === 'defaults') writePluginScript();
     if (mode === 'defaults') writeRepaint();
     if (mode === 'defaults') writeSides();
+    if (mode === 'defaults') writeMirrorEdges();
     results.println('DONE');
 } finally {
     results.close();

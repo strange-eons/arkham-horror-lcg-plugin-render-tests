@@ -7,6 +7,7 @@ name
 portrait 0 AHLCG-EnemyFace-Portrait
 portrait 1 AHLCG-Face-Collection
 portrait 2 AHLCG-Face-Encounter
+setting AHLCG-EnemyFace-Portrait-MirrorEdges = Default
 setting AHLCG-WeaknessEnemy-Default-bleed-margin = 8.64
 setting AHLCG-WeaknessEnemy-Default-template = ArkhamHorrorLCG/templates/AHLCG-Enemy.jp2
 setting AHLCG-WeaknessEnemyBack-Default-bleed-margin = 8.64
@@ -59,7 +60,7 @@ tab Game Text: Front
   panel Game Text (27 controls)
 tab Portraits
   panel Portrait (6 controls)
-  panel Options (3 controls)
+  panel Options (5 controls)
 tab Collection
   panel Collection (8 controls)
   panel Custom Collection (6 controls)

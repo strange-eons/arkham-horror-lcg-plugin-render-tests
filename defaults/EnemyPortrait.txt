@@ -12,6 +12,8 @@ setting AHLCG-BackPortrait-Default-bleed-margin = 8.64
 setting AHLCG-BackPortrait-Default-template = ArkhamHorrorLCG/templates/AHLCG-Scenario.jp2
 setting AHLCG-Enemy-Default-bleed-margin = 8.64
 setting AHLCG-Enemy-Default-template = ArkhamHorrorLCG/templates/AHLCG-Enemy.jp2
+setting AHLCG-EnemyFace-Portrait-MirrorEdges = Default
+setting AHLCG-PortraitFace-BackPortrait-MirrorEdges = Default
 setting Artist = 
 setting ArtistBack = 
 setting Attack = 2
@@ -59,9 +61,9 @@ tab Game Text: Front
   panel Game Text (27 controls)
 tab Portraits
   panel Portrait: Front (6 controls)
-  panel Options: Front (3 controls)
+  panel Options: Front (5 controls)
   panel Portrait: Back (6 controls)
-  panel Options: Back (4 controls)
+  panel Options: Back (6 controls)
 tab Collection
   panel Collection (8 controls)
   panel Custom Collection (6 controls)

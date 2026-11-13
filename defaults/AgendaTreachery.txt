@@ -10,8 +10,10 @@ portrait 2 AHLCG-Face-Collection
 portrait 3 AHLCG-Face-Encounter
 setting AHLCG-Agenda-Default-bleed-margin = 8.64
 setting AHLCG-Agenda-Default-template = ArkhamHorrorLCG/templates/AHLCG-Agenda.jp2
+setting AHLCG-AgendaFace-Portrait-MirrorEdges = Default
 setting AHLCG-Treachery-Default-bleed-margin = 8.64
 setting AHLCG-Treachery-Default-template = ArkhamHorrorLCG/templates/AHLCG-Treachery.jp2
+setting AHLCG-TreacheryFace-BackPortrait-MirrorEdges = Default
 setting AgendaStory = 
 setting AgendaStorySpacing = 0
 setting Artist = 
@@ -64,9 +66,9 @@ tab Game Text: Back
   panel Game Text (27 controls)
 tab Portraits
   panel Portrait: Front (6 controls)
-  panel Options: Front (3 controls)
+  panel Options: Front (5 controls)
   panel Portrait: Back (6 controls)
-  panel Options: Back (4 controls)
+  panel Options: Back (6 controls)
 tab Collection
   panel Collection (9 controls)
   panel Custom Collection (6 controls)

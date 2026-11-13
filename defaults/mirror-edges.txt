@@ -1,0 +1,13 @@
+new: Default, Default
+mirrored differs from plain: true
+None, Default: plain
+None, Enable: mirrored
+None, Disable: plain
+MirrorEdges, Default: mirrored
+MirrorEdges, Enable: mirrored
+MirrorEdges, Disable: plain
+Enable buttons: 2
+after the first: Enable, Default
+reloaded: Default, Default
+reloaded Default buttons selected: 2
+investigator buttons: 1

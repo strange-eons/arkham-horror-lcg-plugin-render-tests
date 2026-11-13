@@ -7,6 +7,7 @@ name
 portrait 0 AHLCG-TreacheryFace-Portrait
 portrait 1 AHLCG-Face-Collection
 portrait 2 AHLCG-Face-Encounter
+setting AHLCG-TreacheryFace-Portrait-MirrorEdges = Default
 setting AHLCG-TreacheryStoryBack-Default-bleed-margin = 8.64
 setting AHLCG-TreacheryStoryBack-Default-template = ArkhamHorrorLCG/templates/AHLCG-PlayerBack.jp2
 setting AHLCG-WeaknessTreachery-Default-bleed-margin = 8.64
@@ -50,7 +51,7 @@ tab Game Text: Front
   panel Game Text (27 controls)
 tab Portraits
   panel Portrait (6 controls)
-  panel Options (3 controls)
+  panel Options (5 controls)
 tab Collection
   panel Collection (8 controls)
   panel Custom Collection (6 controls)

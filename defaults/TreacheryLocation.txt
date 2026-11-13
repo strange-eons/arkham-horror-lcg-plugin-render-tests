@@ -11,6 +11,7 @@ setting AHLCG-TreacheryBack-Default-bleed-margin = 8.64
 setting AHLCG-TreacheryBack-Default-template = ArkhamHorrorLCG/templates/AHLCG-EncounterBack.jp2
 setting AHLCG-TreacheryLocation-Default-bleed-margin = 8.64
 setting AHLCG-TreacheryLocation-Default-template = ArkhamHorrorLCG/templates/AHLCG-TreacheryLocation.jp2
+setting AHLCG-TreacheryLocationFace-Portrait-MirrorEdges = Default
 setting Artist = 
 setting BackTypeBack = Encounter
 setting Clues = 1
@@ -52,7 +53,7 @@ tab Game Text: Front
   panel Game Text (27 controls)
 tab Portraits
   panel Portrait (6 controls)
-  panel Options (3 controls)
+  panel Options (5 controls)
 tab Collection
   panel Collection (8 controls)
   panel Custom Collection (6 controls)

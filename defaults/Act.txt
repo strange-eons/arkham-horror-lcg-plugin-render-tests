@@ -11,6 +11,7 @@ setting AHLCG-Act-Default-bleed-margin = 8.64
 setting AHLCG-Act-Default-template = ArkhamHorrorLCG/templates/AHLCG-Act.jp2
 setting AHLCG-ActBack-Default-bleed-margin = 8.64
 setting AHLCG-ActBack-Default-template = ArkhamHorrorLCG/templates/AHLCG-ActBack.jp2
+setting AHLCG-ActFace-Portrait-MirrorEdges = Default
 setting ActStory = 
 setting ActStorySpacing = 0
 setting Artist = 
@@ -56,7 +57,7 @@ tab Game Text: Back
   panel Game Text (2 controls)
 tab Portraits
   panel Portrait (6 controls)
-  panel Options (3 controls)
+  panel Options (5 controls)
 tab Collection
   panel Collection (8 controls)
   panel Custom Collection (6 controls)

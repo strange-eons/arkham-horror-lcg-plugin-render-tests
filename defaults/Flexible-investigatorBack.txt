@@ -11,6 +11,8 @@ setting AHLCG-FlexibleHandler-Back-bleed-margin = 8.64
 setting AHLCG-FlexibleHandler-Back-template = ArkhamHorrorLCG/templates/AHLCG-InvestigatorBack-G.jp2
 setting AHLCG-FlexibleHandler-Front-bleed-margin = 8.64
 setting AHLCG-FlexibleHandler-Front-template = ArkhamHorrorLCG/templates/AHLCG-InvestigatorBack-G.jp2
+setting AHLCG-InvestigatorBackFace-BackPortrait-MirrorEdges = Default
+setting AHLCG-InvestigatorBackFace-Portrait-MirrorEdges = Default
 setting Artist = 
 setting ArtistBack = 
 setting BackFace = investigatorBack
@@ -90,8 +92,8 @@ tab Game Text: Back
   panel Game Text (48 controls)
 tab Portraits
   panel Portrait: Front (6 controls)
-  panel Options: Front (3 controls)
+  panel Options: Front (5 controls)
   panel Portrait: Back (6 controls)
-  panel Options: Back (4 controls)
+  panel Options: Back (6 controls)
 tab Comments
   panel Design Rationale Comments (2 controls)

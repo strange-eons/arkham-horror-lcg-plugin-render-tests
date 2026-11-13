@@ -9,6 +9,7 @@ portrait 1 AHLCG-Face-Collection
 portrait 2 AHLCG-Face-Encounter
 setting AHLCG-Location-Default-bleed-margin = 8.64
 setting AHLCG-Location-Default-template = ArkhamHorrorLCG/templates/AHLCG-Location.jp2
+setting AHLCG-LocationFace-BackPortrait-MirrorEdges = Default
 setting AHLCG-Story-Default-bleed-margin = 8.64
 setting AHLCG-Story-Default-template = ArkhamHorrorLCG/templates/AHLCG-Story.jp2
 setting ArtistBack = 
@@ -76,7 +77,7 @@ tab Game Text: Back
   panel Game Text (27 controls)
 tab Portraits
   panel Portrait (6 controls)
-  panel Options (3 controls)
+  panel Options (5 controls)
 tab Collection
   panel Collection (9 controls)
   panel Custom Collection (6 controls)

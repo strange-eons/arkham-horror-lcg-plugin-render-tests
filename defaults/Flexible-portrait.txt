@@ -10,6 +10,8 @@ setting AHLCG-FlexibleHandler-Back-bleed-margin = 8.64
 setting AHLCG-FlexibleHandler-Back-template = ArkhamHorrorLCG/templates/AHLCG-Scenario.jp2
 setting AHLCG-FlexibleHandler-Front-bleed-margin = 8.64
 setting AHLCG-FlexibleHandler-Front-template = ArkhamHorrorLCG/templates/AHLCG-Scenario.jp2
+setting AHLCG-PortraitFace-BackPortrait-MirrorEdges = Default
+setting AHLCG-PortraitFace-Portrait-MirrorEdges = Default
 setting Artist = 
 setting ArtistBack = 
 setting BackFace = portrait
@@ -19,8 +21,8 @@ tab General
   panel Faces (4 controls)
 tab Portraits
   panel Portrait: Front (6 controls)
-  panel Options: Front (3 controls)
+  panel Options: Front (5 controls)
   panel Portrait: Back (6 controls)
-  panel Options: Back (4 controls)
+  panel Options: Back (6 controls)
 tab Comments
   panel Design Rationale Comments (2 controls)

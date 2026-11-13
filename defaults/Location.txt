@@ -12,6 +12,8 @@ setting AHLCG-Location-Default-bleed-margin = 8.64
 setting AHLCG-Location-Default-template = ArkhamHorrorLCG/templates/AHLCG-Location.jp2
 setting AHLCG-LocationBack-Default-bleed-margin = 8.64
 setting AHLCG-LocationBack-Default-template = ArkhamHorrorLCG/templates/AHLCG-LocationBack.jp2
+setting AHLCG-LocationBackFace-BackPortrait-MirrorEdges = Default
+setting AHLCG-LocationFace-Portrait-MirrorEdges = Default
 setting Artist = 
 setting ArtistBack = 
 setting BackTypeBack = Standard
@@ -87,9 +89,9 @@ tab Game Text: Back
   panel Game Text (22 controls)
 tab Portraits
   panel Portrait: Front (6 controls)
-  panel Options: Front (3 controls)
+  panel Options: Front (5 controls)
   panel Portrait: Back (6 controls)
-  panel Options: Back (4 controls)
+  panel Options: Back (6 controls)
 tab Collection
   panel Collection (9 controls)
   panel Custom Collection (6 controls)

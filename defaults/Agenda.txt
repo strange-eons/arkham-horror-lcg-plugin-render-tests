@@ -11,6 +11,7 @@ setting AHLCG-Agenda-Default-bleed-margin = 8.64
 setting AHLCG-Agenda-Default-template = ArkhamHorrorLCG/templates/AHLCG-Agenda.jp2
 setting AHLCG-AgendaBack-Default-bleed-margin = 8.64
 setting AHLCG-AgendaBack-Default-template = ArkhamHorrorLCG/templates/AHLCG-AgendaBack.jp2
+setting AHLCG-AgendaFace-Portrait-MirrorEdges = Default
 setting AgendaStory = 
 setting AgendaStorySpacing = 0
 setting Artist = 
@@ -56,7 +57,7 @@ tab Game Text: Back
   panel Game Text (2 controls)
 tab Portraits
   panel Portrait (6 controls)
-  panel Options (3 controls)
+  panel Options (5 controls)
 tab Collection
   panel Collection (8 controls)
   panel Custom Collection (6 controls)

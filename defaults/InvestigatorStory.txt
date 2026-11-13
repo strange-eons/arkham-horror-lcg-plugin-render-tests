@@ -12,6 +12,7 @@ setting AHLCG-Investigator-Default-bleed-margin = 8.64
 setting AHLCG-Investigator-Default-template = ArkhamHorrorLCG/templates/AHLCG-Investigator-G.jp2
 setting AHLCG-InvestigatorBack-Default-bleed-margin = 8.64
 setting AHLCG-InvestigatorBack-Default-template = ArkhamHorrorLCG/templates/AHLCG-InvestigatorBack-G.jp2
+setting AHLCG-InvestigatorBackFace-BackPortrait-MirrorEdges = Default
 setting Agility = 3
 setting Artist = 
 setting ArtistBack = 
@@ -89,7 +90,7 @@ tab Portraits
   panel Portrait: Front (6 controls)
   panel Options: Front (3 controls)
   panel Portrait: Back (6 controls)
-  panel Options: Back (3 controls)
+  panel Options: Back (5 controls)
 tab Collection
   panel Collection (8 controls)
   panel Custom Collection (6 controls)
