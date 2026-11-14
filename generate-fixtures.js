@@ -56,6 +56,9 @@ function record(status, name, detail) {
     results.flush();
 }
 
+// Fills the whole image, edges included.
+var TEXTURE = 'res://ArkhamHorrorLCG/default-portraits/DefaultTexture.jp2';
+
 // Monster art in the top right of the image; everything else is cropped.
 var ART =
     'res://ArkhamHorrorLCG/default-portraits/Spawn_of_the_Stars_by_Sofyan_Syarief.jpg';
@@ -83,13 +86,15 @@ function placeArt(portrait) {
     portrait.setPanY((ART_H / 2 - cy) * scale);
 }
 
-// The whole image, centered and scaled to stop inset pixels inside the
-// clip region at the sides and farther in at the top and bottom, within
-// reach of mirrored edges.
-function insetArt(portrait, inset) {
+// The whole image (ART by default), centered and scaled to stop inset
+// pixels inside the clip region at the sides, within reach of mirrored
+// edges.
+function insetArt(portrait, inset, source) {
     var clip = portrait.getClipDimensions();
-    portrait.setSource(ART);
-    portrait.setScale((clip.width - 2 * inset) / ART_W);
+    portrait.setSource(source || ART);
+    portrait.setScale(
+        (clip.width - 2 * inset) / portrait.getImage().getWidth()
+    );
     portrait.setPanX(0);
     portrait.setPanY(0);
 }
@@ -1394,8 +1399,9 @@ var HIDE_COLLECTOR = {
 };
 
 // Flexible variants that set any key, unlike VARIANTS, after FACE_KEYS. Title
-// sets the component name, Card sets keys without a suffix and Portraits sets
-// the source of each portrait, by kind.
+// sets the component name, Card sets keys without a suffix, Portraits sets
+// the source of each portrait, by kind, and ArtInset places the art with
+// insetArt, from ArtSource if set.
 var FACE_VARIANTS = {
     enemyLocation: {
         perInvestigator: {
@@ -1527,6 +1533,17 @@ var FACE_VARIANTS = {
     },
     location: {
         dashes: { Shroud: '-', Clues: '-' },
+        // art short of its clip region, mirrored into the bleed only when
+        // enabled, as the preference is off; the texture fills to its edges
+        artInset: { ArtInset: 4, ArtSource: TEXTURE },
+        artInsetMirrored: {
+            ArtInset: 4,
+            ArtSource: TEXTURE,
+            Card: {
+                'AHLCG-LocationFace-Portrait-MirrorEdges': 'Enable',
+                'AHLCG-LocationFace-BackPortrait-MirrorEdges': 'Enable',
+            },
+        },
         perInvestigatorShroud: {
             Shroud: '4',
             ShroudPerInvestigator: '1',
@@ -1841,7 +1858,18 @@ function build(handler, faces, variant, extra, flexible) {
             ) {
                 for (var fk in extra.faceKeys) {
                     if (fk === 'Title') gc.setName(extra.faceKeys[fk]);
-                    else if (fk === 'Card') {
+                    else if (fk === 'ArtInset') {
+                        for (var ai = 0; ai < gc.getPortraitCount(); ++ai) {
+                            if (isArtPortrait(gc.getPortrait(ai)))
+                                insetArt(
+                                    gc.getPortrait(ai),
+                                    extra.faceKeys.ArtInset,
+                                    extra.faceKeys.ArtSource
+                                );
+                        }
+                    } else if (fk === 'ArtSource') {
+                        // read with ArtInset
+                    } else if (fk === 'Card') {
                         for (var ck in extra.faceKeys.Card)
                             gc.getSettings().set(ck, extra.faceKeys.Card[ck]);
                     } else if (fk === 'Portraits') {
