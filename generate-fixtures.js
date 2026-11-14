@@ -14,7 +14,8 @@
  * checks it records; token-blocks.txt, from editing a flexible token rules
  * card; collector-tabs.txt, from choosing sets on a flexible card; sides.txt,
  * from painting flexible card faces with the same data on both sides;
- * mirror-edges.txt, from each portrait mirror edges setting; and
+ * mirror-edges.txt, from each portrait mirror edges setting; conversion.txt,
+ * from converting each card handler's fixtures to a flexible card; and
  * text-blocks.txt, from editing a flexible story
  * card's text blocks; editor-fit.txt, from resizing flexible card editors;
  * encounter-tab.txt, from changing the class or subtype of flexible cards;
@@ -3339,6 +3340,150 @@ function writeMirrorEdges() {
     record('OK', 'mirror-edges', out);
 }
 
+// Converts each card handler's fixtures to a flexible card with Edit > Convert
+// To, as the conversion map offers it, each fixture saved and reopened first
+// as a user would open it. Lists for each handler its option, the faces the
+// flexible cards get, and any fixture whose converted card, or that card saved
+// and reopened, doesn't paint the same, bleed included.
+function writeConversion() {
+    var RenderTarget = Packages.ca.cgjennings.apps.arkham.sheet.RenderTarget;
+    var conversion = Packages.ca.cgjennings.apps.arkham.component.conversion;
+    var ConversionMap = Packages.gamedata.ConversionMap;
+    var lines = [];
+
+    function paint(gc) {
+        var sheets = gc.createDefaultSheets();
+        var images = [];
+        for (var i = 0; i < sheets.length; ++i) {
+            sheets[i].setUserBleedMargin(sheets[i].getBleedMargin());
+            var image = sheets[i].paint(RenderTarget.PREVIEW, 150);
+            var w = image.getWidth(),
+                h = image.getHeight();
+            images.push({
+                size: w + 'x' + h,
+                pixels: image.getRGB(0, 0, w, h, null, 0, w),
+                width: w,
+            });
+        }
+        return images;
+    }
+    function differences(a, b) {
+        var found = [];
+        for (var i = 0; i < Math.max(a.length, b.length); ++i) {
+            if (a[i] == null || b[i] == null) {
+                found.push('sheet ' + i + ' missing');
+            } else if (a[i].size !== b[i].size) {
+                found.push('sheet ' + i + ' ' + a[i].size + ' vs ' + b[i].size);
+            } else if (!java.util.Arrays.equals(a[i].pixels, b[i].pixels)) {
+                var first = -1,
+                    last = -1;
+                for (var p = 0; p < a[i].pixels.length; ++p) {
+                    if (a[i].pixels[p] !== b[i].pixels[p]) {
+                        var y = Math.floor(p / a[i].width);
+                        if (first < 0) first = y;
+                        last = y;
+                    }
+                }
+                found.push('sheet ' + i + ' rows ' + first + '-' + last);
+            }
+        }
+        return found;
+    }
+    function reopen(gc) {
+        var file = File.createTempFile('conversion', '.eon');
+        try {
+            ResourceKit.writeGameComponentToFile(file, gc);
+            return ResourceKit.getGameComponentFromFile(file, false);
+        } finally {
+            file['delete']();
+        }
+    }
+
+    var map = ConversionMap.getShared();
+    for (var handler in HANDLERS) {
+        var className = 'diy:ArkhamHorrorLCG/diy/' + handler + '.js';
+        var options = [];
+        var target = null;
+        for (
+            var it = map.getDirectConversions(className).iterator();
+            it.hasNext();
+        ) {
+            var option = it.next();
+            options.push(String(option.getName()));
+            target = option;
+        }
+        if (target == null) {
+            lines.push(handler + ': none');
+            continue;
+        }
+        var faces = HANDLERS[handler];
+        var variants = [
+            ['default', null],
+            ['filled', null],
+        ];
+        var seen = {};
+        for (var f = 0; f < 2; ++f) {
+            var type = faces[f];
+            if (seen[type] || VARIANTS[type] == null) continue;
+            seen[type] = true;
+            for (var v in VARIANTS[type])
+                variants.push([v, { face: type, values: VARIANTS[type][v] }]);
+        }
+        for (var hv in HANDLER_VARIANTS[handler] || {})
+            variants.push([hv, { keys: HANDLER_VARIANTS[handler][hv] }]);
+
+        var ids = [];
+        var same = 0;
+        var problems = [];
+        variants.forEach(function (pair) {
+            var name = handler + '/' + pair[0];
+            var known = problems.length;
+            try {
+                var gc = reopen(build(handler, faces, pair[0], pair[1], false));
+                var converted =
+                    conversion.ConversionSession.convertGameComponent(
+                        target.createManualConversionTrigger(),
+                        gc,
+                        false
+                    );
+                var s = converted.getSettings();
+                var faceIds = s.get('FrontFace') + '/' + s.get('BackFace');
+                if (ids.indexOf(faceIds) < 0) ids.push(faceIds);
+                var before = paint(gc);
+                var found = differences(before, paint(converted));
+                if (found.length > 0)
+                    problems.push(name + ': ' + found.join(', '));
+                found = differences(before, paint(reopen(converted)));
+                if (found.length > 0)
+                    problems.push(name + ' reopened: ' + found.join(', '));
+            } catch (e) {
+                problems.push(
+                    name + ' FAIL ' + (e.javaException ? e.javaException : e)
+                );
+            }
+            if (problems.length === known) ++same;
+        });
+        lines.push(
+            handler +
+                ': ' +
+                options.join(', ') +
+                ' -> ' +
+                ids.join(', ') +
+                ', ' +
+                same +
+                ' of ' +
+                variants.length +
+                ' the same'
+        );
+        problems.forEach(function (p) {
+            lines.push('  ' + p);
+        });
+    }
+    var file = new File(outDir, 'conversion.txt');
+    java.nio.file.Files.writeString(file.toPath(), lines.join('\n') + '\n');
+    record('OK', 'conversion', file);
+}
+
 try {
     for (var h in HANDLERS) {
         if (mode === 'defaults') writeDefaults(h, null);
@@ -3363,6 +3508,7 @@ try {
     if (mode === 'defaults') writeRepaint();
     if (mode === 'defaults') writeSides();
     if (mode === 'defaults') writeMirrorEdges();
+    if (mode === 'defaults') writeConversion();
     results.println('DONE');
 } finally {
     results.close();

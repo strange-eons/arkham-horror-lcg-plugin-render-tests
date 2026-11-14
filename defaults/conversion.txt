@@ -1,0 +1,53 @@
+Investigator: Flexible Card -> investigator/investigatorBack, 10 of 10 the same
+Asset: Flexible Card -> asset/playerBack, asset/encounterBack, 11 of 11 the same
+Event: Flexible Card -> event/playerBack, event/encounterBack, 13 of 13 the same
+Skill: Flexible Card -> skill/playerBack, skill/encounterBack, 11 of 11 the same
+AssetAsset: Flexible Card -> asset/asset, 10 of 10 the same
+Customizable: Flexible Card -> customizable/customizableBack, 4 of 4 the same
+WeaknessEnemy: Flexible Card -> enemy/playerBack, 6 of 6 the same
+WeaknessTreachery: Flexible Card -> treachery/playerBack, 6 of 6 the same
+Treachery: Flexible Card -> treachery/encounterBack, 5 of 5 the same
+Enemy: Flexible Card -> enemy/encounterBack, 7 of 7 the same
+TreacheryLocation: Flexible Card -> treacheryLocation/encounterBack, 7 of 7 the same
+Location: Flexible Card -> location/locationBack, location/playerBack, 12 of 12 the same
+Act: Flexible Card -> act/actBack, 14 of 14 the same
+Agenda: Flexible Card -> agenda/agendaBack, 14 of 14 the same
+Chaos: Flexible Card -> tokenRules/tokenRules, 14 of 14 the same
+StoryStory: Flexible Card -> story/story, tokenRules/tokenRules, story/playerBack, story/encounterBack, 23 of 23 the same
+Key: Flexible Card -> key/key, 9 of 9 the same
+ActEnemy: Flexible Card -> act/enemy, 8 of 8 the same
+ActLocation: Flexible Card -> act/location, 9 of 9 the same
+ActPortrait: Flexible Card -> act/agendaPortrait, 10 of 10 the same
+ActAssetStory: Flexible Card -> act/asset, 10 of 10 the same
+AgendaFrontPortrait: Flexible Card -> agendaFrontPortrait/agendaBack, 9 of 9 the same
+AgendaEnemy: Flexible Card -> agenda/enemy, 8 of 8 the same
+AgendaLocation: Flexible Card -> agenda/location, 9 of 9 the same
+AgendaPortrait: Flexible Card -> agenda/agendaPortrait, 10 of 10 the same
+AgendaAssetStory: Flexible Card -> agenda/asset, 9 of 9 the same
+AgendaTreachery: Flexible Card -> agenda/treachery, 8 of 8 the same
+StoryAsset: Flexible Card -> story/asset, tokenRules/asset, 11 of 11 the same
+StoryEnemy: Flexible Card -> story/enemy, tokenRules/enemy, 8 of 8 the same
+StoryLocation: Flexible Card -> story/location, tokenRules/location, 12 of 12 the same
+StoryChaos: Flexible Card -> story/tokenRules, 9 of 9 the same
+StoryTreachery: Flexible Card -> story/treachery, tokenRules/treachery, 9 of 9 the same
+LocationLocation: Flexible Card -> location/location, 10 of 10 the same
+InvestigatorStory: Flexible Card -> investigator/investigatorBack, 6 of 6 the same
+EnemyLocation: Flexible Card -> enemyLocation/location, 9 of 9 the same
+EnemyEnemy: Flexible Card -> enemy/enemy, 6 of 6 the same
+AssetStory: Flexible Card -> asset/playerBack, asset/encounterBack, 8 of 8 the same
+AssetStoryAsset: Flexible Card -> asset/asset, 8 of 8 the same
+AssetStoryEnemy: Flexible Card -> asset/enemy, 7 of 7 the same
+MiniInvestigator: none
+Concealed: none
+Ultimatum: none
+Divider: none
+PackCover: none
+BoxCover: none
+Guide75: none
+GuideA4: none
+GuideLetter: none
+Scenario: Flexible Card -> scenarioRules/scenarioRules, tokenRules/tokenRules, scenarioRules/tokenRules, portrait/portrait, portrait/tokenRules, 11 of 11 the same
+AssetStoryPortrait: Flexible Card -> asset/portrait, 7 of 7 the same
+EnemyPortrait: Flexible Card -> enemy/portrait, 5 of 5 the same
+TreacheryPortrait: Flexible Card -> treachery/portrait, 5 of 5 the same
+TreacheryStory: Flexible Card -> treachery/playerBack, 5 of 5 the same
