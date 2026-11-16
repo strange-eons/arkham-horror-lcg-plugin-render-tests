@@ -1594,6 +1594,12 @@ var FACE_VARIANTS = {
         story: { CardClass: 'Story' },
         storyWeakness: { CardClass: 'StoryWeakness' },
         costDash: { ResourceCost: '-' },
+        // victory at the bottom without flavor between
+        noFlavor: { Flavor: '' },
+        // flavor centered below the text, without victory
+        noVictory: { Victory: '' },
+        // text too long to fit, scaled as one block
+        longText: { Rules: RULES + '\n' + RULES + '\n' + RULES },
         replaced: {
             Card: {
                 TemplateReplacement: REPLACEMENT_IMAGE,
@@ -1622,6 +1628,10 @@ var FACE_VARIANTS = {
             Card: { Encounter: 'ReturnToCultOfUmordhoth', EncounterType: '0' },
         },
         reward: { CardClass: 'Reward', CardClass2: 'None', CardClass3: 'None' },
+        // victory at the bottom without flavor between
+        noFlavor: { Flavor: '' },
+        // flavor centered below the text, without victory
+        noVictory: { Victory: '' },
         replaced: {
             Card: {
                 TemplateReplacement: REPLACEMENT_IMAGE,
@@ -1640,6 +1650,10 @@ var FACE_VARIANTS = {
         returnTo: {
             Card: { Encounter: 'ReturnToCultOfUmordhoth', EncounterType: '0' },
         },
+        // victory at the bottom without flavor between
+        noFlavor: { Flavor: '' },
+        // flavor centered below the text, without victory
+        noVictory: { Victory: '' },
         replaced: {
             Card: {
                 TemplateReplacement: REPLACEMENT_IMAGE,
