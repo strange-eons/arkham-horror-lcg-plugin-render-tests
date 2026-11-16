@@ -1,0 +1,124 @@
+playerBack: 5 of 7 the same
+  playerBack/default other back side 0: rows 531-537
+  playerBack/default other back reopened side 0: rows 531-537
+  playerBack/filled other back side 0: rows 531-537
+  playerBack/filled other back reopened side 0: rows 531-537
+encounterBack: 5 of 7 the same
+  encounterBack/default other back side 0: rows 531-537
+  encounterBack/default other back reopened side 0: rows 531-537
+  encounterBack/filled other back side 0: rows 531-537
+  encounterBack/filled other back reopened side 0: rows 531-537
+enemy: 59 of 63 the same
+  enemy/customIcons other back side 1: rows 291-315
+  enemy/customIcons other back reopened side 1: rows 291-315
+  enemy/noCollectorLine back side 0: rows 531-537
+  enemy/noCollectorLine back reopened side 0: rows 531-537
+  enemy/noCollectorLine front side 1: rows 530-537
+  enemy/noCollectorLine front reopened side 1: rows 530-537
+  enemy/noCollectorLine other back side 0: rows 531-537
+  enemy/noCollectorLine other back reopened side 0: rows 531-537
+scenarioRules: 8 of 11 the same
+  scenarioRules/default other back side 0: rows 531-537
+  scenarioRules/default other back reopened side 0: rows 531-537
+  scenarioRules/filled other back side 0: rows 531-537
+  scenarioRules/filled other back reopened side 0: rows 531-537
+  scenarioRules/resolution other back side 0: rows 531-537
+  scenarioRules/resolution other back reopened side 0: rows 531-537
+story: 31 of 35 the same
+  story/customIcons other back side 1: rows 54-81
+  story/customIcons other back reopened side 1: rows 54-81
+  story/noCollectorLine back side 0: rows 509-515
+  story/noCollectorLine back reopened side 0: rows 509-515
+  story/noCollectorLine front side 1: rows 508-515
+  story/noCollectorLine front reopened side 1: rows 508-515
+  story/noCollectorLine other back side 0: rows 531-537
+  story/noCollectorLine other back reopened side 0: rows 531-537
+tokenRules: 127 of 131 the same
+  tokenRules/customIcons other back side 1: rows 79-105
+  tokenRules/customIcons other back reopened side 1: rows 79-105
+  tokenRules/noCollectorLine back side 0: rows 531-537
+  tokenRules/noCollectorLine back reopened side 0: rows 531-537
+  tokenRules/noCollectorLine front side 1: rows 530-537
+  tokenRules/noCollectorLine front reopened side 1: rows 530-537
+  tokenRules/noCollectorLine other back side 0: rows 531-537
+  tokenRules/noCollectorLine other back reopened side 0: rows 531-537
+treachery: 38 of 39 the same
+  treachery/customIcons other back side 1: rows 273-296
+  treachery/customIcons other back reopened side 1: rows 273-296
+asset: 59 of 59 the same
+event: 51 of 51 the same
+skill: 35 of 35 the same
+customizable: 5 of 7 the same, shared CustName1, CustName2
+  customizable/default other back side 0: rows 531-537
+  customizable/default other back reopened side 0: rows 531-537
+  customizable/filled other back side 0: rows 531-537
+  customizable/filled other back reopened side 0: rows 531-537
+customizableBack: 5 of 7 the same
+  customizableBack/default other back side 0: rows 531-537
+  customizableBack/default other back reopened side 0: rows 531-537
+  customizableBack/filled other back side 0: rows 531-537
+  customizableBack/filled other back reopened side 0: rows 531-537
+location: 43 of 43 the same
+locationBack: 11 of 15 the same
+  locationBack/default other back side 0: rows 531-537
+  locationBack/default other back reopened side 0: rows 531-537
+  locationBack/filled other back side 0: rows 531-537
+  locationBack/filled other back reopened side 0: rows 531-537
+  locationBack/noEncounterIcon other back side 0: rows 531-537
+  locationBack/noEncounterIcon other back reopened side 0: rows 531-537
+  locationBack/returnTo other back side 0: rows 531-537
+  locationBack/returnTo other back reopened side 0: rows 531-537
+key: 15 of 19 the same
+  key/filled front side 1: rows 507-519
+  key/filled front reopened side 1: rows 507-519
+  key/returnTo front side 1: rows 507-519
+  key/returnTo front reopened side 1: rows 507-519
+  key/customIcons front side 1: rows 507-519
+  key/customIcons front reopened side 1: rows 507-519
+  key/customIcons other back side 1: rows 32-56
+  key/customIcons other back reopened side 1: rows 32-56
+investigator: 27 of 27 the same
+investigatorBack: 14 of 19 the same, shared CardClass, Subtitle
+  investigatorBack/default other back side 0: rows 531-537
+  investigatorBack/default other back reopened side 0: rows 531-537
+  investigatorBack/filled other back side 0: rows 531-537
+  investigatorBack/filled other back reopened side 0: rows 531-537
+  investigatorBack/parallel other back side 0: rows 531-537
+  investigatorBack/parallel other back reopened side 0: rows 531-537
+  investigatorBack/neutral other back side 0: rows 531-537
+  investigatorBack/neutral other back reopened side 0: rows 531-537
+  investigatorBack/story other back side 0: rows 531-537
+  investigatorBack/story other back reopened side 0: rows 531-537
+act: 42 of 43 the same, shared ScenarioDeckID, ScenarioIndex
+  act/customIcons other back side 1: rows 50-74
+  act/customIcons other back reopened side 1: rows 50-74
+actBack: 11 of 15 the same, shared ScenarioDeckID, ScenarioIndex
+  actBack/default other back side 0: rows 531-537
+  actBack/default other back reopened side 0: rows 531-537
+  actBack/filled other back side 0: rows 531-537
+  actBack/filled other back reopened side 0: rows 531-537
+  actBack/returnTo other back side 0: rows 531-537
+  actBack/returnTo other back reopened side 0: rows 531-537
+  actBack/twoDigitIndex other back side 0: rows 531-537
+  actBack/twoDigitIndex other back reopened side 0: rows 531-537
+agenda: 47 of 47 the same, shared ScenarioDeckID, ScenarioIndex
+agendaBack: 8 of 11 the same, shared ScenarioDeckID, ScenarioIndex
+  agendaBack/default other back side 0: rows 531-537
+  agendaBack/default other back reopened side 0: rows 531-537
+  agendaBack/filled other back side 0: rows 531-537
+  agendaBack/filled other back reopened side 0: rows 531-537
+  agendaBack/returnTo other back side 0: rows 531-537
+  agendaBack/returnTo other back reopened side 0: rows 531-537
+agendaFrontPortrait: 19 of 19 the same, shared ScenarioDeckID, ScenarioIndex
+agendaPortrait: 14 of 15 the same
+  agendaPortrait/customIcons other back side 1: rows 257-286
+  agendaPortrait/customIcons other back reopened side 1: rows 257-286
+portrait: 8 of 11 the same
+  portrait/default other back side 0: rows 531-537
+  portrait/default other back reopened side 0: rows 531-537
+  portrait/filled other back side 0: rows 531-537
+  portrait/filled other back reopened side 0: rows 531-537
+  portrait/noArtist other back side 0: rows 531-537
+  portrait/noArtist other back reopened side 0: rows 531-537
+treacheryLocation: 19 of 19 the same
+enemyLocation: 19 of 19 the same

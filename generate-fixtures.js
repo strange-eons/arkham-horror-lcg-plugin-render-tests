@@ -17,7 +17,9 @@
  * mirror-edges.txt, from each portrait mirror edges setting;
  * anchor-victory.txt, from each victory anchoring setting and its
  * preferences check box; conversion.txt,
- * from converting each card handler's fixtures to a flexible card; and
+ * from converting each card handler's fixtures to a flexible card;
+ * compose.txt, from composing flexible cards of the faces of each flexible
+ * fixture; and
  * text-blocks.txt, from editing a flexible story
  * card's text blocks; editor-fit.txt, from resizing flexible card editors;
  * encounter-tab.txt, from changing the class or subtype of flexible cards;
@@ -31,7 +33,7 @@
  */
 /* global
   importClass, Packages, File, PrintWriter, OutputStreamWriter,
-  FileOutputStream, DIY, ResourceKit, Eons
+  FileOutputStream, DIY, ResourceKit, Eons, JavaAdapter
  */
 importClass(java.io.File);
 importClass(java.io.PrintWriter);
@@ -3488,64 +3490,71 @@ function writeAnchorVictory() {
     record('OK', 'anchor-victory', out);
 }
 
+// The sheets of a component painted with their bleed: { size, pixels, width }
+function paintSheets(gc) {
+    var sheets = gc.createDefaultSheets();
+    var images = [];
+    for (var i = 0; i < sheets.length; ++i) {
+        sheets[i].setUserBleedMargin(sheets[i].getBleedMargin());
+        var image = sheets[i].paint(
+            Packages.ca.cgjennings.apps.arkham.sheet.RenderTarget.PREVIEW,
+            150
+        );
+        var w = image.getWidth(),
+            h = image.getHeight();
+        images.push({
+            size: w + 'x' + h,
+            pixels: image.getRGB(0, 0, w, h, null, 0, w),
+            width: w,
+        });
+    }
+    return images;
+}
+
+// what differs between two paintSheets results, by sheet
+function differences(a, b) {
+    var found = [];
+    for (var i = 0; i < Math.max(a.length, b.length); ++i) {
+        if (a[i] == null || b[i] == null) {
+            found.push('sheet ' + i + ' missing');
+        } else if (a[i].size !== b[i].size) {
+            found.push('sheet ' + i + ' ' + a[i].size + ' vs ' + b[i].size);
+        } else if (!java.util.Arrays.equals(a[i].pixels, b[i].pixels)) {
+            var first = -1,
+                last = -1;
+            for (var p = 0; p < a[i].pixels.length; ++p) {
+                if (a[i].pixels[p] !== b[i].pixels[p]) {
+                    var y = Math.floor(p / a[i].width);
+                    if (first < 0) first = y;
+                    last = y;
+                }
+            }
+            found.push('sheet ' + i + ' rows ' + first + '-' + last);
+        }
+    }
+    return found;
+}
+
+// the component saved and opened again
+function reopen(gc) {
+    var file = File.createTempFile('conversion', '.eon');
+    try {
+        ResourceKit.writeGameComponentToFile(file, gc);
+        return ResourceKit.getGameComponentFromFile(file, false);
+    } finally {
+        file['delete']();
+    }
+}
+
 // Converts each card handler's fixtures to a flexible card with Edit > Convert
 // To, as the conversion map offers it, each fixture saved and reopened first
 // as a user would open it. Lists for each handler its option, the faces the
 // flexible cards get, and any fixture whose converted card, or that card saved
 // and reopened, doesn't paint the same, bleed included.
 function writeConversion() {
-    var RenderTarget = Packages.ca.cgjennings.apps.arkham.sheet.RenderTarget;
     var conversion = Packages.ca.cgjennings.apps.arkham.component.conversion;
     var ConversionMap = Packages.gamedata.ConversionMap;
     var lines = [];
-
-    function paint(gc) {
-        var sheets = gc.createDefaultSheets();
-        var images = [];
-        for (var i = 0; i < sheets.length; ++i) {
-            sheets[i].setUserBleedMargin(sheets[i].getBleedMargin());
-            var image = sheets[i].paint(RenderTarget.PREVIEW, 150);
-            var w = image.getWidth(),
-                h = image.getHeight();
-            images.push({
-                size: w + 'x' + h,
-                pixels: image.getRGB(0, 0, w, h, null, 0, w),
-                width: w,
-            });
-        }
-        return images;
-    }
-    function differences(a, b) {
-        var found = [];
-        for (var i = 0; i < Math.max(a.length, b.length); ++i) {
-            if (a[i] == null || b[i] == null) {
-                found.push('sheet ' + i + ' missing');
-            } else if (a[i].size !== b[i].size) {
-                found.push('sheet ' + i + ' ' + a[i].size + ' vs ' + b[i].size);
-            } else if (!java.util.Arrays.equals(a[i].pixels, b[i].pixels)) {
-                var first = -1,
-                    last = -1;
-                for (var p = 0; p < a[i].pixels.length; ++p) {
-                    if (a[i].pixels[p] !== b[i].pixels[p]) {
-                        var y = Math.floor(p / a[i].width);
-                        if (first < 0) first = y;
-                        last = y;
-                    }
-                }
-                found.push('sheet ' + i + ' rows ' + first + '-' + last);
-            }
-        }
-        return found;
-    }
-    function reopen(gc) {
-        var file = File.createTempFile('conversion', '.eon');
-        try {
-            ResourceKit.writeGameComponentToFile(file, gc);
-            return ResourceKit.getGameComponentFromFile(file, false);
-        } finally {
-            file['delete']();
-        }
-    }
 
     var map = ConversionMap.getShared();
     for (var handler in HANDLERS) {
@@ -3597,11 +3606,11 @@ function writeConversion() {
                 var s = converted.getSettings();
                 var faceIds = s.get('FrontFace') + '/' + s.get('BackFace');
                 if (ids.indexOf(faceIds) < 0) ids.push(faceIds);
-                var before = paint(gc);
-                var found = differences(before, paint(converted));
+                var before = paintSheets(gc);
+                var found = differences(before, paintSheets(converted));
                 if (found.length > 0)
                     problems.push(name + ': ' + found.join(', '));
-                found = differences(before, paint(reopen(converted)));
+                found = differences(before, paintSheets(reopen(converted)));
                 if (found.length > 0)
                     problems.push(name + ' reopened: ' + found.join(', '));
             } catch (e) {
@@ -3632,6 +3641,248 @@ function writeConversion() {
     record('OK', 'conversion', file);
 }
 
+// Composes flexible cards from the faces of each flexible fixture, as
+// handlers/FaceComposer does for a conversion that names where each side's
+// face comes from. The new card starts as the face's default fixture, or a
+// treachery's (an enemy's for treachery), with the fixture's collector line,
+// which a composed card keeps as its own. It gets the fixture's back, its
+// front, or both with the sides swapped (not for default fixtures, whose
+// sides differ in title). Settings both sides share, which cancel a
+// composition when they differ, are then taken from the fixture and listed.
+// Each side that moved is compared with the fixture's, and each side kept
+// with the starting card's, bleed included, also after saving and reopening.
+// Lists for each face how many compositions paint the same and any that
+// don't or failed. Expected differences follow the new card's other face:
+// the collection number's a/b suffix, a custom encounter icon's scale, and a
+// key back's subtitle, which shows the front's when it has none.
+function writeCompose() {
+    var conversion = Packages.ca.cgjennings.apps.arkham.component.conversion;
+    var Flexible = 'diy:ArkhamHorrorLCG/diy/Flexible.js';
+    var lines = [];
+    var Collector = [
+        'Collection',
+        'CollectionType',
+        'CollectionNumber',
+        'flipSuffix',
+        'Encounter',
+        'EncounterType',
+        'EncounterNumber',
+        'EncounterTotal',
+        'Copyright',
+        'TemplateReplacementBleed',
+    ];
+
+    // the face's default fixture with the collector line of gc
+    function baseFor(type, gc) {
+        var base = build('Flexible', [type, type], 'default', null, true);
+        Collector.forEach(function (key) {
+            var value = gc.getSettings().getOverride(key);
+            if (value != null) base.getSettings().set(key, value);
+            else base.getSettings().reset(key);
+        });
+        ['Collection', 'Encounter'].forEach(function (kind) {
+            var from = findPortrait(gc, 'AHLCG-Face-' + kind);
+            var to = findPortrait(base, 'AHLCG-Face-' + kind);
+            if (from != null && to != null) to.setSource(from.getSource());
+        });
+        return reopen(base);
+    }
+
+    function findPortrait(gc, key) {
+        for (var p = 0; p < gc.getPortraitCount(); ++p) {
+            if (String(gc.getPortrait(p).getBaseKey()) === key)
+                return gc.getPortrait(p);
+        }
+        return null;
+    }
+
+    // composes, giving the base the fixture's value of each shared setting
+    // the plug-in finds in conflict; returns { card, shared }
+    function composeSharing(base, gc, faces) {
+        try {
+            return { card: compose(base, faces), shared: [] };
+        } catch (e) {
+            var message = String(
+                e.javaException ? e.javaException.getMessage() : e
+            );
+            var found = /conflicting settings: (.*)$/.exec(message);
+            if (found == null) throw e;
+            var shared = found[1].split(', ').map(function (entry) {
+                return entry.substring(0, entry.indexOf(' ('));
+            });
+            shared.forEach(function (key) {
+                base.getSettings().set(key, gc.getSettings().get(key));
+            });
+            return { card: compose(base, faces), shared: shared };
+        }
+    }
+
+    function compose(base, faces) {
+        var trigger = new JavaAdapter(conversion.ConversionTrigger, {
+            getCause: function () {
+                return 'AHLCG-ComposeFaces';
+            },
+            getTargetClassName: function () {
+                return Flexible;
+            },
+            getRequiredExtensionName: function () {
+                return null;
+            },
+            getRequiredExtensionId: function () {
+                return null;
+            },
+            getFaceComponent: function (i) {
+                return faces[i][0];
+            },
+            getFaceSide: function (i) {
+                return faces[i][1];
+            },
+        });
+        return conversion.ConversionSession.convertGameComponent(
+            trigger,
+            base,
+            false
+        );
+    }
+
+    // [ name, faces of the new card, checks ]: each check compares a side of
+    // the new card with a side of a card painted on its own; other has
+    // another face
+    function cases(gc, base, other, variant) {
+        var list = [
+            [
+                'back',
+                [
+                    [base, 0],
+                    [gc, 1],
+                ],
+                [
+                    [1, gc, 1],
+                    [0, base, 0],
+                ],
+            ],
+            [
+                'front',
+                [
+                    [gc, 0],
+                    [base, 1],
+                ],
+                [
+                    [0, gc, 0],
+                    [1, base, 1],
+                ],
+            ],
+            [
+                'other back',
+                [
+                    [other, 0],
+                    [gc, 1],
+                ],
+                [
+                    [1, gc, 1],
+                    [0, other, 0],
+                ],
+            ],
+        ];
+        if (variant !== 'default')
+            list.push([
+                'swapped',
+                [
+                    [gc, 1],
+                    [gc, 0],
+                ],
+                [
+                    [0, gc, 0],
+                    [1, gc, 1],
+                ],
+            ]);
+        return list;
+    }
+
+    for (var i = 0; i < FLEXIBLE.length; ++i) {
+        var type = FLEXIBLE[i];
+        var faces = [type, type];
+        var variants = [
+            ['default', null],
+            ['filled', null],
+        ];
+        for (var v in VARIANTS[type] || {})
+            variants.push([v, { face: type, values: VARIANTS[type][v] }]);
+        for (var fv in FACE_VARIANTS[type] || {})
+            variants.push([
+                fv,
+                { face: type, faceKeys: FACE_VARIANTS[type][fv] },
+            ]);
+
+        var checked = 0;
+        var same = 0;
+        var problems = [];
+        var sharedKeys = [];
+        variants.forEach(function (pair) {
+            var gc = reopen(build('Flexible', faces, pair[0], pair[1], true));
+            var base = baseFor(type, gc);
+            var other = baseFor(
+                type === 'treachery' ? 'enemy' : 'treachery',
+                gc
+            );
+            cases(gc, base, other, pair[0]).forEach(function (c) {
+                var name = type + '/' + pair[0] + ' ' + c[0];
+                var known = problems.length;
+                ++checked;
+                try {
+                    var result = composeSharing(base, gc, c[1]);
+                    var composed = result.card;
+                    result.shared.forEach(function (key) {
+                        if (sharedKeys.indexOf(key) < 0) sharedKeys.push(key);
+                    });
+                    [composed, reopen(composed)].forEach(function (card, n) {
+                        var sheets = paintSheets(card);
+                        c[2].forEach(function (check) {
+                            var found = differences(
+                                [sheets[check[0]]],
+                                [paintSheets(check[1])[check[2]]]
+                            );
+                            if (found.length > 0)
+                                problems.push(
+                                    name +
+                                        (n > 0 ? ' reopened' : '') +
+                                        ' side ' +
+                                        check[0] +
+                                        ': ' +
+                                        found.join(', ').replace('sheet 0 ', '')
+                                );
+                        });
+                    });
+                } catch (e) {
+                    problems.push(
+                        name +
+                            ' FAIL ' +
+                            (e.javaException ? e.javaException : e)
+                    );
+                }
+                if (problems.length === known) ++same;
+            });
+        });
+        lines.push(
+            type +
+                ': ' +
+                same +
+                ' of ' +
+                checked +
+                ' the same' +
+                (sharedKeys.length > 0
+                    ? ', shared ' + sharedKeys.sort().join(', ')
+                    : '')
+        );
+        problems.forEach(function (p) {
+            lines.push('  ' + p);
+        });
+    }
+    var file = new File(outDir, 'compose.txt');
+    java.nio.file.Files.writeString(file.toPath(), lines.join('\n') + '\n');
+    record('OK', 'compose', file);
+}
+
 try {
     for (var h in HANDLERS) {
         if (mode === 'defaults') writeDefaults(h, null);
@@ -3658,6 +3909,7 @@ try {
     if (mode === 'defaults') writeMirrorEdges();
     if (mode === 'defaults') writeAnchorVictory();
     if (mode === 'defaults') writeConversion();
+    if (mode === 'defaults') writeCompose();
     results.println('DONE');
 } finally {
     results.close();
