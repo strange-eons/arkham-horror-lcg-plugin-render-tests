@@ -1674,6 +1674,18 @@ var FACE_VARIANTS = {
             Horror: '5',
         },
         dashes: { Health: '-', Attack: '-', PerInvestigatorAttack: '0' },
+        // victory at the bottom without flavor between
+        noFlavor: { Flavor: '' },
+        // flavor centered below the text, without victory
+        noVictory: { Victory: '' },
+        // flavor of several lines, centered where the text narrows
+        longFlavor: {
+            Flavor:
+                'The stars were right, and the old ones stirred beneath ' +
+                'the waves, dreaming of the day the city would rise.',
+        },
+        // text too long to fit, scaled as one block
+        longText: { Rules: RULES + '\n' + RULES + '\n' + RULES },
         replaced: {
             Card: {
                 TemplateReplacement: REPLACEMENT_IMAGE,
