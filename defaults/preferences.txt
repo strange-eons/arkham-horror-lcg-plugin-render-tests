@@ -1,3 +1,4 @@
+unchanged AHLCG-AnchorVictory = no
 unchanged AHLCG-DefaultBodyFontOffset = -2
 unchanged AHLCG-DefaultCollection = StrangeEons
 unchanged AHLCG-DefaultEncounterSet = AgentsOfHastur
@@ -27,6 +28,7 @@ unchanged AHLCG-UserEncounterName1 = Night Market
 unchanged AHLCG-UserEncounterName2 = Low Tide
 unchanged AHLCG-UserEncounterTag1 = nmkt
 unchanged AHLCG-UserEncounterTag2 = tide
+edited AHLCG-AnchorVictory = yes
 edited AHLCG-DefaultBodyFont = Default
 edited AHLCG-DefaultBodyFontOffset = -2
 edited AHLCG-DefaultBodyFontSize = 100

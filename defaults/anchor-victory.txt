@@ -1,0 +1,12 @@
+enemy slack: unset as no, yes differs
+enemy scaled: unset as no, yes as no
+treachery slack: unset as no, yes differs
+treachery scaled: unset as no, yes as no
+asset slack: unset as no, yes differs
+asset scaled: unset as no, yes as no
+event slack: unset as no, yes differs
+event scaled: unset as no, yes as no
+loaded yes: true
+loaded unset: false
+stored unchecked: no
+stored checked: yes

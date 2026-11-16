@@ -14,7 +14,9 @@
  * checks it records; token-blocks.txt, from editing a flexible token rules
  * card; collector-tabs.txt, from choosing sets on a flexible card; sides.txt,
  * from painting flexible card faces with the same data on both sides;
- * mirror-edges.txt, from each portrait mirror edges setting; conversion.txt,
+ * mirror-edges.txt, from each portrait mirror edges setting;
+ * anchor-victory.txt, from each victory anchoring setting and its
+ * preferences check box; conversion.txt,
  * from converting each card handler's fixtures to a flexible card; and
  * text-blocks.txt, from editing a flexible story
  * card's text blocks; editor-fit.txt, from resizing flexible card editors;
@@ -2484,7 +2486,9 @@ function writePreferences() {
     find(panel, javax.swing.JSpinner, [])[0].setValue(
         new java.lang.Integer(77)
     );
-    find(panel, javax.swing.JCheckBox, [])[0].doClick();
+    find(panel, javax.swing.JCheckBox, []).forEach(function (b) {
+        b.doClick();
+    });
     category.storeSettings();
     dump('edited', lines);
     clear();
@@ -3366,6 +3370,124 @@ function writeMirrorEdges() {
     record('OK', 'mirror-edges', out);
 }
 
+// Paints flexible enemy, treachery, asset and event cards with each
+// AHLCG-AnchorVictory value, with room to spare in the body (no victory) and
+// with text that must scale; then loads and stores the setting through the
+// plug-in's preferences check box.
+function writeAnchorVictory() {
+    var RenderTarget = Packages.ca.cgjennings.apps.arkham.sheet.RenderTarget;
+    var Language = Packages.resources.Language;
+    var user = Packages.resources.Settings.getUser();
+    var key = 'AHLCG-AnchorVictory';
+    var preference = user.get(key);
+    var lines = [];
+    var cases = [
+        ['slack', { Victory: '' }],
+        ['scaled', { Rules: RULES + '\n' + RULES + '\n' + RULES }],
+    ];
+
+    function pixels(gc) {
+        var image = gc
+            .createDefaultSheets()[0]
+            .paint(RenderTarget.PREVIEW, 150, false);
+        var w = image.getWidth();
+        var h = image.getHeight();
+        return java.util.Arrays.hashCode(image.getRGB(0, 0, w, h, null, 0, w));
+    }
+    // the check box labeled text in container, or null
+    function findBox(container, text) {
+        var children = container.getComponents();
+        for (var i = 0; i < children.length; ++i) {
+            var c = children[i];
+            if (
+                c instanceof Packages.javax.swing.JCheckBox &&
+                String(c.getText()) === text
+            )
+                return c;
+            if (c instanceof Packages.java.awt.Container) {
+                var found = findBox(c, text);
+                if (found != null) return found;
+            }
+        }
+        return null;
+    }
+    // the registered preferences category with the check box, and the box
+    function category(text) {
+        var field = java.lang.Class.forName(
+            'ca.cgjennings.apps.arkham.dialog.prefs.Preferences'
+        ).getDeclaredField('custom');
+        field.setAccessible(true);
+        for (var it = field.get(null).iterator(); it.hasNext();) {
+            var pc = it.next();
+            var box = findBox(pc.getPanel(), text);
+            if (box != null) return { pc: pc, box: box };
+        }
+        return null;
+    }
+
+    try {
+        [
+            ['enemy', 'encounterBack'],
+            ['treachery', 'encounterBack'],
+            ['asset', 'playerBack'],
+            ['event', 'playerBack'],
+        ].forEach(function (faces) {
+            cases.forEach(function (c) {
+                var gc = build(
+                    'Flexible',
+                    faces,
+                    'filled',
+                    { face: faces[0], values: c[1] },
+                    true
+                );
+                user.reset(key);
+                var unset = pixels(gc);
+                user.set(key, 'no');
+                var no = pixels(gc);
+                user.set(key, 'yes');
+                var yes = pixels(gc);
+                lines.push(
+                    faces[0] +
+                        ' ' +
+                        c[0] +
+                        ': unset ' +
+                        (unset === no ? 'as no' : 'differs') +
+                        ', yes ' +
+                        (yes === no ? 'as no' : 'differs')
+                );
+            });
+        });
+
+        var found = category(
+            String(Language.string('AHLCG-Pref-AnchorVictory'))
+        );
+        if (found == null) {
+            lines.push('preferences check box: missing');
+        } else {
+            user.set(key, 'yes');
+            found.pc.loadSettings();
+            lines.push('loaded yes: ' + found.box.isSelected());
+            user.reset(key);
+            found.pc.loadSettings();
+            lines.push('loaded unset: ' + found.box.isSelected());
+            found.box.setSelected(false);
+            found.pc.storeSettings();
+            lines.push('stored unchecked: ' + user.get(key));
+            found.box.setSelected(true);
+            found.pc.storeSettings();
+            lines.push('stored checked: ' + user.get(key));
+        }
+    } catch (e) {
+        lines.push('FAIL ' + (e.javaException ? e.javaException : e));
+    } finally {
+        if (preference == null) user.reset(key);
+        else user.set(key, preference);
+    }
+    var out = new File(outDir, 'anchor-victory.txt');
+    java.nio.file.Files.writeString(out.toPath(), lines.join('\n') + '\n');
+    record('OK', 'anchor-victory', out);
+}
+
 // Converts each card handler's fixtures to a flexible card with Edit > Convert
 // To, as the conversion map offers it, each fixture saved and reopened first
 // as a user would open it. Lists for each handler its option, the faces the
@@ -3534,6 +3656,7 @@ try {
     if (mode === 'defaults') writeRepaint();
     if (mode === 'defaults') writeSides();
     if (mode === 'defaults') writeMirrorEdges();
+    if (mode === 'defaults') writeAnchorVictory();
     if (mode === 'defaults') writeConversion();
     results.println('DONE');
 } finally {
