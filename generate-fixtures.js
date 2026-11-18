@@ -26,6 +26,9 @@
  * and plugin-object.txt, every value of the plug-in's shared object.
  * plugin-script.txt writes the plug-in version as "build" when it equals the
  * version in the bundle's version.properties, so baselines survive releases.
+ * fx.checks, a comma-separated list, limits the run to those parts: handlers
+ * for the per-handler files, otherwise a file's name without .txt. All parts
+ * run when it is empty.
  *
  * Writes one line per handler or fixture to rt.results, then DONE.
  *
@@ -3910,33 +3913,63 @@ function writeCompose() {
     record('OK', 'compose', file);
 }
 
+function writeHandlerDefaults() {
+    for (var h in HANDLERS) writeDefaults(h, null);
+    for (var i = 0; i < FLEXIBLE.length; ++i)
+        writeDefaults('Flexible', [FLEXIBLE[i], FLEXIBLE[i]]);
+}
+
+// defaults mode parts, in run order, by fx.checks name
+var CHECKS = [
+    ['handlers', writeHandlerDefaults],
+    ['amd-loader', writeAmdLoader],
+    ['text-blocks', writeTextBlocks],
+    ['editor-fit', writeEditorFit],
+    ['token-blocks', writeTokenBlocks],
+    ['collector-tabs', writeCollectorTabs],
+    ['face-switch', writeFaceSwitch],
+    ['encounter-tab', writeEncounterTab],
+    ['plugin-object', writePluginObject],
+    ['preferences', writePreferences],
+    ['user-icons', writeUserIcons],
+    ['plugin-script', writePluginScript],
+    ['repaint', writeRepaint],
+    ['sides', writeSides],
+    ['mirror-edges', writeMirrorEdges],
+    ['anchor-victory', writeAnchorVictory],
+    ['conversion', writeConversion],
+    ['compose', writeCompose],
+];
+
+// the CHECKS entries fx.checks names; all when it is empty
+function selectedChecks(list) {
+    if (list === '') return CHECKS;
+    var names = list.split(',').map(function (n) {
+        return n.trim();
+    });
+    names.forEach(function (n) {
+        if (
+            !CHECKS.some(function (c) {
+                return c[0] === n;
+            })
+        )
+            throw new Error('unknown fx.checks entry: ' + n);
+    });
+    return CHECKS.filter(function (c) {
+        return names.indexOf(c[0]) >= 0;
+    });
+}
+
 try {
-    for (var h in HANDLERS) {
-        if (mode === 'defaults') writeDefaults(h, null);
-        else writeAll(h, HANDLERS[h], false);
+    if (mode === 'defaults') {
+        selectedChecks(prop('fx.checks')).forEach(function (c) {
+            c[1]();
+        });
+    } else {
+        for (var h in HANDLERS) writeAll(h, HANDLERS[h], false);
+        for (var i = 0; i < FLEXIBLE.length; ++i)
+            writeAll('Flexible', [FLEXIBLE[i], FLEXIBLE[i]], true);
     }
-    for (var i = 0; i < FLEXIBLE.length; ++i) {
-        var faces = [FLEXIBLE[i], FLEXIBLE[i]];
-        if (mode === 'defaults') writeDefaults('Flexible', faces);
-        else writeAll('Flexible', faces, true);
-    }
-    if (mode === 'defaults') writeAmdLoader();
-    if (mode === 'defaults') writeTextBlocks();
-    if (mode === 'defaults') writeEditorFit();
-    if (mode === 'defaults') writeTokenBlocks();
-    if (mode === 'defaults') writeCollectorTabs();
-    if (mode === 'defaults') writeFaceSwitch();
-    if (mode === 'defaults') writeEncounterTab();
-    if (mode === 'defaults') writePluginObject();
-    if (mode === 'defaults') writePreferences();
-    if (mode === 'defaults') writeUserIcons();
-    if (mode === 'defaults') writePluginScript();
-    if (mode === 'defaults') writeRepaint();
-    if (mode === 'defaults') writeSides();
-    if (mode === 'defaults') writeMirrorEdges();
-    if (mode === 'defaults') writeAnchorVictory();
-    if (mode === 'defaults') writeConversion();
-    if (mode === 'defaults') writeCompose();
     results.println('DONE');
 } finally {
     results.close();
