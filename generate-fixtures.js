@@ -3519,16 +3519,27 @@ function differences(a, b) {
             found.push('sheet ' + i + ' missing');
         } else if (a[i].size !== b[i].size) {
             found.push('sheet ' + i + ' ' + a[i].size + ' vs ' + b[i].size);
-        } else if (!java.util.Arrays.equals(a[i].pixels, b[i].pixels)) {
-            var first = -1,
-                last = -1;
-            for (var p = 0; p < a[i].pixels.length; ++p) {
-                if (a[i].pixels[p] !== b[i].pixels[p]) {
-                    var y = Math.floor(p / a[i].width);
-                    if (first < 0) first = y;
-                    last = y;
-                }
-            }
+        } else {
+            // compared in Java; a pixel loop in script is slow
+            var ap = a[i].pixels,
+                bp = b[i].pixels,
+                w = a[i].width;
+            var p = java.util.Arrays.mismatch(ap, bp);
+            if (p < 0) continue;
+            var first = Math.floor(p / w);
+            var last = ap.length / w - 1;
+            while (
+                last > first &&
+                java.util.Arrays.equals(
+                    ap,
+                    last * w,
+                    (last + 1) * w,
+                    bp,
+                    last * w,
+                    (last + 1) * w
+                )
+            )
+                --last;
             found.push('sheet ' + i + ' rows ' + first + '-' + last);
         }
     }
@@ -3825,6 +3836,17 @@ function writeCompose() {
                 type === 'treachery' ? 'enemy' : 'treachery',
                 gc
             );
+            // the variant's cards, painted once; base is repainted after
+            // it takes shared settings
+            var painted = [];
+            function paintedSheets(card) {
+                for (var p = 0; p < painted.length; ++p) {
+                    if (painted[p][0] === card) return painted[p][1];
+                }
+                var sheets = paintSheets(card);
+                painted.push([card, sheets]);
+                return sheets;
+            }
             cases(gc, base, other, pair[0]).forEach(function (c) {
                 var name = type + '/' + pair[0] + ' ' + c[0];
                 var known = problems.length;
@@ -3832,6 +3854,11 @@ function writeCompose() {
                 try {
                     var result = composeSharing(base, gc, c[1]);
                     var composed = result.card;
+                    if (result.shared.length > 0) {
+                        painted = painted.filter(function (entry) {
+                            return entry[0] !== base;
+                        });
+                    }
                     result.shared.forEach(function (key) {
                         if (sharedKeys.indexOf(key) < 0) sharedKeys.push(key);
                     });
@@ -3840,7 +3867,7 @@ function writeCompose() {
                         c[2].forEach(function (check) {
                             var found = differences(
                                 [sheets[check[0]]],
-                                [paintSheets(check[1])[check[2]]]
+                                [paintedSheets(check[1])[check[2]]]
                             );
                             if (found.length > 0)
                                 problems.push(
