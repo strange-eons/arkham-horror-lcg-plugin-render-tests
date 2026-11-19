@@ -77,7 +77,7 @@ key: 15 of 19 the same
   key/customIcons front reopened side 1: rows 507-519
   key/customIcons other back side 1: rows 32-56
   key/customIcons other back reopened side 1: rows 32-56
-investigator: 27 of 27 the same
+investigator: 23 of 23 the same
 investigatorBack: 14 of 19 the same, shared CardClass, Subtitle
   investigatorBack/default other back side 0: rows 531-537
   investigatorBack/default other back reopened side 0: rows 531-537

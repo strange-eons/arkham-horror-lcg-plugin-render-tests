@@ -1278,7 +1278,7 @@ var LEGACY_ENEMY = merge(LEGACY_ENCOUNTER, {
             parallel: { CardClass: 'ParallelRogue' },
             parallelNeutral: { CardClass: 'ParallelNeutral', Subtitle: '' },
             neutral: { CardClass: 'Neutral' },
-            stats: { Stamina: '-', Sanity: 'X', Willpower: '0', Agility: '6' },
+            stats: { Stamina: '12', Sanity: 'X', Willpower: '0', Agility: '6' },
             sections: {
                 Text1BackSpacing: '6',
                 Text4Back: 'At least 5 <i>Tome</i> cards.',
@@ -1521,7 +1521,6 @@ var FACE_VARIANTS = {
         parallel: { CardClass: 'ParallelRogue' },
         neutral: { CardClass: 'Neutral', Subtitle: '' },
         story: { CardClass: 'Story' },
-        dashes: { Stamina: '-', Sanity: 'Star', Willpower: '0' },
         replaced: {
             Card: {
                 TemplateReplacement: REPLACEMENT_IMAGE,
