@@ -42,11 +42,11 @@ tokenRules: 127 of 131 the same
   tokenRules/noCollectorLine front reopened side 1: rows 530-537
   tokenRules/noCollectorLine other back side 0: rows 531-537
   tokenRules/noCollectorLine other back reopened side 0: rows 531-537
-treachery: 38 of 39 the same
+treachery: 30 of 31 the same
   treachery/customIcons other back side 1: rows 273-296
   treachery/customIcons other back reopened side 1: rows 273-296
-asset: 59 of 59 the same
-event: 51 of 51 the same
+asset: 51 of 51 the same
+event: 39 of 39 the same
 skill: 35 of 35 the same
 customizable: 5 of 7 the same, shared CustName1, CustName2
   customizable/default other back side 0: rows 531-537

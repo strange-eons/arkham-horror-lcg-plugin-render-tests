@@ -15,8 +15,8 @@
  * card; collector-tabs.txt, from choosing sets on a flexible card; sides.txt,
  * from painting flexible card faces with the same data on both sides;
  * mirror-edges.txt, from each portrait mirror edges setting;
- * anchor-victory.txt, from each victory anchoring setting and its
- * preferences check box; conversion.txt,
+ * fill-parts.txt, from enemy text parts filling the body's leftover
+ * space at each alignment; conversion.txt,
  * from converting each card handler's fixtures to a flexible card;
  * compose.txt, from composing flexible cards of the faces of each flexible
  * fixture; and
@@ -1600,12 +1600,6 @@ var FACE_VARIANTS = {
         story: { CardClass: 'Story' },
         storyWeakness: { CardClass: 'StoryWeakness' },
         costDash: { ResourceCost: '-' },
-        // victory at the bottom without flavor between
-        noFlavor: { Flavor: '' },
-        // flavor centered below the text, without victory
-        noVictory: { Victory: '' },
-        // text too long to fit, scaled as one block
-        longText: { Rules: RULES + '\n' + RULES + '\n' + RULES },
         replaced: {
             Card: {
                 TemplateReplacement: REPLACEMENT_IMAGE,
@@ -1634,10 +1628,6 @@ var FACE_VARIANTS = {
             Card: { Encounter: 'ReturnToCultOfUmordhoth', EncounterType: '0' },
         },
         reward: { CardClass: 'Reward', CardClass2: 'None', CardClass3: 'None' },
-        // victory at the bottom without flavor between
-        noFlavor: { Flavor: '' },
-        // flavor centered below the text, without victory
-        noVictory: { Victory: '' },
         replaced: {
             Card: {
                 TemplateReplacement: REPLACEMENT_IMAGE,
@@ -1656,10 +1646,6 @@ var FACE_VARIANTS = {
         returnTo: {
             Card: { Encounter: 'ReturnToCultOfUmordhoth', EncounterType: '0' },
         },
-        // victory at the bottom without flavor between
-        noFlavor: { Flavor: '' },
-        // flavor centered below the text, without victory
-        noVictory: { Victory: '' },
         replaced: {
             Card: {
                 TemplateReplacement: REPLACEMENT_IMAGE,
@@ -1694,18 +1680,34 @@ var FACE_VARIANTS = {
             Horror: '5',
         },
         dashes: { Health: '-', Attack: '-', PerInvestigatorAttack: '0' },
-        // victory at the bottom without flavor between
-        noFlavor: { Flavor: '' },
-        // flavor centered below the text, without victory
-        noVictory: { Victory: '' },
+        // flavor centered in the leftover space, victory at the bottom
+        fillFlavorVictory: {
+            FlavorFill: '1',
+            FlavorFillAlignment: 'Middle',
+            VictoryFill: '1',
+            VictoryFillAlignment: 'Bottom',
+        },
+        // rules and flavor sharing the leftover space
+        fillRulesFlavor: {
+            RulesFill: '1',
+            RulesFillAlignment: 'Top',
+            FlavorFill: '1',
+            FlavorFillAlignment: 'Bottom',
+        },
         // flavor of several lines, centered where the text narrows
-        longFlavor: {
+        fillLongFlavor: {
             Flavor:
                 'The stars were right, and the old ones stirred beneath ' +
                 'the waves, dreaming of the day the city would rise.',
+            FlavorFill: '1',
+            FlavorFillAlignment: 'Middle',
         },
-        // text too long to fit, scaled as one block
-        longText: { Rules: RULES + '\n' + RULES + '\n' + RULES },
+        // text too long to fit, scaled as one block despite fill
+        fillLongText: {
+            Rules: RULES + '\n' + RULES + '\n' + RULES,
+            VictoryFill: '1',
+            VictoryFillAlignment: 'Bottom',
+        },
         replaced: {
             Card: {
                 TemplateReplacement: REPLACEMENT_IMAGE,
@@ -1814,12 +1816,20 @@ var UNDEFINED_KEYS = {
 
 var SUFFIX = ['', 'Back'];
 
+// the key of a side: k with the suffix, which fill keys take before Fill,
+// as <part><suffix>Fill
+function sideKey(k, suffix) {
+    return /(FillAlignment|Fill)$/.test(k)
+        ? k.replace(/(FillAlignment|Fill)$/, suffix + '$1')
+        : k + suffix;
+}
+
 // Sets only keys the handler defines, so saved files carry no stray keys.
 function apply(gc, values, suffix) {
     var s = gc.getSettings();
     var own = s.getKeySet();
     for (var k in values) {
-        var key = k + suffix;
+        var key = sideKey(k, suffix);
         if (own.contains(key)) s.set(key, values[k]);
     }
 }
@@ -1917,7 +1927,7 @@ function build(handler, faces, variant, extra, flexible) {
                         }
                     } else
                         gc.getSettings().set(
-                            fk + SUFFIX[f],
+                            sideKey(fk, SUFFIX[f]),
                             extra.faceKeys[fk]
                         );
                 }
@@ -3374,21 +3384,15 @@ function writeMirrorEdges() {
     record('OK', 'mirror-edges', out);
 }
 
-// Paints flexible enemy, treachery, asset and event cards with each
-// AHLCG-AnchorVictory value, with room to spare in the body (no victory) and
-// with text that must scale; then loads and stores the setting through the
-// plug-in's preferences check box.
-function writeAnchorVictory() {
+// Paints a flexible enemy with each part filling at each alignment, against
+// the same card without fill, with room to spare and with text that must
+// scale; then checks the editor's fill check boxes enable their alignment
+// lists and set the keys.
+function writeFillParts() {
     var RenderTarget = Packages.ca.cgjennings.apps.arkham.sheet.RenderTarget;
     var Language = Packages.resources.Language;
-    var user = Packages.resources.Settings.getUser();
-    var key = 'AHLCG-AnchorVictory';
-    var preference = user.get(key);
+    var parts = ['Traits', 'Keywords', 'Rules', 'Flavor', 'Victory'];
     var lines = [];
-    var cases = [
-        ['slack', { Victory: '' }],
-        ['scaled', { Rules: RULES + '\n' + RULES + '\n' + RULES }],
-    ];
 
     function pixels(gc) {
         var image = gc
@@ -3398,98 +3402,123 @@ function writeAnchorVictory() {
         var h = image.getHeight();
         return java.util.Arrays.hashCode(image.getRGB(0, 0, w, h, null, 0, w));
     }
-    // the check box labeled text in container, or null
-    function findBox(container, text) {
-        var children = container.getComponents();
-        for (var i = 0; i < children.length; ++i) {
-            var c = children[i];
-            if (
-                c instanceof Packages.javax.swing.JCheckBox &&
-                String(c.getText()) === text
-            )
-                return c;
-            if (c instanceof Packages.java.awt.Container) {
-                var found = findBox(c, text);
-                if (found != null) return found;
-            }
-        }
-        return null;
+    function enemy(values) {
+        return build(
+            'Flexible',
+            ['enemy', 'encounterBack'],
+            'filled',
+            { face: 'enemy', values: values },
+            true
+        );
     }
-    // the registered preferences category with the check box, and the box
-    function category(text) {
-        var field = java.lang.Class.forName(
-            'ca.cgjennings.apps.arkham.dialog.prefs.Preferences'
-        ).getDeclaredField('custom');
-        field.setAccessible(true);
-        for (var it = field.get(null).iterator(); it.hasNext();) {
-            var pc = it.next();
-            var box = findBox(pc.getPanel(), text);
-            if (box != null) return { pc: pc, box: box };
-        }
-        return null;
+    function fill(gc, part, alignment) {
+        gc.getSettings().set(part + 'Fill', '1');
+        gc.getSettings().set(part + 'FillAlignment', alignment);
     }
+
+    [
+        ['slack', {}],
+        ['scaled', { Rules: RULES + '\n' + RULES + '\n' + RULES }],
+    ].forEach(function (c) {
+        try {
+            var plain = pixels(enemy(c[1]));
+            parts.forEach(function (part) {
+                var line = c[0] + ' ' + part + ':';
+                ['Top', 'Middle', 'Bottom'].forEach(function (alignment) {
+                    var gc = enemy(c[1]);
+                    fill(gc, part, alignment);
+                    line +=
+                        ' ' +
+                        alignment.toLowerCase() +
+                        (pixels(gc) === plain ? ' same' : ' differs');
+                });
+                lines.push(line);
+            });
+            var gc = enemy(c[1]);
+            fill(gc, 'Flavor', 'Middle');
+            fill(gc, 'Victory', 'Bottom');
+            var both = pixels(gc);
+            gc = enemy(c[1]);
+            fill(gc, 'Flavor', 'Middle');
+            var flavor = pixels(gc);
+            lines.push(
+                c[0] +
+                    ' flavor middle, victory bottom: ' +
+                    (both === plain ? 'same' : 'differs') +
+                    ', from flavor alone ' +
+                    (both === flavor ? 'same' : 'differs')
+            );
+        } catch (e) {
+            lines.push(
+                c[0] + ' FAIL ' + (e.javaException ? e.javaException : e)
+            );
+        }
+    });
 
     try {
-        [
-            ['enemy', 'encounterBack'],
-            ['treachery', 'encounterBack'],
-            ['asset', 'playerBack'],
-            ['event', 'playerBack'],
-        ].forEach(function (faces) {
-            cases.forEach(function (c) {
-                var gc = build(
-                    'Flexible',
-                    faces,
-                    'filled',
-                    { face: faces[0], values: c[1] },
-                    true
-                );
-                user.reset(key);
-                var unset = pixels(gc);
-                user.set(key, 'no');
-                var no = pixels(gc);
-                user.set(key, 'yes');
-                var yes = pixels(gc);
-                lines.push(
-                    faces[0] +
-                        ' ' +
-                        c[0] +
-                        ': unset ' +
-                        (unset === no ? 'as no' : 'differs') +
-                        ', yes ' +
-                        (yes === no ? 'as no' : 'differs')
-                );
-            });
+        var gc = enemy({});
+        var settings = gc.getSettings();
+        var label = String(Language.string('AHLCG-Fill'));
+        var editor = gc.createDefaultEditor();
+        // check boxes update their settings on the editor's heartbeat
+        var heartbeat =
+            Packages.ca.cgjennings.apps.arkham.AbstractGameComponentEditor.__javaObject__.getDeclaredMethod(
+                'onHeartbeat'
+            );
+        heartbeat.setAccessible(true);
+        var tabs = editor.getTabbedPane();
+        var checks = [];
+        (function walk(c) {
+            if (
+                c instanceof javax.swing.JCheckBox &&
+                String(c.getText()) === label
+            )
+                checks.push(c);
+            var children = c.getComponents();
+            for (var i = 0; i < children.length; ++i) walk(children[i]);
+        })(tabs.getComponentAt(tabs.indexOfTab('Game Text: Front')));
+        lines.push('fill check boxes: ' + checks.length);
+        checks.forEach(function (check, i) {
+            var parent = check.getParent();
+            var list = parent.getComponent(
+                parent.getComponentZOrder(check) + 1
+            );
+            var key = parts[i] + 'Fill';
+            var line =
+                parts[i] +
+                ': ' +
+                settings.get(key) +
+                ' ' +
+                settings.get(key + 'Alignment') +
+                ', list ' +
+                (list.isEnabled() ? 'enabled' : 'disabled');
+            check.doClick();
+            list.setSelectedIndex(2);
+            heartbeat.invoke(editor);
+            line +=
+                '; checked ' +
+                settings.get(key) +
+                ' ' +
+                settings.get(key + 'Alignment') +
+                ', list ' +
+                (list.isEnabled() ? 'enabled' : 'disabled');
+            check.doClick();
+            heartbeat.invoke(editor);
+            line +=
+                '; unchecked ' +
+                settings.get(key) +
+                ', list ' +
+                (list.isEnabled() ? 'enabled' : 'disabled');
+            lines.push(line);
         });
-
-        var found = category(
-            String(Language.string('AHLCG-Pref-AnchorVictory'))
-        );
-        if (found == null) {
-            lines.push('preferences check box: missing');
-        } else {
-            user.set(key, 'yes');
-            found.pc.loadSettings();
-            lines.push('loaded yes: ' + found.box.isSelected());
-            user.reset(key);
-            found.pc.loadSettings();
-            lines.push('loaded unset: ' + found.box.isSelected());
-            found.box.setSelected(false);
-            found.pc.storeSettings();
-            lines.push('stored unchecked: ' + user.get(key));
-            found.box.setSelected(true);
-            found.pc.storeSettings();
-            lines.push('stored checked: ' + user.get(key));
-        }
+        editor.dispose();
     } catch (e) {
-        lines.push('FAIL ' + (e.javaException ? e.javaException : e));
-    } finally {
-        if (preference == null) user.reset(key);
-        else user.set(key, preference);
+        lines.push('editor FAIL ' + (e.javaException ? e.javaException : e));
     }
-    var out = new File(outDir, 'anchor-victory.txt');
+
+    var out = new File(outDir, 'fill-parts.txt');
     java.nio.file.Files.writeString(out.toPath(), lines.join('\n') + '\n');
-    record('OK', 'anchor-victory', out);
+    record('OK', 'fill-parts', out);
 }
 
 // The sheets of a component painted with their bleed: { size, pixels, width }
@@ -3935,7 +3964,7 @@ var CHECKS = [
     ['repaint', writeRepaint],
     ['sides', writeSides],
     ['mirror-edges', writeMirrorEdges],
-    ['anchor-victory', writeAnchorVictory],
+    ['fill-parts', writeFillParts],
     ['conversion', writeConversion],
     ['compose', writeCompose],
 ];

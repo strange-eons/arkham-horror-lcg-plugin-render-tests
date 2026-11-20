@@ -26,15 +26,21 @@ setting EncounterTotal = 1
 setting EncounterType = -1
 setting Evade = 2
 setting Flavor = 
+setting FlavorFill = 0
+setting FlavorFillAlignment = Top
 setting FlavorSpacing = 0
 setting Health = 2
 setting Horror = 0
 setting Keywords = 
+setting KeywordsFill = 0
+setting KeywordsFillAlignment = Top
 setting KeywordsSpacing = 0
 setting PerInvestigator = 0
 setting PerInvestigatorAttack = 0
 setting PerInvestigatorEvade = 0
 setting Rules = 
+setting RulesFill = 0
+setting RulesFillAlignment = Top
 setting RulesSpacing = 0
 setting ShowCollectionNumberBack = 1
 setting ShowCollectionNumberFront = 1
@@ -46,9 +52,13 @@ setting Subtitle =
 setting Subtype = BasicWeakness
 setting TemplateReplacementBleed = 0
 setting Traits = 
+setting TraitsFill = 0
+setting TraitsFillAlignment = Top
 setting TraitsSpacing = 0
 setting Unique = 0
 setting Victory = 
+setting VictoryFill = 0
+setting VictoryFillAlignment = Top
 setting flipSuffix = 0
 setting game = AHLCG
 tab General
@@ -57,7 +67,7 @@ tab General
   panel Copyright information (5 controls)
   panel Template replacement (4 controls)
 tab Game Text: Front
-  panel Game Text (27 controls)
+  panel Game Text (38 controls)
 tab Portraits
   panel Portrait (6 controls)
   panel Options (5 controls)

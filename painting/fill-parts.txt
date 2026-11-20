@@ -1,0 +1,18 @@
+slack Traits: top differs middle differs bottom differs
+slack Keywords: top differs middle differs bottom differs
+slack Rules: top differs middle differs bottom differs
+slack Flavor: top differs middle differs bottom differs
+slack Victory: top same middle differs bottom differs
+slack flavor middle, victory bottom: differs, from flavor alone differs
+scaled Traits: top same middle same bottom same
+scaled Keywords: top same middle same bottom same
+scaled Rules: top same middle same bottom same
+scaled Flavor: top same middle same bottom same
+scaled Victory: top same middle same bottom same
+scaled flavor middle, victory bottom: same, from flavor alone same
+fill check boxes: 5
+Traits: 0 Top, list disabled; checked 1 Bottom, list enabled; unchecked 0, list disabled
+Keywords: 0 Top, list disabled; checked 1 Bottom, list enabled; unchecked 0, list disabled
+Rules: 0 Top, list disabled; checked 1 Bottom, list enabled; unchecked 0, list disabled
+Flavor: 0 Top, list disabled; checked 1 Bottom, list enabled; unchecked 0, list disabled
+Victory: 0 Top, list disabled; checked 1 Bottom, list enabled; unchecked 0, list disabled
