@@ -27,6 +27,7 @@ setting CollectionNumber = 1
 setting CollectionType = -1
 setting Copyright = 
 setting Doom = 3
+setting DreamingBack = 0
 setting Encounter = CustomEncounterSet
 setting EncounterNumber = 1
 setting EncounterTotal = 1
@@ -74,7 +75,7 @@ tab General
   panel Title: Front (2 controls)
   panel Basic Data: Front (10 controls)
   panel Title: Back (5 controls)
-  panel Basic Data: Back (30 controls)
+  panel Basic Data: Back (31 controls)
   panel Copyright information (6 controls)
   panel Template replacement (7 controls)
 tab Game Text: Front

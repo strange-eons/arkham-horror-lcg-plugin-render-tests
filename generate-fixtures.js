@@ -1600,6 +1600,18 @@ var FACE_VARIANTS = {
         story: { CardClass: 'Story' },
         storyWeakness: { CardClass: 'StoryWeakness' },
         costDash: { ResourceCost: '-' },
+        dreaming: { Dreaming: '1', Level: '4' },
+        dreamingDual: {
+            CardClass: 'Seeker',
+            CardClass2: 'Mystic',
+            Dreaming: '1',
+            Level: '1',
+        },
+        dreamingWeakness: {
+            CardClass: 'BasicWeakness',
+            Dreaming: '1',
+            Level: 'None',
+        },
         replaced: {
             Card: {
                 TemplateReplacement: REPLACEMENT_IMAGE,
@@ -1628,6 +1640,27 @@ var FACE_VARIANTS = {
             Card: { Encounter: 'ReturnToCultOfUmordhoth', EncounterType: '0' },
         },
         reward: { CardClass: 'Reward', CardClass2: 'None', CardClass3: 'None' },
+        dreaming: { Dreaming: '1', Level: '2' },
+        dreamingNoLevel: { Dreaming: '1', Level: 'None' },
+        dreamingStory: {
+            CardClass: 'Story',
+            CardClass2: 'None',
+            CardClass3: 'None',
+            Dreaming: '1',
+        },
+        dreamingReward: {
+            CardClass: 'Reward',
+            CardClass2: 'None',
+            CardClass3: 'None',
+            Dreaming: '1',
+        },
+        dreamingWeakness: {
+            CardClass: 'Weakness',
+            CardClass2: 'None',
+            CardClass3: 'None',
+            Dreaming: '1',
+            Level: 'None',
+        },
         replaced: {
             Card: {
                 TemplateReplacement: REPLACEMENT_IMAGE,

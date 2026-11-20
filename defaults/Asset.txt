@@ -21,6 +21,7 @@ setting Collection = CustomCollection
 setting CollectionNumber = 1
 setting CollectionType = -1
 setting Copyright = 
+setting Dreaming = 0
 setting Encounter = CustomEncounterSet
 setting EncounterNumber = 1
 setting EncounterTotal = 1
@@ -61,7 +62,7 @@ setting game = AHLCG
 tab General
   panel Template (2 controls)
   panel Title: Front (5 controls)
-  panel Basic Data: Front (30 controls)
+  panel Basic Data: Front (31 controls)
   panel Copyright information (5 controls)
   panel Template replacement (4 controls)
 tab Game Text: Front
