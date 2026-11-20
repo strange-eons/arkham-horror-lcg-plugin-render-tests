@@ -1,0 +1,7 @@
+slack: differs
+no flavor: differs
+no victory: differs
+neither: same
+scaled: same
+Front: 1 check box, 0; checked 1; unchecked 0
+Back: 1 check box, 0; checked 1; unchecked 0

@@ -12,6 +12,7 @@ setting AHLCG-Enemy-Default-template = ArkhamHorrorLCG/templates/AHLCG-Enemy.jp2
 setting AHLCG-EnemyFace-BackPortrait-MirrorEdges = Default
 setting AHLCG-Story-Default-bleed-margin = 8.64
 setting AHLCG-Story-Default-template = ArkhamHorrorLCG/templates/AHLCG-Story.jp2
+setting AnchorVictoryBack = 0
 setting ArtistBack = 
 setting AttackBack = 2
 setting BlockCount = 1
@@ -29,21 +30,15 @@ setting EncounterTotal = 1
 setting EncounterType = -1
 setting EvadeBack = 2
 setting FlavorBack = 
-setting FlavorBackFill = 0
-setting FlavorBackFillAlignment = Top
 setting FlavorBackSpacing = 0
 setting HealthBack = 2
 setting HorrorBack = 0
 setting KeywordsBack = 
-setting KeywordsBackFill = 0
-setting KeywordsBackFillAlignment = Top
 setting KeywordsBackSpacing = 0
 setting PerInvestigatorAttackBack = 0
 setting PerInvestigatorBack = 0
 setting PerInvestigatorEvadeBack = 0
 setting RulesBack = 
-setting RulesBackFill = 0
-setting RulesBackFillAlignment = Top
 setting RulesBackSpacing = 0
 setting ScaleModifier = 100
 setting ShowCollectionNumberBack = 1
@@ -60,13 +55,9 @@ setting TitleBack =
 setting TrackerBox = 
 setting TrackerHeight = 100
 setting TraitsBack = 
-setting TraitsBackFill = 0
-setting TraitsBackFillAlignment = Top
 setting TraitsBackSpacing = 0
 setting UniqueBack = 0
 setting VictoryBack = 
-setting VictoryBackFill = 0
-setting VictoryBackFillAlignment = Top
 setting flipSuffix = 0
 setting game = AHLCG
 tab General
@@ -80,7 +71,7 @@ tab Game Text: Front
   panel Game Text (2 controls)
   panel Tracking box (5 controls)
 tab Game Text: Back
-  panel Game Text (38 controls)
+  panel Game Text (28 controls)
 tab Portraits
   panel Portrait (6 controls)
   panel Options (5 controls)
