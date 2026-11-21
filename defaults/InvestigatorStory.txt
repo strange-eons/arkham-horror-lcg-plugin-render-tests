@@ -26,6 +26,7 @@ setting Encounter = CustomEncounterSet
 setting EncounterNumber = 1
 setting EncounterTotal = 1
 setting EncounterType = -1
+setting FillFlavor = 0
 setting Flavor = 
 setting Intellect = 3
 setting InvStoryBack = 
@@ -82,7 +83,7 @@ tab General
   panel Copyright information (5 controls)
   panel Template replacement (7 controls)
 tab Game Text: Front
-  panel Game Text (22 controls)
+  panel Game Text (23 controls)
 tab Game Text: Back
   panel Sections (2 controls)
   panel Game Text (48 controls)

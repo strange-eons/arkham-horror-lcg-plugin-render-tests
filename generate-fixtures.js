@@ -15,7 +15,7 @@
  * card; collector-tabs.txt, from choosing sets on a flexible card; sides.txt,
  * from painting flexible card faces with the same data on both sides;
  * mirror-edges.txt, from each portrait mirror edges setting;
- * anchor-victory.txt, from anchoring enemy victory and flavor text;
+ * fill-flavor.txt, from filling flavor and victory text;
  * conversion.txt,
  * from converting each card handler's fixtures to a flexible card;
  * compose.txt, from composing flexible cards of the faces of each flexible
@@ -1627,6 +1627,10 @@ var FACE_VARIANTS = {
         },
         neutral: { CardClass: 'Neutral', Subtitle: '' },
         costDash: { ResourceCost: '-', Stamina: '-', Sanity: 'X' },
+        // flavor centered in the leftover space, victory above the arc
+        fillFlavor: { FillFlavor: '1' },
+        // without flavor, victory above the arc
+        fillNoFlavor: { FillFlavor: '1', Flavor: '' },
         story: { CardClass: 'Story', CardClass2: 'None', CardClass3: 'None' },
         storyWeakness: {
             CardClass: 'StoryWeakness',
@@ -1714,20 +1718,20 @@ var FACE_VARIANTS = {
         },
         dashes: { Health: '-', Attack: '-', PerInvestigatorAttack: '0' },
         // flavor centered in the leftover space, victory at the bottom
-        anchored: { AnchorVictory: '1' },
+        fillFlavor: { FillFlavor: '1' },
         // without flavor, victory at the bottom
-        anchoredNoFlavor: { AnchorVictory: '1', Flavor: '' },
+        fillNoFlavor: { FillFlavor: '1', Flavor: '' },
         // flavor of several lines, centered where the text narrows
-        anchoredLongFlavor: {
+        fillLongFlavor: {
             Flavor:
                 'The stars were right, and the old ones stirred beneath ' +
                 'the waves, dreaming of the day the city would rise.',
-            AnchorVictory: '1',
+            FillFlavor: '1',
         },
-        // text too long to fit, scaled as one block despite anchoring
-        anchoredLongText: {
+        // text too long to fit, scaled as one block despite filling
+        fillLongText: {
             Rules: RULES + '\n' + RULES + '\n' + RULES,
-            AnchorVictory: '1',
+            FillFlavor: '1',
         },
         replaced: {
             Card: {
@@ -3397,10 +3401,11 @@ function writeMirrorEdges() {
     record('OK', 'mirror-edges', out);
 }
 
-// Paints a flexible enemy anchored against the same card unanchored: with
-// flavor and victory, without either, and with text that must scale; then
-// checks the editor's check box sets the key on each side.
-function writeAnchorVictory() {
+// Paints a flexible card with flavor filled against the same card unfilled:
+// an enemy with flavor and victory, without either, and with text that must
+// scale, and a treachery; then checks the enemy editor's check box sets the
+// key on each side.
+function writeFillFlavor() {
     var RenderTarget = Packages.ca.cgjennings.apps.arkham.sheet.RenderTarget;
     var Language = Packages.resources.Language;
     var lines = [];
@@ -3413,14 +3418,17 @@ function writeAnchorVictory() {
         var h = image.getHeight();
         return java.util.Arrays.hashCode(image.getRGB(0, 0, w, h, null, 0, w));
     }
-    function enemy(values) {
+    function card(face, values) {
         return build(
             'Flexible',
-            ['enemy', 'enemy'],
+            [face, face],
             'filled',
-            { face: 'enemy', values: values },
+            { face: face, values: values },
             true
         );
+    }
+    function enemy(values) {
+        return card('enemy', values);
     }
 
     [
@@ -3429,11 +3437,12 @@ function writeAnchorVictory() {
         ['no victory', { Victory: '' }],
         ['neither', { Flavor: '', Victory: '' }],
         ['scaled', { Rules: RULES + '\n' + RULES + '\n' + RULES }],
+        ['treachery', {}, 'treachery'],
     ].forEach(function (c) {
         try {
-            var gc = enemy(c[1]);
+            var gc = card(c[2] || 'enemy', c[1]);
             var plain = pixels(gc);
-            gc.getSettings().set('AnchorVictory', '1');
+            gc.getSettings().set('FillFlavor', '1');
             lines.push(
                 c[0] + ': ' + (pixels(gc) === plain ? 'same' : 'differs')
             );
@@ -3447,7 +3456,7 @@ function writeAnchorVictory() {
     try {
         var gc = enemy({});
         var settings = gc.getSettings();
-        var label = String(Language.string('AHLCG-AnchorVictory'));
+        var label = String(Language.string('AHLCG-FillFlavor'));
         var editor = gc.createDefaultEditor();
         // check boxes update their settings on the editor's heartbeat
         var heartbeat =
@@ -3457,7 +3466,7 @@ function writeAnchorVictory() {
         heartbeat.setAccessible(true);
         var tabs = editor.getTabbedPane();
         ['Front', 'Back'].forEach(function (side, i) {
-            var key = 'AnchorVictory' + (i === 0 ? '' : 'Back');
+            var key = 'FillFlavor' + (i === 0 ? '' : 'Back');
             var checks = [];
             (function walk(c) {
                 if (
@@ -3487,9 +3496,9 @@ function writeAnchorVictory() {
         lines.push('editor FAIL ' + (e.javaException ? e.javaException : e));
     }
 
-    var out = new File(outDir, 'anchor-victory.txt');
+    var out = new File(outDir, 'fill-flavor.txt');
     java.nio.file.Files.writeString(out.toPath(), lines.join('\n') + '\n');
-    record('OK', 'anchor-victory', out);
+    record('OK', 'fill-flavor', out);
 }
 
 // The sheets of a component painted with their bleed: { size, pixels, width }
@@ -3935,7 +3944,7 @@ var CHECKS = [
     ['repaint', writeRepaint],
     ['sides', writeSides],
     ['mirror-edges', writeMirrorEdges],
-    ['anchor-victory', writeAnchorVictory],
+    ['fill-flavor', writeFillFlavor],
     ['conversion', writeConversion],
     ['compose', writeCompose],
 ];

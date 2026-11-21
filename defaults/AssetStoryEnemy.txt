@@ -14,7 +14,6 @@ setting AHLCG-AssetStory-Default-template = ArkhamHorrorLCG/templates/AHLCG-Asse
 setting AHLCG-Enemy-Default-bleed-margin = 8.64
 setting AHLCG-Enemy-Default-template = ArkhamHorrorLCG/templates/AHLCG-Enemy.jp2
 setting AHLCG-EnemyFace-BackPortrait-MirrorEdges = Default
-setting AnchorVictoryBack = 0
 setting Artist = 
 setting ArtistBack = 
 setting AttackBack = 2
@@ -32,6 +31,8 @@ setting EncounterNumber = 1
 setting EncounterTotal = 1
 setting EncounterType = -1
 setting EvadeBack = 2
+setting FillFlavor = 0
+setting FillFlavorBack = 0
 setting Flavor = 
 setting FlavorBack = 
 setting FlavorBackSpacing = 0
@@ -90,7 +91,7 @@ tab General
   panel Copyright information (6 controls)
   panel Template replacement (7 controls)
 tab Game Text: Front
-  panel Game Text (27 controls)
+  panel Game Text (28 controls)
 tab Game Text: Back
   panel Game Text (28 controls)
 tab Portraits

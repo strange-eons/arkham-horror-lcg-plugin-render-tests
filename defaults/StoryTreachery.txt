@@ -25,6 +25,7 @@ setting Encounter = CustomEncounterSet
 setting EncounterNumber = 1
 setting EncounterTotal = 1
 setting EncounterType = -1
+setting FillFlavorBack = 0
 setting FlavorBack = 
 setting FlavorBackSpacing = 0
 setting KeywordsBack = 
@@ -61,7 +62,7 @@ tab Game Text: Front
   panel Game Text (2 controls)
   panel Tracking box (5 controls)
 tab Game Text: Back
-  panel Game Text (27 controls)
+  panel Game Text (28 controls)
 tab Portraits
   panel Portrait (6 controls)
   panel Options (5 controls)

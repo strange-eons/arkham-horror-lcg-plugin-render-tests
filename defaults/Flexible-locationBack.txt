@@ -37,6 +37,8 @@ setting Encounter = CustomEncounterSet
 setting EncounterNumber = 1
 setting EncounterTotal = 1
 setting EncounterType = -1
+setting FillFlavor = 0
+setting FillFlavorBack = 0
 setting Flavor = 
 setting FlavorBack = 
 setting FrontFace = locationBack
@@ -77,9 +79,9 @@ tab General
   panel Copyright information (6 controls)
   panel Template replacement (7 controls)
 tab Game Text: Front
-  panel Game Text (22 controls)
+  panel Game Text (23 controls)
 tab Game Text: Back
-  panel Game Text (22 controls)
+  panel Game Text (23 controls)
 tab Portraits
   panel Portrait: Front (6 controls)
   panel Options: Front (5 controls)
