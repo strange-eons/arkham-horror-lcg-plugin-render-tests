@@ -33,7 +33,7 @@ story: 31 of 35 the same
   story/noCollectorLine front reopened side 1: rows 508-515
   story/noCollectorLine other back side 0: rows 531-537
   story/noCollectorLine other back reopened side 0: rows 531-537
-tokenRules: 127 of 131 the same
+tokenRules: 143 of 147 the same
   tokenRules/customIcons other back side 1: rows 79-105
   tokenRules/customIcons other back reopened side 1: rows 79-105
   tokenRules/noCollectorLine back side 0: rows 531-537

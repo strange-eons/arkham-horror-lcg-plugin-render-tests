@@ -1803,6 +1803,9 @@ var FACE_VARIANTS = {
             Title: TWO_LINES,
         }),
         tokensUntitled: merge(tokenBlocks(ALL_TOKENS), EASY, { Title: '' }),
+        tokensLongTitle: merge(tokenBlocks(ALL_TOKENS), EASY, {
+            Title: 'Spawn of the Stars from Beyond the Veil',
+        }),
         tokensTracker: merge(tokenBlocks(ALL_TOKENS), EASY, TRACKER),
         tokensOne: merge(tokenBlocks(ONE_GROUP), EASY),
         tokensMerged: merge(tokenBlocks(MERGED_GROUPS), EASY),
@@ -1811,6 +1814,57 @@ var FACE_VARIANTS = {
         tokensLong: merge(tokenBlocks(LONG_GROUPS), EASY),
         tokensLongTracker: merge(tokenBlocks(LONG_GROUPS), EASY, TRACKER),
         tokensFull: merge(tokenBlocks(ALL_TOKENS), { ChaosFull: '1' }),
+        refGathering: merge(
+            tokenBlocks([
+                [
+                    'Skull',
+                    '\u2013X. X is the number of <t>Ghoul</t> enemies at your location.',
+                ],
+                ['Cultist', '\u20131. If you fail, take 1 horror.'],
+                [
+                    'Tablet',
+                    '\u20132. If there is a <t>Ghoul</t> enemy at your location, take 1 damage.',
+                ],
+            ]),
+            EASY,
+            { Title: 'The Gathering' }
+        ),
+        refEztli: merge(
+            tokenBlocks([
+                [
+                    'Skull',
+                    '\u20131 (\u20133 instead if there is doom on your location).',
+                ],
+                [
+                    'Cultist,Tablet',
+                    '\u2013X. X is the number of locations with doom on them.',
+                ],
+                [
+                    'ElderThing',
+                    'Reveal another chaos token. If you fail, place 1 doom on your location.',
+                ],
+            ]),
+            EASY,
+            { Title: 'The Doom of Eztli' }
+        ),
+        refExtracurricular: merge(
+            tokenBlocks([
+                [
+                    'Skull',
+                    '\u20131. If you fail, discard the top 3 cards of your deck.',
+                ],
+                [
+                    'Cultist',
+                    '\u20131 (\u20133 instead if there are 10 or more cards in your discard pile).',
+                ],
+                [
+                    'ElderThing',
+                    '\u2013X. Discard the top 2 cards of your deck. X is the total printed cost of those discarded cards.',
+                ],
+            ]),
+            EASY,
+            { Title: 'Extracurricular Activity' }
+        ),
         intro: tokenBlocks(ALL_TOKENS, 'Setup'),
         introTracker: merge(tokenBlocks(ALL_TOKENS, 'Setup'), TRACKER),
         introOne: tokenBlocks(ONE_GROUP, 'Setup'),
