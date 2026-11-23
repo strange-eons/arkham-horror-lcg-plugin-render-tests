@@ -1865,6 +1865,16 @@ var FACE_VARIANTS = {
             EASY,
             { Title: 'Extracurricular Activity' }
         ),
+        refReturnGathering: {
+            Title: 'Return to The Gathering',
+            BlockCount: '1',
+            BlockStyle1: 'rules',
+            BlockText1:
+                'Perform the setup as indicated in the <i>Night of the Zealot</i> Campaign Guide, with the following exceptions:\n' +
+                '<bul> When gathering encounter sets, also gather the new encounter sets for <i>Return to The Gathering</i> shown here.\n' +
+                '<bul> Remove Act 1a—“Trapped” from the game and replace it with the new Act 1a—“Mysterious Gateway.”',
+            BlockSpacing1: '0',
+        },
         intro: tokenBlocks(ALL_TOKENS, 'Setup'),
         introTracker: merge(tokenBlocks(ALL_TOKENS, 'Setup'), TRACKER),
         introOne: tokenBlocks(ONE_GROUP, 'Setup'),
