@@ -17,6 +17,7 @@ setting Agility = 3
 setting Artist = 
 setting ArtistBack = 
 setting CardClass = Guardian
+setting CardClassBack = Copy front
 setting Collection = CustomCollection
 setting CollectionNumber = 1
 setting CollectionType = -1
@@ -80,6 +81,7 @@ tab General
   panel Title: Front (5 controls)
   panel Basic Data: Front (14 controls)
   panel Title: Back (5 controls)
+  panel Basic Data: Back (2 controls)
   panel Copyright information (5 controls)
   panel Template replacement (7 controls)
 tab Game Text: Front

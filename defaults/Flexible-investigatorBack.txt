@@ -17,6 +17,7 @@ setting Artist =
 setting ArtistBack = 
 setting BackFace = investigatorBack
 setting CardClass = Guardian
+setting CardClassBack = Copy front
 setting Encounter = CustomEncounterSet
 setting EncounterNumber = 1
 setting EncounterTotal = 1
@@ -82,7 +83,9 @@ setting game = AHLCG
 tab General
   panel Faces (4 controls)
   panel Title: Front (5 controls)
+  panel Basic Data: Front (2 controls)
   panel Title: Back (5 controls)
+  panel Basic Data: Back (2 controls)
   panel Template replacement (7 controls)
 tab Game Text: Front
   panel Sections (2 controls)
