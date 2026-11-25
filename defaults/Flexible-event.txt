@@ -10,7 +10,7 @@ portrait 2 AHLCG-Face-Collection
 portrait 3 AHLCG-Face-Encounter
 setting AHLCG-EventFace-BackPortrait-MirrorEdges = Default
 setting AHLCG-EventFace-Portrait-MirrorEdges = Default
-setting AHLCG-Face-Encounter-portrait-clip-region = 170,261,34,34
+setting AHLCG-Face-Encounter-portrait-clip-region = 175,265,25,25
 setting AHLCG-FlexibleHandler-Back-bleed-margin = 8.64
 setting AHLCG-FlexibleHandler-Back-template = ArkhamHorrorLCG/templates/AHLCG-Event-G.jp2
 setting AHLCG-FlexibleHandler-Front-bleed-margin = 8.64

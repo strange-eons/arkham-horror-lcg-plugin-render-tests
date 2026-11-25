@@ -11,7 +11,7 @@ portrait 3 AHLCG-Face-Encounter
 setting AHLCG-Agenda-Default-bleed-margin = 8.64
 setting AHLCG-Agenda-Default-template = ArkhamHorrorLCG/templates/AHLCG-Agenda.jp2
 setting AHLCG-AgendaFace-Portrait-MirrorEdges = Default
-setting AHLCG-Face-Encounter-portrait-clip-region = 363,29,32,32
+setting AHLCG-Face-Encounter-portrait-clip-region = 367,34,23,23
 setting AHLCG-Location-Default-bleed-margin = 8.64
 setting AHLCG-Location-Default-template = ArkhamHorrorLCG/templates/AHLCG-Location.jp2
 setting AHLCG-LocationFace-BackPortrait-MirrorEdges = Default

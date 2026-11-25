@@ -6,7 +6,7 @@ cornerRadius 8
 name 
 portrait 0 AHLCG-Face-Collection
 portrait 1 AHLCG-Face-Encounter
-setting AHLCG-Face-Encounter-portrait-clip-region = 305,31,36,37
+setting AHLCG-Face-Encounter-portrait-clip-region = 308,36,29,28
 setting AHLCG-FlexibleHandler-Back-bleed-margin = 8.64
 setting AHLCG-FlexibleHandler-Back-template = ArkhamHorrorLCG/templates/AHLCG-Story.jp2
 setting AHLCG-FlexibleHandler-Front-bleed-margin = 8.64

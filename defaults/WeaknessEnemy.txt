@@ -8,7 +8,7 @@ portrait 0 AHLCG-EnemyFace-Portrait
 portrait 1 AHLCG-Face-Collection
 portrait 2 AHLCG-Face-Encounter
 setting AHLCG-EnemyFace-Portrait-MirrorEdges = Default
-setting AHLCG-Face-Encounter-portrait-clip-region = 171,270,32,32
+setting AHLCG-Face-Encounter-portrait-clip-region = 176,275,22,22
 setting AHLCG-WeaknessEnemy-Default-bleed-margin = 8.64
 setting AHLCG-WeaknessEnemy-Default-template = ArkhamHorrorLCG/templates/AHLCG-Enemy.jp2
 setting AHLCG-WeaknessEnemyBack-Default-bleed-margin = 8.64

@@ -7,7 +7,7 @@ name
 portrait 0 AHLCG-LocationFace-BackPortrait
 portrait 1 AHLCG-Face-Collection
 portrait 2 AHLCG-Face-Encounter
-setting AHLCG-Face-Encounter-portrait-clip-region = 305,31,36,37
+setting AHLCG-Face-Encounter-portrait-clip-region = 308,36,29,28
 setting AHLCG-Location-Default-bleed-margin = 8.64
 setting AHLCG-Location-Default-template = ArkhamHorrorLCG/templates/AHLCG-Location.jp2
 setting AHLCG-LocationFace-BackPortrait-MirrorEdges = Default

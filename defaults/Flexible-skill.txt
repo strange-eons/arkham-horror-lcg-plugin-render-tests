@@ -8,7 +8,7 @@ portrait 0 AHLCG-SkillFace-Portrait
 portrait 1 AHLCG-SkillFace-BackPortrait
 portrait 2 AHLCG-Face-Collection
 portrait 3 AHLCG-Face-Encounter
-setting AHLCG-Face-Encounter-portrait-clip-region = 321,10,35,35
+setting AHLCG-Face-Encounter-portrait-clip-region = 326,15,25,25
 setting AHLCG-FlexibleHandler-Back-bleed-margin = 8.64
 setting AHLCG-FlexibleHandler-Back-template = ArkhamHorrorLCG/templates/AHLCG-Skill-N.jp2
 setting AHLCG-FlexibleHandler-Front-bleed-margin = 8.64

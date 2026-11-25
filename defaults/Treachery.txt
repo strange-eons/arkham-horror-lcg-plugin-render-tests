@@ -7,7 +7,7 @@ name
 portrait 0 AHLCG-TreacheryFace-Portrait
 portrait 1 AHLCG-Face-Collection
 portrait 2 AHLCG-Face-Encounter
-setting AHLCG-Face-Encounter-portrait-clip-region = 173,252,31,30
+setting AHLCG-Face-Encounter-portrait-clip-region = 177,256,22,22
 setting AHLCG-Treachery-Default-bleed-margin = 8.64
 setting AHLCG-Treachery-Default-template = ArkhamHorrorLCG/templates/AHLCG-Treachery.jp2
 setting AHLCG-TreacheryBack-Default-bleed-margin = 8.64

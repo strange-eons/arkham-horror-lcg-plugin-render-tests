@@ -2142,6 +2142,677 @@ function writeDefaults(handler, faces) {
     }
 }
 
+// Official cards, each side as printed, unlike the variants above, which set
+// both sides alike. Faces are [front, back]; Card sets keys without a suffix,
+// Front and Back each side's keys and title.
+var HEMLOCK = {
+    Copyright: '© 2024 FFG',
+    Collection: 'TheFeastOfHemlockVale',
+    EncounterType: '0',
+};
+var STORY_PLAYER_BACK = { BackType: 'Player' };
+var NO_INVESTIGATOR_SECTIONS = {
+    Text4Name: '',
+    Text4: '',
+    Text5Name: '',
+    Text5: '',
+    Text6Name: '',
+    Text6: '',
+    Text7Name: '',
+    Text7: '',
+    Text8Name: '',
+    Text8: '',
+};
+
+function storyBlocks(blocks) {
+    var keys = { BlockCount: String(blocks.length) };
+    for (var i = 0; i < blocks.length; ++i) {
+        keys['BlockStyle' + (i + 1)] = blocks[i][0];
+        keys['BlockText' + (i + 1)] = blocks[i][1];
+        keys['BlockSpacing' + (i + 1)] = '0';
+        if (blocks[i][2] != null) keys['BlockTokens' + (i + 1)] = blocks[i][2];
+    }
+    return keys;
+}
+
+var REFERENCES = {
+    // 10505
+    refDescentIntoTheMines: {
+        Faces: ['act', 'actBack'],
+        Card: merge(HEMLOCK, {
+            Artist: 'Rob Laskey',
+            ArtistBack: 'Rob Laskey',
+            CollectionNumber: '5',
+            Encounter: 'written_in_rock',
+            EncounterNumber: '5',
+            EncounterTotal: '34',
+        }),
+        Front: {
+            Title: 'Descent into the Mines',
+            ScenarioIndex: '1',
+            ScenarioDeckID: 'a',
+            Clues: '-',
+            ActStory:
+                'You realize the eerie hum in the air comes from vibrating crystal formations. Something feels strange, though you cannot say what...',
+            Rules: '<b>Objective</b> – At the end of the round, if each surviving investigator is at Control Station, advance. <i>(Hint: Get to the Control Station before the agenda advances!)</i>',
+        },
+        Back: merge(
+            {
+                Title: 'No Turning Back',
+                ScenarioIndex: '1',
+                ScenarioDeckID: 'b',
+            },
+            storyBlocks([
+                [
+                    'story',
+                    'A chunk of rock falls from the ceiling, narrowly missing you. More rocks come loose, forcing you deeper.',
+                ],
+                [
+                    'rules',
+                    'Remove each <t>Cave</t> location from the game <i>(discarding all enemies, tokens, and attachments at those locations)</i>. If River Hawthorne is in play but not under control of any investigator, remove them from the game.\n' +
+                        'Each investigator loses all but 2 of their clues.\n' +
+                        'If it is agenda 1a, advance the agenda directly to agenda 2a <i>(do not resolve agenda 1b)</i>.\n' +
+                        'Your search for supplies will help you navigate whatever is ahead. Flip the scenario reference card over to its other side, moving all scraps on it to that side, as switches.\n' +
+                        'Read <b>Scenario Interlude: The Cave-In</b> <i>(page 10)</i>.',
+                ],
+            ])
+        ),
+    },
+    // 10503
+    refUndergroundSurvey: {
+        Faces: ['agenda', 'agendaBack'],
+        Card: merge(HEMLOCK, {
+            Artist: 'Rob Laskey',
+            ArtistBack: 'Rob Laskey',
+            CollectionNumber: '3',
+            Encounter: 'written_in_rock',
+            EncounterNumber: '3',
+            EncounterTotal: '34',
+        }),
+        Front: {
+            Title: 'Underground Survey',
+            ScenarioIndex: '1',
+            ScenarioDeckID: 'a',
+            Doom: '5',
+            AgendaStory:
+                'The old mine is full of dilapidated machinery and an old rail track. What secrets are written in rock below?',
+            Rules:
+                '<b>Forced</b> – When this agenda advances: Move all doom on it to the next agenda.\n' +
+                '<act> Draw the top card of the encounter deck: Move 1 resource from your location to the scenario reference card, as a scrap. If the encounter card just drawn was a <t>Power</t> treachery, gain 5 resources.',
+        },
+        Back: merge(
+            { Title: 'Caved-In', ScenarioIndex: '1', ScenarioDeckID: 'b' },
+            storyBlocks([
+                [
+                    'story',
+                    'A wooden beam buckles with a sharp crack, coming down on your skull. The impact of the blow nearly knocks you out. Further tremors rock the cave from deeper within the mine.',
+                ],
+                [
+                    'rules',
+                    'Deal 2 damage to each investigator and 1 direct damage to each <t>Ally</t> asset they control.\n' +
+                        'Reveal the Control Station location and move each surviving investigator to it.\n' +
+                        'Each investigator loses all of their clues.\n' +
+                        'Advance the act.',
+                ],
+            ])
+        ),
+    },
+    // 11674; its set isn't among the built-in icons
+    refBeneathTheCity: {
+        Faces: ['agendaFrontPortrait', 'enemy'],
+        Card: {
+            Artist: 'JB Casacop',
+            ArtistBack: 'JB Casacop',
+            Copyright: '© 2025 FFG',
+            Collection: 'CoreSet',
+            CollectionNumber: '174',
+            Encounter: 'TheGathering',
+            EncounterType: '0',
+            EncounterNumber: '2',
+            EncounterTotal: '9',
+        },
+        Front: {
+            Title: 'Beneath the City',
+            ScenarioIndex: '1',
+            ScenarioDeckID: 'a',
+            Doom: '-',
+            AgendaStory: '',
+            Rules:
+                '<b>Forced</b> – When doom would be placed on a card other than a story asset: Place 1 resource on the scenario reference card, as Disturbance, instead. If the current Disturbance is 6 or more (8 or more instead if there are exactly 1 or 2 investigators in the game), immediately advance <i>(do not remove doom from cards in play)</i>.\n' +
+                '<b>Objective</b> – Prepare your artifacts for the final showdown!',
+        },
+        Back: {
+            Title: 'Cthulhu',
+            Unique: '1',
+            Subtitle: 'Dead and Dreaming',
+            Health: '20',
+            PerInvestigator: '1',
+            Attack: '5',
+            PerInvestigatorAttack: '0',
+            Evade: '5',
+            PerInvestigatorEvade: '0',
+            Damage: '3',
+            Horror: '3',
+            Traits: 'Ancient One. Elite.',
+            Keywords: 'Hunter. Massive. Relentless.',
+            Rules:
+                '<b>Spawn</b> – Dreamer’s Rest.\n' +
+                '<b>Forced</b> – After Cthulhu is evaded: Either ready him, or each investigator at Cthulhu’s location takes 1 direct damage.',
+            Flavor: '',
+            Victory: 'Victory 5.',
+        },
+    },
+    // 10544
+    refGrapplingSpawn: {
+        Faces: ['enemy', 'encounterBack'],
+        Card: merge(HEMLOCK, {
+            Artist: 'JB Casacop',
+            CollectionNumber: '44',
+            Encounter: 'hemlock_house',
+            EncounterNumber: '22–23',
+            EncounterTotal: '31',
+        }),
+        Front: {
+            Title: 'Grappling Spawn',
+            Unique: '0',
+            Subtitle: '',
+            Health: '2',
+            PerInvestigator: '0',
+            Attack: '4',
+            PerInvestigatorAttack: '0',
+            Evade: '2',
+            PerInvestigatorEvade: '0',
+            Damage: '1',
+            Horror: '1',
+            Traits: 'Monster. Mutated.',
+            Keywords: 'Hunter. <b>(Night)</b> Retaliate.',
+            Rules: 'Grappling Spawn gets +X health, where X is its current floor (to a minimum of +1 health).',
+            Flavor: '“It’s got me!”',
+            Victory: '',
+        },
+        Back: {},
+    },
+    // 03059
+    refPallidMask: {
+        Faces: ['enemy', 'encounterBack'],
+        Card: {
+            Artist: 'Adam Lane',
+            Copyright: '© 2017 FFG',
+            Collection: 'ThePathToCarcosa',
+            CollectionNumber: '59',
+            Encounter: 'CurtainCall',
+            EncounterType: '0',
+            EncounterNumber: '19',
+            EncounterTotal: '20',
+        },
+        Front: {
+            Title: 'The Man in the Pallid Mask',
+            Subtype: 'StoryWeakness',
+            Unique: '1',
+            Subtitle: '',
+            Health: '3',
+            PerInvestigator: '0',
+            Attack: '4',
+            PerInvestigatorAttack: '0',
+            Evade: '4',
+            PerInvestigatorEvade: '0',
+            Damage: '0',
+            Horror: '1',
+            Traits: 'Humanoid. Elite.',
+            Keywords: '',
+            Rules:
+                '<b>Spawn</b> – Location farthest from all investigators.\n' +
+                'Aloof.\n' +
+                '<act>: <b>Investigate.</b> Your location gets +2 shroud for this investigation. If you succeed, instead of discovering clues, defeat The Man in the Pallid Mask.',
+            Flavor: '“Indeed it’s time. We have all laid aside disguise but you.”\n– Robert W. Chambers, “The Mask,”\nThe King in Yellow',
+            Victory: '',
+        },
+        Back: {},
+    },
+    // 10532
+    refBedroom: {
+        Faces: ['location', 'enemyLocation'],
+        Card: merge(HEMLOCK, {
+            Artist: 'Pixoloid Studios',
+            ArtistBack: 'Pixoloid Studios',
+            CollectionNumber: '32',
+            Encounter: 'hemlock_house',
+            EncounterNumber: '10',
+            EncounterTotal: '31',
+        }),
+        Front: {
+            Title: 'Bedroom',
+            Subtitle: '',
+            Shroud: 'X',
+            Clues: '1',
+            PerInvestigator: '1',
+            LocationIcon: 'Circle',
+            Traits: 'Room. Dormant.',
+            Keywords: '',
+            Rules:
+                'X is 1 more than this location’s floor number.\n' +
+                '<rea> After you place a seal on this location: Draw 1 card or gain 2 resources.',
+            Flavor: 'The room stirs with gentle movement, the window curtains and bedsheets swaying in a breeze you cannot feel.',
+            Victory: 'Victory 0.',
+        },
+        Back: {
+            Title: 'Living Bedroom',
+            Health: '3',
+            PerInvestigatorHealth: '0',
+            Attack: '3',
+            PerInvestigatorAttack: '0',
+            Evade: '2',
+            PerInvestigatorEvade: '0',
+            Damage: '2',
+            Horror: '0',
+            Shroud: '3',
+            Clues: '-',
+            Traits: 'Room. Monster. Elite.',
+            Keywords: '',
+            Rules:
+                'Massive. Cannot make attacks of opportunity. Living Bedroom gets +2 <per> health.\n' +
+                '<b>Forced</b> – When this enemy-location is revealed: Place 1 doom on it.',
+            Flavor: 'This time, there really is a monster under the bed.',
+            Victory: 'Victory 0.',
+        },
+    },
+    // 10555
+    refCrystalGrove: {
+        Faces: ['location', 'locationBack'],
+        Card: merge(HEMLOCK, {
+            Artist: 'Nele Diel',
+            ArtistBack: 'Nele Diel',
+            CollectionNumber: '55',
+            Encounter: 'the_silent_heath',
+            EncounterNumber: '7',
+            EncounterTotal: '26',
+        }),
+        Front: {
+            Title: 'Crystal Grove',
+            Subtitle: '',
+            Shroud: '2',
+            Clues: '1',
+            PerInvestigator: '1',
+            LocationIcon: 'Triangle',
+            Traits: 'Blight.',
+            Keywords: '',
+            Rules: '<act><act> Investigators at Crystal Grove spend 1 <per> clues, as a group: Add a Crystal Remains you control to the victory display.',
+            Flavor: 'The world is changing around us. I think, truly, for the better.\n–from the personal diary of Susan Pearl',
+            Victory: '',
+        },
+        Back: {
+            Title: 'Crystal Grove',
+            Subtitle: '',
+            LocationIcon: 'Triangle',
+            Traits: 'Blight.',
+            Keywords: '',
+            Rules: '',
+            Flavor: 'A once-living orchard looks more like a delicate glasswork gallery. The apple trees have crystallized and reflect the light in shifting patterns.',
+        },
+    },
+    // 10545
+    refOutOfTheWalls: {
+        Faces: ['treachery', 'encounterBack'],
+        Card: merge(HEMLOCK, {
+            Artist: 'Darek Zabrocki',
+            CollectionNumber: '45',
+            Encounter: 'hemlock_house',
+            EncounterNumber: '24–27',
+            EncounterTotal: '31',
+        }),
+        Front: {
+            Title: 'Out of the Walls',
+            Traits: 'Hazard.',
+            Keywords: '',
+            Rules:
+                '<b>Revelation</b> – Test <agi> (3). If you fail and...\n' +
+                '<bul> ...your location is an enemy, take 1 damage and 1 horror.\n' +
+                '<bul> ...your location is unsealed and <t>Dormant</t>, flip it over.\n' +
+                '<bul> ...your location is sealed, discard 1 card at random from your hand.',
+            Flavor: '',
+            Victory: '',
+        },
+        Back: {},
+    },
+    // 09767
+    refParadimensional: {
+        Faces: ['treachery', 'playerBack'],
+        Card: {
+            Artist: 'Ryan Barger',
+            Copyright: '© 2023 FFG',
+            Collection: 'TheScarletKeys',
+            CollectionNumber: '267',
+            Encounter: 'Globetrotting',
+            EncounterType: '0',
+            EncounterNumber: '9–12',
+            EncounterTotal: '15',
+        },
+        Front: {
+            Title: 'Paradimensional Understanding',
+            Subtype: 'StoryWeakness',
+            Traits: 'Madness. Paradox.',
+            Keywords: '',
+            Rules:
+                '<b>Revelation</b> – You must either (choose one):\n' +
+                '<bul> Immediately shift an <t>Unstable</t> key you control.\n' +
+                '<bul> Flip each <t>Stable</t> key you control to its <t>Unstable</t> side.',
+            Flavor: '',
+            Victory: '',
+        },
+        Back: STORY_PLAYER_BACK,
+    },
+    // 10524
+    refPredatoryHouse: {
+        Faces: ['story', 'tokenRules'],
+        Card: merge(HEMLOCK, {
+            CollectionNumber: '24',
+            Encounter: 'hemlock_house',
+            EncounterNumber: '2',
+            EncounterTotal: '31',
+        }),
+        Front: merge(
+            { Title: 'The Predatory House', StoryClass: 'Default' },
+            storyBlocks([
+                [
+                    'rules',
+                    'Create a separate bag consisting of the following tokens: <cul>, <tab>, and <mon>. (If you do not have a second bag, you can use a cup, bowl, or other opaque container.) This is the predation bag, and these are predation tokens. They are not chaos tokens.\n' +
+                        'Then, add the following tokens to the predation bag based on the current day:\n' +
+                        '<bul> <b>Day 1:</b> Add <cul>, <cul> to the predation bag.\n' +
+                        '<bul> <b>Day 2:</b> Add <cul> to the predation bag.\n' +
+                        '<bul> <b>Day 3:</b> No change is made.\n' +
+                        'Some abilities will instruct investigators to make a predation test. A predation test may cause the house to come alive and prey on the investigators. To resolve a predation test, reveal a random token from the predation bag and resolve the effects for that token as indicated on the other side of this card.\n' +
+                        'Flip this card over and place it next to the scenario reference card.',
+                ],
+            ])
+        ),
+        Back: merge(
+            { Title: 'Predation Test' },
+            storyBlocks([
+                [
+                    'intro',
+                    'Use these results only when revealing tokens from the predation bag.',
+                ],
+                ['token', 'Set this token aside.', 'Cultist'],
+                [
+                    'token',
+                    'Each enemy-location attacks each investigator at that location. If no attack was made by this effect, the lead investigator draws the top card of the encounter deck. Return this token and each set-aside token to the predation bag.',
+                    'Tablet',
+                ],
+                [
+                    'token',
+                    'Set this token aside. Find the unsealed, <t>Dormant</t> location nearest to the lead investigator. Flip that location to its enemy-location side.',
+                    'ElderThing',
+                ],
+            ])
+        ),
+    },
+    // 09768
+    refMirroringBlade: {
+        Faces: ['key', 'key'],
+        Card: {
+            Artist: 'Robert Laskey',
+            ArtistBack: 'Robert Laskey',
+            Copyright: '© 2023 FFG',
+            Collection: 'TheScarletKeys',
+            CollectionNumber: '268',
+            Encounter: 'Globetrotting',
+            EncounterType: '0',
+            EncounterNumber: '13',
+            EncounterTotal: '15',
+            PortraitShare: '1',
+        },
+        Front: {
+            Title: 'The Mirroring Blade',
+            Unique: '1',
+            Subtitle: 'Reflects Only Violence',
+            Traits: 'Stable.',
+            Keywords: '',
+            Rules: '<b>Shift</b> – Deal 2 damage to an enemy at your location, or 1 damage to all enemies at your location. Flip this key to its <t>Unstable</t> side.',
+            Flavor: 'File #52-U13 / Subject Class: Red / Subject is glasslike shard 26 cm in length and less than 3 mm at thinnest edge, sharp enough to cut through any known material.',
+            Victory: '',
+        },
+        Back: {
+            Title: 'The Mirroring Blade',
+            Unique: '1',
+            Subtitle: 'Reflects Only Violence',
+            Traits: 'Unstable.',
+            Keywords: '',
+            Rules: '<b>Shift</b> – Each investigator takes 1 direct damage. Then, if an investigator shifted this key, flip it to its <t>Stable</t> side.',
+            Flavor: '...different for each individual who perceives reflection. No known explanation for this discrepancy.',
+            Victory: '',
+        },
+    },
+    // 05046
+    refGavriella: {
+        Faces: ['investigator', 'investigatorBack'],
+        Card: {
+            Artist: 'Ilich Henriquez',
+            ArtistBack: 'Ilich Henriquez',
+            Copyright: '© 2018 FFG',
+            Collection: 'TheCircleUndone',
+            CollectionNumber: '46',
+            Encounter: 'DisappearanceAtTheTwilightEstate',
+            EncounterType: '0',
+            EncounterNumber: '4',
+            EncounterTotal: '7',
+        },
+        Front: {
+            Title: 'Gavriella Mizrah',
+            CardClass: 'Story',
+            Unique: '1',
+            Subtitle: 'Private Security',
+            Willpower: '3',
+            Intellect: '2',
+            Combat: '4',
+            Agility: '1',
+            Stamina: '8',
+            Sanity: '4',
+            Traits: 'Veteran.',
+            Keywords: '',
+            Rules:
+                '<rea> After an enemy attacks you, even if that attack was canceled: Discover 1 clue at your location. (Limit once per round.)\n' +
+                '<eld> effect: +1. Heal 1 damage and 1 horror.',
+            Flavor: '',
+        },
+        Back: merge(NO_INVESTIGATOR_SECTIONS, {
+            Title: 'Gavriella Mizrah',
+            CardClass: 'Story',
+            Unique: '1',
+            Subtitle: 'Private Security',
+            Text1Name: 'Setup',
+            Text1: 'You begin play in the Victorian Halls. Place 1 damage on The Spectral Watcher. Search the gathered cards for 1 copy of Fate of All Fools and put it into play in your threat area. You begin with 1 resource instead of 5.',
+            Text2Name: 'Starting Play Area',
+            Text2: '.45 Automatic <i>(Core 16)</i> with 2 ammo tokens remaining, Physical Training <i>(Core 17)</i>.',
+            Text3Name: 'Opening Hand',
+            Text3: 'First Aid <i>(Core 19)</i>, Guard Dog <i>(Core 21)</i>, Evidence! <i>(Core 22)</i>, Dodge <i>(Core 23)</i>, Extra Ammunition <i>(level 1) (Core 26)</i>, 2 copies of Delay the Inevitable <i>(TCU 21)</i>.',
+            InvStory:
+                'A former member of the Haganah, Gavriella Mizrah now works private security for wealthy homeowners. Josef Meiger—a man who takes confidentiality quite seriously—has retained Gavriella to make sure there are no problems during tonight’s event. But even she is not prepared for what is to come.',
+        }),
+    },
+    // 10548
+    refLittleSylvie: {
+        Faces: ['asset', 'playerBack'],
+        Card: merge(HEMLOCK, {
+            Artist: 'David Chen',
+            CollectionNumber: '48',
+            Encounter: 'hemlock_house',
+            EncounterNumber: '31',
+            EncounterTotal: '31',
+        }),
+        Front: {
+            Title: 'Little Sylvie',
+            CardClass: 'Story',
+            Unique: '1',
+            Subtitle: 'A Cracked Memento',
+            ResourceCost: '1',
+            Level: 'None',
+            Skill1: 'None',
+            Skill2: 'None',
+            Skill3: 'None',
+            Slot: 'Accessory',
+            Stamina: 'None',
+            Sanity: '1',
+            PerInvestigatorSanity: '0',
+            Traits: 'Item. Charm. Cursed.',
+            Keywords: '',
+            Rules:
+                '<rea> When Little Sylvie is discarded from your hand or deck: Play it <i>(paying its cost)</i>.\n' +
+                '<rea> When a scenario card effect would discard a card from your hand or deck, exhaust Little Sylvie: Place that card on top of your deck, instead.',
+            Flavor: '',
+            Victory: '',
+        },
+        Back: STORY_PLAYER_BACK,
+    },
+    // 09766
+    refFoundationIntel: {
+        Faces: ['asset', 'playerBack'],
+        Card: {
+            Artist: 'Rafał Hrynkiewicz',
+            Copyright: '© 2023 FFG',
+            Collection: 'TheScarletKeys',
+            CollectionNumber: '266',
+            Encounter: 'Globetrotting',
+            EncounterType: '0',
+            EncounterNumber: '5–8',
+            EncounterTotal: '15',
+        },
+        Front: {
+            Title: 'Foundation Intel',
+            CardClass: 'StoryWeakness',
+            Unique: '0',
+            Subtitle: '',
+            ResourceCost: '-',
+            Level: 'None',
+            Skill1: 'None',
+            Skill2: 'None',
+            Skill3: 'None',
+            Slot: 'None',
+            Stamina: 'None',
+            Sanity: 'None',
+            Traits: 'Item. Evidence.',
+            Keywords: '',
+            Rules: 'Foundation Intel cannot leave your hand.',
+            Flavor: 'This dossier, while filled with important findings, isn’t relevant to your situation in the slightest. You should probably drop it off at the sanctum Taylor indicated at your earliest convenience.',
+            Victory: '',
+        },
+        Back: STORY_PLAYER_BACK,
+    },
+    // 08737
+    refTakadasCache: {
+        Faces: ['event', 'playerBack'],
+        Card: {
+            Artist: 'Vincent Dutrait',
+            Copyright: '© 2022 FFG',
+            Collection: 'EdgeOfTheEarth',
+            CollectionNumber: '237',
+            Encounter: 'MemorialsOfTheLost',
+            EncounterType: '0',
+            EncounterNumber: '8',
+            EncounterTotal: '9',
+        },
+        Front: {
+            Title: 'Takada’s Cache',
+            CardClass: 'Story',
+            Unique: '0',
+            ResourceCost: '0',
+            Level: 'None',
+            Skill1: 'Wild',
+            Skill2: 'None',
+            Skill3: 'None',
+            Traits: 'Supply.',
+            Keywords: '',
+            Rules:
+                'Fast. Play during any <fre> window.\n' +
+                'Gain 3 resources and draw 1 card. Remove Takada’s Cache from the game.',
+            Flavor: 'Takada left these spare supplies behind. Maybe you can make use of them.',
+            Victory: '',
+        },
+        Back: STORY_PLAYER_BACK,
+    },
+    // 10685
+    refHemlockCurse: {
+        Faces: ['skill', 'playerBack'],
+        Card: merge(HEMLOCK, {
+            Artist: 'Jeff Himmelman',
+            CollectionNumber: '185',
+            Encounter: 'day_of_rain',
+            EncounterNumber: '3–6',
+            EncounterTotal: '6',
+        }),
+        Front: {
+            Title: 'The Hemlock Curse',
+            CardClass: 'StoryWeakness',
+            Unique: '0',
+            Level: 'None',
+            Skill1: 'Wild',
+            Skill2: 'None',
+            Skill3: 'None',
+            Traits: 'Blight. Colour.',
+            Keywords: '',
+            Rules:
+                'This skill’s icons subtract from your skill value instead of adding to it.\n' +
+                'If this skill test fails, discard each card in your hand.\n' +
+                '<b>Forced</b> – At the end of your turn, if The Hemlock Curse is in your hand: Discard 1 card at random from your hand.',
+            Flavor: '',
+            Victory: '',
+        },
+        Back: STORY_PLAYER_BACK,
+    },
+};
+
+// fx.refIcons, svg or png, draws each reference's encounter icon as a custom
+// icon from that type of built-in icon file, or none, as an empty custom
+// icon; fx.refEncounter, if set, is the built-in set each reference shows
+// instead of its own.
+var refIcons = prop('fx.refIcons');
+var refEncounter = prop('fx.refEncounter');
+
+function buildReference(ref) {
+    var gc = new DIY('ArkhamHorrorLCG/diy/Flexible.js', 'AHLCG', false);
+    selectFaces(gc, ref.Faces);
+    for (var i = 0; i < gc.getPortraitCount(); ++i) {
+        if (isArtPortrait(gc.getPortrait(i))) placeArt(gc.getPortrait(i));
+    }
+    var s = gc.getSettings();
+    for (var k in ref.Card) s.set(k, ref.Card[k]);
+    [ref.Front, ref.Back].forEach(function (side, f) {
+        for (var key in side) {
+            if (key !== 'Title') s.set(key + SUFFIX[f], side[key]);
+            else if (f === 0) gc.setName(side[key]);
+            else s.set('TitleBack', side[key]);
+        }
+    });
+    if (refEncounter !== '') s.set('Encounter', refEncounter);
+    if (refIcons !== '') {
+        var icon = 'res://ArkhamHorrorLCG/icons/AHLCG-' + s.get('Encounter');
+        s.set('Encounter', 'CustomEncounterSet');
+        s.set('EncounterType', '-1');
+        if (refIcons !== 'none')
+            setPortraitSources(gc, { Encounter: icon + '.' + refIcons });
+    }
+    return gc;
+}
+
+function writeReference(name, ref) {
+    var path = ref.Faces[0] + '/' + name;
+    var file = new File(flexibleOutDir, path + '.eon');
+    if (file.exists() && !overwrite) {
+        record('SKIP', path, 'exists');
+        return;
+    }
+    try {
+        file.getParentFile().mkdirs();
+        ResourceKit.writeGameComponentToFile(file, buildReference(ref));
+        record('OK', path, file);
+    } catch (e) {
+        record(
+            'FAIL',
+            path,
+            e.javaException ? e.javaException.toString() : String(e)
+        );
+    }
+}
+
 function writeAll(handler, faces, flexible) {
     write(handler, faces, 'default', null, flexible);
     write(handler, faces, 'filled', null, flexible);
@@ -4041,6 +4712,7 @@ try {
         for (var h in HANDLERS) writeAll(h, HANDLERS[h], false);
         for (var i = 0; i < FLEXIBLE.length; ++i)
             writeAll('Flexible', [FLEXIBLE[i], FLEXIBLE[i]], true);
+        for (var name in REFERENCES) writeReference(name, REFERENCES[name]);
     }
     results.println('DONE');
 } finally {

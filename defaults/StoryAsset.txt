@@ -10,7 +10,7 @@ portrait 2 AHLCG-Face-Encounter
 setting AHLCG-AssetFace-BackPortrait-MirrorEdges = Default
 setting AHLCG-AssetStory-Default-bleed-margin = 8.64
 setting AHLCG-AssetStory-Default-template = ArkhamHorrorLCG/templates/AHLCG-Asset-G.jp2
-setting AHLCG-Face-Encounter-portrait-clip-region = 305,31,36,37
+setting AHLCG-Face-Encounter-portrait-clip-region = 308,36,29,28
 setting AHLCG-Story-Default-bleed-margin = 8.64
 setting AHLCG-Story-Default-template = ArkhamHorrorLCG/templates/AHLCG-Story.jp2
 setting ArtistBack = 
