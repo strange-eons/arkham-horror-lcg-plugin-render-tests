@@ -1,4 +1,4 @@
-version 31
+version 32
 faceStyle TWO_FACES
 frontTemplateKey AHLCG-Event-Default
 backTemplateKey AHLCG-EventBack-Default
@@ -12,6 +12,7 @@ setting AHLCG-Event-Default-template = ArkhamHorrorLCG/templates/AHLCG-Event-G.j
 setting AHLCG-EventBack-Default-bleed-margin = 8.64
 setting AHLCG-EventBack-Default-template = ArkhamHorrorLCG/templates/AHLCG-PlayerBack.jp2
 setting AHLCG-EventFace-Portrait-MirrorEdges = Default
+setting AHLCG-Face-Encounter-portrait-clip-region = 170,261,34,34
 setting Artist = 
 setting BackTypeBack = Player
 setting CardClass = Guardian

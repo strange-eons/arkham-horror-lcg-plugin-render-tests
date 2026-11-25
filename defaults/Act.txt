@@ -1,4 +1,4 @@
-version 31
+version 32
 faceStyle TWO_FACES
 frontTemplateKey AHLCG-Act-Default
 backTemplateKey AHLCG-ActBack-Default
@@ -12,6 +12,7 @@ setting AHLCG-Act-Default-template = ArkhamHorrorLCG/templates/AHLCG-Act.jp2
 setting AHLCG-ActBack-Default-bleed-margin = 8.64
 setting AHLCG-ActBack-Default-template = ArkhamHorrorLCG/templates/AHLCG-ActBack.jp2
 setting AHLCG-ActFace-Portrait-MirrorEdges = Default
+setting AHLCG-Face-Encounter-portrait-clip-region = 124,29,33,32
 setting ActStory = 
 setting ActStorySpacing = 0
 setting Artist = 

@@ -1,4 +1,4 @@
-version 31
+version 32
 faceStyle TWO_FACES
 frontTemplateKey AHLCG-AssetStory-Default
 backTemplateKey AHLCG-BackPortrait-Default
@@ -13,6 +13,7 @@ setting AHLCG-AssetStory-Default-bleed-margin = 8.64
 setting AHLCG-AssetStory-Default-template = ArkhamHorrorLCG/templates/AHLCG-Asset-G.jp2
 setting AHLCG-BackPortrait-Default-bleed-margin = 8.64
 setting AHLCG-BackPortrait-Default-template = ArkhamHorrorLCG/templates/AHLCG-Scenario.jp2
+setting AHLCG-Face-Encounter-portrait-clip-region = 330,13,27,27
 setting AHLCG-PortraitFace-BackPortrait-MirrorEdges = Default
 setting Artist = 
 setting ArtistBack = 

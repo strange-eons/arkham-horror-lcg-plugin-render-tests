@@ -1,4 +1,4 @@
-version 31
+version 32
 faceStyle TWO_FACES
 frontTemplateKey AHLCG-Agenda-Default
 backTemplateKey AHLCG-AssetStory-Default
@@ -14,6 +14,7 @@ setting AHLCG-AgendaFace-Portrait-MirrorEdges = Default
 setting AHLCG-AssetFace-BackPortrait-MirrorEdges = Default
 setting AHLCG-AssetStory-Default-bleed-margin = 8.64
 setting AHLCG-AssetStory-Default-template = ArkhamHorrorLCG/templates/AHLCG-Asset-G.jp2
+setting AHLCG-Face-Encounter-portrait-clip-region = 363,29,32,32
 setting AgendaStory = 
 setting AgendaStorySpacing = 0
 setting Artist = 

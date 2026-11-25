@@ -1,4 +1,4 @@
-version 31
+version 32
 faceStyle TWO_FACES
 frontTemplateKey AHLCG-Enemy-Default
 backTemplateKey AHLCG-BackPortrait-Default
@@ -13,6 +13,7 @@ setting AHLCG-BackPortrait-Default-template = ArkhamHorrorLCG/templates/AHLCG-Sc
 setting AHLCG-Enemy-Default-bleed-margin = 8.64
 setting AHLCG-Enemy-Default-template = ArkhamHorrorLCG/templates/AHLCG-Enemy.jp2
 setting AHLCG-EnemyFace-Portrait-MirrorEdges = Default
+setting AHLCG-Face-Encounter-portrait-clip-region = 171,270,32,32
 setting AHLCG-PortraitFace-BackPortrait-MirrorEdges = Default
 setting Artist = 
 setting ArtistBack = 

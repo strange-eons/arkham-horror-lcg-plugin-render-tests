@@ -1,4 +1,4 @@
-version 31
+version 32
 faceStyle TWO_FACES
 frontTemplateKey AHLCG-Skill-Default
 backTemplateKey AHLCG-SkillBack-Default
@@ -7,6 +7,7 @@ name
 portrait 0 AHLCG-SkillFace-Portrait
 portrait 1 AHLCG-Face-Collection
 portrait 2 AHLCG-Face-Encounter
+setting AHLCG-Face-Encounter-portrait-clip-region = 321,10,35,35
 setting AHLCG-Skill-Default-bleed-margin = 8.64
 setting AHLCG-Skill-Default-template = ArkhamHorrorLCG/templates/AHLCG-Skill-N.jp2
 setting AHLCG-SkillBack-Default-bleed-margin = 8.64

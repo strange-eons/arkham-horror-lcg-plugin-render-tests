@@ -1,4 +1,4 @@
-version 31
+version 32
 faceStyle ONE_FACE
 frontTemplateKey AHLCG-GuideA4-Default
 backTemplateKey diy-front-sheet

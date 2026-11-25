@@ -1,4 +1,4 @@
-version 31
+version 32
 faceStyle TWO_FACES
 frontTemplateKey AHLCG-FlexibleHandler-Front
 backTemplateKey AHLCG-FlexibleHandler-Back
@@ -8,6 +8,7 @@ portrait 0 AHLCG-InvestigatorFace-TransparentPortrait
 portrait 1 AHLCG-InvestigatorFace-BackTransparentPortrait
 portrait 2 AHLCG-Face-Collection
 portrait 3 AHLCG-Face-Encounter
+setting AHLCG-Face-Encounter-portrait-clip-region = 15,17,29,29
 setting AHLCG-FlexibleHandler-Back-bleed-margin = 8.64
 setting AHLCG-FlexibleHandler-Back-template = ArkhamHorrorLCG/templates/AHLCG-Investigator-G.jp2
 setting AHLCG-FlexibleHandler-Front-bleed-margin = 8.64

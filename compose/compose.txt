@@ -9,8 +9,8 @@ encounterBack: 5 of 7 the same
   encounterBack/filled other back side 0: rows 531-537
   encounterBack/filled other back reopened side 0: rows 531-537
 enemy: 59 of 63 the same
-  enemy/customIcons other back side 1: rows 291-315
-  enemy/customIcons other back reopened side 1: rows 291-315
+  enemy/customIcons other back side 1: rows 289-318
+  enemy/customIcons other back reopened side 1: rows 289-318
   enemy/noCollectorLine back side 0: rows 531-537
   enemy/noCollectorLine back reopened side 0: rows 531-537
   enemy/noCollectorLine front side 1: rows 530-537
@@ -25,8 +25,8 @@ scenarioRules: 8 of 11 the same
   scenarioRules/resolution other back side 0: rows 531-537
   scenarioRules/resolution other back reopened side 0: rows 531-537
 story: 31 of 35 the same
-  story/customIcons other back side 1: rows 54-81
-  story/customIcons other back reopened side 1: rows 54-81
+  story/customIcons other back side 1: rows 51-82
+  story/customIcons other back reopened side 1: rows 51-82
   story/noCollectorLine back side 0: rows 509-515
   story/noCollectorLine back reopened side 0: rows 509-515
   story/noCollectorLine front side 1: rows 508-515
@@ -34,8 +34,8 @@ story: 31 of 35 the same
   story/noCollectorLine other back side 0: rows 531-537
   story/noCollectorLine other back reopened side 0: rows 531-537
 tokenRules: 147 of 151 the same
-  tokenRules/customIcons other back side 1: rows 79-105
-  tokenRules/customIcons other back reopened side 1: rows 79-105
+  tokenRules/customIcons other back side 1: rows 80-105
+  tokenRules/customIcons other back reopened side 1: rows 80-105
   tokenRules/noCollectorLine back side 0: rows 531-537
   tokenRules/noCollectorLine back reopened side 0: rows 531-537
   tokenRules/noCollectorLine front side 1: rows 530-537
@@ -43,8 +43,8 @@ tokenRules: 147 of 151 the same
   tokenRules/noCollectorLine other back side 0: rows 531-537
   tokenRules/noCollectorLine other back reopened side 0: rows 531-537
 treachery: 30 of 31 the same
-  treachery/customIcons other back side 1: rows 273-296
-  treachery/customIcons other back reopened side 1: rows 273-296
+  treachery/customIcons other back side 1: rows 271-298
+  treachery/customIcons other back reopened side 1: rows 271-298
 asset: 79 of 79 the same
 event: 51 of 51 the same
 skill: 35 of 35 the same
@@ -75,8 +75,8 @@ key: 15 of 19 the same
   key/returnTo front reopened side 1: rows 506-518
   key/customIcons front side 1: rows 506-518
   key/customIcons front reopened side 1: rows 506-518
-  key/customIcons other back side 1: rows 32-56
-  key/customIcons other back reopened side 1: rows 32-56
+  key/customIcons other back side 1: rows 30-59
+  key/customIcons other back reopened side 1: rows 30-59
 investigator: 23 of 23 the same
 investigatorBack: 14 of 19 the same, shared CardClass, Subtitle
   investigatorBack/default other back side 0: rows 531-537
@@ -90,8 +90,8 @@ investigatorBack: 14 of 19 the same, shared CardClass, Subtitle
   investigatorBack/story other back side 0: rows 531-537
   investigatorBack/story other back reopened side 0: rows 531-537
 act: 42 of 43 the same, shared ScenarioDeckID, ScenarioIndex
-  act/customIcons other back side 1: rows 50-74
-  act/customIcons other back reopened side 1: rows 50-74
+  act/customIcons other back side 1: rows 50-76
+  act/customIcons other back reopened side 1: rows 50-76
 actBack: 11 of 15 the same, shared ScenarioDeckID, ScenarioIndex
   actBack/default other back side 0: rows 531-537
   actBack/default other back reopened side 0: rows 531-537
@@ -111,8 +111,8 @@ agendaBack: 8 of 11 the same, shared ScenarioDeckID, ScenarioIndex
   agendaBack/returnTo other back reopened side 0: rows 531-537
 agendaFrontPortrait: 19 of 19 the same, shared ScenarioDeckID, ScenarioIndex
 agendaPortrait: 14 of 15 the same
-  agendaPortrait/customIcons other back side 1: rows 257-286
-  agendaPortrait/customIcons other back reopened side 1: rows 257-286
+  agendaPortrait/customIcons other back side 1: rows 255-289
+  agendaPortrait/customIcons other back reopened side 1: rows 255-289
 portrait: 8 of 11 the same
   portrait/default other back side 0: rows 531-537
   portrait/default other back reopened side 0: rows 531-537

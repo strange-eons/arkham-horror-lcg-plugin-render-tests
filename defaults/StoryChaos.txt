@@ -1,4 +1,4 @@
-version 31
+version 32
 faceStyle TWO_FACES
 frontTemplateKey AHLCG-Story-Default
 backTemplateKey AHLCG-Chaos-Default
@@ -8,6 +8,7 @@ portrait 0 AHLCG-Face-Collection
 portrait 1 AHLCG-Face-Encounter
 setting AHLCG-Chaos-Default-bleed-margin = 8.64
 setting AHLCG-Chaos-Default-template = ArkhamHorrorLCG/templates/AHLCG-StoryChaosFull.jp2
+setting AHLCG-Face-Encounter-portrait-clip-region = 305,31,36,37
 setting AHLCG-Story-Default-bleed-margin = 8.64
 setting AHLCG-Story-Default-template = ArkhamHorrorLCG/templates/AHLCG-Story.jp2
 setting BlockCount = 1

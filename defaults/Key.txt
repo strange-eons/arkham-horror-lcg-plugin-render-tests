@@ -1,4 +1,4 @@
-version 31
+version 32
 faceStyle TWO_FACES
 frontTemplateKey AHLCG-Key-Default
 backTemplateKey AHLCG-KeyBack-Default
@@ -8,6 +8,7 @@ portrait 0 AHLCG-KeyFace-Portrait
 portrait 1 AHLCG-KeyFace-BackPortrait
 portrait 2 AHLCG-Face-Collection
 portrait 3 AHLCG-Face-Encounter
+setting AHLCG-Face-Encounter-portrait-clip-region = 320,11,32,32
 setting AHLCG-Key-Default-bleed-margin = 8.64
 setting AHLCG-Key-Default-template = ArkhamHorrorLCG/templates/AHLCG-Key.jp2
 setting AHLCG-KeyBack-Default-bleed-margin = 8.64

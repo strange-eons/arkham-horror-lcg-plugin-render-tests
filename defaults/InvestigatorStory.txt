@@ -1,4 +1,4 @@
-version 31
+version 32
 faceStyle TWO_FACES
 frontTemplateKey AHLCG-Investigator-Default
 backTemplateKey AHLCG-InvestigatorBack-Default
@@ -8,6 +8,7 @@ portrait 0 AHLCG-InvestigatorFace-TransparentPortrait
 portrait 1 AHLCG-InvestigatorBackFace-BackPortrait
 portrait 2 AHLCG-Face-Collection
 portrait 3 AHLCG-Face-Encounter
+setting AHLCG-Face-Encounter-portrait-clip-region = 15,17,29,29
 setting AHLCG-Investigator-Default-bleed-margin = 8.64
 setting AHLCG-Investigator-Default-template = ArkhamHorrorLCG/templates/AHLCG-Investigator-G.jp2
 setting AHLCG-InvestigatorBack-Default-bleed-margin = 8.64
